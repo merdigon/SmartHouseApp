@@ -19,7 +19,7 @@ namespace SmartHouseApp.Share.Tools
 
         public double CalculateProbability(double x)
         {
-            return Math.Exp(-Math.Pow(x - Um, 2) / (2 * Math.Pow(Sigma, 2))) / Math.Sqrt(2 * Math.PI * Math.Pow(Sigma, 2));
+            
         }
     }
 }

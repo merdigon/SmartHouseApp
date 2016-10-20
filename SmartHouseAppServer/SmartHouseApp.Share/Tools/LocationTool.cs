@@ -19,7 +19,7 @@ namespace SmartHouseApp.Share.Tools
             int sizeZ = (int)Math.Ceiling(boxSize.Z);
             double[][][] probabilityMap = new double[sizeX][sizeY][sizeZ];
             var normalizedRouterInfo = NormalizeSphereData(startPoint, dataToCalculate);
-
+            
             for(int i=0;i < probabilityMap)
         }
 
