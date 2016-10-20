@@ -1,0 +1,5 @@
+c:\users\szymon\documents\visual studio 2013\Projects\SmartHouseAppServer\SmartHouseApp.Share\bin\Debug\SmartHouseApp.Share.dll
+c:\users\szymon\documents\visual studio 2013\Projects\SmartHouseAppServer\SmartHouseApp.Share\bin\Debug\SmartHouseApp.Share.pdb
+c:\users\szymon\documents\visual studio 2013\Projects\SmartHouseAppServer\SmartHouseApp.Share\obj\Debug\SmartHouseApp.Share.csprojResolveAssemblyReference.cache
+c:\users\szymon\documents\visual studio 2013\Projects\SmartHouseAppServer\SmartHouseApp.Share\obj\Debug\SmartHouseApp.Share.dll
+c:\users\szymon\documents\visual studio 2013\Projects\SmartHouseAppServer\SmartHouseApp.Share\obj\Debug\SmartHouseApp.Share.pdb
