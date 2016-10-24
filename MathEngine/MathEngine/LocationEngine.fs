@@ -1,7 +1,7 @@
 ﻿module LocationEngine
 open DotNetStruct
 
-let SIZE_OF_PICK_IN_BOX = 0.5
+let SIZE_OF_MIN_PICK_IN_BOX = 0.5
 
 ///wyciąganie pierwszego elementu z krotki
 let fst3 (c,_,_) = c
@@ -41,25 +41,25 @@ let rec countProbabilityForPointAndSpheres x y z (source : Sphere list) =
     | head :: tail -> (head.Guassian.Probability <| countDistanceBetweenPointAndSphere (double x) (double y) (double z) head) + (countProbabilityForPointAndSpheres x y z tail)
 
 ///dla każdego punktu w osi X prostopadłościanu oblicza prawdopodobieństwo
-let rec createXRow x y z (source : Sphere list) =
-    if x <= 0.0 then
+let rec createXRow x y z (source : Sphere list) xIter normalizer =
+    if xIter <= 0 then
         []
     else 
-        ((x, y, z), (countProbabilityForPointAndSpheres x y z source)) :: createXRow (x-SIZE_OF_PICK_IN_BOX) y z source 
+        ((x, y, z), (countProbabilityForPointAndSpheres x y z source)) :: createXRow (x-normalizer) y z source (xIter-1) normalizer
 
 ///dla każdego punktu w osi Y prostopadłościanu generuje oś X pradopobieńst
-let rec createYRow x y z (source : Sphere list) =
-    if y <= 0.0 then
+let rec createYRow x y z (source : Sphere list) xIter yIter normalizer =
+    if yIter <= 0 then
         []
     else 
-        createXRow x y z source :: createYRow x (y-SIZE_OF_PICK_IN_BOX) z source 
+        createXRow x y z source xIter normalizer :: createYRow x (y-normalizer) z source xIter (yIter-1) normalizer
 
 ///dla każdego punktu w osi Y prostopadłościanu generuje oś X pradopobieńst
-let rec createZRow x y z (source : Sphere list) =
-    if z <= 0.0 then
+let rec createZRow x y z (source : Sphere list) xIter yIter zIter normalizer =
+    if zIter <= 0 then
         []
     else 
-        createYRow x y z source :: createZRow x y (z-SIZE_OF_PICK_IN_BOX) source
+        createYRow x y z source xIter yIter normalizer :: createZRow x y (z-normalizer) source xIter yIter (zIter-1) normalizer
 
 ///dla każdego punktu w osi Z prostopadłościanu generuje płaszczyznę pradopobieńst XY
 let positionWithMaxProb acc ((x,y,z), d) =
@@ -90,6 +90,15 @@ let getPosWithBestProbability probBox =
 let normalizeBestPosition ((x,y,z),p) (xn,yn,zn) =
     ((x+xn,y+yn,z+zn), p)
 
+let countNormalizerBoxSize (x, y, z) =
+    ([x;y;z] |> List.max) / 20.0  
+    
+let rec getPreciseBestPosition (x,y,z) normalizedSpheres accuracy =
+    match accuracy with
+    | acc when acc < SIZE_OF_MIN_PICK_IN_BOX -> (x,y,z)
+    | acc -> let box = createZRow (x + acc) (y + acc) (z + acc) normalizedSpheres 9 9 9 (acc / 3.0)
+             getPreciseBestPosition (fst <| getPosWithBestProbability box) normalizedSpheres (acc / 3.0)
+
 ///oblicza współrzędną użytkownika, która ma najwieksze prawdopodobieństwo
 ///1. Wyznaczenie nowego układu współrzędnych (brak wartości ujemnych) oraz wielkość rozpatrywanego prostopadłościanu
 ///2. Wypełnienie prostopadłościanu prawdopodobieństwami
@@ -102,9 +111,14 @@ let countUserPosition(source : Sphere[]) =
         new Sphere(sphere.X - x, sphere.Y - y, sphere.Z - z, sphere.Distance, sphere.Guassian)
 
     let normalizedSpheres = List.map (fun (x : Sphere) -> sphereNormalizer boxNormalizer x) <| (Array.toList source)
-    let boxWithProbabilities = createZRow (fst3 boxSize) (snd3 boxSize) (trd3 boxSize) normalizedSpheres
+    let normalizer = countNormalizerBoxSize boxSize
+    let xIter = int((fst3 boxSize) / normalizer) + 1
+    let yIter = int((snd3 boxSize) / normalizer) + 1
+    let zIter = int((trd3 boxSize) / normalizer) + 1
+    let boxWithProbabilities = createZRow (float(xIter) * normalizer) (float(yIter) * normalizer) (float(zIter) * normalizer) normalizedSpheres xIter yIter zIter normalizer
     let bestPosUnnormalized = getPosWithBestProbability boxWithProbabilities
-    normalizeBestPosition bestPosUnnormalized boxNormalizer
+    let bestPosition = getPreciseBestPosition (fst bestPosUnnormalized) normalizedSpheres normalizer
+    normalizeBestPosition (bestPosition, snd bestPosUnnormalized) boxNormalizer
 
 
     
