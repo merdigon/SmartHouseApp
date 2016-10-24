@@ -64,8 +64,8 @@ let rec createZRow x y z (source : Sphere list) =
 ///dla każdego punktu w osi Z prostopadłościanu generuje płaszczyznę pradopobieńst XY
 let positionWithMaxProb acc ((x,y,z), d) =
     match acc with
-    | ((xa, ya, za), da) -> if d > da then ((x,y,z),d) else ((xa,ya,za),da)
-    | _ -> ((x,y,z),d)
+    | ((xa, ya, za), da) when d > da -> ((x,y,z),d) 
+    | ((xa, ya, za), da) -> ((xa,ya,za),da)
 
 ///wyciąga z listy współrzędnych X tą z największym prawdopobieństwem
 let rec getPosWithBestProbabilityForX probBox =

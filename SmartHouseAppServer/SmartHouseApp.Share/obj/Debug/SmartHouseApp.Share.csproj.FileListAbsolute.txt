@@ -3,3 +3,13 @@ c:\users\szymon\documents\visual studio 2013\Projects\SmartHouseAppServer\SmartH
 c:\users\szymon\documents\visual studio 2013\Projects\SmartHouseAppServer\SmartHouseApp.Share\obj\Debug\SmartHouseApp.Share.csprojResolveAssemblyReference.cache
 c:\users\szymon\documents\visual studio 2013\Projects\SmartHouseAppServer\SmartHouseApp.Share\obj\Debug\SmartHouseApp.Share.dll
 c:\users\szymon\documents\visual studio 2013\Projects\SmartHouseAppServer\SmartHouseApp.Share\obj\Debug\SmartHouseApp.Share.pdb
+C:\Users\Szymon\Source\Repos\SmartHouseApp\SmartHouseAppServer\SmartHouseApp.Share\obj\Debug\SmartHouseApp.Share.csprojResolveAssemblyReference.cache
+C:\Users\Szymon\Source\Repos\SmartHouseApp\SmartHouseAppServer\SmartHouseApp.Share\obj\Debug\SmartHouseApp.Share.dll
+C:\Users\Szymon\Source\Repos\SmartHouseApp\SmartHouseAppServer\SmartHouseApp.Share\bin\Debug\SmartHouseApp.Share.dll
+C:\Users\Szymon\Source\Repos\SmartHouseApp\SmartHouseAppServer\SmartHouseApp.Share\bin\Debug\SmartHouseApp.Share.pdb
+C:\Users\Szymon\Source\Repos\SmartHouseApp\SmartHouseAppServer\SmartHouseApp.Share\bin\Debug\MathEngine.dll
+C:\Users\Szymon\Source\Repos\SmartHouseApp\SmartHouseAppServer\SmartHouseApp.Share\bin\Debug\FSharp.Core.dll
+C:\Users\Szymon\Source\Repos\SmartHouseApp\SmartHouseAppServer\SmartHouseApp.Share\bin\Debug\MathEngine.pdb
+C:\Users\Szymon\Source\Repos\SmartHouseApp\SmartHouseAppServer\SmartHouseApp.Share\bin\Debug\MathEngine.xml
+C:\Users\Szymon\Source\Repos\SmartHouseApp\SmartHouseAppServer\SmartHouseApp.Share\bin\Debug\FSharp.Core.xml
+C:\Users\Szymon\Source\Repos\SmartHouseApp\SmartHouseAppServer\SmartHouseApp.Share\obj\Debug\SmartHouseApp.Share.pdb

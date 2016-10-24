@@ -12,47 +12,15 @@ namespace SmartHouseApp.Share.Tools
     {
         public static Point GetProbabilisticLocalization(List<SphereData> dataToCalculate)
         {
-            Point startPoint = new Point();
-            Point boxSize = GetBoxSize(dataToCalculate, startPoint);
-            int sizeX = (int)Math.Ceiling(boxSize.X);
-            int sizeY = (int)Math.Ceiling(boxSize.Y);
-            int sizeZ = (int)Math.Ceiling(boxSize.Z);
-            double[][][] probabilityMap = new double[sizeX][sizeY][sizeZ];
-            var normalizedRouterInfo = NormalizeSphereData(startPoint, dataToCalculate);
-            
-            for(int i=0;i < probabilityMap)
-        }
-
-        public static List<SphereData> NormalizeSphereData(Point startPoint, List<SphereData> dataToCalculate)
-        {
-            return dataToCalculate.Select(p =>
-                new SphereData()
-                {
-                    GaussianFunction = p.GaussianFunction,
-                    Distance = p.Distance,
-                    X = p.X - (double)startPoint.X,
-                    Y = p.Y - (double)startPoint.Y,
-                    Z = p.Z - (double)startPoint.Z
-                }
-                ).ToList();
-        }
-
-        public static Point GetBoxSize(List<SphereData> dataToCalculate, Point startPoint)
-        {
-            var maxX = dataToCalculate.Select(p => p.X + p.Distance + 2 * p.GaussianFunction.Sigma).Max();
-            var maxY = dataToCalculate.Select(p => p.Y + p.Distance + 2 * p.GaussianFunction.Sigma).Max();
-            var maxZ = dataToCalculate.Select(p => p.Z + p.Distance + 2 * p.GaussianFunction.Sigma).Max();
-            var minX = dataToCalculate.Select(p => p.X - p.Distance - 2 * p.GaussianFunction.Sigma).Max();
-            var minY = dataToCalculate.Select(p => p.Y - p.Distance - 2 * p.GaussianFunction.Sigma).Max();
-            var minZ = dataToCalculate.Select(p => p.Z - p.Distance - 2 * p.GaussianFunction.Sigma).Max();
-            startPoint.X = (decimal)minX;
-            startPoint.Y = (decimal)minY;
-            startPoint.Z = (decimal)minZ;
-            return new Point()
+            var fSharpDataToCalculateStructure = dataToCalculate.Select(p => 
+                new DotNetStruct.Sphere(p.X, p.Y, p.Z, p.Distance,
+                    new DotNetStruct.GausianProbabilityDistribution(p.Distance, p.Sigma))).ToArray();
+            var userPos = DotNetInterface.countPosition(fSharpDataToCalculateStructure);
+            return new Point
             {
-                X = (decimal)(maxX - minX),
-                Y = (decimal)(maxY - minY),
-                Z = (decimal)(maxZ - minZ)
+                X = (decimal)userPos.Item1.Item1,
+                Y = (decimal)userPos.Item1.Item2,
+                Z = (decimal)userPos.Item1.Item3
             };
         }
     }
@@ -63,7 +31,7 @@ namespace SmartHouseApp.Share.Tools
         public double Y { get; set; }
         public double Z { get; set; }
         public double Distance { get; set; }
-        public GaussianProbabilityDistribution GaussianFunction { get; set; }
+        public double Sigma { get; set; }
     }
 
     //public static class LocationTool

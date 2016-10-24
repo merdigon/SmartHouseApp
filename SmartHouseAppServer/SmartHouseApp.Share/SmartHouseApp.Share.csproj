@@ -51,7 +51,6 @@
     <Compile Include="KnowledgeDataStructures\SystemDataKnowledge.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tools\BluetoothTool.cs" />
-    <Compile Include="Tools\GaussianProbabilityDistribution.cs" />
     <Compile Include="Tools\LocationTool.cs" />
     <Compile Include="Tools\WifiTool.cs" />
   </ItemGroup>

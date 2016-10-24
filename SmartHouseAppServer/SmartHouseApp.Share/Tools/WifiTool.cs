@@ -31,11 +31,9 @@ namespace SmartHouseApp.Share.Tools
                         X = (double)wifiStaticData.Location.X,
                         Y = (double)wifiStaticData.Location.Y,
                         Z = (double)wifiStaticData.Location.Z,
-                        Distance = (double)GetDistanceInPoints(ssData.SignalStrength, wifiStaticData.Frequency)
+                        Distance = (double)GetDistanceInPoints(ssData.SignalStrength, wifiStaticData.Frequency),
+                        Sigma = wifiStaticData.GetSigmaForSignalStrength(ssData.SignalStrength)
                     };
-                    data.GaussianFunction = new GaussianProbabilityDistribution(
-                        wifiStaticData.GetSigmaForSignalStrength(ssData.SignalStrength), data.Distance
-                        );
                     dataToCalculate.Add(data);
                 }
             }
