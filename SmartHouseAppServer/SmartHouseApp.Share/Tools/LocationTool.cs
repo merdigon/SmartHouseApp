@@ -15,7 +15,7 @@ namespace SmartHouseApp.Share.Tools
             var fSharpDataToCalculateStructure = dataToCalculate.Select(p => 
                 new DotNetStruct.Sphere(p.X, p.Y, p.Z, p.Distance,
                     new DotNetStruct.GausianProbabilityDistribution(p.Distance, p.Sigma))).ToArray();
-            var userPos = DotNetInterface.countPosition(fSharpDataToCalculateStructure);
+            var userPos = DotNetInterface.iCountPosition(fSharpDataToCalculateStructure);
             return new Point
             {
                 X = (decimal)userPos.Item1.Item1,

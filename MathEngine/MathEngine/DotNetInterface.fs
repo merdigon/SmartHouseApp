@@ -1,7 +1,11 @@
 ﻿module DotNetInterface
 open DotNetStruct
 open LocationEngine
+open SignalTool
 
 ///obliczanie współrzędnej użytkownika na podstawie pomiarów sił sygnałów
-let countPosition (source : Sphere[]) =
-     countUserPosition source
+let iCountPosition (source : Sphere[]) =
+    countUserPosition source
+
+let iCountDistanceForWifiRouter signalStrenght rsssiOnZeroDistance =
+    countDistanceForWifiRouter signalStrenght rsssiOnZeroDistance

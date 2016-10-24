@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="AssemblyInfo.fs" />
     <Compile Include="DotNetStruct.fs" />
+    <Compile Include="SignalTool.fs" />
     <Compile Include="LocationEngine.fs" />
     <Compile Include="DotNetInterface.fs" />
     <None Include="Script.fsx" />

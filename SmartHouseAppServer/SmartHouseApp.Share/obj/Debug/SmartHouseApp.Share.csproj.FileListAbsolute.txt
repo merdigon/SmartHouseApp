@@ -13,3 +13,6 @@ C:\Users\Szymon\Source\Repos\SmartHouseApp\SmartHouseAppServer\SmartHouseApp.Sha
 C:\Users\Szymon\Source\Repos\SmartHouseApp\SmartHouseAppServer\SmartHouseApp.Share\bin\Debug\MathEngine.xml
 C:\Users\Szymon\Source\Repos\SmartHouseApp\SmartHouseAppServer\SmartHouseApp.Share\bin\Debug\FSharp.Core.xml
 C:\Users\Szymon\Source\Repos\SmartHouseApp\SmartHouseAppServer\SmartHouseApp.Share\obj\Debug\SmartHouseApp.Share.pdb
+D:\Repo\Source\SmartHouseApp\SmartHouseAppServer\SmartHouseApp.Share\obj\Debug\SmartHouseApp.Share.csprojResolveAssemblyReference.cache
+D:\Repo\Source\SmartHouseApp\SmartHouseAppServer\SmartHouseApp.Share\obj\Debug\SmartHouseApp.Share.dll
+D:\Repo\Source\SmartHouseApp\SmartHouseAppServer\SmartHouseApp.Share\obj\Debug\SmartHouseApp.Share.pdb
