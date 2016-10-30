@@ -15,7 +15,7 @@ namespace SmartHouseApp.Share.KnowledgeDataStructures
 
         public double GetSigmaForSignalStrength(double signalStrength)
         {
-            return 0.2;
+            return 1;
         }
     }
 }

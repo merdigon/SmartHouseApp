@@ -6,7 +6,7 @@ type GausianProbabilityDistribution(_um : double, _sigma : double) =
     
     ///zastosowanie funkcji rozkładu prawdopodobieńst Gaussa
     member this.Probability(x : double) =
-        let numerator = -((x - this.Um)**2.0) / (2.0 * (this.Sigma**2.0))
+        let numerator = -(((x - this.Um))**2.0) / (2.0 * (this.Sigma**2.0))
         let denominator = sqrt (2.0 * System.Math.PI * (this.Sigma**2.0))
         exp (numerator) * (1.0 / denominator)
     

@@ -202,3 +202,8 @@ D:\Repo\Source\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\System.
 D:\Repo\Source\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\obj\Debug\SmartHouseAppServer.csprojResolveAssemblyReference.cache
 D:\Repo\Source\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\obj\Debug\SmartHouseAppServer.dll
 D:\Repo\Source\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\obj\Debug\SmartHouseAppServer.pdb
+D:\Repo\Source\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\MathEngine.dll
+D:\Repo\Source\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\FSharp.Core.dll
+D:\Repo\Source\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\MathEngine.pdb
+D:\Repo\Source\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\MathEngine.xml
+D:\Repo\Source\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\FSharp.Core.xml

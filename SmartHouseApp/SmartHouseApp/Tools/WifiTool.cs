@@ -14,9 +14,9 @@ namespace SmartHouseApp.Tools
 {
     public static class WifiTool
     {
-        public static int GetDbmRecalculation(int signalStrenght)
+        public static double GetDistanceRecalculation(int signalStrenght)
         {
-            return signalStrenght + 100;
+            return Math.Pow(10.0, ((signalStrenght - (-46.0)) / (-10.0 * 5.0)));
         }
     }
 }

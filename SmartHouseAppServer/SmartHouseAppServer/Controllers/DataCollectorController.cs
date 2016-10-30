@@ -18,20 +18,20 @@ namespace SmartHouseAppServer.Controllers
         public virtual bool ReportDevices([FromBody]DeviceNotificationModel notification)
         {
             List<SphereData> dataToCalculate = WifiTool.GetRouterSphereData(notification.SignalData.Where(p => p.Type == SignalType.WIFI).ToList());
-            //dataToCalculate.AddRange(BluetoothTool.GetBluetoothSphereData(notification.SignalData.Where(p => p.Type == SignalType.BLUETOOTH).ToList()));
+            dataToCalculate.AddRange(BluetoothTool.GetBluetoothSphereData(notification.SignalData.Where(p => p.Type == SignalType.BLUETOOTH).ToList()));
 
             //var loc = LocationTool.GetLocationWithThreeCircles(new SphereData[] { dataToCalculate[0], dataToCalculate[1], dataToCalculate[2] });
             Point loc = LocalizationTool.GetProbabilisticLocalization(dataToCalculate);
 
             var phone = SystemDataKnowledge.DevicesInfo.Where(p => p.BluetoothMac.Equals(notification.SourceName)).FirstOrDefault();
-            if(phone == null)
+            if (phone == null)
                 phone = new DynamicDeviceInfo() { BluetoothMac = notification.SourceName };
 
             phone.CurrentLocation = loc;
             phone.CurrentLocationUpdateTime = DateTime.Now;
             phone.CurrentSignalStrengthData = notification.SignalData.ToList();
 
-            if(loc != null)
+            if (loc != null)
             {
                 DeviceLocalizationHistory.History.Add(new HistoryData
                 {

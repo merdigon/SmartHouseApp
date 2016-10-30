@@ -61,9 +61,11 @@ namespace SmartHouseApp.Adapters
 
             TextView routerName = (TextView)row.FindViewById(Resource.Id.RouterName);
             TextView levelPower = (TextView)row.FindViewById(Resource.Id.LevelText);
+            TextView distance = (TextView)row.FindViewById(Resource.Id.DistanceText);
 
             routerName.Text = Items[position].Name;
             levelPower.Text = Items[position].Strenght.ToString();
+            distance.Text = Items[position].Distance.ToString();
             
             return row;
         }

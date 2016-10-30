@@ -45,4 +45,25 @@ C:\Users\Szymon\Documents\Visual Studio 2013\Projects\SmartHouseApp\SmartHouseAp
 C:\Users\Szymon\Documents\Visual Studio 2013\Projects\SmartHouseApp\SmartHouseApp\obj\Debug\android\assets\Microsoft.CSharp.dll.mdb
 C:\Users\Szymon\Documents\Visual Studio 2013\Projects\SmartHouseApp\SmartHouseApp\obj\Debug\android\assets\Mono.CSharp.dll.mdb
 C:\Users\Szymon\Documents\Visual Studio 2013\Projects\SmartHouseApp\SmartHouseApp\obj\Debug\SmartHouseApp.dll.mdb
-C:\Users\Szymon\Documents\Visual Studio 2013\Projects\SmartHouseApp\SmartHouseApp\bin\Debug\SmartHouseApp.dll.mdb
+D:\Repo\Source\SmartHouseApp\SmartHouseApp\SmartHouseApp\obj\Debug\SmartHouseApp.csprojResolveAssemblyReference.cache
+D:\Repo\Source\SmartHouseApp\SmartHouseApp\SmartHouseApp\obj\Debug\SmartHouseApp.dll
+D:\Repo\Source\SmartHouseApp\SmartHouseApp\SmartHouseApp\obj\Debug\SmartHouseApp.pdb
+D:\Repo\Source\SmartHouseApp\SmartHouseApp\SmartHouseApp\bin\Debug\SmartHouseApp.dll
+D:\Repo\Source\SmartHouseApp\SmartHouseApp\SmartHouseApp\bin\Debug\SmartHouseApp.pdb
+D:\Repo\Source\SmartHouseApp\SmartHouseApp\SmartHouseApp\bin\Debug\SmartHouseApp.SmartHouseApp.apk
+D:\Repo\Source\SmartHouseApp\SmartHouseApp\SmartHouseApp\bin\Debug\SmartHouseApp.SmartHouseApp-Signed.apk
+D:\Repo\Source\SmartHouseApp\SmartHouseApp\SmartHouseApp\bin\Debug\Newtonsoft.Json.dll
+D:\Repo\Source\SmartHouseApp\SmartHouseApp\SmartHouseApp\bin\Debug\Newtonsoft.Json.xml
+D:\Repo\Source\SmartHouseApp\SmartHouseApp\SmartHouseApp\obj\Debug\android\bin\SmartHouseApp.SmartHouseApp.apk
+D:\Repo\Source\SmartHouseApp\SmartHouseApp\SmartHouseApp\obj\Debug\res\layout\customlistview_routers.xml
+D:\Repo\Source\SmartHouseApp\SmartHouseApp\SmartHouseApp\obj\Debug\res\layout\a01searchrouter.xml
+D:\Repo\Source\SmartHouseApp\SmartHouseApp\SmartHouseApp\obj\Debug\res\layout\a02blouetoothlocalization.xml
+D:\Repo\Source\SmartHouseApp\SmartHouseApp\SmartHouseApp\obj\Debug\res\layout\main.xml
+D:\Repo\Source\SmartHouseApp\SmartHouseApp\SmartHouseApp\obj\Debug\res\values\strings.xml
+D:\Repo\Source\SmartHouseApp\SmartHouseApp\SmartHouseApp\obj\Debug\res\drawable\icon.png
+D:\Repo\Source\SmartHouseApp\SmartHouseApp\SmartHouseApp\obj\Debug\R.cs.flag
+D:\Repo\Source\SmartHouseApp\SmartHouseApp\SmartHouseApp\obj\Debug\uploadflags.txt
+D:\Repo\Source\SmartHouseApp\SmartHouseApp\SmartHouseApp\obj\Debug\res\drawable\monoandroidsplash.png
+D:\Repo\Source\SmartHouseApp\SmartHouseApp\SmartHouseApp\obj\Debug\res\values\styles.xml
+D:\Repo\Source\SmartHouseApp\SmartHouseApp\SmartHouseApp\obj\Debug\SmartHouseApp.dll.mdb
+D:\Repo\Source\SmartHouseApp\SmartHouseApp\SmartHouseApp\bin\Debug\SmartHouseApp.dll.mdb

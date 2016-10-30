@@ -10,6 +10,6 @@ namespace SmartHouseApp.DataStractures
     {
         public SignalType Type { get; set; }
         public string DeviceName { get; set; }
-        public int SignalStrength { get; set; }
+        public double SignalStrength { get; set; }
     }
 }

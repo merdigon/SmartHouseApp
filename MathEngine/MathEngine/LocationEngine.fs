@@ -39,6 +39,10 @@ let rec countProbabilityForPointAndSpheres x y z (source : Sphere list) =
     match source with
     | [] -> 0.0
     | head :: tail -> (head.Guassian.Probability <| countDistanceBetweenPointAndSphere (double x) (double y) (double z) head) + (countProbabilityForPointAndSpheres x y z tail)
+                      //match (xw,yw,zw) with
+                      //| (x, y, z) when x >= 22.0 &&  x <= 23.0 && y >= 26.0 && y <= 27.0 && z >= 14.0 && z <= 15.0 ->   let res = (head.Guassian.Probability <| countDistanceBetweenPointAndSphere (double x) (double y) (double z) head) + (countProbabilityForPointAndSpheres x y z tail)
+                       //                                                                                                 res
+                      //| (x, y, z) -> (head.Guassian.Probability <| countDistanceBetweenPointAndSphere (double x) (double y) (double z) head) + (countProbabilityForPointAndSpheres x y z tail)                                                              
 
 ///dla każdego punktu w osi X prostopadłościanu oblicza prawdopodobieństwo
 let rec createXRow x y z (source : Sphere list) xIter normalizer =
@@ -96,7 +100,7 @@ let countNormalizerBoxSize (x, y, z) =
 let rec getPreciseBestPosition (x,y,z) normalizedSpheres accuracy =
     match accuracy with
     | acc when acc < SIZE_OF_MIN_PICK_IN_BOX -> (x,y,z)
-    | acc -> let box = createZRow (x + acc) (y + acc) (z + acc) normalizedSpheres 9 9 9 (acc / 3.0)
+    | acc -> let box = createZRow (x + acc) (y + acc) (z + acc) normalizedSpheres 6 6 6 (acc / 3.0)
              getPreciseBestPosition (fst <| getPosWithBestProbability box) normalizedSpheres (acc / 3.0)
 
 ///oblicza współrzędną użytkownika, która ma najwieksze prawdopodobieństwo
@@ -106,6 +110,7 @@ let rec getPreciseBestPosition (x,y,z) normalizedSpheres accuracy =
 ///4. Normalizacja wyniku do wejściowego układu współrzędnych
 let countUserPosition(source : Sphere[]) =
     let boxSize, boxNormalizer = countBoxSize source
+    let boxSizeX, boxSizeY, boxSizeZ = boxSize
 
     let sphereNormalizer (x,y,z) (sphere : Sphere) =
         new Sphere(sphere.X - x, sphere.Y - y, sphere.Z - z, sphere.Distance, sphere.Guassian)
@@ -118,7 +123,9 @@ let countUserPosition(source : Sphere[]) =
     let boxWithProbabilities = createZRow (float(xIter) * normalizer) (float(yIter) * normalizer) (float(zIter) * normalizer) normalizedSpheres xIter yIter zIter normalizer
     let bestPosUnnormalized = getPosWithBestProbability boxWithProbabilities
     let bestPosition = getPreciseBestPosition (fst bestPosUnnormalized) normalizedSpheres normalizer
-    normalizeBestPosition (bestPosition, snd bestPosUnnormalized) boxNormalizer
+    let prop, prob = normalizeBestPosition (bestPosition, snd bestPosUnnormalized) boxNormalizer
+    let specX, specY, specZ = prop
+    ((specX, specY, specZ), prob)
 
 
     

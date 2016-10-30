@@ -6,8 +6,7 @@ public class MyBroadcastReceiver
 	implements
 		mono.android.IGCUserPeer
 {
-/** @hide */
-	public static final String __md_methods;
+	static final String __md_methods;
 	static {
 		__md_methods = 
 			"n_onReceive:(Landroid/content/Context;Landroid/content/Intent;)V:GetOnReceive_Landroid_content_Context_Landroid_content_Intent_Handler\n" +
@@ -31,7 +30,7 @@ public class MyBroadcastReceiver
 
 	private native void n_onReceive (android.content.Context p0, android.content.Intent p1);
 
-	private java.util.ArrayList refList;
+	java.util.ArrayList refList;
 	public void monodroidAddReference (java.lang.Object obj)
 	{
 		if (refList == null)

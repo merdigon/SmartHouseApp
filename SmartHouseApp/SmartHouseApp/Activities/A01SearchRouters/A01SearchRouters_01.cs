@@ -52,7 +52,7 @@ namespace SmartHouseApp.Activities.A01SearchRouters
                     IList<RouterInfo> resultInfo = new List<RouterInfo>();
                     foreach (ScanResult result in mScanResults)
                     {
-                        resultInfo.Add(new RouterInfo { Name = result.Ssid, Strenght = WifiTool.GetDbmRecalculation(result.Level) });
+                        resultInfo.Add(new RouterInfo { Name = result.Ssid, Distance = WifiTool.GetDistanceRecalculation(result.Level), Strenght = result.Level });
                     }
                     UpdateRoutersList(resultInfo);
                     SendReceivedInfo(resultInfo);
@@ -106,7 +106,7 @@ namespace SmartHouseApp.Activities.A01SearchRouters
                     Type = SignalType.WIFI
                 };
             }
-            FetchWeatherAsync("http://192.168.1.103:52079/api/DataCollector/ReportDevices/", data);
+            FetchWeatherAsync("http://192.168.1.105:52079/api/DataCollector/ReportDevices/", data);
         }
 
         private async Task<bool> FetchWeatherAsync(string url, DeviceNotificationModel model)
@@ -136,6 +136,7 @@ namespace SmartHouseApp.Activities.A01SearchRouters
     public class RouterInfo
     {
         public string Name { get; set; }
-        public int Strenght { get; set; }
+        public double Strenght { get; set; }
+        public double Distance { get; set; }
     }
 }
