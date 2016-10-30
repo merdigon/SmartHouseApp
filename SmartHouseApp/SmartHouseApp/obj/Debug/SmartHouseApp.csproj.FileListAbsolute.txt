@@ -67,3 +67,6 @@ D:\Repo\Source\SmartHouseApp\SmartHouseApp\SmartHouseApp\obj\Debug\res\drawable\
 D:\Repo\Source\SmartHouseApp\SmartHouseApp\SmartHouseApp\obj\Debug\res\values\styles.xml
 D:\Repo\Source\SmartHouseApp\SmartHouseApp\SmartHouseApp\obj\Debug\SmartHouseApp.dll.mdb
 D:\Repo\Source\SmartHouseApp\SmartHouseApp\SmartHouseApp\bin\Debug\SmartHouseApp.dll.mdb
+C:\Users\Szymon\Source\Repos\SmartHouseApp\SmartHouseApp\SmartHouseApp\obj\Debug\SmartHouseApp.csprojResolveAssemblyReference.cache
+C:\Users\Szymon\Source\Repos\SmartHouseApp\SmartHouseApp\SmartHouseApp\obj\Debug\SmartHouseApp.dll
+C:\Users\Szymon\Source\Repos\SmartHouseApp\SmartHouseApp\SmartHouseApp\obj\Debug\SmartHouseApp.pdb
