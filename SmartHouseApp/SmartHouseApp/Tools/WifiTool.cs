@@ -16,7 +16,9 @@ namespace SmartHouseApp.Tools
     {
         public static double GetDistanceRecalculation(int signalStrenght)
         {
-            return Math.Pow(10.0, ((signalStrenght - (-46.0)) / (-10.0 * 5.0)));
+            double fspl = 0.5 - signalStrenght;
+            return Math.Pow(10, (fspl + 27.55 - 156) / 20);
+            //return Math.Pow(10.0, ((fspl - (-46.0)) / (-10.0 * 5.0)));
         }
     }
 }
