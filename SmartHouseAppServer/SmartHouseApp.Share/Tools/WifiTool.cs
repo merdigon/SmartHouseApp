@@ -10,13 +10,13 @@ namespace SmartHouseApp.Share.Tools
 {
     public static class WifiTool
     {
-        static double K = 27.55;
-        public static decimal GetDistanceInPoints(int signalStrength, decimal frequency)
-        {
-            double power = (Math.Abs(signalStrength) - (20 * Math.Log10((double)frequency)) + K) / 20;
-            double distanceInMeters = Math.Pow(10, power);
-            return (decimal)distanceInMeters / SystemDataKnowledge.DistanceToPointConverter;
-        }
+        static double SMARTPHONE_WIFI_ANTENNA_GAIN = 2;
+        //public static decimal GetDistanceInPoints(int signalStrength, decimal frequency)
+        //{
+        //    double power = (Math.Abs(signalStrength) - (20 * Math.Log10((double)frequency)) + K) / 20;
+        //    double distanceInMeters = Math.Pow(10, power);
+        //    return (decimal)distanceInMeters / SystemDataKnowledge.DistanceToPointConverter;
+        //}
 
         public static List<SphereData> GetRouterSphereData(List<SignalStrengthDataModel> routerSignals)
         {
@@ -31,7 +31,8 @@ namespace SmartHouseApp.Share.Tools
                         X = (double)wifiStaticData.Location.X,
                         Y = (double)wifiStaticData.Location.Y,
                         Z = (double)wifiStaticData.Location.Z,
-                        Distance = DotNetInterface.iCountDistanceForWifiRouter(ssData.SignalStrength, wifiStaticData.RssiOnZeroDistance),
+                        Distance = DotNetInterface.iCountDistanceForWifiRouter(wifiStaticData.FadeMargin, wifiStaticData.TrasmitterPower,
+                                                                                wifiStaticData.AntennaGain, ssData.SignalStrength, SMARTPHONE_WIFI_ANTENNA_GAIN),
                         Sigma = wifiStaticData.GetSigmaForSignalStrength(ssData.SignalStrength)
                     };
                     dataToCalculate.Add(data);

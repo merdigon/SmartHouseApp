@@ -7,5 +7,5 @@ open SignalTool
 let iCountPosition (source : Sphere[]) =
     countUserPosition source
 
-let iCountDistanceForWifiRouter signalStrenght rsssiOnZeroDistance =
-    countDistanceForWifiRouter signalStrenght rsssiOnZeroDistance
+let iCountDistanceForWifiRouter fadeMargin transmitterPower antenaGainTransmitter signalStrenght deviceAtennaGain  : double =
+    countDistanceForWifiRouter fadeMargin transmitterPower antenaGainTransmitter signalStrenght deviceAtennaGain

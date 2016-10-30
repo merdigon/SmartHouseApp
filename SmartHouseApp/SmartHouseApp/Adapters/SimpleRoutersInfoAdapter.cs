@@ -65,7 +65,7 @@ namespace SmartHouseApp.Adapters
 
             routerName.Text = Items[position].Name;
             levelPower.Text = Items[position].Strenght.ToString();
-            distance.Text = Items[position].Distance.ToString();
+            distance.Text = ((decimal)Items[position].Distance).ToString("0.00");
             
             return row;
         }

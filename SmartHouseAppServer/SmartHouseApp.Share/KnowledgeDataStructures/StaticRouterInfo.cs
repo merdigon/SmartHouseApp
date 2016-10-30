@@ -10,12 +10,14 @@ namespace SmartHouseApp.Share.KnowledgeDataStructures
     public class StaticRouterInfo
     {
         public string SSID { get; set; }
-        public int RssiOnZeroDistance { get; set; }
+        public double TrasmitterPower { get; set; }
+        public double AntennaGain { get; set; }
+        public double FadeMargin { get; set; }
         public Point Location { get; set; }
 
         public double GetSigmaForSignalStrength(double signalStrength)
         {
-            return 1;
+            return 0.5;
         }
     }
 }

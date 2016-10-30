@@ -1,6 +1,6 @@
 ﻿module SignalTool
 
-let PATH_LOSS_EXPONENT = 5.0
-
-let countDistanceForWifiRouter signalStrenght rsssiOnZeroDistance : double =
-    10.0 ** ((signalStrenght - rsssiOnZeroDistance) / (-10.0 * PATH_LOSS_EXPONENT))
+let countDistanceForWifiRouter fadeMargin transmitterPower antenaGainTransmitter signalStrenght deviceAtennaGain  : double =
+    let fspl = transmitterPower + antenaGainTransmitter + deviceAtennaGain - fadeMargin - signalStrenght
+    10.0 ** ((fspl + 27.55 - 67.75) / 20.0)
+    

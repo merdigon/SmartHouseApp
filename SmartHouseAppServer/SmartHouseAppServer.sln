@@ -1,13 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.40629.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartHouseAppServer", "SmartHouseAppServer\SmartHouseAppServer.csproj", "{6E0222C5-22CE-4CFF-A06B-312BD2504F39}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartHouseApp.Share", "SmartHouseApp.Share\SmartHouseApp.Share.csproj", "{4C54BD1E-E2C6-4B2A-B588-AF454CB7903E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartHouseApp.IBuilding", "SmartHouseApp.IBuilding\SmartHouseApp.IBuilding.csproj", "{741E89E1-5283-42D7-8AB5-B7C09162A129}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartHouseAppServer", "SmartHouseAppServer\SmartHouseAppServer.csproj", "{6E0222C5-22CE-4CFF-A06B-312BD2504F39}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,10 +15,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{6E0222C5-22CE-4CFF-A06B-312BD2504F39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6E0222C5-22CE-4CFF-A06B-312BD2504F39}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6E0222C5-22CE-4CFF-A06B-312BD2504F39}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6E0222C5-22CE-4CFF-A06B-312BD2504F39}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4C54BD1E-E2C6-4B2A-B588-AF454CB7903E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4C54BD1E-E2C6-4B2A-B588-AF454CB7903E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4C54BD1E-E2C6-4B2A-B588-AF454CB7903E}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -27,6 +23,10 @@ Global
 		{741E89E1-5283-42D7-8AB5-B7C09162A129}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{741E89E1-5283-42D7-8AB5-B7C09162A129}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{741E89E1-5283-42D7-8AB5-B7C09162A129}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E0222C5-22CE-4CFF-A06B-312BD2504F39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E0222C5-22CE-4CFF-A06B-312BD2504F39}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E0222C5-22CE-4CFF-A06B-312BD2504F39}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E0222C5-22CE-4CFF-A06B-312BD2504F39}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

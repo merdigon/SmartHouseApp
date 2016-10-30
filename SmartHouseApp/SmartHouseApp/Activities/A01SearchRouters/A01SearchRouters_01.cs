@@ -52,7 +52,7 @@ namespace SmartHouseApp.Activities.A01SearchRouters
                     IList<RouterInfo> resultInfo = new List<RouterInfo>();
                     foreach (ScanResult result in mScanResults)
                     {
-                        resultInfo.Add(new RouterInfo { Name = result.Ssid, Distance = WifiTool.GetDistanceRecalculation(result.Level), Strenght = result.Level });
+                        resultInfo.Add(new RouterInfo { Name = result.Ssid, Distance = WifiTool.GetDistanceRecalculation(22.0, 10.0, 2.0, result.Level), Strenght = result.Level });
                     }
                     UpdateRoutersList(resultInfo);
                     SendReceivedInfo(resultInfo);

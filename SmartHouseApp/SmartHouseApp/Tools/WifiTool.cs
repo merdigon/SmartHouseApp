@@ -14,10 +14,12 @@ namespace SmartHouseApp.Tools
 {
     public static class WifiTool
     {
-        public static double GetDistanceRecalculation(int signalStrenght)
+        public static double GetDistanceRecalculation(double fadeMargin, double transmitterPower, double antenaGainTransmitter, int signalStrenght)
         {
-            double fspl = 0.5 - signalStrenght;
-            return Math.Pow(10, (fspl + 27.55 - 156) / 20);
+            double deviceAtennaGain = 2;
+            double fspl = transmitterPower + antenaGainTransmitter + deviceAtennaGain - fadeMargin - signalStrenght;
+            double toPow = ((fspl + 27.55 - 67.75) / 20);
+            return Math.Pow(10, toPow);
             //return Math.Pow(10.0, ((fspl - (-46.0)) / (-10.0 * 5.0)));
         }
     }
