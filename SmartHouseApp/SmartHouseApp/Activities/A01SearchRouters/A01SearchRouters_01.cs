@@ -106,7 +106,7 @@ namespace SmartHouseApp.Activities.A01SearchRouters
                     Type = SignalType.WIFI
                 };
             }
-            FetchWeatherAsync("http://192.168.1.105:52079/api/DataCollector/ReportDevices/", data);
+            FetchWeatherAsync("http://192.168.1.102:52079/api/DataCollector/ReportDevices/", data);
         }
 
         private async Task<bool> FetchWeatherAsync(string url, DeviceNotificationModel model)
@@ -136,7 +136,7 @@ namespace SmartHouseApp.Activities.A01SearchRouters
     public class RouterInfo
     {
         public string Name { get; set; }
-        public double Strenght { get; set; }
+        public int Strenght { get; set; }
         public double Distance { get; set; }
     }
 }

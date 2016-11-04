@@ -14,9 +14,10 @@ namespace SmartHouseApp.Tools
 {
     public class BluetoothTool
     {
-        public static int GetDbmRecalculation(int signalStrenght)
+        public static double GetDbmRecalculation(int signalStrenght)
         {
-            return signalStrenght + 100;
+            double fpsi = 4 + 2 + 2 - signalStrenght - 22 - 5;
+            return Math.Pow(10, (fpsi + 27.55 - 67.75)/20);
         }
     }
 }

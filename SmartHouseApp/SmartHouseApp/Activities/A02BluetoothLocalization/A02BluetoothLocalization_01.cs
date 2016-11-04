@@ -52,10 +52,10 @@ namespace SmartHouseApp.Activities.A02BluetoothLocalization
                 else if (BluetoothDevice.ActionFound.Equals(action))
                 {
                     BluetoothDevice device = (BluetoothDevice)intent.GetParcelableExtra(BluetoothDevice.ExtraDevice);
-                    int rssi = BluetoothTool.GetDbmRecalculation(intent.GetShortExtra(BluetoothDevice.ExtraRssi, Short.MinValue));
+                    double distance = BluetoothTool.GetDbmRecalculation(intent.GetShortExtra(BluetoothDevice.ExtraRssi, Short.MinValue));
                     var name = device.Name;
 
-                    BluetoothDevicesList.Add(new BluetoothInfo { Name = name, Strenght = rssi });
+                    BluetoothDevicesList.Add(new BluetoothInfo { Name = name, Distance = distance });
                 }
             });
 
@@ -94,7 +94,7 @@ namespace SmartHouseApp.Activities.A02BluetoothLocalization
         public void UpdateBluetoothsList(IList<BluetoothInfo> bluetoothsInfo)
         {
             Adapter.ClearItems();
-            Adapter.AddRange(bluetoothsInfo.OrderByDescending(p => p.Strenght).ToList());
+            Adapter.AddRange(bluetoothsInfo.OrderByDescending(p => p.Distance).ToList());
             Adapter.NotifyDataSetChanged();
         }
     }
@@ -102,6 +102,6 @@ namespace SmartHouseApp.Activities.A02BluetoothLocalization
     public class BluetoothInfo
     {
         public string Name { get; set; }
-        public int Strenght { get; set; }
+        public double Distance { get; set; }
     }
 }
