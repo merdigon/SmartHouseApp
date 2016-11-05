@@ -22,8 +22,8 @@
 		  Gdzie symbole oznaczają:
 		  \begin{itemize}
 		  	\item $P_{tx}$ - siła trasmitera, wyrażona w dBm
-		  	\item $AG_{tx}$ - przyrost wynikający z anteny transmitera, wyrażony w dBi
-		  	\item $AG_{rx}$ - przyrost wynikający z anteny odbiorcy, wyrażony w dBi
+		  	\item $AG_{tx}$ - zysk energentyczny anteny transmitera, wyrażony w dBi
+		  	\item $AG_{rx}$ - zysk energentyczny anteny odbiorcy, wyrażony w dBi
 		  	\item $P_{rx}$ - siła odbiornika, wyrażona w dBm
 		  	\item $FM$ - margines zaniku sygnału (fade margin)
 		  	\item $L$ - straty wynikające np z oddziaływania innych transmiterów, przeszkód itp.
@@ -54,6 +54,12 @@
 		  \begin{equation}
 		  d = 10^{\left(\frac{P_{tx} + AG_{tx} + AG_{rx} - P_{rx} - FM - L - K - 20log_{10}(f)}{20}\right)}
 		  \end{equation}
+		\subsection{Zysk energetyczny anteny}
+			Zysk energetyczny anteny jest to stosunek mocy ateny wypromieniowanej w danym kierunku do mocy wypromieniowanej przez antenę wzorcową. Anteną wzorcową może być m.in. antena izotropowa, czyli antena bez fizycznych rozmiarów, która cały sygnał zasilany wysyła we wszystkich kierunkach. W takim wypadku, zysk energetyczny anteny wyrażany jest w $dBi$.\\
+			Na zysk energetyczny mają również wpływ kierunkowość oraz materiał, z którego wykonana jest antena.
+		\subsection{Received signal strength indication}
+			Received signal strength indication (skrótem RSSI) jest to miara określająca moc sygnału odbieranego. Przyjmuje ona wartości niedodatnie (gdzie 0 oznacza sygnał najsilniejszy). Jednostką, w jakiej określa się siłę sygnału jest $dBm$, która jest logarytmiczną jednostką miary mocy odniesiona do mocy $1mW$.\\
+			System Android pozwala na odczytanie siły odbieranego sygnału. Można do tego wykorzystać API $WifiManager$ (w przypadku odczytu sygnału WiFi) oraz $BroadcastReceiver$ (w przypadku odczytu sygnału Bluetooth).
 	\section{Bluetooth}
 		%http://bluetoothinsight.blogspot.com/2008/01/bluetooth-power-classes.html
 	\section{Eksperymenty}
