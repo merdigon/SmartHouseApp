@@ -1,13 +1,19 @@
-﻿using System;
+﻿using SmartHouseApp.Common.KnowledgeDataStructures;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SmartHouseApp.Share.KnowledgeDataStructures
+namespace SmartHouseApp.Common.KnowledgeDataStructures
 {
     public class SystemDataKnowledge
     {
+        static SystemDataKnowledge()
+        {
+            LoggedUsers = new List<LoggedUser>();
+        }
+
         public static List<StaticRouterInfo> RoutersInfo
         {
             get
@@ -40,6 +46,7 @@ namespace SmartHouseApp.Share.KnowledgeDataStructures
         }
 
         public static List<DynamicDeviceInfo> DevicesInfo { get; set; }
-        public static decimal DistanceToPointConverter { get { return 1M; } }
+        public static Tuple<int, int> MapSize { get { return new Tuple<int, int>(100, 100); } }
+        public static List<LoggedUser> LoggedUsers { get; set; }
     }
 }

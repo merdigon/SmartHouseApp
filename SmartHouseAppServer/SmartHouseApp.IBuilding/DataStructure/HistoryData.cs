@@ -1,4 +1,4 @@
-﻿using SmartHouseApp.Share.DataStractures;
+﻿using SmartHouseApp.Common.DataStractures;
 using System;
 using System.Collections.Generic;
 using System.Linq;

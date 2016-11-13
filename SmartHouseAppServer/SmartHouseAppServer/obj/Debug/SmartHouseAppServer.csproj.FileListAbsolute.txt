@@ -135,6 +135,7 @@ C:\Users\Szymon\Source\Repos\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServ
 C:\Users\Szymon\Source\Repos\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\MathEngine.xml
 C:\Users\Szymon\Source\Repos\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\FSharp.Core.xml
 C:\Users\Szymon\Source\Repos\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\obj\Debug\SmartHouseAppServer.pdb
+D:\Repo\Source\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\obj\Debug\SmartHouseAppServer.csprojResolveAssemblyReference.cache
 D:\Repo\Source\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\SmartHouseAppServer.dll.config
 D:\Repo\Source\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\SmartHouseAppServer.dll
 D:\Repo\Source\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\SmartHouseAppServer.pdb
@@ -156,6 +157,7 @@ D:\Repo\Source\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\Microso
 D:\Repo\Source\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\Microsoft.Web.Infrastructure.dll
 D:\Repo\Source\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\Newtonsoft.Json.dll
 D:\Repo\Source\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\Owin.dll
+D:\Repo\Source\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\SmartHouseApp.Common.dll
 D:\Repo\Source\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\SmartHouseApp.IBuilding.dll
 D:\Repo\Source\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\SmartHouseApp.Share.dll
 D:\Repo\Source\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\System.Net.Http.Formatting.dll
@@ -170,7 +172,10 @@ D:\Repo\Source\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\System.
 D:\Repo\Source\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\System.Web.WebPages.dll
 D:\Repo\Source\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\System.Web.WebPages.Razor.dll
 D:\Repo\Source\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\WebGrease.dll
+D:\Repo\Source\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\MathEngine.dll
+D:\Repo\Source\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\FSharp.Core.dll
 D:\Repo\Source\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\SmartHouseApp.IBuilding.pdb
+D:\Repo\Source\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\SmartHouseApp.Common.pdb
 D:\Repo\Source\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\SmartHouseApp.Share.pdb
 D:\Repo\Source\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\Microsoft.Owin.Host.SystemWeb.xml
 D:\Repo\Source\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\Newtonsoft.Json.xml
@@ -199,11 +204,8 @@ D:\Repo\Source\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\Microso
 D:\Repo\Source\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\Microsoft.Owin.Security.Twitter.xml
 D:\Repo\Source\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 D:\Repo\Source\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\System.Web.Http.Owin.xml
-D:\Repo\Source\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\obj\Debug\SmartHouseAppServer.csprojResolveAssemblyReference.cache
-D:\Repo\Source\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\obj\Debug\SmartHouseAppServer.dll
-D:\Repo\Source\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\obj\Debug\SmartHouseAppServer.pdb
-D:\Repo\Source\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\MathEngine.dll
-D:\Repo\Source\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\FSharp.Core.dll
 D:\Repo\Source\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\MathEngine.pdb
 D:\Repo\Source\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\MathEngine.xml
 D:\Repo\Source\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\FSharp.Core.xml
+D:\Repo\Source\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\obj\Debug\SmartHouseAppServer.dll
+D:\Repo\Source\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\obj\Debug\SmartHouseAppServer.pdb

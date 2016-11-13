@@ -1,12 +1,12 @@
-﻿using SmartHouseApp.Share.DataStractures;
-using SmartHouseApp.Share.KnowledgeDataStructures;
+﻿using SmartHouseApp.Common.DataStractures;
+using SmartHouseApp.Common.KnowledgeDataStructures;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SmartHouseApp.Share.Tools
+namespace SmartHouseApp.Common.Tools
 {
     public static class WifiTool
     {

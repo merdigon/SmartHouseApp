@@ -53,6 +53,8 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="HttpServerThread.cs" />
+    <Compile Include="Model\PointOnMap.cs" />
+    <Compile Include="PointPainter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
@@ -79,6 +81,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\SmartHouseAppServer\SmartHouseApp.Share\SmartHouseApp.Share.csproj">
+      <Project>{af695ce0-156f-4222-b721-eb9ac88fb0ba}</Project>
+      <Name>SmartHouseApp.Share</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
