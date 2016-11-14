@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<class name="UserPositionHistory" table="user_possition">
+  <id name="Id">
+    <generator class="hilo"/>
+  </id>
+  <property name="Mac" column="mac"/>
+  <property name="X" column="coordinate_x"/>
+  <property name="Y" column="coordinate_y"/>
+  <property name="Z" column="coordinate_z"/>
+  <property name="Date" column="date"/>
+</class>
+
