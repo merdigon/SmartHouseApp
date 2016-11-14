@@ -43,9 +43,13 @@
   <ItemGroup>
     <Compile Include="Models\DateSpawnModel.cs" />
     <Compile Include="Models\LogInModel.cs" />
+    <Compile Include="Models\SaveMapSizeModel.cs" />
+    <Compile Include="Models\SaveStaticRouterInfoModel.cs" />
     <Compile Include="Models\UserPositionModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\LogInViewModel.cs" />
+    <Compile Include="ViewModel\SizeViewModel.cs" />
+    <Compile Include="ViewModel\StaticRouterDataViewModel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

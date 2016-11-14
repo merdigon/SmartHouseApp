@@ -1,4 +1,6 @@
-﻿using SmartHouseApp.Common.KnowledgeDataStructures;
+﻿
+using SmartHouseApp.Common.KnowledgeDataStructures;
+using SmartHouseApp.Common.Tools;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,41 +14,15 @@ namespace SmartHouseApp.Common.KnowledgeDataStructures
         static SystemDataKnowledge()
         {
             LoggedUsers = new List<LoggedUser>();
+            DevicesInfo = new List<DynamicDeviceInfo>();
+            RoutersInfo = Configuration.Conf.RoutersInfo;
+            MapSize = new Tuple<int, int>(Configuration.Conf.MapSizeX, Configuration.Conf.MapSizeY);
         }
 
-        public static List<StaticRouterInfo> RoutersInfo
-        {
-            get
-            {
-                return new List<StaticRouterInfo>{
-                    new StaticRouterInfo{
-                        SSID="TP-LINK_7C6432",
-                        Location = new DataStractures.Point{X = 0, Y = 0, Z = 0 },
-                        AntennaGain = 5,
-                        TrasmitterPower = 16.5,
-                        FadeMargin = 22
-                    },
-                    new StaticRouterInfo{
-                        SSID = "TP-LINK_ACP",
-                        Location = new DataStractures.Point{X=1.80M, Y=0, Z = 0},
-                        AntennaGain = 2,
-                        FadeMargin = 22,
-                        TrasmitterPower = 16
-                    },
-                    new StaticRouterInfo{
-                        SSID = "AndroidAP",
-                        Location = new DataStractures.Point{X=1.07M, Y=1.80M,  Z = 0},
-                        AntennaGain = 2,
-                        FadeMargin = 22,
-                        TrasmitterPower = 10
-                    }
-                };
-            }
-            set { }
-        }
+        public static List<StaticRouterInfo> RoutersInfo { get; set; }
 
         public static List<DynamicDeviceInfo> DevicesInfo { get; set; }
-        public static Tuple<int, int> MapSize { get { return new Tuple<int, int>(100, 100); } }
+        public static Tuple<int, int> MapSize { get; set; }
         public static List<LoggedUser> LoggedUsers { get; set; }
     }
 }

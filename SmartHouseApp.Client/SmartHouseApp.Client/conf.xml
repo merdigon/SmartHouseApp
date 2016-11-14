@@ -1,0 +1,6 @@
+﻿<Configuration>
+  <Login>admin</Login>
+  <Password>admin</Password>
+  <ServerIp>192.168.1.105:52079</ServerIp>
+  <PictureLocation>plan.jpg</PictureLocation>  
+</Configuration>

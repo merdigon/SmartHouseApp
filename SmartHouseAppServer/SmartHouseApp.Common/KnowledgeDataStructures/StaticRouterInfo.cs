@@ -9,6 +9,7 @@ namespace SmartHouseApp.Common.KnowledgeDataStructures
 {
     public class StaticRouterInfo
     {
+        public int Id { get; set; }
         public string SSID { get; set; }
         public double TrasmitterPower { get; set; }
         public double AntennaGain { get; set; }

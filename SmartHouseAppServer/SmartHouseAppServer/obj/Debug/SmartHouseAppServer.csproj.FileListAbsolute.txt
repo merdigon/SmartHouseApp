@@ -209,3 +209,8 @@ D:\Repo\Source\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\MathEng
 D:\Repo\Source\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\FSharp.Core.xml
 D:\Repo\Source\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\obj\Debug\SmartHouseAppServer.dll
 D:\Repo\Source\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\obj\Debug\SmartHouseAppServer.pdb
+D:\Repo\Source\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\Iesi.Collections.dll
+D:\Repo\Source\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\NHibernate.dll
+D:\Repo\Source\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\Iesi.Collections.xml
+D:\Repo\Source\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\NHibernate.xml
+D:\Repo\Source\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\conf.xml

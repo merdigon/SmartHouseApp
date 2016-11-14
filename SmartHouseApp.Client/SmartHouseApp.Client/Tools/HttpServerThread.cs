@@ -38,6 +38,7 @@ namespace SmartHouseApp.Client
 
         public void Threading()
         {
+            listener.Start();
             while(true)
             {
                 if (Listening)
@@ -63,13 +64,11 @@ namespace SmartHouseApp.Client
         public void StopListening()
         {
             Listening = false;
-            listener.Stop();
         }
 
         public void StartListening()
         {
             Listening = true;
-            listener.Start();
         }
 
         public static Tuple<int, int> ResizeUserLocalizationDependingOnPictureSize(Form1 mainForm, double x, double y)

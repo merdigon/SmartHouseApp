@@ -8,7 +8,7 @@ namespace SmartHouseApp.Common.DataStractures
 {
     public enum SignalType
     {
-        BLUETOOTH = 1,
+        BLUETOOTH = 0,
         WIFI = 1
     }
 }
