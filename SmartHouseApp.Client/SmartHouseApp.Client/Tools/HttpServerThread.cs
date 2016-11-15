@@ -1,4 +1,5 @@
-﻿using SmartHouseApp.Share.Models;
+﻿using SmartHouseApp.Client.Views;
+using SmartHouseApp.Share.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;

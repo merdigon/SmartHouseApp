@@ -1,4 +1,5 @@
 ﻿using SmartHouseApp.Client.Tools;
+using SmartHouseApp.Client.Views;
 using SmartHouseApp.Share.Models;
 using SmartHouseApp.Share.ViewModel;
 using System;
@@ -14,7 +15,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Serialization;
 
-namespace SmartHouseApp.Client
+namespace SmartHouseApp.Client.Views
 {
     public partial class LogInForm : Form
     {
@@ -28,26 +29,33 @@ namespace SmartHouseApp.Client
 
         private void btnLog_Click(object sender, EventArgs e)
         {
-            using (var client = new HttpClient())
+            try
             {
-                var model = new LogInModel
+                using (var client = new HttpClient())
                 {
-                    Login = tbLogin.Text,
-                    Password = tbPassword.Text
-                };
+                    var model = new LogInModel
+                    {
+                        Login = tbLogin.Text,
+                        Password = tbPassword.Text
+                    };
 
-                LogInViewModel responseModel = RestClient.Post<LogInViewModel>("Client/LogIn", model);
+                    LogInViewModel responseModel = RestClient.Post<LogInViewModel>("Client/LogIn", model);
 
-                var mapSize = new Size(responseModel.MapSizeX, responseModel.MapSizeY);
+                    var mapSize = new Size(responseModel.MapSizeX, responseModel.MapSizeY);
 
-                if(responseModel.Result)
-                {
-                    Form1 form = new Form1();
-                    form.MapSize = mapSize;
-                    Hide();
-                    form.Closed += (s, args) => Close();
-                    form.Show();
+                    if (responseModel.Result)
+                    {
+                        Form1 form = new Form1();
+                        form.MapSize = mapSize;
+                        Hide();
+                        form.Closed += (s, args) => Close();
+                        form.Show();
+                    }
                 }
+            }
+            catch(Exception ex)
+            {
+                InfoForm.ShowError(ex.Message);
             }
         }
     }

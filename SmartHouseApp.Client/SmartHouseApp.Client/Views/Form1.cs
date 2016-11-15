@@ -12,13 +12,14 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Serialization;
 
-namespace SmartHouseApp.Client
+namespace SmartHouseApp.Client.Views
 {
     public partial class Form1 : Form
     {
@@ -41,12 +42,12 @@ namespace SmartHouseApp.Client
             PictureSize = Image.FromFile(Configuration.Conf.PictureLocation).Size;
             pictureBox1.Location = new Point(0, 0);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
-            
+
             Points = new List<PointOnMap>();
             PointPainter = new PointPainter(this);
             PointPainterThread = new Thread(new ThreadStart(PointPainter.DrawPoints));
             PointPainterThread.Start();
-        }        
+        } 
 
         private void rbRealTime_CheckedChanged(object sender, EventArgs e)
         {

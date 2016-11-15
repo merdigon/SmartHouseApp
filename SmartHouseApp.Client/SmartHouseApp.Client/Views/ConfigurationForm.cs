@@ -39,19 +39,29 @@ namespace SmartHouseApp.Client.Views
 
         private void btnSaveMapSize_Click(object sender, EventArgs e)
         {
-            double x, y;
-            if (!double.TryParse(tbX.Text, out x) || !double.TryParse(tbY.Text, out y))
-                return;
-
-            var model = new SaveMapSizeModel
+            try
             {
-                MapSizeX = (int)x,
-                MapSizeY = (int)y
-            };
+                double x, y;
+                if (!double.TryParse(tbX.Text, out x) || !double.TryParse(tbY.Text, out y))
+                {
+                    InfoForm.ShowWarning("Błędne dane w polach z wielkością mapy!");
+                    return;
+                }
 
-            if(RestClient.Post<bool>("Conf/SaveMapSize", model))
+                var model = new SaveMapSizeModel
+                {
+                    MapSizeX = (int)x,
+                    MapSizeY = (int)y
+                };
+
+                if (RestClient.Post<bool>("Conf/SaveMapSize", model))
+                {
+                    MainForm.MapSize = new Size((int)x, (int)y);
+                }
+            }
+            catch(Exception ex)
             {
-                MainForm.MapSize = new Size((int)x, (int)y);
+                InfoForm.ShowError(ex.Message);
             }
         }
 
@@ -96,36 +106,65 @@ namespace SmartHouseApp.Client.Views
 
         private void button3_Click(object sender, EventArgs e)
         {
-            if(!string.IsNullOrEmpty(tbAntenaGain.Text) &&
-               !string.IsNullOrEmpty(tbFadeMargin.Text) &&
-               !string.IsNullOrEmpty(tbSsid.Text) &&
-               !string.IsNullOrEmpty(tbTransPower.Text) &&
-               !string.IsNullOrEmpty(tbXR.Text) &&
-               !string.IsNullOrEmpty(tbYR.Text) &&
-               !string.IsNullOrEmpty(tbZR.Text))
+            try
             {
-                double ag, fm, tp;
-                int xr, yr, zr;
-                if (double.TryParse(tbAntenaGain.Text, out ag) &&
+                if (!string.IsNullOrEmpty(tbAntenaGain.Text) &&
+                   !string.IsNullOrEmpty(tbFadeMargin.Text) &&
+                   !string.IsNullOrEmpty(tbSsid.Text) &&
+                   !string.IsNullOrEmpty(tbTransPower.Text) &&
+                   !string.IsNullOrEmpty(tbXR.Text) &&
+                   !string.IsNullOrEmpty(tbYR.Text) &&
+                   !string.IsNullOrEmpty(tbZR.Text))
+                {
+                    double ag, fm, tp, xr, yr, zr;
+                    if (double.TryParse(tbAntenaGain.Text, out ag) &&
                     double.TryParse(tbFadeMargin.Text, out fm) &&
                     double.TryParse(tbTransPower.Text, out tp) &&
-                    int.TryParse(tbXR.Text, out xr) &&
-                    int.TryParse(tbYR.Text, out yr) &&
-                    int.TryParse(tbZR.Text, out zr))
-                {
-                    var model = new SaveStaticRouterInfoModel
+                    double.TryParse(tbXR.Text, out xr) &&
+                    double.TryParse(tbYR.Text, out yr) &&
+                    double.TryParse(tbZR.Text, out zr))
                     {
-                        AntennaGain = ag,
-                        FadeMargin = fm,
-                        Id = selectedItemId,
-                        SSID = tbSsid.Text,
-                        TrasmitterPower = tp,
-                        LocationX = xr,
-                        LocationY = yr,
-                        LocationZ = zr
-                    };
+                        var model = new SaveStaticRouterInfoModel
+                        {
+                            AntennaGain = ag,
+                            FadeMargin = fm,
+                            Id = selectedItemId,
+                            SSID = tbSsid.Text,
+                            TrasmitterPower = tp,
+                            LocationX = xr,
+                            LocationY = yr,
+                            LocationZ = zr
+                        };
 
-                    if(RestClient.Post<bool>("Conf/SaveRouterData", model))
+                        if (RestClient.Post<bool>("Conf/SaveRouterData", model))
+                        {
+                            Routers = RestClient.Get<List<StaticRouterDataViewModel>>("Conf/GetRoutersInfo");
+                            dgvRouters.DataSource = Routers;
+                            dgvRouters.Refresh();
+                            button1_Click(null, null);
+                        }
+                    }
+                    else
+                    {
+                        InfoForm.ShowWarning("Błędny format danych!");
+                    }
+                }
+                else
+                    InfoForm.ShowWarning("Pola nie mogą być puste!");
+            }
+            catch(Exception ex)
+            {
+                InfoForm.ShowError(ex.Message);
+            }   
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (selectedItemId > 0)
+                {
+                    if (RestClient.Post<bool>("Conf/DeleteRouterData", selectedItemId))
                     {
                         Routers = RestClient.Get<List<StaticRouterDataViewModel>>("Conf/GetRoutersInfo");
                         dgvRouters.DataSource = Routers;
@@ -133,20 +172,10 @@ namespace SmartHouseApp.Client.Views
                         button1_Click(null, null);
                     }
                 }
-            }       
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            if(selectedItemId > 0)
+            }
+            catch(Exception ex)
             {
-                if (RestClient.Post<bool>("Conf/DeleteRouterData", selectedItemId))
-                {
-                    Routers = RestClient.Get<List<StaticRouterDataViewModel>>("Conf/GetRoutersInfo");
-                    dgvRouters.DataSource = Routers;
-                    dgvRouters.Refresh();
-                    button1_Click(null, null);
-                }
+                InfoForm.ShowError(ex.Message);
             }
         }
     }

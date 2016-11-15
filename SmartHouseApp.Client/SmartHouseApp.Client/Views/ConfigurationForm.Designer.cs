@@ -347,6 +347,7 @@
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(807, 440);
             this.Name = "ConfigurationForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Konfiguracja";
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);

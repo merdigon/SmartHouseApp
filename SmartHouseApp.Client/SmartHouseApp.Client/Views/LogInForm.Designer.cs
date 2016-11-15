@@ -1,4 +1,4 @@
-﻿namespace SmartHouseApp.Client
+﻿namespace SmartHouseApp.Client.Views
 {
     partial class LogInForm
     {
