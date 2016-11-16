@@ -10,6 +10,8 @@ using System.Windows.Forms;
 using SmartHouseApp.Share.ViewModel;
 using SmartHouseApp.Client.Tools;
 using SmartHouseApp.Share.Models;
+using SmartHouseApp.Share.ViewModel.DeviceViewModels;
+using SmartHouseApp.Client.Model.DeviceRender;
 
 namespace SmartHouseApp.Client.Views
 {
@@ -18,6 +20,9 @@ namespace SmartHouseApp.Client.Views
         public Tuple<int, int> MapSize { get; set; }
         private Form1 MainForm { get; set; }
         public int selectedItemId = 0;
+        private List<DeviceCategoryViewModel> Categories { get; set; }
+        private DeviceCategoryViewModel SelectedCategory { get; set; }
+        private List<IDeviceRender> Devices { get; set; }
 
         public List<StaticRouterDataViewModel> Routers { get; set; }
 
@@ -59,7 +64,7 @@ namespace SmartHouseApp.Client.Views
                     MainForm.MapSize = new Size((int)x, (int)y);
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 InfoForm.ShowError(ex.Message);
             }
@@ -74,12 +79,12 @@ namespace SmartHouseApp.Client.Views
             {
                 selected = (StaticRouterDataViewModel)grid.SelectedRows[0].DataBoundItem;
             }
-            else if(grid.SelectedCells.Count > 0)
+            else if (grid.SelectedCells.Count > 0)
             {
                 selected = (StaticRouterDataViewModel)grid.Rows[grid.SelectedCells[0].RowIndex].DataBoundItem;
             }
 
-            if(selected != null)
+            if (selected != null)
             {
                 tbAntenaGain.Text = selected.AntennaGain.ToString();
                 tbFadeMargin.Text = selected.FadeMargin.ToString();
@@ -152,10 +157,10 @@ namespace SmartHouseApp.Client.Views
                 else
                     InfoForm.ShowWarning("Pola nie mogą być puste!");
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 InfoForm.ShowError(ex.Message);
-            }   
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -173,10 +178,59 @@ namespace SmartHouseApp.Client.Views
                     }
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 InfoForm.ShowError(ex.Message);
             }
+        }
+
+        private void lvDeviceItemCategories_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (lvDeviceItemCategories.SelectedItems.Count > 0)
+            {
+                string category = lvDeviceItemCategories.SelectedItems[0].Text;
+                if(Categories != null)
+                {
+                    var categoryObject = Categories.Where(p => p.VisibleName.Equals(category)).SingleOrDefault();
+                    if(categoryObject != null)
+                    {
+                        switch(categoryObject.CategoryId)
+                        {
+                            case DeviceCategories.Light:
+                                Devices = RestClient.Post<List<LightDeviceViewModel>>("Conf/GetLightDevices", null).Select(p => (IDeviceRender)p).ToList();
+                                break;
+                        }
+                    }
+                }
+            }
+        }
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listView1.SelectedItems.Count > 0)
+            {
+                int deviceId = int.Parse(listView1.SelectedItems[0].SubItems[0].Text);
+                if (Devices != null)
+                {
+                    var deviceObject = Devices.Where(p => p.DeviceId == deviceId).SingleOrDefault();
+                    if (deviceObject != null)
+                    {
+                        gBCategory.Controls.Clear();
+                        gBCategory.Controls.Add(deviceObject.GetConfUserControl());
+                    }
+                }
+            }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            UserControl confUserControl = null;
+            if(SelectedCategory.CategoryId == DeviceCategories.Light)
+            {
+                confUserControl = new LightDeviceRender().GetConfUserControl();
+            }
+            gBCategory.Controls.Clear();
+            gBCategory.Controls.Add(confUserControl);
         }
     }
 }

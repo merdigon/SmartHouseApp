@@ -49,8 +49,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\DeviceRender\IDeviceRender.cs" />
+    <Compile Include="Model\DeviceRender\LightDeviceRender.cs" />
     <Compile Include="Tools\Configuration.cs" />
     <Compile Include="Tools\RestClient.cs" />
+    <Compile Include="Views\Components\LightConfUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\Components\LightConfUserControl.Designer.cs">
+      <DependentUpon>LightConfUserControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\ConfigurationForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -126,6 +134,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="logo.ico" />
+    <None Include="Resources\Save as_48px.png" />
+    <None Include="Resources\Delete_48px.png" />
+    <None Include="Resources\Plus_48px.png" />
+    <None Include="Resources\Temperature_48px.png" />
+    <None Include="Resources\Light On_48px.png" />
+    <None Include="Resources\Forward_48px.png" />
     <None Include="Resources\error_96px.png" />
     <None Include="Resources\do_not_disturb_96px.png" />
     <None Include="Resources\logo.png" />
