@@ -12,6 +12,7 @@ using SmartHouseApp.Client.Tools;
 using SmartHouseApp.Share.Models;
 using SmartHouseApp.Share.ViewModel.DeviceViewModels;
 using SmartHouseApp.Client.Model.DeviceRender;
+using SmartHouseApp.Client.Views.Components;
 
 namespace SmartHouseApp.Client.Views
 {
@@ -231,6 +232,35 @@ namespace SmartHouseApp.Client.Views
             }
             gBCategory.Controls.Clear();
             gBCategory.Controls.Add(confUserControl);
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            foreach(var control in gBCategory.Controls)
+            {
+                if(control is IDeviceConfControl)
+                {
+                    ((IDeviceConfControl)control).Save();
+                }
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            if (listView1.SelectedItems.Count > 0)
+            {
+                int deviceId = int.Parse(listView1.SelectedItems[0].SubItems[0].Text);
+                if (Devices != null)
+                {
+                    var deviceObject = Devices.Where(p => p.DeviceId == deviceId).SingleOrDefault();
+                    if (deviceObject != null)
+                    {
+                        if (RestClient.Post<bool>("Conf/DeleteLightDevice", deviceObject))
+                            InfoForm.ShowWarning("Pomyślnie usunięto urządzenie");
+                        lvDeviceItemCategories_SelectedIndexChanged(null, null);
+                    }
+                }
+            }
         }
     }
 }

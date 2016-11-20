@@ -60,15 +60,15 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.lvDeviceItemCategories = new System.Windows.Forms.ListView();
-            this.ilDeviceImages = new System.Windows.Forms.ImageList(this.components);
-            this.label11 = new System.Windows.Forms.Label();
-            this.listView1 = new System.Windows.Forms.ListView();
-            this.gBCategory = new System.Windows.Forms.GroupBox();
             this.button6 = new System.Windows.Forms.Button();
+            this.gBCategory = new System.Windows.Forms.GroupBox();
             this.button4 = new System.Windows.Forms.Button();
+            this.listView1 = new System.Windows.Forms.ListView();
             this.button5 = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.lvDeviceItemCategories = new System.Windows.Forms.ListView();
+            this.label11 = new System.Windows.Forms.Label();
+            this.ilDeviceImages = new System.Windows.Forms.ImageList(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -392,50 +392,6 @@
             this.tabPage2.Text = "Zarządzanie sprzętem";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // lvDeviceItemCategories
-            // 
-            this.lvDeviceItemCategories.Location = new System.Drawing.Point(8, 34);
-            this.lvDeviceItemCategories.MultiSelect = false;
-            this.lvDeviceItemCategories.Name = "lvDeviceItemCategories";
-            this.lvDeviceItemCategories.Size = new System.Drawing.Size(144, 298);
-            this.lvDeviceItemCategories.TabIndex = 0;
-            this.lvDeviceItemCategories.UseCompatibleStateImageBehavior = false;
-            this.lvDeviceItemCategories.SelectedIndexChanged += new System.EventHandler(this.lvDeviceItemCategories_SelectedIndexChanged);
-            // 
-            // ilDeviceImages
-            // 
-            this.ilDeviceImages.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
-            this.ilDeviceImages.ImageSize = new System.Drawing.Size(16, 16);
-            this.ilDeviceImages.TransparentColor = System.Drawing.Color.Transparent;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(51, 18);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(52, 13);
-            this.label11.TabIndex = 2;
-            this.label11.Text = "Kategoria";
-            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // listView1
-            // 
-            this.listView1.Location = new System.Drawing.Point(192, 34);
-            this.listView1.MultiSelect = false;
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(171, 298);
-            this.listView1.TabIndex = 5;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
-            // 
-            // gBCategory
-            // 
-            this.gBCategory.Location = new System.Drawing.Point(384, 34);
-            this.gBCategory.Name = "gBCategory";
-            this.gBCategory.Size = new System.Drawing.Size(381, 298);
-            this.gBCategory.TabIndex = 7;
-            this.gBCategory.TabStop = false;
-            // 
             // button6
             // 
             this.button6.Anchor = System.Windows.Forms.AnchorStyles.Right;
@@ -446,6 +402,15 @@
             this.button6.Size = new System.Drawing.Size(30, 30);
             this.button6.TabIndex = 8;
             this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
+            // gBCategory
+            // 
+            this.gBCategory.Location = new System.Drawing.Point(384, 34);
+            this.gBCategory.Name = "gBCategory";
+            this.gBCategory.Size = new System.Drawing.Size(381, 298);
+            this.gBCategory.TabIndex = 7;
+            this.gBCategory.TabStop = false;
             // 
             // button4
             // 
@@ -457,6 +422,17 @@
             this.button4.Size = new System.Drawing.Size(30, 30);
             this.button4.TabIndex = 6;
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // listView1
+            // 
+            this.listView1.Location = new System.Drawing.Point(192, 34);
+            this.listView1.MultiSelect = false;
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(171, 298);
+            this.listView1.TabIndex = 5;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
             // 
             // button5
             // 
@@ -480,6 +456,32 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
+            // 
+            // lvDeviceItemCategories
+            // 
+            this.lvDeviceItemCategories.Location = new System.Drawing.Point(8, 34);
+            this.lvDeviceItemCategories.MultiSelect = false;
+            this.lvDeviceItemCategories.Name = "lvDeviceItemCategories";
+            this.lvDeviceItemCategories.Size = new System.Drawing.Size(144, 298);
+            this.lvDeviceItemCategories.TabIndex = 0;
+            this.lvDeviceItemCategories.UseCompatibleStateImageBehavior = false;
+            this.lvDeviceItemCategories.SelectedIndexChanged += new System.EventHandler(this.lvDeviceItemCategories_SelectedIndexChanged);
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(51, 18);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(52, 13);
+            this.label11.TabIndex = 2;
+            this.label11.Text = "Kategoria";
+            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // ilDeviceImages
+            // 
+            this.ilDeviceImages.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
+            this.ilDeviceImages.ImageSize = new System.Drawing.Size(16, 16);
+            this.ilDeviceImages.TransparentColor = System.Drawing.Color.Transparent;
             // 
             // ConfigurationForm
             // 

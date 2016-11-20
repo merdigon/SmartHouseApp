@@ -8,8 +8,8 @@ namespace SmartHouseApp.Common.DataStractures
 {
     public class Point
     {
-        public decimal X { get; set; }
-        public decimal Y { get; set; }
-        public decimal Z { get; set; }
+        public double X { get; set; }
+        public double Y { get; set; }
+        public double Z { get; set; }
     }
 }

@@ -17,9 +17,9 @@ namespace SmartHouseApp.Common.Tools
             var userPos = DotNetInterface.iCountPosition(fSharpDataToCalculateStructure);
             return new Point
             {
-                X = (decimal)userPos.Item1.Item1,
-                Y = (decimal)userPos.Item1.Item2,
-                Z = (decimal)userPos.Item1.Item3
+                X = userPos.Item1.Item1,
+                Y = userPos.Item1.Item2,
+                Z = userPos.Item1.Item3
             };
         }
     }

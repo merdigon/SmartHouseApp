@@ -6,7 +6,7 @@ using NHibernate;
 using NHibernate.Cfg;
 using System.Linq.Expressions;
 
-namespace SmartHouseAppServer.Repository
+namespace SmartHouseApp.Common.Repository
 {
     public class Repository<T> : IDisposable where T : class
     {
@@ -45,13 +45,15 @@ namespace SmartHouseAppServer.Repository
 
         public void CommitTransaction()
         {
-            // _transaction will be replaced with a new transaction            // by NHibernate, but we will close to keep a consistent state.
+            // _transaction will be replaced with a new transaction            
+            // by NHibernate, but we will close to keep a consistent state.
             _transaction.Commit();
             CloseTransaction();
         }
         public void RollbackTransaction()
         {
-            // _session must be closed and disposed after a transaction            // rollback to keep a consistent state.
+            // _session must be closed and disposed after a transaction            
+            // rollback to keep a consistent state.
             _transaction.Rollback();
             CloseTransaction();
             CloseSession();
@@ -75,12 +77,18 @@ namespace SmartHouseAppServer.Repository
             _session.SaveOrUpdate(obj);
         }
 
-        public virtual void Delete(T obj)
+        public virtual List<T> All()
         {
+            return (List<T>)_session.QueryOver<T>().List();
+        }
+
+        public virtual void Delete(int id)
+        {
+            var obj = _session.Get<T>(id);
             _session.Delete(obj);
         }
 
-        public virtual object GetById(int objId)
+        public virtual T GetById(int objId)
         {
             return _session.Load<T>(objId);
         }

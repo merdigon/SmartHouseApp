@@ -176,15 +176,16 @@
     <Compile Include="Controllers\ClientController.cs" />
     <Compile Include="Controllers\ConfController.cs" />
     <Compile Include="Controllers\DataCollectorController.cs" />
+    <Compile Include="Domain\LightDeviceDomain.cs" />
     <Compile Include="Domain\UserPositionHistory.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repository\Repository.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Domain\LightDeviceDomain.hbm.xml" />
     <Content Include="Domain\UserPositionHistory.hbm.xml" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />

@@ -2,6 +2,9 @@
 using SmartHouseApp.Common.Tools;
 using SmartHouseApp.Share.Models;
 using SmartHouseApp.Share.ViewModel;
+using SmartHouseApp.Share.ViewModel.DeviceViewModels;
+using SmartHouseAppServer.Domain;
+using SmartHouseAppServer.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -95,6 +98,87 @@ namespace SmartHouseAppServer.Controllers
             SmartHouseApp.Common.Tools.Configuration.Conf.RoutersInfo = SmartHouseApp.Common.Tools.Configuration.Conf.RoutersInfo.Where(p => p.Id != routerId).ToList();
             SystemDataKnowledge.RoutersInfo = SmartHouseApp.Common.Tools.Configuration.Conf.RoutersInfo;
             return SmartHouseApp.Common.Tools.Configuration.Save();
+        }
+
+        [HttpPost]
+        public List<LightDeviceViewModel> GetLightDevices()
+        {
+            using (var repo = new Repository<LightDeviceDomain>())
+            {
+                return repo.All().Select(p =>
+                    new LightDeviceViewModel
+                    {
+                        DeviceId = p.DeviceId,
+                        Ip = p.Ip,
+                        Port = p.Port,
+                        MaxPercentagePower = p.MaxPercentagePower,
+                        MinPercentagePower = p.MinPercentagePower,
+                        VisibleName = p.VisibleName,
+                        X = p.X,
+                        Y = p.Y,
+                        Z = p.Z
+                    }
+                ).ToList();
+            }
+        }
+
+        [HttpPost]
+        public bool DeleteLightDevice(LightDeviceViewModel model)
+        {
+            using (var repo = new Repository<LightDeviceDomain>())
+            {
+                try
+                {
+                    repo.BeginTransaction();
+                    repo.Delete(model.DeviceId);
+                    repo.CommitTransaction();
+                }
+                catch (Exception ex)
+                {
+                    if (repo != null)
+                    {
+                        repo.RollbackTransaction();
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+
+        [HttpPost]
+        public bool SaveLightDevice(LightDeviceViewModel model)
+        {
+            using (var repo = new Repository<LightDeviceDomain>())
+            {
+                try
+                {
+                    repo.BeginTransaction();
+                    LightDeviceDomain obj = repo.GetById(model.DeviceId);
+
+                    if (obj == null)
+                        obj = new LightDeviceDomain();
+
+                    obj.Ip = model.Ip;
+                    obj.MaxPercentagePower = model.MaxPercentagePower;
+                    obj.MinPercentagePower = model.MinPercentagePower;
+                    obj.Port = model.Port;
+                    obj.VisibleName = model.VisibleName;
+                    obj.X = model.X;
+                    obj.Y = model.Y;
+                    obj.Z = model.Z;
+                    repo.Save(obj);
+                    repo.CommitTransaction();
+                }
+                catch(Exception ex)
+                {
+                    if (repo != null)
+                    {
+                        repo.RollbackTransaction();
+                        return false; 
+                    }
+                }
+            }
+            return true;
         }
     }
 }

@@ -53,6 +53,7 @@
     <Compile Include="Model\DeviceRender\LightDeviceRender.cs" />
     <Compile Include="Tools\Configuration.cs" />
     <Compile Include="Tools\RestClient.cs" />
+    <Compile Include="Views\Components\IDeviceConfControl.cs" />
     <Compile Include="Views\Components\LightConfUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -88,6 +89,9 @@
     <Compile Include="Tools\PointPainter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Views\Components\LightConfUserControl.resx">
+      <DependentUpon>LightConfUserControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\ConfigurationForm.resx">
       <DependentUpon>ConfigurationForm.cs</DependentUpon>
     </EmbeddedResource>

@@ -59,8 +59,10 @@
     <Compile Include="KnowledgeDataStructures\StaticRouterInfo.cs" />
     <Compile Include="KnowledgeDataStructures\SystemDataKnowledge.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\Repository.cs" />
     <Compile Include="Tools\BluetoothTool.cs" />
     <Compile Include="Tools\Configuration.cs" />
+    <Compile Include="Tools\DeviceControlTool.cs" />
     <Compile Include="Tools\LocationTool.cs" />
     <Compile Include="Tools\WifiTool.cs" />
   </ItemGroup>

@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<class name="LightDeviceDomain" table="light_Device_Domain">
+  <id name="deviceId">
+    <generator class="hilo"/>
+  </id>
+  <property name="VisibleName" column="visibleName"/>
+  <property name="Ip" column="ip"/>
+  <property name="Port" column="port"/>
+  <property name="MinPercentagePower" column="minPercentagePower"/>
+  <property name="MaxPercentagePower" column="maxPercentagePower"/>
+  <property name="X" column="coordinate_x"/>
+  <property name="Y" column="coordinate_y"/>
+  <property name="Z" column="coordinate_z"/>
+</class>
