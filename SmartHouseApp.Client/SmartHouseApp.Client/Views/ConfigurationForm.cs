@@ -13,6 +13,7 @@ using SmartHouseApp.Share.Models;
 using SmartHouseApp.Share.ViewModel.DeviceViewModels;
 using SmartHouseApp.Client.Model.DeviceRender;
 using SmartHouseApp.Client.Views.Components;
+using SmartHouseApp.Client.Properties;
 
 namespace SmartHouseApp.Client.Views
 {
@@ -41,6 +42,14 @@ namespace SmartHouseApp.Client.Views
             Routers = RestClient.Get<List<StaticRouterDataViewModel>>("Conf/GetRoutersInfo");
 
             dgvRouters.DataSource = Routers;
+
+            ilDeviceImages.Images.AddRange(new[] { Resources.Light_On_48px, Resources.Temperature_48px });
+            lvDeviceItemCategories.SmallImageList = ilDeviceImages;
+            lvDeviceItemCategories.Columns.Add("Kategoria", -2, HorizontalAlignment.Center);
+            lvDeviceItemCategories.View = View.Details;
+            listView1.Columns.Add("Id", -2, HorizontalAlignment.Center);
+            listView1.Columns.Add("Nazwa", -2, HorizontalAlignment.Center);
+            listView1.View = View.Details;
         }
 
         private void btnSaveMapSize_Click(object sender, EventArgs e)
@@ -192,15 +201,43 @@ namespace SmartHouseApp.Client.Views
                 string category = lvDeviceItemCategories.SelectedItems[0].Text;
                 if(Categories != null)
                 {
-                    var categoryObject = Categories.Where(p => p.VisibleName.Equals(category)).SingleOrDefault();
-                    if(categoryObject != null)
+                    SelectedCategory = Categories.Where(p => p.VisibleName.Equals(category)).SingleOrDefault();
+                    if(SelectedCategory != null)
                     {
-                        switch(categoryObject.CategoryId)
+                        switch(SelectedCategory.CategoryId)
                         {
-                            case DeviceCategories.Light:
-                                Devices = RestClient.Post<List<LightDeviceViewModel>>("Conf/GetLightDevices", null).Select(p => (IDeviceRender)p).ToList();
+                            case (int)DeviceCategories.LIGHT:
+                                Devices = RestClient.Post<List<LightDeviceViewModel>>("Conf/GetLightDevices", null).Select(p => (IDeviceRender)new LightDeviceRender
+                                {
+                                    DeviceId = p.DeviceId,
+                                    Ip = p.Ip,
+                                    MaxPercentagePower = p.MaxPercentagePower,
+                                    MinPercentagePower = p.MinPercentagePower,
+                                    Port = p.Port,
+                                    VisibleName = p.VisibleName,
+                                    X = p.X,
+                                    Y = p.Y,
+                                    Z = p.Z
+                                }).ToList();
+                                break;
+                            default:
+                                Devices.Clear();
                                 break;
                         }
+
+                        listView1.Items.Clear();
+                        if (Devices.Count > 0)
+                        {
+                            ListViewItem[] arrayWithDevices = new ListViewItem[Devices.Count];
+                            for (int i = 0; i < Devices.Count; i++)
+                            {
+                                var item = new ListViewItem(Devices[i].DeviceId.ToString());
+                                item.SubItems.Add(Devices[i].VisibleName);
+                                arrayWithDevices[i] = item;
+                            }
+                            listView1.Items.AddRange(arrayWithDevices);
+                        }
+                        listView1.Refresh();
                     }
                 }
             }
@@ -226,7 +263,7 @@ namespace SmartHouseApp.Client.Views
         private void button5_Click(object sender, EventArgs e)
         {
             UserControl confUserControl = null;
-            if(SelectedCategory.CategoryId == DeviceCategories.Light)
+            if(SelectedCategory.CategoryId == (int)DeviceCategories.LIGHT)
             {
                 confUserControl = new LightDeviceRender().GetConfUserControl();
             }
@@ -243,6 +280,7 @@ namespace SmartHouseApp.Client.Views
                     ((IDeviceConfControl)control).Save();
                 }
             }
+            lvDeviceItemCategories_SelectedIndexChanged(null, null);
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -261,6 +299,21 @@ namespace SmartHouseApp.Client.Views
                     }
                 }
             }
+        }
+
+        private void tabPage2_Enter(object sender, EventArgs e)
+        {
+            lvDeviceItemCategories.Items.Clear();
+            Categories = RestClient.Get<List<DeviceCategoryViewModel>>("Conf/GetDeviceCategories");
+            ListViewItem[] arrayWithCategories = new ListViewItem[Categories.Count];
+            for(int i=0;i<Categories.Count;i++)
+            {
+                var item = new ListViewItem(Categories[i].VisibleName, Categories[i].CategoryId - 1);
+                item.SubItems.Add(Categories[i].VisibleName);
+                arrayWithCategories[i] = item;
+            }
+            lvDeviceItemCategories.Items.AddRange(arrayWithCategories);
+            lvDeviceItemCategories.Refresh();
         }
     }
 }

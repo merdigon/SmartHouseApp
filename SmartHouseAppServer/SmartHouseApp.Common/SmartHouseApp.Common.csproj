@@ -62,7 +62,6 @@
     <Compile Include="Repository\Repository.cs" />
     <Compile Include="Tools\BluetoothTool.cs" />
     <Compile Include="Tools\Configuration.cs" />
-    <Compile Include="Tools\DeviceControlTool.cs" />
     <Compile Include="Tools\LocationTool.cs" />
     <Compile Include="Tools\WifiTool.cs" />
   </ItemGroup>

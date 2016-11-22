@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="Model\DeviceRender\IDeviceRender.cs" />
     <Compile Include="Model\DeviceRender\LightDeviceRender.cs" />
+    <Compile Include="Model\RenderTools.cs" />
     <Compile Include="Tools\Configuration.cs" />
     <Compile Include="Tools\RestClient.cs" />
     <Compile Include="Views\Components\IDeviceConfControl.cs" />

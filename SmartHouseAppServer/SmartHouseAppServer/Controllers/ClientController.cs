@@ -2,12 +2,13 @@
 using SmartHouseApp.Share.Models;
 using SmartHouseApp.Share.ViewModel;
 using SmartHouseAppServer.Domain;
-using SmartHouseAppServer.Repository;
+using SmartHouseApp.Common.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Http;
+using SmartHouseApp.Share.ViewModel.DeviceViewModels;
 
 namespace SmartHouseAppServer.Controllers
 {
@@ -81,6 +82,24 @@ namespace SmartHouseAppServer.Controllers
                     Z = p.Z
                 }).ToList();
             }
+        }
+
+        [HttpGet]
+        public virtual List<DeviceRenderViewModel> GetRenderDevices()
+        {
+            List<DeviceRenderViewModel> resultList = new List<DeviceRenderViewModel>();
+            using (var repo = new Repository<LightDeviceDomain>())
+            {
+                var result = repo.All().ToList();
+                resultList.AddRange(result.Select(p => new DeviceRenderViewModel
+                {
+                    X = p.X,
+                    Y = p.Y,
+                    Z = p.Z,
+                    DeviceCategory = 1
+                }));
+            }
+            return resultList;
         }
     }
 }

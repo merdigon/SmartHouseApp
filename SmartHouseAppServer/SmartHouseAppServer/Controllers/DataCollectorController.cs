@@ -4,7 +4,7 @@ using SmartHouseApp.Common.Tools;
 using SmartHouseApp.IBuilding.DataStructure;
 using SmartHouseApp.Share.Models;
 using SmartHouseAppServer.Domain;
-using SmartHouseAppServer.Repository;
+using SmartHouseApp.Common.Repository;
 using System;
 using System.Collections.Generic;
 using System.IO;

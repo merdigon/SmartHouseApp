@@ -4,7 +4,7 @@ using SmartHouseApp.Share.Models;
 using SmartHouseApp.Share.ViewModel;
 using SmartHouseApp.Share.ViewModel.DeviceViewModels;
 using SmartHouseAppServer.Domain;
-using SmartHouseAppServer.Repository;
+using SmartHouseApp.Common.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,7 +30,7 @@ namespace SmartHouseAppServer.Controllers
         {
             List<StaticRouterDataViewModel> result = new List<StaticRouterDataViewModel>();
 
-            foreach(var router in SystemDataKnowledge.RoutersInfo)
+            foreach (var router in SystemDataKnowledge.RoutersInfo)
             {
                 result.Add(new StaticRouterDataViewModel
                 {
@@ -153,32 +153,51 @@ namespace SmartHouseAppServer.Controllers
                 try
                 {
                     repo.BeginTransaction();
-                    LightDeviceDomain obj = repo.GetById(model.DeviceId);
 
-                    if (obj == null)
+                    LightDeviceDomain obj = null;
+                    if (model.DeviceId > 0)
+                        obj = repo.GetById(model.DeviceId);
+                    else
                         obj = new LightDeviceDomain();
 
-                    obj.Ip = model.Ip;
-                    obj.MaxPercentagePower = model.MaxPercentagePower;
-                    obj.MinPercentagePower = model.MinPercentagePower;
-                    obj.Port = model.Port;
-                    obj.VisibleName = model.VisibleName;
-                    obj.X = model.X;
-                    obj.Y = model.Y;
-                    obj.Z = model.Z;
-                    repo.Save(obj);
+                    if (obj != null)
+                    {
+                        obj.Ip = model.Ip;
+                        obj.MaxPercentagePower = model.MaxPercentagePower;
+                        obj.MinPercentagePower = model.MinPercentagePower;
+                        obj.Port = model.Port;
+                        obj.VisibleName = model.VisibleName;
+                        obj.X = model.X;
+                        obj.Y = model.Y;
+                        obj.Z = model.Z;
+                        repo.Save(obj);
+                    }
                     repo.CommitTransaction();
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     if (repo != null)
                     {
                         repo.RollbackTransaction();
-                        return false; 
+                        return false;
                     }
                 }
             }
             return true;
+        }
+
+        [HttpGet]
+        public virtual List<DeviceCategoryViewModel> GetDeviceCategories()
+        {
+            using (var repo = new Repository<DeviceCategoryDomain>())
+            {
+                var data = repo.All().ToList();
+                return data.Select(p => new DeviceCategoryViewModel
+                {
+                    VisibleName = p.Name,
+                    CategoryId = p.Id
+                }).ToList();
+            }
         }
     }
 }

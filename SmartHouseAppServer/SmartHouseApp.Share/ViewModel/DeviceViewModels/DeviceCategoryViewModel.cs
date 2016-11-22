@@ -9,7 +9,6 @@ namespace SmartHouseApp.Share.ViewModel.DeviceViewModels
     public class DeviceCategoryViewModel
     {
         public string VisibleName { get; set; }
-        public DeviceCategories CategoryId { get; set; }
-        public string ImageName { get; set; }
+        public int CategoryId { get; set; }
     }
 }

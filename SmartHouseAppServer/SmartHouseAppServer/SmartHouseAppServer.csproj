@@ -53,6 +53,10 @@
       <HintPath>..\packages\NHibernate.4.0.4.4000\lib\net40\NHibernate.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Npgsql, Version=3.1.9.0, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Npgsql.3.1.9\lib\net45\Npgsql.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -176,6 +180,7 @@
     <Compile Include="Controllers\ClientController.cs" />
     <Compile Include="Controllers\ConfController.cs" />
     <Compile Include="Controllers\DataCollectorController.cs" />
+    <Compile Include="Domain\DeviceCategoryDomain.cs" />
     <Compile Include="Domain\LightDeviceDomain.cs" />
     <Compile Include="Domain\UserPositionHistory.cs" />
     <Compile Include="Global.asax.cs">
@@ -185,8 +190,9 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Domain\LightDeviceDomain.hbm.xml" />
-    <Content Include="Domain\UserPositionHistory.hbm.xml" />
+    <EmbeddedResource Include="Domain\DeviceCategoryDomain.hbm.xml" />
+    <EmbeddedResource Include="Domain\LightDeviceDomain.hbm.xml" />
+    <EmbeddedResource Include="Domain\UserPositionHistory.hbm.xml" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -196,9 +202,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\Conf\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>

@@ -8,7 +8,7 @@ namespace SmartHouseApp.Share.ViewModel.DeviceViewModels
 {
     public enum DeviceCategories
     {
-        Light = 1,
+        LIGHT = 1,
         TEMPERATURE = 2
     }
 }

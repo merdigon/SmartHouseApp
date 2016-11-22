@@ -1,14 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<class name="LightDeviceDomain" table="light_Device_Domain">
-  <id name="deviceId">
-    <generator class="hilo"/>
-  </id>
-  <property name="VisibleName" column="visibleName"/>
-  <property name="Ip" column="ip"/>
-  <property name="Port" column="port"/>
-  <property name="MinPercentagePower" column="minPercentagePower"/>
-  <property name="MaxPercentagePower" column="maxPercentagePower"/>
-  <property name="X" column="coordinate_x"/>
-  <property name="Y" column="coordinate_y"/>
-  <property name="Z" column="coordinate_z"/>
-</class>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="SmartHouseAppServer.Domain" assembly="SmartHouseAppServer">
+  <class name="LightDeviceDomain" table="light_device_domain">
+    <id name="DeviceId" column="device_id">
+      <generator class="sequence">
+        <param name="sequence">light_device_domain_device_id_seq</param>
+      </generator>
+    </id>
+    <property name="VisibleName" column="visible_name"/>
+    <property name="Ip" column="ip"/>
+    <property name="Port" column="port"/>
+    <property name="MinPercentagePower" column="min_percentage_power"/>
+    <property name="MaxPercentagePower" column="max_percentage_power"/>
+    <property name="X" column="coordinate_x"/>
+    <property name="Y" column="coordinate_y"/>
+    <property name="Z" column="coordinate_z"/>
+  </class>
+</hibernate-mapping>

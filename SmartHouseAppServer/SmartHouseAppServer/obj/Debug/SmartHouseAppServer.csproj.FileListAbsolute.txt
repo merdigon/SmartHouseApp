@@ -237,6 +237,7 @@ D:\Repo\Source\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\Microso
 D:\Repo\Source\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\Microsoft.Web.Infrastructure.dll
 D:\Repo\Source\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\Newtonsoft.Json.dll
 D:\Repo\Source\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\NHibernate.dll
+D:\Repo\Source\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\Npgsql.dll
 D:\Repo\Source\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\Owin.dll
 D:\Repo\Source\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\SmartHouseApp.Common.dll
 D:\Repo\Source\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\SmartHouseApp.IBuilding.dll
@@ -261,6 +262,7 @@ D:\Repo\Source\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\SmartHo
 D:\Repo\Source\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\Iesi.Collections.xml
 D:\Repo\Source\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\Microsoft.Owin.Host.SystemWeb.xml
 D:\Repo\Source\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\NHibernate.xml
+D:\Repo\Source\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\Npgsql.xml
 D:\Repo\Source\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\Newtonsoft.Json.xml
 D:\Repo\Source\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\System.Net.Http.Formatting.xml
 D:\Repo\Source\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\System.Web.Helpers.xml

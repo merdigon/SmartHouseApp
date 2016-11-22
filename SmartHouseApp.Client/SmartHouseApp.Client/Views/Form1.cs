@@ -3,6 +3,7 @@ using SmartHouseApp.Client.Tools;
 using SmartHouseApp.Client.Views;
 using SmartHouseApp.Share.Models;
 using SmartHouseApp.Share.ViewModel;
+using SmartHouseApp.Share.ViewModel.DeviceViewModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -28,6 +29,7 @@ namespace SmartHouseApp.Client.Views
         public Thread PointPainterThread { get; set; }
         public Thread ServerThread { get; set; }
         public List<PointOnMap> Points { get; set; }
+        public List<DeviceRenderViewModel> DeviceList { get; set; }
         public Size PictureSize { get; set; }
         public Size MapSize { get; set; }
         public Form1()
@@ -44,6 +46,8 @@ namespace SmartHouseApp.Client.Views
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
 
             Points = new List<PointOnMap>();
+            RefreshRenderDevices();
+
             PointPainter = new PointPainter(this);
             PointPainterThread = new Thread(new ThreadStart(PointPainter.DrawPoints));
             PointPainterThread.Start();
@@ -73,6 +77,11 @@ namespace SmartHouseApp.Client.Views
                 dtpStart.Value = DateTime.Now;
                 dtpEnd.Value = DateTime.Now;
             }
+        }
+
+        public void RefreshRenderDevices()
+        {
+            DeviceList = RestClient.Get<List<DeviceRenderViewModel>>("Client/GetRenderDevices");
         }
 
         public void ChangeServerSubscription(bool ifRealTime)
@@ -108,11 +117,10 @@ namespace SmartHouseApp.Client.Views
             Points.Clear();
             foreach (var pos in responseModel)
             {
-                var resizedPos = HttpServerThread.ResizeUserLocalizationDependingOnPictureSize(this, pos.X, pos.Y);
                 Points.Add(new PointOnMap
                 {
-                    X = resizedPos.Item1,
-                    Y = resizedPos.Item2,
+                    X = pos.X,
+                    Y = pos.Y,
                     ExpirationDate = null
                 });
             }
@@ -127,6 +135,12 @@ namespace SmartHouseApp.Client.Views
         {
             ConfigurationForm form = new ConfigurationForm(this);
             form.ShowDialog();
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            PointPainterThread.Abort();
+            ServerThread.Abort();
         }
     }
 }

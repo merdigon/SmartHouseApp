@@ -48,11 +48,10 @@ namespace SmartHouseApp.Client
                     HttpListenerRequest request = context.Request;
                     XmlSerializer serializer = new XmlSerializer(typeof(UserPositionModel));
                     UserPositionModel model = (UserPositionModel)serializer.Deserialize(request.InputStream);
-                    var positionForPoint = ResizeUserLocalizationDependingOnPictureSize(MainForm, model.X, model.Y);
                     MainForm.Points.Add(new Model.PointOnMap
                     {
-                        X = positionForPoint.Item1,
-                        Y = positionForPoint.Item2,
+                        X = model.X,
+                        Y = model.Y,
                         ExpirationDate = DateTime.Now.AddSeconds(4)
                     });
                     var buffer = Encoding.UTF8.GetBytes("true");
@@ -70,34 +69,6 @@ namespace SmartHouseApp.Client
         public void StartListening()
         {
             Listening = true;
-        }
-
-        public static Tuple<int, int> ResizeUserLocalizationDependingOnPictureSize(Form1 mainForm, double x, double y)
-        {
-            int xIS = mainForm.PictureSize.Width;
-            int yIS = mainForm.PictureSize.Height;
-            int xPB = mainForm.pictureBox1.Size.Width;
-            int yPB = mainForm.pictureBox1.Size.Height;
-            int marginSize;
-
-            if(xIS/yIS > xPB / yPB)
-            {
-                int xPOPR = xPB;
-                int yPOPR = (xPOPR * yIS) / xIS;
-                marginSize = (yPB - yPOPR) / 2;
-                int xREAL = (int)((x / mainForm.MapSize.Width) * xPOPR);
-                int yREAL = (int)((y / mainForm.MapSize.Height) * yPOPR);
-                return new Tuple<int, int>(xREAL, yREAL + marginSize);
-            }
-            else
-            {
-                int yPOPR = yPB;
-                int xPOPR = (yPOPR * xIS) / yIS;
-                marginSize = (xPB - xPOPR) / 2;
-                int xREAL = (int)((x / mainForm.MapSize.Width) * xPOPR);
-                int yREAL = (int)((y / mainForm.MapSize.Height) * yPOPR);
-                return new Tuple<int, int>(xREAL + marginSize, yREAL);
-            }
         }
     }
 }
