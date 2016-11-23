@@ -9,3 +9,6 @@ let iCountPosition (source : Sphere[]) =
 
 let iCountDistanceForWifiRouter fadeMargin transmitterPower antenaGainTransmitter signalStrenght deviceAtennaGain loses  : double =
     countDistanceForWifiRouter fadeMargin transmitterPower antenaGainTransmitter signalStrenght deviceAtennaGain loses
+
+let iCountDistanceBetweenTwoPoints (x1:double) (y1:double) (z1:double) (x2:double) (y2:double) (z2:double) : double =
+    sqrt ((x1 - x2)**2.0 + (y1 - y2)**2.0 + (z1 - z2)**2.0)
