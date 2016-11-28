@@ -376,12 +376,3 @@ C:\Users\Szymon\Documents\GitHub\SmartApp\SmartHouseApp\SmartHouseAppServer\Smar
 C:\Users\Szymon\Documents\GitHub\SmartApp\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\Szymon\Documents\GitHub\SmartApp\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\System.Web.Http.Owin.xml
 C:\Users\Szymon\Documents\GitHub\SmartApp\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\FSharp.Core.xml
-C:\Users\Szymon\Source\Repos\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\conf.xml
-C:\Users\Szymon\Source\Repos\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\Iesi.Collections.dll
-C:\Users\Szymon\Source\Repos\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\NHibernate.dll
-C:\Users\Szymon\Source\Repos\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\Npgsql.dll
-C:\Users\Szymon\Source\Repos\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\SmartHouseApp.Common.dll
-C:\Users\Szymon\Source\Repos\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\SmartHouseApp.Common.pdb
-C:\Users\Szymon\Source\Repos\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\Iesi.Collections.xml
-C:\Users\Szymon\Source\Repos\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\NHibernate.xml
-C:\Users\Szymon\Source\Repos\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\Npgsql.xml

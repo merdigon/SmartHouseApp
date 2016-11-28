@@ -47,7 +47,7 @@ namespace SmartHouseApp.Tester
             }
             model.SignalData = signals.ToArray();
 
-            var request = (HttpWebRequest)WebRequest.Create("http://192.168.1.5:52079/api/DataCollector/ReportDevices");
+            var request = (HttpWebRequest)WebRequest.Create("http://192.168.9.120:52079/api/DataCollector/ReportDevices");
 
             XmlSerializer serializer = new XmlSerializer(typeof(DeviceNotificationModel));
 

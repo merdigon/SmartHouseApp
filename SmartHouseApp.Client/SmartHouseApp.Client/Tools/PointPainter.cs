@@ -28,77 +28,38 @@ namespace SmartHouseApp.Client
                 int radius = 6;
 
                 SolidBrush myBrush = new SolidBrush(Color.Red);
-                //MethodInvoker mi = delegate ()
-                //    {
-                //        MainForm.pictureBox1.Invalidate();
-                //    };
-                //MainForm.pictureBox1.Invoke(mi);
-                Image baseImage = (Image)MainForm.pictureBox1.MainPicture;
-                using (var grf = Graphics.FromImage(baseImage))
+                MethodInvoker mi = delegate ()
+                    {
+                        MainForm.pictureBox1.Invalidate();
+                    };
+                MainForm.pictureBox1.Invoke(mi);
+
+                for (int i = 0; i < MainForm.Points.Count; i++)
                 {
-
-                    for (int i = 0; i < MainForm.Points.Count; i++)
+                    var point = MainForm.Points[i];
+                    if (!point.ExpirationDate.HasValue || point.ExpirationDate.Value > DateTime.Now)
                     {
-                        var point = MainForm.Points[i];
-                        if (!point.ExpirationDate.HasValue || point.ExpirationDate.Value > DateTime.Now)
+                        var positionForPoint = ResizeUserLocalizationDependingOnPictureSize(MainForm, point.X, point.Y);
+                        MethodInvoker min = delegate ()
                         {
-                            var positionForPoint = ResizeUserLocalizationDependingOnPictureSize(MainForm, point.X, point.Y);
-                            grf.FillEllipse(myBrush, (float)positionForPoint.Item1 - radius + MainForm.pictureBox1.Location.X, (float)positionForPoint.Item2 - radius + MainForm.pictureBox1.Location.Y, radius + radius, radius + radius);
-
-                        }
-                        else
-                            MainForm.Points.Remove(point);
+                            MainForm.pictureBox1.CreateGraphics().FillEllipse(myBrush, (float)positionForPoint.Item1 - radius + MainForm.pictureBox1.Location.X, (float)positionForPoint.Item2 - radius + MainForm.pictureBox1.Location.Y, radius + radius, radius + radius);
+                        };
+                        MainForm.pictureBox1.Invoke(min);
                     }
+                    else
+                        MainForm.Points.Remove(point);
+                }
 
-                    for (int j = 0; j < MainForm.DeviceList.Count; j++)
+                for (int j = 0; j < MainForm.DeviceList.Count; j++)
+                {
+                    var device = MainForm.DeviceList[j];
+                    var positionForDevice = ResizeUserLocalizationDependingOnPictureSize(MainForm, device.X, device.Y);
+                    MethodInvoker min = delegate ()
                     {
-                        var device = MainForm.DeviceList[j];
-                        var positionForDevice = ResizeUserLocalizationDependingOnPictureSize(MainForm, device.X, device.Y);
-                        grf.DrawImage(RenderTools.GetImageForDevice(device.DeviceCategory), new Rectangle(new Point(positionForDevice.Item1 + MainForm.pictureBox1.Location.X, positionForDevice.Item2 + MainForm.pictureBox1.Location.Y), new Size(32, 32)));
-                    }
-
-                    MethodInvoker min = delegate()
-                    {
-                        MainForm.pictureBox1.Image = baseImage;
-                        MainForm.pictureBox1.Refresh();
+                        MainForm.pictureBox1.CreateGraphics().DrawImage(RenderTools.GetImageForDevice(device.DeviceCategory), new Rectangle(new Point(positionForDevice.Item1 + MainForm.pictureBox1.Location.X, positionForDevice.Item2 + MainForm.pictureBox1.Location.Y), new Size(32, 32)));
                     };
                     MainForm.pictureBox1.Invoke(min);
                 }
-                //int radius = 6;
-
-                //SolidBrush myBrush = new SolidBrush(Color.Red);
-                ////MethodInvoker mi = delegate ()
-                ////    {
-                ////        MainForm.pictureBox1.Invalidate();
-                ////    };
-                ////MainForm.pictureBox1.Invoke(mi);
-
-                //for (int i = 0; i < MainForm.Points.Count; i++)
-                //{
-                //    var point = MainForm.Points[i];
-                //    if (!point.ExpirationDate.HasValue || point.ExpirationDate.Value > DateTime.Now)
-                //    {
-                //        var positionForPoint = ResizeUserLocalizationDependingOnPictureSize(MainForm, point.X, point.Y);
-                //        MethodInvoker min = delegate ()
-                //        {
-                //            MainForm.pictureBox1.CreateGraphics().FillEllipse(myBrush, (float)positionForPoint.Item1 - radius + MainForm.pictureBox1.Location.X, (float)positionForPoint.Item2 - radius + MainForm.pictureBox1.Location.Y, radius + radius, radius + radius);
-                //        };
-                //        MainForm.pictureBox1.Invoke(min);
-                //    }
-                //    else
-                //        MainForm.Points.Remove(point);
-                //}
-
-                //for (int j = 0; j < MainForm.DeviceList.Count; j++)
-                //{
-                //    var device = MainForm.DeviceList[j];
-                //    var positionForDevice = ResizeUserLocalizationDependingOnPictureSize(MainForm, device.X, device.Y);
-                //    MethodInvoker min = delegate ()
-                //    {
-                //        MainForm.pictureBox1.CreateGraphics().DrawImage(RenderTools.GetImageForDevice(device.DeviceCategory), new Rectangle(new Point(positionForDevice.Item1 + MainForm.pictureBox1.Location.X, positionForDevice.Item2 + MainForm.pictureBox1.Location.Y), new Size(32, 32)));
-                //    };
-                //    MainForm.pictureBox1.Invoke(min);
-                //}
                 Thread.Sleep(100);
             }
         }

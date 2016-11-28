@@ -1,5 +1,4 @@
-﻿using SmartHouseApp.Client.Tools;
-namespace SmartHouseApp.Client.Views
+﻿namespace SmartHouseApp.Client.Views
 {
     partial class Form1
     {
@@ -42,7 +41,7 @@ namespace SmartHouseApp.Client.Views
             this.rbRealTime = new System.Windows.Forms.RadioButton();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.pictureBox1 = new MyPictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -218,7 +217,7 @@ namespace SmartHouseApp.Client.Views
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.RadioButton rbTimeStamp;
         private System.Windows.Forms.RadioButton rbRealTime;
-        public MyPictureBox pictureBox1;
+        public System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.Button btnDownload;
         private System.Windows.Forms.Label lblEnd;

@@ -53,12 +53,6 @@
     <Compile Include="Model\DeviceRender\LightDeviceRender.cs" />
     <Compile Include="Model\RenderTools.cs" />
     <Compile Include="Tools\Configuration.cs" />
-    <Compile Include="Tools\MyPictureBox.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Tools\MyPictureBox.Designer.cs">
-      <DependentUpon>MyPictureBox.cs</DependentUpon>
-    </Compile>
     <Compile Include="Tools\RestClient.cs" />
     <Compile Include="Views\Components\IDeviceConfControl.cs" />
     <Compile Include="Views\Components\LightConfUserControl.cs">
