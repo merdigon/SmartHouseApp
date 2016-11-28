@@ -40,7 +40,7 @@ namespace SmartHouseApp.Client.Views
             ServerThread = new Thread(new ThreadStart(HttpServer.Threading));
             ServerThread.Start();
             groupBox2.Enabled = rbRealTime.Enabled = rbTimeStamp.Enabled = true;
-            pictureBox1.ImageLocation = Configuration.Conf.PictureLocation;
+            pictureBox1.ImageLocationNew = Configuration.Conf.PictureLocation;
             PictureSize = Image.FromFile(Configuration.Conf.PictureLocation).Size;
             pictureBox1.Location = new Point(0, 0);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
