@@ -1,3 +1,20 @@
+--light_device_interface
+CREATE TABLE public.light_device_interface
+(
+    id integer NOT NULL DEFAULT nextval('light_device_interface_id_seq'::regclass),
+    visible_name character varying(100) COLLATE pg_catalog."default" NOT NULL,
+    interface_class_name character varying(100) COLLATE pg_catalog."default" NOT NULL,
+    CONSTRAINT light_device_interface_pkey PRIMARY KEY (id)
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE public.light_device_interface
+    OWNER to postgres;
+
+--device_category_domain
 CREATE TABLE device_category_domain
 (
   id serial NOT NULL,
@@ -10,27 +27,35 @@ WITH (
 ALTER TABLE device_category_domain
   OWNER TO postgres;
 
-
-CREATE TABLE light_device_domain
+--light_device_domain
+CREATE TABLE public.light_device_domain
 (
-  device_id serial NOT NULL,
-  visible_name character varying(100),
-  ip character varying(100),
-  port character varying(100),
-  min_percentage_power integer,
-  max_percentage_power integer,
-  coordinate_x numeric(15,2),
-  coordinate_y numeric(15,2),
-  coordinate_z numeric(15,2),
-  CONSTRAINT aaa PRIMARY KEY (device_id)
+    device_id integer NOT NULL DEFAULT nextval('light_device_domain_device_id_seq'::regclass),
+    visible_name character varying COLLATE pg_catalog."default" NOT NULL,
+    ip character varying(100) COLLATE pg_catalog."default" NOT NULL,
+    port character varying(8) COLLATE pg_catalog."default" NOT NULL,
+    min_percentage_power integer,
+    max_percentage_power integer,
+    coordinate_x numeric(15, 2) NOT NULL,
+    coordinate_y numeric(15, 2) NOT NULL,
+    coordinate_z numeric(15, 2) NOT NULL,
+    interface_id integer,
+    active boolean NOT NULL DEFAULT true,
+    CONSTRAINT "light_Device_Domain_pkey" PRIMARY KEY (device_id),
+    CONSTRAINT light_device_interface_fkey FOREIGN KEY (interface_id)
+        REFERENCES public.light_device_interface (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
 )
 WITH (
-  OIDS=FALSE
-);
-ALTER TABLE light_device_domain
-  OWNER TO postgres;
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
 
+ALTER TABLE public.light_device_domain
+    OWNER to postgres;
 
+--user_possition
 CREATE TABLE user_possition
 (
   id serial NOT NULL,
