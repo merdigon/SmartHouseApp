@@ -22,15 +22,16 @@ namespace SmartHouseApp.Client
 
         public HttpServerThread(Form1 mainForm)
         {
-            var host = Dns.GetHostEntry(Dns.GetHostName());
-            foreach (var ip in host.AddressList)
-            {
-                if (ip.AddressFamily == AddressFamily.InterNetwork)
-                {
-                    Prefix = ip.ToString();
-                    break;
-                }
-            }
+            //var host = Dns.GetHostEntry(Dns.GetHostName());
+            //foreach (var ip in host.AddressList)
+            //{
+            //    if (ip.AddressFamily == AddressFamily.InterNetwork)
+            //    {
+            //        Prefix = ip.ToString();
+            //        break;
+            //    }
+            //}
+            Prefix = "192.168.9.104";
 
             listener = new HttpListener();
             listener.Prefixes.Add("http://" + Prefix + ":52078/");

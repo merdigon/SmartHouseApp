@@ -35,7 +35,7 @@ namespace SmartHouseApp.Tester
 
             foreach(var router in Configuration.Conf.RoutersInfo)
             {
-                var distance = Math.Sqrt(Math.Pow(userPoss.Item1 - router.Location.X, 2.0) + Math.Pow(userPoss.Item1 - router.Location.Y, 2.0));
+                var distance = Math.Sqrt(Math.Pow(userPoss.Item1 - router.Location.X, 2.0) + Math.Pow(userPoss.Item2 - router.Location.Y, 2.0));
                 var power = router.TrasmitterPower + router.AntennaGain + 2 - router.FadeMargin - 20 * Math.Log10(distance) + 27.55 - 67.55;
                 var routerModel = new SignalStrengthDataModel
                 {
@@ -47,7 +47,7 @@ namespace SmartHouseApp.Tester
             }
             model.SignalData = signals.ToArray();
 
-            var request = (HttpWebRequest)WebRequest.Create("http://192.168.9.120:52079/api/DataCollector/ReportDevices");
+            var request = (HttpWebRequest)WebRequest.Create("http://192.168.9.104:52079/api/DataCollector/ReportDevices");
 
             XmlSerializer serializer = new XmlSerializer(typeof(DeviceNotificationModel));
 

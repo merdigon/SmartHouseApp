@@ -44,6 +44,8 @@ namespace SmartHouseApp.Client.Views
             PictureSize = Image.FromFile(Configuration.Conf.PictureLocation).Size;
             pictureBox1.Location = new Point(0, 0);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox1.Controls.Add(pictureBox2);
+            pictureBox2.BackColor = Color.Transparent;
 
             Points = new List<PointOnMap>();
             RefreshRenderDevices();

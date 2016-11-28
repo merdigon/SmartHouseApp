@@ -295,9 +295,6 @@ D:\Repo\Source\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\FSharp.
 D:\Repo\Source\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\obj\Debug\SmartHouseAppServer.csprojResolveAssemblyReference.cache
 D:\Repo\Source\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\obj\Debug\SmartHouseAppServer.dll
 D:\Repo\Source\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\obj\Debug\SmartHouseAppServer.pdb
-C:\Users\Szymon\Documents\GitHub\SmartApp\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\obj\Debug\SmartHouseAppServer.csprojResolveAssemblyReference.cache
-C:\Users\Szymon\Documents\GitHub\SmartApp\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\obj\Debug\SmartHouseAppServer.dll
-C:\Users\Szymon\Documents\GitHub\SmartApp\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\obj\Debug\SmartHouseAppServer.pdb
 C:\Users\Szymon\Documents\GitHub\SmartApp\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\conf.xml
 C:\Users\Szymon\Documents\GitHub\SmartApp\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\SmartHouseAppServer.dll.config
 C:\Users\Szymon\Documents\GitHub\SmartApp\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\SmartHouseAppServer.dll
@@ -376,3 +373,6 @@ C:\Users\Szymon\Documents\GitHub\SmartApp\SmartHouseApp\SmartHouseAppServer\Smar
 C:\Users\Szymon\Documents\GitHub\SmartApp\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\Szymon\Documents\GitHub\SmartApp\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\System.Web.Http.Owin.xml
 C:\Users\Szymon\Documents\GitHub\SmartApp\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\FSharp.Core.xml
+C:\Users\Szymon\Documents\GitHub\SmartApp\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\obj\Debug\SmartHouseAppServer.csprojResolveAssemblyReference.cache
+C:\Users\Szymon\Documents\GitHub\SmartApp\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\obj\Debug\SmartHouseAppServer.dll
+C:\Users\Szymon\Documents\GitHub\SmartApp\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\obj\Debug\SmartHouseAppServer.pdb

@@ -111,9 +111,10 @@ let rec getPreciseBestPosition (x,y,z) normalizedSpheres accuracy =
 let countUserPosition(source : Sphere[]) =
     let boxSize, boxNormalizer = countBoxSize source
     let boxSizeX, boxSizeY, boxSizeZ = boxSize
+    let maxBoxSize = [boxSizeX; boxSizeY; boxSizeZ] |> List.fold (fun acc elem -> if elem > acc then elem else acc) 0.0
 
     let sphereNormalizer (x,y,z) (sphere : Sphere) =
-        new Sphere(sphere.X - x, sphere.Y - y, sphere.Z - z, sphere.Distance, sphere.Guassian)
+        new Sphere(sphere.X - x, sphere.Y - y, sphere.Z - z, sphere.Distance, new GausianProbabilityDistribution(sphere.Guassian.Um, maxBoxSize / 70.0))
 
     let normalizedSpheres = List.map (fun (x : Sphere) -> sphereNormalizer boxNormalizer x) <| (Array.toList source)
     let normalizer = countNormalizerBoxSize boxSize

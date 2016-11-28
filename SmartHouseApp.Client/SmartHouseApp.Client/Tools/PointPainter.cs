@@ -30,37 +30,38 @@ namespace SmartHouseApp.Client
                 SolidBrush myBrush = new SolidBrush(Color.Red);
                 MethodInvoker mi = delegate ()
                     {
-                        MainForm.pictureBox1.Invalidate();
-                    };
-                MainForm.pictureBox1.Invoke(mi);
+                        //MainForm.pictureBox1.Invalidate();
+                        //graph.Clear(Color.Transparent);
+                        Bitmap bitmap = new Bitmap(MainForm.PictureSize.Width, MainForm.PictureSize.Height, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+                        bitmap.MakeTransparent();
 
-                for (int i = 0; i < MainForm.Points.Count; i++)
-                {
-                    var point = MainForm.Points[i];
-                    if (!point.ExpirationDate.HasValue || point.ExpirationDate.Value > DateTime.Now)
-                    {
-                        var positionForPoint = ResizeUserLocalizationDependingOnPictureSize(MainForm, point.X, point.Y);
-                        MethodInvoker min = delegate ()
+                        using (var graph = Graphics.FromImage(bitmap))
                         {
-                            MainForm.pictureBox1.CreateGraphics().FillEllipse(myBrush, (float)positionForPoint.Item1 - radius + MainForm.pictureBox1.Location.X, (float)positionForPoint.Item2 - radius + MainForm.pictureBox1.Location.Y, radius + radius, radius + radius);
-                        };
-                        MainForm.pictureBox1.Invoke(min);
-                    }
-                    else
-                        MainForm.Points.Remove(point);
-                }
+                            for (int i = 0; i < MainForm.Points.Count; i++)
+                            {
+                                var point = MainForm.Points[i];
+                                if (!point.ExpirationDate.HasValue || point.ExpirationDate.Value > DateTime.Now)
+                                {
+                                    var positionForPoint = ResizeUserLocalizationDependingOnPictureSize(MainForm, point.X, point.Y);
+                                    graph.FillEllipse(myBrush, (float)positionForPoint.Item1 - radius + MainForm.pictureBox1.Location.X, (float)positionForPoint.Item2 - radius + MainForm.pictureBox1.Location.Y, radius + radius, radius + radius);
 
-                for (int j = 0; j < MainForm.DeviceList.Count; j++)
-                {
-                    var device = MainForm.DeviceList[j];
-                    var positionForDevice = ResizeUserLocalizationDependingOnPictureSize(MainForm, device.X, device.Y);
-                    MethodInvoker min = delegate ()
-                    {
-                        MainForm.pictureBox1.CreateGraphics().DrawImage(RenderTools.GetImageForDevice(device.DeviceCategory), new Rectangle(new Point(positionForDevice.Item1 + MainForm.pictureBox1.Location.X, positionForDevice.Item2 + MainForm.pictureBox1.Location.Y), new Size(32, 32)));
+                                }
+                                else
+                                    MainForm.Points.Remove(point);
+                            }
+
+                            for (int j = 0; j < MainForm.DeviceList.Count; j++)
+                            {
+                                var device = MainForm.DeviceList[j];
+                                var positionForDevice = ResizeUserLocalizationDependingOnPictureSize(MainForm, device.X, device.Y);
+                                graph.DrawImage(RenderTools.GetImageForDevice(device.DeviceCategory), new Rectangle(new Point(positionForDevice.Item1 + MainForm.pictureBox1.Location.X, positionForDevice.Item2 + MainForm.pictureBox1.Location.Y), new Size(32, 32)));
+
+                            }
+                            MainForm.pictureBox2.BackgroundImage = bitmap;
+                        }
                     };
-                    MainForm.pictureBox1.Invoke(min);
-                }
-                Thread.Sleep(100);
+                MainForm.pictureBox2.Invoke(mi);
+                Thread.Sleep(500);
             }
         }
 
