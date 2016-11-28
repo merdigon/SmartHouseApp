@@ -11,3 +11,4 @@ C:\Users\Szymon\Documents\GitHub\SmartApp\SmartHouseApp\SmartHouseAppServer\Smar
 C:\Users\Szymon\Documents\GitHub\SmartApp\SmartHouseApp\SmartHouseAppServer\SmartHouseApp.Share\bin\Debug\SmartHouseApp.Share.pdb
 C:\Users\Szymon\Documents\GitHub\SmartApp\SmartHouseApp\SmartHouseAppServer\SmartHouseApp.Share\obj\Debug\SmartHouseApp.Share.dll
 C:\Users\Szymon\Documents\GitHub\SmartApp\SmartHouseApp\SmartHouseAppServer\SmartHouseApp.Share\obj\Debug\SmartHouseApp.Share.pdb
+D:\Repo\Source\SmartHouseApp\SmartHouseAppServer\SmartHouseApp.Share\obj\Debug\SmartHouseApp.Share.csprojResolveAssemblyReference.cache

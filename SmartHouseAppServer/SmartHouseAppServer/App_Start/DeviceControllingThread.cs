@@ -1,9 +1,11 @@
 ﻿using SmartHouseApp.Common.Repository;
+using SmartHouseAppServer.DeviceInterfaces.LightDevice;
 using SmartHouseAppServer.Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Reflection;
 using System.Threading;
 using System.Web;
 using System.Xml.Serialization;
@@ -24,7 +26,7 @@ namespace SmartHouseAppServer.App_Start
         {
             while(true)
             {
-                if(LastUpdate.AddHours(1) >= DateTime.Now)
+                if(LastUpdate.AddHours(1) <= DateTime.Now)
                 {
                     List<UserPositionHistory> totalUserPoss = null;
                     List<LightDeviceDomain> lightDevices = null;
@@ -49,16 +51,8 @@ namespace SmartHouseAppServer.App_Start
 
                         int lightPower = (device.MaxPercentagePower - device.MinPercentagePower) * (numberOfNearUsers / totalUserPoss.Count) + device.MinPercentagePower;
 
-                        var request = (HttpWebRequest)WebRequest.Create(string.Format("http://{0}:{1}//", device.Ip, device.Port));
-
-                        XmlSerializer serializer = new XmlSerializer(typeof(int));
-
-                        request.Method = "POST";
-                        request.ContentType = "text/xml";
-
-                        serializer.Serialize(request.GetRequestStream(), lightPower);
-
-                        request.GetResponseAsync();
+                        ILightDeviceInterface ldInterface = (ILightDeviceInterface)Activator.CreateInstance(Assembly.GetExecutingAssembly().GetName().Name, device.Interface.InterfaceClassName);
+                        ldInterface.NotifyInformationToDevice(device.Ip, device.Port, lightPower);
                     }
                 }
                 Thread.Sleep(1000);

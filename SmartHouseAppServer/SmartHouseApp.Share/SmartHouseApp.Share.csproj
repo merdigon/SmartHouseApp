@@ -50,6 +50,7 @@
     <Compile Include="ViewModel\DeviceViewModels\DeviceCategories.cs" />
     <Compile Include="ViewModel\DeviceViewModels\DeviceCategoryViewModel.cs" />
     <Compile Include="ViewModel\DeviceViewModels\DeviceRenderViewModel.cs" />
+    <Compile Include="ViewModel\DeviceViewModels\LightDeviceInterfaceViewModel.cs" />
     <Compile Include="ViewModel\DeviceViewModels\LightDeviceViewModel.cs" />
     <Compile Include="ViewModel\LogInViewModel.cs" />
     <Compile Include="ViewModel\SizeViewModel.cs" />

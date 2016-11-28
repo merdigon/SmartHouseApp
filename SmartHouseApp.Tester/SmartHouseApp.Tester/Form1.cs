@@ -1,4 +1,6 @@
-﻿using System;
+﻿using SmartHouseApp.Common.Repository;
+using SmartHouseAppServer.Domain;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -6,6 +8,7 @@ using System.Drawing;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Serialization;
@@ -19,7 +22,9 @@ namespace SmartHouseApp.Tester
         {
             InitializeComponent();
 
-            Size = new Size((Configuration.Conf.MapSizeX * RESIZER) + 16, (Configuration.Conf.MapSizeY * RESIZER) + 39);
+            Size = new Size((Configuration.Conf.MapSizeX * RESIZER) + 215, (Configuration.Conf.MapSizeY * RESIZER) + 39);
+
+            InitServers();
         }
 
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
@@ -58,6 +63,46 @@ namespace SmartHouseApp.Tester
             //request.ContentLength = request.GetRequestStream().Length;
 
             request.GetResponse();
+        }
+
+        List<Thread> DeviceThreads { get; set; }
+        public void InitServers()
+        {
+            List<LightDeviceDomain> lightDevices = new List<LightDeviceDomain>();
+
+            using (var repo = new Repository<LightDeviceDomain>())
+            {
+                lightDevices.AddRange(repo.Where(p => p.Interface.VisibleName == "Logger").ToList());
+            }
+
+            DeviceThreads = new List<Thread>();
+            foreach(var device in lightDevices)
+            {
+                var threadHelper = new LightDeviceThread
+                {
+                    Ip = device.Ip,
+                    Port = device.Port,
+                    MainForm = this
+                };
+                var thread = new Thread(new ThreadStart(threadHelper.Listen));
+                DeviceThreads.Add(thread);
+                thread.Start();
+            }
+        }
+
+        public void AddNewLog(string log)
+        {
+            tbLogText.Text = tbLogText.Text + Environment.NewLine + log;
+            tbLogText.Refresh();
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if(DeviceThreads!=null && DeviceThreads.Count > 0)
+            {
+                foreach(var thread in DeviceThreads)
+                    thread.Abort();
+            }
         }
     }
 }

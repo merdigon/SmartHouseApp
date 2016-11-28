@@ -217,7 +217,9 @@ namespace SmartHouseApp.Client.Views
                                     VisibleName = p.VisibleName,
                                     X = p.X,
                                     Y = p.Y,
-                                    Z = p.Z
+                                    Z = p.Z,
+                                    Active = p.Active,
+                                    Interface = p.Interface
                                 }).ToList();
                                 break;
                             default:

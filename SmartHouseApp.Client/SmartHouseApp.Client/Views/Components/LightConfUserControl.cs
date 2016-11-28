@@ -30,6 +30,12 @@ namespace SmartHouseApp.Client.Views.Components
             tbX.Text = model.X.ToString();
             tbY.Text = model.Y.ToString();
             tbZ.Text = model.Z.ToString();
+            cbIsActive.Checked = model.Active;
+
+            var possibleLightDeviceInterfaces = RestClient.Get<List<LightDeviceInterfaceViewModel>>("Conf/LightDeviceInterfaces");
+            cbLightDeviceInterface.Items.AddRange(possibleLightDeviceInterfaces.ToArray());
+            if (model.Interface != null)
+                cbLightDeviceInterface.SelectedItem = possibleLightDeviceInterfaces.Where(p => p.Id == model.Interface.Id).Single();
         }
 
         public bool Save()
@@ -42,7 +48,7 @@ namespace SmartHouseApp.Client.Views.Components
 
             var model = new LightDeviceViewModel
             {
-                DeviceId = this.model.DeviceId,                
+                DeviceId = this.model.DeviceId,
                 Ip = tbIp.Text,
                 MaxPercentagePower = max,
                 MinPercentagePower = min,
@@ -50,8 +56,13 @@ namespace SmartHouseApp.Client.Views.Components
                 VisibleName = tbVisibleName.Text,
                 X = x,
                 Y = y,
-                Z = z
+                Z = z,
+                Active = cbIsActive.Checked
             };
+
+            LightDeviceInterfaceViewModel choosenInterface = cbLightDeviceInterface.SelectedItem as LightDeviceInterfaceViewModel;
+            if (choosenInterface != null)
+                model.Interface = new LightDeviceInterfaceViewModel { Id = choosenInterface.Id };
 
             return RestClient.Post<bool>("Conf/SaveLightDevice", model);
         }

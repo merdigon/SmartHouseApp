@@ -185,8 +185,11 @@
     <Compile Include="Controllers\ClientController.cs" />
     <Compile Include="Controllers\ConfController.cs" />
     <Compile Include="Controllers\DataCollectorController.cs" />
+    <Compile Include="DeviceInterfaces\LightDevice\ILightDeviceInterface.cs" />
+    <Compile Include="DeviceInterfaces\LightDevice\LoggerLightDeviceInterface.cs" />
     <Compile Include="Domain\DeviceCategoryDomain.cs" />
     <Compile Include="Domain\LightDeviceDomain.cs" />
+    <Compile Include="Domain\LightDeviceInterface.cs" />
     <Compile Include="Domain\UserPositionHistory.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -198,6 +201,7 @@
     <EmbeddedResource Include="Domain\DeviceCategoryDomain.hbm.xml" />
     <EmbeddedResource Include="Domain\LightDeviceDomain.hbm.xml" />
     <EmbeddedResource Include="Domain\UserPositionHistory.hbm.xml" />
+    <EmbeddedResource Include="Domain\LightDeviceInterface.hbm.xml" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -212,10 +216,6 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SmartHouseApp.IBuilding\SmartHouseApp.IBuilding.csproj">
-      <Project>{741e89e1-5283-42d7-8ab5-b7c09162a129}</Project>
-      <Name>SmartHouseApp.IBuilding</Name>
-    </ProjectReference>
     <ProjectReference Include="..\SmartHouseApp.Common\SmartHouseApp.Common.csproj">
       <Project>{4c54bd1e-e2c6-4b2a-b588-af454cb7903e}</Project>
       <Name>SmartHouseApp.Common</Name>

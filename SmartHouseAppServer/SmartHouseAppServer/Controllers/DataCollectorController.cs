@@ -1,7 +1,6 @@
 ﻿using SmartHouseApp.Common.DataStractures;
 using SmartHouseApp.Common.KnowledgeDataStructures;
 using SmartHouseApp.Common.Tools;
-using SmartHouseApp.IBuilding.DataStructure;
 using SmartHouseApp.Share.Models;
 using SmartHouseAppServer.Domain;
 using SmartHouseApp.Common.Repository;

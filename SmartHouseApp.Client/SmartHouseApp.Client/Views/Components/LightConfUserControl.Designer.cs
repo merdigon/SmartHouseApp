@@ -44,6 +44,9 @@
             this.tbPort = new System.Windows.Forms.TextBox();
             this.tbIp = new System.Windows.Forms.TextBox();
             this.tbZ = new System.Windows.Forms.TextBox();
+            this.cbLightDeviceInterface = new System.Windows.Forms.ComboBox();
+            this.cbIsActive = new System.Windows.Forms.CheckBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -174,10 +177,40 @@
             this.tbZ.Size = new System.Drawing.Size(210, 20);
             this.tbZ.TabIndex = 15;
             // 
+            // cbLightDeviceInterface
+            // 
+            this.cbLightDeviceInterface.FormattingEnabled = true;
+            this.cbLightDeviceInterface.Location = new System.Drawing.Point(147, 238);
+            this.cbLightDeviceInterface.Name = "cbLightDeviceInterface";
+            this.cbLightDeviceInterface.Size = new System.Drawing.Size(210, 21);
+            this.cbLightDeviceInterface.TabIndex = 16;
+            // 
+            // cbIsActive
+            // 
+            this.cbIsActive.AutoSize = true;
+            this.cbIsActive.Location = new System.Drawing.Point(147, 265);
+            this.cbIsActive.Name = "cbIsActive";
+            this.cbIsActive.Size = new System.Drawing.Size(85, 17);
+            this.cbIsActive.TabIndex = 17;
+            this.cbIsActive.Text = "Czy aktywny";
+            this.cbIsActive.UseVisualStyleBackColor = true;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(94, 241);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(47, 13);
+            this.label9.TabIndex = 18;
+            this.label9.Text = "Interfejs:";
+            // 
             // LightConfUserControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.cbIsActive);
+            this.Controls.Add(this.cbLightDeviceInterface);
             this.Controls.Add(this.tbZ);
             this.Controls.Add(this.tbIp);
             this.Controls.Add(this.tbPort);
@@ -195,7 +228,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "LightConfUserControl";
-            this.Size = new System.Drawing.Size(382, 259);
+            this.Size = new System.Drawing.Size(382, 298);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -219,5 +252,8 @@
         private System.Windows.Forms.TextBox tbPort;
         private System.Windows.Forms.TextBox tbIp;
         private System.Windows.Forms.TextBox tbZ;
+        private System.Windows.Forms.ComboBox cbLightDeviceInterface;
+        private System.Windows.Forms.CheckBox cbIsActive;
+        private System.Windows.Forms.Label label9;
     }
 }

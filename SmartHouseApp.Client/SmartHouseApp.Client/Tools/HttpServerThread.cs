@@ -31,7 +31,7 @@ namespace SmartHouseApp.Client
             //        break;
             //    }
             //}
-            Prefix = "192.168.9.104";
+            Prefix = "192.168.1.105";
 
             listener = new HttpListener();
             listener.Prefixes.Add("http://" + Prefix + ":52078/");

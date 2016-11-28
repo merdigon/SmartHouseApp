@@ -1,3 +1,40 @@
+CREATE SEQUENCE public.light_device_interface_id_seq
+  INCREMENT 1
+  MINVALUE 1
+  MAXVALUE 9223372036854775807
+  START 1
+  CACHE 1;
+ALTER TABLE public.light_device_interface_id_seq
+  OWNER TO postgres;
+
+    CREATE SEQUENCE public.light_device_domain_device_id_seq
+  INCREMENT 1
+  MINVALUE 1
+  MAXVALUE 9223372036854775807
+  START 1
+  CACHE 1;
+ALTER TABLE public.light_device_domain_device_id_seq
+  OWNER TO postgres;
+
+  CREATE SEQUENCE public.device_category_domain_id_seq
+  INCREMENT 1
+  MINVALUE 1
+  MAXVALUE 9223372036854775807
+  START 1
+  CACHE 1;
+ALTER TABLE public.device_category_domain_id_seq
+  OWNER TO postgres;
+
+  CREATE SEQUENCE public.user_possition_id_seq
+  INCREMENT 1
+  MINVALUE 1
+  MAXVALUE 9223372036854775807
+  START 1
+  CACHE 1;
+ALTER TABLE public.user_possition_id_seq
+  OWNER TO postgres;
+
+
 --light_device_interface
 CREATE TABLE public.light_device_interface
 (

@@ -116,7 +116,13 @@ namespace SmartHouseAppServer.Controllers
                         VisibleName = p.VisibleName,
                         X = p.X,
                         Y = p.Y,
-                        Z = p.Z
+                        Z = p.Z,
+                        Active = p.Active,
+                        Interface = new LightDeviceInterfaceViewModel
+                        {
+                            Id = p.Interface.Id,
+                            VisibleName = p.Interface.VisibleName
+                        }
                     }
                 ).ToList();
             }
@@ -170,6 +176,16 @@ namespace SmartHouseAppServer.Controllers
                         obj.X = model.X;
                         obj.Y = model.Y;
                         obj.Z = model.Z;
+                        obj.Active = model.Active;
+
+                        if (model.Interface != null)
+                        {
+                            using (var repo2 = new Repository<LightDeviceInterface>())
+                            {
+                                obj.Interface = repo2.Where(p => p.Id == model.Interface.Id).Single();
+                            }
+                        }
+
                         repo.Save(obj);
                     }
                     repo.CommitTransaction();
@@ -196,6 +212,20 @@ namespace SmartHouseAppServer.Controllers
                 {
                     VisibleName = p.Name,
                     CategoryId = p.Id
+                }).ToList();
+            }
+        }
+
+        [HttpGet]
+        public virtual List<LightDeviceInterfaceViewModel> LightDeviceInterfaces()
+        {
+            using (var repo = new Repository<LightDeviceInterface>())
+            {
+                var data = repo.All().ToList();
+                return data.Select(p => new LightDeviceInterfaceViewModel
+                {
+                    Id = p.Id,
+                    VisibleName = p.VisibleName
                 }).ToList();
             }
         }
