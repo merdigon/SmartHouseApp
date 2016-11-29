@@ -374,3 +374,7 @@ C:\Users\Szymon\Documents\GitHub\SmartApp\SmartHouseApp\SmartHouseAppServer\Smar
 C:\Users\Szymon\Documents\GitHub\SmartApp\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\obj\Debug\SmartHouseAppServer.csprojResolveAssemblyReference.cache
 C:\Users\Szymon\Documents\GitHub\SmartApp\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\obj\Debug\SmartHouseAppServer.dll
 C:\Users\Szymon\Documents\GitHub\SmartApp\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\obj\Debug\SmartHouseAppServer.pdb
+D:\Repo\Source\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\Domain\DeviceCategoryDomain.hbm.xml
+D:\Repo\Source\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\Domain\LightDeviceDomain.hbm.xml
+D:\Repo\Source\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\Domain\UserPositionHistory.hbm.xml
+D:\Repo\Source\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\Domain\LightDeviceInterface.hbm.xml

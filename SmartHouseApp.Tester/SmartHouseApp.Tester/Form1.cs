@@ -1,5 +1,5 @@
 ﻿using SmartHouseApp.Common.Repository;
-using SmartHouseAppServer.Domain;
+using SmartHouseApp.Tester.ServerClasses;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -52,7 +52,7 @@ namespace SmartHouseApp.Tester
             }
             model.SignalData = signals.ToArray();
 
-            var request = (HttpWebRequest)WebRequest.Create("http://192.168.9.104:52079/api/DataCollector/ReportDevices");
+            var request = (HttpWebRequest)WebRequest.Create("http://192.168.1.105:52079/api/DataCollector/ReportDevices");
 
             XmlSerializer serializer = new XmlSerializer(typeof(DeviceNotificationModel));
 
@@ -72,7 +72,8 @@ namespace SmartHouseApp.Tester
 
             using (var repo = new Repository<LightDeviceDomain>())
             {
-                lightDevices.AddRange(repo.Where(p => p.Interface.VisibleName == "Logger").ToList());
+                var allFromRepo = repo.All();
+                lightDevices.AddRange(allFromRepo.Where(p => p.Interface.VisibleName.Equals("Logger")).ToList());
             }
 
             DeviceThreads = new List<Thread>();

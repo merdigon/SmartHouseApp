@@ -11,10 +11,10 @@ namespace SmartHouseApp.Common.Tools
     public static class BluetoothTool
     {
         static double K = 27.55;
-        public static decimal GetDistanceInPoints(int signalStrength, decimal frequency)
-        {
-            return 5M;
-        }
+        static double SMARTPHONE_WIFI_ANTENNA_GAIN = 2;
+        static double FADE_MARGIN = 22;
+        static double ANTENNA_GAIN = 0;
+        static double TRANSMITTER_POWER = 6;
 
         public static List<SphereData> GetBluetoothSphereData(List<SignalStrengthDataModel> bluetoothSignals)
         {
@@ -33,8 +33,26 @@ namespace SmartHouseApp.Common.Tools
                         {
                             X = (double)device.CurrentLocation.X,
                             Y = (double)device.CurrentLocation.Y,
-                            Distance = (double)GetDistanceInPoints(nearBDevice.SignalStrength, 10M)
+                            Distance = DotNetInterface.iCountDistanceForWifiRouter(FADE_MARGIN, TRANSMITTER_POWER,
+                                                                                ANTENNA_GAIN, nearBDevice.SignalStrength, SMARTPHONE_WIFI_ANTENNA_GAIN, 0)
                         });
+                }
+                else
+                {
+                    var staticDevice = SystemDataKnowledge.RoutersInfo.Where(p => p.SSID.Equals(nearBDevice.DeviceName)).SingleOrDefault();
+
+                    if(staticDevice != null)
+                    {
+                        dataToCount.Add(new SphereData
+                        {
+                            X = (double)staticDevice.Location.X,
+                            Y = (double)staticDevice.Location.Y,
+                            Z = (double)staticDevice.Location.Z,
+                            Distance = DotNetInterface.iCountDistanceForWifiRouter(staticDevice.FadeMargin, staticDevice.TrasmitterPower,
+                                                                                staticDevice.AntennaGain, nearBDevice.SignalStrength, SMARTPHONE_WIFI_ANTENNA_GAIN, 0),
+                            Sigma = staticDevice.GetSigmaForSignalStrength(nearBDevice.SignalStrength)
+                        });
+                    }
                 }
             }
             return dataToCount;

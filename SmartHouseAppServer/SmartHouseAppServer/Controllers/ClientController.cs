@@ -68,7 +68,7 @@ namespace SmartHouseAppServer.Controllers
             return true;
         }
 
-        [HttpGet]
+        [HttpPost]
         public virtual List<UserPositionModel> GetUsersPositions(DateSpawnModel model)
         {
             using (var repo = new Repository<UserPositionHistory>())

@@ -43,6 +43,7 @@
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.btnRefreshDevices = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -52,6 +53,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnRefreshDevices);
             this.groupBox1.Controls.Add(this.btnClear);
             this.groupBox1.Controls.Add(this.btnDownload);
             this.groupBox1.Controls.Add(this.lblEnd);
@@ -197,6 +199,17 @@
             this.pictureBox2.TabIndex = 3;
             this.pictureBox2.TabStop = false;
             // 
+            // btnRefreshDevices
+            // 
+            this.btnRefreshDevices.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnRefreshDevices.Location = new System.Drawing.Point(70, 348);
+            this.btnRefreshDevices.Name = "btnRefreshDevices";
+            this.btnRefreshDevices.Size = new System.Drawing.Size(94, 23);
+            this.btnRefreshDevices.TabIndex = 10;
+            this.btnRefreshDevices.Text = "Odśwież sprzęt";
+            this.btnRefreshDevices.UseVisualStyleBackColor = true;
+            this.btnRefreshDevices.Click += new System.EventHandler(this.btnRefreshDevices_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -239,6 +252,7 @@
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
         public System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.Button btnRefreshDevices;
     }
 }
 

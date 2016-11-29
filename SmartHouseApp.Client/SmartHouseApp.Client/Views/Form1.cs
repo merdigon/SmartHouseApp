@@ -1,24 +1,13 @@
 ﻿using SmartHouseApp.Client.Model;
 using SmartHouseApp.Client.Tools;
-using SmartHouseApp.Client.Views;
 using SmartHouseApp.Share.Models;
-using SmartHouseApp.Share.ViewModel;
 using SmartHouseApp.Share.ViewModel.DeviceViewModels;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Net;
 using System.Net.Http;
-using System.Reflection;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Xml.Serialization;
 
 namespace SmartHouseApp.Client.Views
 {
@@ -83,6 +72,9 @@ namespace SmartHouseApp.Client.Views
 
         public void RefreshRenderDevices()
         {
+            if (DeviceList != null)
+                DeviceList.Clear();
+
             DeviceList = RestClient.Get<List<DeviceRenderViewModel>>("Client/GetRenderDevices");
         }
 
@@ -90,6 +82,7 @@ namespace SmartHouseApp.Client.Views
         {
             if (ifRealTime)
             {
+                Points.Clear();
                 using (var client = new HttpClient())
                 {
                     var response = RestClient.Post<bool>("Client/StartRealTime", null);
@@ -98,6 +91,7 @@ namespace SmartHouseApp.Client.Views
             }
             else
             {
+                Points.Clear();
                 using (var client = new HttpClient())
                 {
                     var response = RestClient.Post<bool>("Client/StopRealTime", null);
@@ -143,6 +137,11 @@ namespace SmartHouseApp.Client.Views
         {
             PointPainterThread.Abort();
             ServerThread.Abort();
+        }
+
+        private void btnRefreshDevices_Click(object sender, EventArgs e)
+        {
+            RefreshRenderDevices();
         }
     }
 }

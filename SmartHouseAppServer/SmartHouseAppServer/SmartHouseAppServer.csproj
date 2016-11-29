@@ -198,10 +198,18 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Domain\DeviceCategoryDomain.hbm.xml" />
-    <EmbeddedResource Include="Domain\LightDeviceDomain.hbm.xml" />
-    <EmbeddedResource Include="Domain\UserPositionHistory.hbm.xml" />
-    <EmbeddedResource Include="Domain\LightDeviceInterface.hbm.xml" />
+    <EmbeddedResource Include="Domain\DeviceCategoryDomain.hbm.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Domain\LightDeviceDomain.hbm.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Domain\UserPositionHistory.hbm.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Domain\LightDeviceInterface.hbm.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
