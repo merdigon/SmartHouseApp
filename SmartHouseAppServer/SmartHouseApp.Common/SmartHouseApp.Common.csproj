@@ -54,16 +54,8 @@
     <Compile Include="DataStractures\Point.cs" />
     <Compile Include="DataStractures\SignalStrengthDataModel.cs" />
     <Compile Include="DataStractures\SignalType.cs" />
-    <Compile Include="KnowledgeDataStructures\DynamicDeviceInfo.cs" />
-    <Compile Include="KnowledgeDataStructures\LoggedUser.cs" />
-    <Compile Include="KnowledgeDataStructures\StaticRouterInfo.cs" />
-    <Compile Include="KnowledgeDataStructures\SystemDataKnowledge.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\Repository.cs" />
-    <Compile Include="Tools\BluetoothTool.cs" />
-    <Compile Include="Tools\Configuration.cs" />
-    <Compile Include="Tools\LocationTool.cs" />
-    <Compile Include="Tools\WifiTool.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SmartHouseApp.Share\SmartHouseApp.Share.csproj">

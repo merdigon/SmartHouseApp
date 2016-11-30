@@ -108,3 +108,55 @@ WITH (
 );
 ALTER TABLE user_possition
   OWNER TO postgres;
+  
+--router_type;
+CREATE TABLE public.router_type
+(
+  id integer NOT NULL DEFAULT nextval('router_type_id_seq'::regclass),
+  visible_name character varying(100),
+  CONSTRAINT gdg PRIMARY KEY (id)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE public.router_type
+  OWNER TO postgres;
+  
+--static_router_info;
+CREATE TABLE public.static_router_info
+(
+  id integer NOT NULL DEFAULT nextval('static_router_info_id_seq'::regclass),
+  ssid character varying(100),
+  transmitter_power numeric(15,2),
+  antenna_gain numeric(15,2),
+  fade_margin numeric(15,2),
+  coordinate_x numeric(15,2),
+  coordinate_y numeric(15,2),
+  coordinate_z numeric(15,2),
+  weight integer,
+  router_type_id integer,
+  CONSTRAINT fgd PRIMARY KEY (id),
+  CONSTRAINT hfnh FOREIGN KEY (router_type_id)
+      REFERENCES public.router_type (id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE public.static_router_info
+  OWNER TO postgres;
+  
+--system_user;
+CREATE TABLE public.system_user
+(
+  id integer NOT NULL DEFAULT nextval('system_user_id_seq'::regclass),
+  mac character varying(100),
+  user_weight integer DEFAULT 1,
+  visible_name character varying(100) NOT NULL DEFAULT 'Guest'::character varying,
+  CONSTRAINT sdf PRIMARY KEY (id)
+)
+WITH (
+  OIDS=FALSE
+);
+ALTER TABLE public.system_user
+  OWNER TO postgres;

@@ -190,12 +190,22 @@
     <Compile Include="Domain\DeviceCategoryDomain.cs" />
     <Compile Include="Domain\LightDeviceDomain.cs" />
     <Compile Include="Domain\LightDeviceInterface.cs" />
+    <Compile Include="Domain\RouterType.cs" />
+    <Compile Include="Domain\StaticRouterInfo.cs" />
+    <Compile Include="Domain\SystemUser.cs" />
     <Compile Include="Domain\UserPositionHistory.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="KnowledgeDataStructures\DynamicDeviceInfo.cs" />
+    <Compile Include="KnowledgeDataStructures\LoggedUser.cs" />
+    <Compile Include="KnowledgeDataStructures\SystemDataKnowledge.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Tools\BluetoothTool.cs" />
+    <Compile Include="Tools\Configuration.cs" />
+    <Compile Include="Tools\LocationTool.cs" />
+    <Compile Include="Tools\WifiTool.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Domain\DeviceCategoryDomain.hbm.xml">
@@ -208,6 +218,15 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Domain\LightDeviceInterface.hbm.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Domain\RouterType.hbm.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Domain\StaticRouterInfo.hbm.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Domain\SystemUser.hbm.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <Content Include="Global.asax" />

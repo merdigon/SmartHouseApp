@@ -1,12 +1,12 @@
 ﻿using SmartHouseApp.Common.DataStractures;
-using SmartHouseApp.Common.KnowledgeDataStructures;
+using SmartHouseAppServer.KnowledgeDataStructures;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SmartHouseApp.Common.Tools
+namespace SmartHouseAppServer.Tools
 {
     public static class BluetoothTool
     {
@@ -33,6 +33,7 @@ namespace SmartHouseApp.Common.Tools
                         {
                             X = (double)device.CurrentLocation.X,
                             Y = (double)device.CurrentLocation.Y,
+                            Weight = 1,
                             Distance = DotNetInterface.iCountDistanceForWifiRouter(FADE_MARGIN, TRANSMITTER_POWER,
                                                                                 ANTENNA_GAIN, nearBDevice.SignalStrength, SMARTPHONE_WIFI_ANTENNA_GAIN, 0)
                         });
@@ -45,9 +46,10 @@ namespace SmartHouseApp.Common.Tools
                     {
                         dataToCount.Add(new SphereData
                         {
-                            X = (double)staticDevice.Location.X,
-                            Y = (double)staticDevice.Location.Y,
-                            Z = (double)staticDevice.Location.Z,
+                            X = (double)staticDevice.LocationX,
+                            Y = (double)staticDevice.LocationY,
+                            Z = (double)staticDevice.LocationZ,
+                            Weight = staticDevice.Weight,
                             Distance = DotNetInterface.iCountDistanceForWifiRouter(staticDevice.FadeMargin, staticDevice.TrasmitterPower,
                                                                                 staticDevice.AntennaGain, nearBDevice.SignalStrength, SMARTPHONE_WIFI_ANTENNA_GAIN, 0),
                             Sigma = staticDevice.GetSigmaForSignalStrength(nearBDevice.SignalStrength)

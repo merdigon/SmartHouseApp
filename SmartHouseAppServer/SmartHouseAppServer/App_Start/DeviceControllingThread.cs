@@ -29,10 +29,16 @@ namespace SmartHouseAppServer.App_Start
                 if(LastUpdate.AddHours(1) <= DateTime.Now)
                 {
                     List<UserPositionHistory> totalUserPoss = null;
+                    List<SystemUser> systemUser = null;
                     List<LightDeviceDomain> lightDevices = null;
                     using (var repo = new Repository<UserPositionHistory>())
                     {
                         totalUserPoss = repo.Where(p => p.Date >= DateTime.Now.AddHours(-1)).ToList();
+                    }
+
+                    using (var repo = new Repository<SystemUser>())
+                    {
+                        systemUser = repo.All();
                     }
 
                     using (var repo = new Repository<LightDeviceDomain>())
@@ -43,10 +49,15 @@ namespace SmartHouseAppServer.App_Start
                     foreach (var device in lightDevices)
                     {
                         int numberOfNearUsers = 0;
+                        int totalNumberOfUsers = 0;
                         foreach (var userPoss in totalUserPoss)
                         {
+                            SystemUser user = systemUser.Where(p => p.Mac.Equals(userPoss.Mac)).SingleOrDefault();
+                            if (user == null)
+                                user = new SystemUser { Mac = userPoss.Mac, UserWeight = 1 };
                             if (DotNetInterface.iCountDistanceBetweenTwoPoints(device.X, device.Y, device.Z, userPoss.X, userPoss.Y, userPoss.Z) < DISTANCE_TO_LIGHT_DEVICE)
-                                numberOfNearUsers++;
+                                numberOfNearUsers += user.UserWeight;
+                            totalNumberOfUsers += user.UserWeight;
                         }
 
                         int lightPower = (device.MaxPercentagePower - device.MinPercentagePower) * (numberOfNearUsers / totalUserPoss.Count) + device.MinPercentagePower;

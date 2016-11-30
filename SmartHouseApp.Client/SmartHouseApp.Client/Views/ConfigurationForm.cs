@@ -25,6 +25,7 @@ namespace SmartHouseApp.Client.Views
         private List<DeviceCategoryViewModel> Categories { get; set; }
         private DeviceCategoryViewModel SelectedCategory { get; set; }
         private List<IDeviceRender> Devices { get; set; }
+        private List<SystemUserViewModel> SystemUsers { get; set; }
 
         public List<StaticRouterDataViewModel> Routers { get; set; }
 
@@ -42,6 +43,7 @@ namespace SmartHouseApp.Client.Views
             Routers = RestClient.Get<List<StaticRouterDataViewModel>>("Conf/GetRoutersInfo");
 
             dgvRouters.DataSource = Routers;
+            cbRouterCategory.DataSource = RestClient.Get<List<RouterTypeViewModel>>("Conf/GetRouterTypes");
 
             ilDeviceImages.Images.AddRange(new[] { Resources.Light_On_48px, Resources.Temperature_48px });
             lvDeviceItemCategories.SmallImageList = ilDeviceImages;
@@ -104,6 +106,8 @@ namespace SmartHouseApp.Client.Views
                 tbYR.Text = selected.LocationY.ToString();
                 tbZR.Text = selected.LocationZ.ToString();
                 selectedItemId = selected.Id;
+                cbRouterCategory.SelectedIndex = selected.RouterCategoryId - 1;
+                tbWeight.Text = selected.Weight.ToString();
             }
         }
 
@@ -129,34 +133,46 @@ namespace SmartHouseApp.Client.Views
                    !string.IsNullOrEmpty(tbTransPower.Text) &&
                    !string.IsNullOrEmpty(tbXR.Text) &&
                    !string.IsNullOrEmpty(tbYR.Text) &&
-                   !string.IsNullOrEmpty(tbZR.Text))
+                   !string.IsNullOrEmpty(tbZR.Text) &&
+                   !string.IsNullOrEmpty(tbWeight.Text))
                 {
                     double ag, fm, tp, xr, yr, zr;
+                    int weight;
                     if (double.TryParse(tbAntenaGain.Text, out ag) &&
                     double.TryParse(tbFadeMargin.Text, out fm) &&
                     double.TryParse(tbTransPower.Text, out tp) &&
                     double.TryParse(tbXR.Text, out xr) &&
                     double.TryParse(tbYR.Text, out yr) &&
-                    double.TryParse(tbZR.Text, out zr))
+                    double.TryParse(tbZR.Text, out zr) &&
+                    int.TryParse(tbWeight.Text, out weight))
                     {
-                        var model = new SaveStaticRouterInfoModel
+                        if (weight > 0 && weight <= 4)
                         {
-                            AntennaGain = ag,
-                            FadeMargin = fm,
-                            Id = selectedItemId,
-                            SSID = tbSsid.Text,
-                            TrasmitterPower = tp,
-                            LocationX = xr,
-                            LocationY = yr,
-                            LocationZ = zr
-                        };
+                            var model = new SaveStaticRouterInfoModel
+                            {
+                                AntennaGain = ag,
+                                FadeMargin = fm,
+                                Id = selectedItemId,
+                                SSID = tbSsid.Text,
+                                TrasmitterPower = tp,
+                                LocationX = xr,
+                                LocationY = yr,
+                                LocationZ = zr,
+                                Weight = weight,
+                                RouterCategoryId = cbRouterCategory.SelectedIndex + 1
+                            };
 
-                        if (RestClient.Post<bool>("Conf/SaveRouterData", model))
+                            if (RestClient.Post<bool>("Conf/SaveRouterData", model))
+                            {
+                                Routers = RestClient.Get<List<StaticRouterDataViewModel>>("Conf/GetRoutersInfo");
+                                dgvRouters.DataSource = Routers;
+                                dgvRouters.Refresh();
+                                button1_Click(null, null);
+                            }
+                        }
+                        else
                         {
-                            Routers = RestClient.Get<List<StaticRouterDataViewModel>>("Conf/GetRoutersInfo");
-                            dgvRouters.DataSource = Routers;
-                            dgvRouters.Refresh();
-                            button1_Click(null, null);
+                            InfoForm.ShowWarning("Waga urządzenia musi być z przedziału 1-4!");
                         }
                     }
                     else
@@ -316,6 +332,64 @@ namespace SmartHouseApp.Client.Views
             }
             lvDeviceItemCategories.Items.AddRange(arrayWithCategories);
             lvDeviceItemCategories.Refresh();
+        }
+
+        private void cbRouterCategory_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbRouterCategory.SelectedIndex == 0)
+                tbWeight.Text = 3.ToString();
+            else
+                tbWeight.Text = 2.ToString();
+        }
+
+        private void tsbRefreshUsers_Click(object sender, EventArgs e)
+        {
+            SystemUsers = RefreshUsers();
+            dgvUsers.DataSource = SystemUsers;
+            dgvUsers.Refresh();
+        }
+
+        private List<SystemUserViewModel> RefreshUsers()
+        {
+            return RestClient.Get<List<SystemUserViewModel>>("Conf/GetAllUsers");
+        }
+
+        private void tabPage3_Enter(object sender, EventArgs e)
+        {
+            SystemUsers = RefreshUsers();
+            dgvUsers.DataSource = SystemUsers;
+            dgvUsers.Refresh();
+        }
+
+        private void tsbSaveUsers_Click(object sender, EventArgs e)
+        {
+            int weight;
+
+            List<SystemUserViewModel> tempUserList = new List<SystemUserViewModel>();
+            for(int i=0;i < dgvUsers.Rows.Count; i++)
+            {
+                SystemUserViewModel newUser = new SystemUserViewModel
+                {
+                    Id = (int)dgvUsers.Rows[i].Cells[0].Value,
+                    VisibleName = (string)dgvUsers.Rows[i].Cells[1].Value,
+                    Mac = (string)dgvUsers.Rows[i].Cells[2].Value,
+                    Weight = (string)dgvUsers.Rows[i].Cells[3].EditedFormattedValue
+                };
+                tempUserList.Add(newUser);
+            }
+
+            SystemUsers = tempUserList;
+            foreach(var user in SystemUsers)
+            {
+                if (string.IsNullOrEmpty(user.Weight) || !int.TryParse(user.Weight, out weight))
+                {
+                    InfoForm.ShowError("Conajmniej jeden z użytkowników ma błędną wagę!");
+                    return;
+                }
+            }
+
+            if (RestClient.Post<bool>("Conf/SaveUsers", SystemUsers))
+                InfoForm.ShowWarning("Pomyślnie zapisano użytkowników!");
         }
     }
 }

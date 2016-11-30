@@ -378,3 +378,6 @@ D:\Repo\Source\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\Domain\
 D:\Repo\Source\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\Domain\LightDeviceDomain.hbm.xml
 D:\Repo\Source\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\Domain\UserPositionHistory.hbm.xml
 D:\Repo\Source\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\Domain\LightDeviceInterface.hbm.xml
+D:\Repo\Source\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\Domain\RouterType.hbm.xml
+D:\Repo\Source\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\Domain\StaticRouterInfo.hbm.xml
+D:\Repo\Source\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\Domain\SystemUser.hbm.xml

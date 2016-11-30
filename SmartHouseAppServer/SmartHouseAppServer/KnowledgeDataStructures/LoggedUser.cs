@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 
-namespace SmartHouseApp.Common.KnowledgeDataStructures
+namespace SmartHouseAppServer.KnowledgeDataStructures
 {
     public class LoggedUser
     {

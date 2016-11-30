@@ -11,9 +11,10 @@ type GausianProbabilityDistribution(_um : double, _sigma : double) =
         exp (numerator) * (1.0 / denominator)
     
 
-type Sphere(x : double, y : double, z : double, distance : double, guassian : GausianProbabilityDistribution) =
+type Sphere(x : double, y : double, z : double, distance : double, weight : int, guassian : GausianProbabilityDistribution) =
     member this.X = x
     member this.Y = y
     member this.Z = z
+    member this.Weight = weight
     member this.Distance = distance
     member this.Guassian = guassian

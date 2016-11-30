@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SmartHouseApp.Common.KnowledgeDataStructures
+namespace SmartHouseAppServer.KnowledgeDataStructures
 {
     public class DynamicDeviceInfo
     {

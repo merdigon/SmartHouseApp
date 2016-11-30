@@ -1,6 +1,4 @@
 ﻿using SmartHouseApp.Common.DataStractures;
-using SmartHouseApp.Common.KnowledgeDataStructures;
-using SmartHouseApp.Common.Tools;
 using SmartHouseApp.Share.Models;
 using SmartHouseAppServer.Domain;
 using SmartHouseApp.Common.Repository;
@@ -11,6 +9,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Http;
 using System.Xml.Serialization;
+using SmartHouseAppServer.Tools;
+using SmartHouseAppServer.KnowledgeDataStructures;
 
 namespace SmartHouseAppServer.Controllers
 {

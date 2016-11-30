@@ -16,5 +16,7 @@ namespace SmartHouseApp.Share.ViewModel
         public double LocationX { get; set; }
         public double LocationY { get; set; }
         public double LocationZ { get; set; }
+        public int RouterCategoryId { get; set; }
+        public int Weight { get; set; }
     }
 }

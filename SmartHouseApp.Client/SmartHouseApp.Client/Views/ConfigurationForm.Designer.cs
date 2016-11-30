@@ -60,14 +60,28 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.button6 = new System.Windows.Forms.Button();
             this.gBCategory = new System.Windows.Forms.GroupBox();
-            this.button4 = new System.Windows.Forms.Button();
             this.listView1 = new System.Windows.Forms.ListView();
-            this.button5 = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lvDeviceItemCategories = new System.Windows.Forms.ListView();
             this.ilDeviceImages = new System.Windows.Forms.ImageList(this.components);
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.cbRouterCategory = new System.Windows.Forms.ComboBox();
+            this.tbWeight = new System.Windows.Forms.TextBox();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.dgvUsers = new System.Windows.Forms.DataGridView();
+            this.button6 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.tsbRefreshUsers = new System.Windows.Forms.ToolStripButton();
+            this.tsbSaveUsers = new System.Windows.Forms.ToolStripButton();
+            this.tsbDeleteUser = new System.Windows.Forms.ToolStripButton();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.VisibleName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Mac = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Weight = new System.Windows.Forms.DataGridViewComboBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -78,6 +92,9 @@
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.tabPage3.SuspendLayout();
+            this.toolStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvUsers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -97,11 +114,15 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.dgvRouters);
             this.splitContainer1.Size = new System.Drawing.Size(777, 369);
-            this.splitContainer1.SplitterDistance = 171;
+            this.splitContainer1.SplitterDistance = 196;
             this.splitContainer1.TabIndex = 0;
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.tbWeight);
+            this.groupBox2.Controls.Add(this.cbRouterCategory);
+            this.groupBox2.Controls.Add(this.label11);
+            this.groupBox2.Controls.Add(this.label12);
             this.groupBox2.Controls.Add(this.button3);
             this.groupBox2.Controls.Add(this.button2);
             this.groupBox2.Controls.Add(this.button1);
@@ -123,14 +144,14 @@
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Right;
             this.groupBox2.Location = new System.Drawing.Point(190, 0);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(587, 171);
+            this.groupBox2.Size = new System.Drawing.Size(587, 196);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Routery";
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(499, 138);
+            this.button3.Location = new System.Drawing.Point(499, 167);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 17;
@@ -140,7 +161,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(418, 138);
+            this.button2.Location = new System.Drawing.Point(418, 167);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 16;
@@ -150,7 +171,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(337, 138);
+            this.button1.Location = new System.Drawing.Point(337, 167);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 15;
@@ -289,7 +310,7 @@
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Left;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(198, 171);
+            this.groupBox1.Size = new System.Drawing.Size(198, 196);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Wielkość mapy";
@@ -320,7 +341,7 @@
             // btnSaveMapSize
             // 
             this.btnSaveMapSize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSaveMapSize.Location = new System.Drawing.Point(123, 145);
+            this.btnSaveMapSize.Location = new System.Drawing.Point(123, 170);
             this.btnSaveMapSize.Name = "btnSaveMapSize";
             this.btnSaveMapSize.Size = new System.Drawing.Size(75, 23);
             this.btnSaveMapSize.TabIndex = 1;
@@ -347,7 +368,7 @@
             this.dgvRouters.MultiSelect = false;
             this.dgvRouters.Name = "dgvRouters";
             this.dgvRouters.ReadOnly = true;
-            this.dgvRouters.Size = new System.Drawing.Size(777, 194);
+            this.dgvRouters.Size = new System.Drawing.Size(777, 169);
             this.dgvRouters.TabIndex = 0;
             this.dgvRouters.SelectionChanged += new System.EventHandler(this.dgvRouters_SelectionChanged);
             // 
@@ -355,6 +376,7 @@
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
@@ -391,6 +413,121 @@
             this.tabPage2.UseVisualStyleBackColor = true;
             this.tabPage2.Enter += new System.EventHandler(this.tabPage2_Enter);
             // 
+            // gBCategory
+            // 
+            this.gBCategory.Location = new System.Drawing.Point(384, 34);
+            this.gBCategory.Name = "gBCategory";
+            this.gBCategory.Size = new System.Drawing.Size(381, 298);
+            this.gBCategory.TabIndex = 7;
+            this.gBCategory.TabStop = false;
+            // 
+            // listView1
+            // 
+            this.listView1.FullRowSelect = true;
+            this.listView1.Location = new System.Drawing.Point(192, 34);
+            this.listView1.MultiSelect = false;
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(171, 298);
+            this.listView1.TabIndex = 5;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
+            // 
+            // lvDeviceItemCategories
+            // 
+            this.lvDeviceItemCategories.FullRowSelect = true;
+            this.lvDeviceItemCategories.Location = new System.Drawing.Point(8, 34);
+            this.lvDeviceItemCategories.MultiSelect = false;
+            this.lvDeviceItemCategories.Name = "lvDeviceItemCategories";
+            this.lvDeviceItemCategories.Size = new System.Drawing.Size(144, 298);
+            this.lvDeviceItemCategories.TabIndex = 0;
+            this.lvDeviceItemCategories.UseCompatibleStateImageBehavior = false;
+            this.lvDeviceItemCategories.SelectedIndexChanged += new System.EventHandler(this.lvDeviceItemCategories_SelectedIndexChanged);
+            // 
+            // ilDeviceImages
+            // 
+            this.ilDeviceImages.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
+            this.ilDeviceImages.ImageSize = new System.Drawing.Size(16, 16);
+            this.ilDeviceImages.TransparentColor = System.Drawing.Color.Transparent;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(340, 133);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(39, 13);
+            this.label11.TabIndex = 19;
+            this.label11.Text = "Waga:";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(6, 133);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(43, 13);
+            this.label12.TabIndex = 18;
+            this.label12.Text = "Rodzaj:";
+            // 
+            // cbRouterCategory
+            // 
+            this.cbRouterCategory.FormattingEnabled = true;
+            this.cbRouterCategory.Location = new System.Drawing.Point(99, 130);
+            this.cbRouterCategory.Name = "cbRouterCategory";
+            this.cbRouterCategory.Size = new System.Drawing.Size(235, 21);
+            this.cbRouterCategory.TabIndex = 22;
+            this.cbRouterCategory.SelectedIndexChanged += new System.EventHandler(this.cbRouterCategory_SelectedIndexChanged);
+            // 
+            // tbWeight
+            // 
+            this.tbWeight.Location = new System.Drawing.Point(385, 130);
+            this.tbWeight.Name = "tbWeight";
+            this.tbWeight.Size = new System.Drawing.Size(189, 20);
+            this.tbWeight.TabIndex = 23;
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.dgvUsers);
+            this.tabPage3.Controls.Add(this.toolStrip1);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(783, 375);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Użytkownicy";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            this.tabPage3.Enter += new System.EventHandler(this.tabPage3_Enter);
+            // 
+            // toolStrip1
+            // 
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsbRefreshUsers,
+            this.tsbSaveUsers,
+            this.tsbDeleteUser});
+            this.toolStrip1.Location = new System.Drawing.Point(3, 3);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(777, 25);
+            this.toolStrip1.TabIndex = 0;
+            this.toolStrip1.Text = "toolStrip1";
+            // 
+            // dgvUsers
+            // 
+            this.dgvUsers.AllowUserToAddRows = false;
+            this.dgvUsers.AllowUserToDeleteRows = false;
+            this.dgvUsers.AutoGenerateColumns = false;
+            this.dgvUsers.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvUsers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvUsers.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Id,
+            this.VisibleName,
+            this.Mac,
+            this.Weight});
+            this.dgvUsers.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvUsers.Location = new System.Drawing.Point(3, 28);
+            this.dgvUsers.MultiSelect = false;
+            this.dgvUsers.Name = "dgvUsers";
+            this.dgvUsers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvUsers.Size = new System.Drawing.Size(777, 344);
+            this.dgvUsers.TabIndex = 1;
+            // 
             // button6
             // 
             this.button6.Anchor = System.Windows.Forms.AnchorStyles.Right;
@@ -403,14 +540,6 @@
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
-            // gBCategory
-            // 
-            this.gBCategory.Location = new System.Drawing.Point(384, 34);
-            this.gBCategory.Name = "gBCategory";
-            this.gBCategory.Size = new System.Drawing.Size(381, 298);
-            this.gBCategory.TabIndex = 7;
-            this.gBCategory.TabStop = false;
-            // 
             // button4
             // 
             this.button4.Anchor = System.Windows.Forms.AnchorStyles.Right;
@@ -422,17 +551,6 @@
             this.button4.TabIndex = 6;
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
-            // 
-            // listView1
-            // 
-            this.listView1.FullRowSelect = true;
-            this.listView1.Location = new System.Drawing.Point(192, 34);
-            this.listView1.MultiSelect = false;
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(171, 298);
-            this.listView1.TabIndex = 5;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
             // 
             // button5
             // 
@@ -457,22 +575,65 @@
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
             // 
-            // lvDeviceItemCategories
+            // tsbRefreshUsers
             // 
-            this.lvDeviceItemCategories.FullRowSelect = true;
-            this.lvDeviceItemCategories.Location = new System.Drawing.Point(8, 34);
-            this.lvDeviceItemCategories.MultiSelect = false;
-            this.lvDeviceItemCategories.Name = "lvDeviceItemCategories";
-            this.lvDeviceItemCategories.Size = new System.Drawing.Size(144, 298);
-            this.lvDeviceItemCategories.TabIndex = 0;
-            this.lvDeviceItemCategories.UseCompatibleStateImageBehavior = false;
-            this.lvDeviceItemCategories.SelectedIndexChanged += new System.EventHandler(this.lvDeviceItemCategories_SelectedIndexChanged);
+            this.tsbRefreshUsers.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbRefreshUsers.Image = global::SmartHouseApp.Client.Properties.Resources.Restart_48px;
+            this.tsbRefreshUsers.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbRefreshUsers.Name = "tsbRefreshUsers";
+            this.tsbRefreshUsers.Size = new System.Drawing.Size(23, 22);
+            this.tsbRefreshUsers.Text = "toolStripButton3";
+            this.tsbRefreshUsers.Click += new System.EventHandler(this.tsbRefreshUsers_Click);
             // 
-            // ilDeviceImages
+            // tsbSaveUsers
             // 
-            this.ilDeviceImages.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
-            this.ilDeviceImages.ImageSize = new System.Drawing.Size(16, 16);
-            this.ilDeviceImages.TransparentColor = System.Drawing.Color.Transparent;
+            this.tsbSaveUsers.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbSaveUsers.Image = global::SmartHouseApp.Client.Properties.Resources.Save_as_48px;
+            this.tsbSaveUsers.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbSaveUsers.Name = "tsbSaveUsers";
+            this.tsbSaveUsers.Size = new System.Drawing.Size(23, 22);
+            this.tsbSaveUsers.Text = "toolStripButton1";
+            this.tsbSaveUsers.Click += new System.EventHandler(this.tsbSaveUsers_Click);
+            // 
+            // tsbDeleteUser
+            // 
+            this.tsbDeleteUser.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbDeleteUser.Image = global::SmartHouseApp.Client.Properties.Resources.Delete_48px;
+            this.tsbDeleteUser.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbDeleteUser.Name = "tsbDeleteUser";
+            this.tsbDeleteUser.Size = new System.Drawing.Size(23, 22);
+            this.tsbDeleteUser.Text = "toolStripButton2";
+            // 
+            // Id
+            // 
+            this.Id.DataPropertyName = "Id";
+            this.Id.HeaderText = "Id";
+            this.Id.Name = "Id";
+            this.Id.ReadOnly = true;
+            // 
+            // VisibleName
+            // 
+            this.VisibleName.DataPropertyName = "VisibleName";
+            this.VisibleName.HeaderText = "Nazwa użytkownika";
+            this.VisibleName.Name = "VisibleName";
+            // 
+            // Mac
+            // 
+            this.Mac.DataPropertyName = "Mac";
+            this.Mac.HeaderText = "Nazwa Mac";
+            this.Mac.Name = "Mac";
+            this.Mac.ReadOnly = true;
+            // 
+            // Weight
+            // 
+            this.Weight.DataPropertyName = "Weight";
+            this.Weight.HeaderText = "Waga użytkownika";
+            this.Weight.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4"});
+            this.Weight.Name = "Weight";
             // 
             // ConfigurationForm
             // 
@@ -501,6 +662,11 @@
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvUsers)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
@@ -546,5 +712,19 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.GroupBox gBCategory;
+        private System.Windows.Forms.TextBox tbWeight;
+        private System.Windows.Forms.ComboBox cbRouterCategory;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.DataGridView dgvUsers;
+        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStripButton tsbSaveUsers;
+        private System.Windows.Forms.ToolStripButton tsbDeleteUser;
+        private System.Windows.Forms.ToolStripButton tsbRefreshUsers;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn VisibleName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Mac;
+        private System.Windows.Forms.DataGridViewComboBoxColumn Weight;
     }
 }

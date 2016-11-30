@@ -133,6 +133,16 @@ namespace SmartHouseApp.Client.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        public static System.Drawing.Bitmap Restart_48px {
+            get {
+                object obj = ResourceManager.GetObject("Restart_48px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         public static System.Drawing.Bitmap Save_as_48px {
             get {
                 object obj = ResourceManager.GetObject("Save_as_48px", resourceCulture);
