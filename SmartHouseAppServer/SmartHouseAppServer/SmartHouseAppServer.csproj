@@ -185,6 +185,8 @@
     <Compile Include="Controllers\ClientController.cs" />
     <Compile Include="Controllers\ConfController.cs" />
     <Compile Include="Controllers\DataCollectorController.cs" />
+    <Compile Include="DeviceControllers\LightDevices\ILightDeviceContr.cs" />
+    <Compile Include="DeviceControllers\LightDevices\ImportantUserFirstContr.cs" />
     <Compile Include="DeviceInterfaces\LightDevice\ILightDeviceInterface.cs" />
     <Compile Include="DeviceInterfaces\LightDevice\LoggerLightDeviceInterface.cs" />
     <Compile Include="Domain\DeviceCategoryDomain.cs" />
@@ -202,6 +204,7 @@
     <Compile Include="KnowledgeDataStructures\SystemDataKnowledge.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="SystemDevice.cs" />
     <Compile Include="Tools\BluetoothTool.cs" />
     <Compile Include="Tools\Configuration.cs" />
     <Compile Include="Tools\LocationTool.cs" />

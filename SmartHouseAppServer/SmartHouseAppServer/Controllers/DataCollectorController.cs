@@ -41,7 +41,7 @@ namespace SmartHouseAppServer.Controllers
             using (var repo = new Repository<UserPositionHistory>())
             {
                 repo.BeginTransaction();
-                repo.Save(new UserPositionHistory
+                repo.SaveOrUpdate(new UserPositionHistory
                 {
                     Mac = notification.SourceName,
                     X = (double)loc.X,

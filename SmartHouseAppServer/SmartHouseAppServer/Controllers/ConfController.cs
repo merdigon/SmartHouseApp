@@ -9,6 +9,9 @@ using System.Linq;
 using System.Web;
 using System.Web.Http;
 using SmartHouseAppServer.KnowledgeDataStructures;
+using SmartHouseAppServer.App_Start;
+using SmartHouseAppServer.DeviceControllers.LightDevices;
+using System.Threading;
 
 namespace SmartHouseAppServer.Controllers
 {
@@ -85,7 +88,7 @@ namespace SmartHouseAppServer.Controllers
                     dataModel.RouterType = repo2.Where(p => p.Id == model.RouterCategoryId).SingleOrDefault();
                 }
 
-                repo.Save(dataModel);
+                repo.SaveOrUpdate(dataModel);
                 repo.CommitTransaction();
 
                 SystemDataKnowledge.RoutersInfo = SystemDataKnowledge.LoadRouterInfo();
@@ -148,6 +151,14 @@ namespace SmartHouseAppServer.Controllers
                     repo.BeginTransaction();
                     repo.Delete(model.DeviceId);
                     repo.CommitTransaction();
+
+                    if (WebApiApplication.ControllingThreads.Where(p => p.LightDevice.DeviceId == model.DeviceId).Count() > 0)
+                    {
+                        var thread = WebApiApplication.ControllingThreads.Where(p => p.LightDevice.DeviceId == model.DeviceId).Single();
+                        WebApiApplication.ControllingThreads.Remove(thread);
+                        if (thread.CurrentThread.IsAlive)
+                            thread.CurrentThread.Abort();
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -196,9 +207,36 @@ namespace SmartHouseAppServer.Controllers
                             }
                         }
 
-                        repo.Save(obj);
+                        if (model.DeviceId > 0)
+                            repo.Update(obj);
+                        else
+                            obj = repo.Save(obj);
                     }
                     repo.CommitTransaction();
+
+                    if (model.DeviceId > 0 && WebApiApplication.ControllingThreads.Where(p => p.LightDevice.DeviceId == model.DeviceId).Count() > 0)
+                    {
+                        var threadForDevice = WebApiApplication.ControllingThreads.Where(p => p.LightDevice.DeviceId == model.DeviceId).Single();
+                        threadForDevice.LightDevice = obj;
+                        switch (obj.EventModuleName)
+                        {
+                            case "ImportantUserFirstContr":
+                                threadForDevice.ControllerModule = new ImportantUserFirstContr();
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        var controllingThread = new DeviceControllingThread(obj);
+                        switch (obj.EventModuleName)
+                        {
+                            case "ImportantUserFirstContr":
+                                controllingThread.ControllerModule = new ImportantUserFirstContr();
+                                break;
+                        }
+                        controllingThread.CurrentThread = new Thread(new ThreadStart(controllingThread.StartControll));
+                        WebApiApplication.ControllingThreads.Add(controllingThread);
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -283,7 +321,7 @@ namespace SmartHouseAppServer.Controllers
                         UserWeight = int.Parse(user.Weight),
                         VisibleName = user.VisibleName
                     };
-                    repo.Save(dataModel);
+                    repo.SaveOrUpdate(dataModel);
                 }
                 repo.CommitTransaction();
                 return true;
