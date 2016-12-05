@@ -29,7 +29,7 @@ namespace SmartHouseAppServer
 
             using (var repo = new Repository<LightDeviceDomain>())
             {
-                var lightDevices = repo.All();
+                var lightDevices = repo.AllWithFetch(p => p.Interface);
 
                 foreach(var lightDevice in lightDevices)
                 {
@@ -41,6 +41,7 @@ namespace SmartHouseAppServer
                             break;
                     }
                     controllingThread.CurrentThread = new Thread(new ThreadStart(controllingThread.StartControll));
+                    controllingThread.CurrentThread.Start();
                     ControllingThreads.Add(controllingThread);                    
                 }
             }

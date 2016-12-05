@@ -20,5 +20,6 @@ namespace SmartHouseApp.Share.ViewModel.DeviceViewModels
         public double Z { get; set; }
         public bool Active { get; set; }
         public LightDeviceInterfaceViewModel Interface { get; set; }
+        public string ControllModule { get; set; }
     }
 }

@@ -76,7 +76,8 @@ CREATE TABLE public.light_device_domain
     coordinate_x numeric(15, 2) NOT NULL,
     coordinate_y numeric(15, 2) NOT NULL,
     coordinate_z numeric(15, 2) NOT NULL,
-    interface_id integer,
+    interface_id integer,	
+	event_module_name character varying(100),
     active boolean NOT NULL DEFAULT true,
     CONSTRAINT "light_Device_Domain_pkey" PRIMARY KEY (device_id),
     CONSTRAINT light_device_interface_fkey FOREIGN KEY (interface_id)

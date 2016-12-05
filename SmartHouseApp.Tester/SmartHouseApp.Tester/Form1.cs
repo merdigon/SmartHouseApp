@@ -24,7 +24,7 @@ namespace SmartHouseApp.Tester
 
             Size = new Size((Configuration.Conf.MapSizeX * RESIZER) + 215, (Configuration.Conf.MapSizeY * RESIZER) + 39);
 
-            InitServers();
+            //InitServers();
         }
 
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
@@ -35,7 +35,7 @@ namespace SmartHouseApp.Tester
             Tuple<int, int> userPoss = new Tuple<int, int>((x / RESIZER), (y / RESIZER));
 
             DeviceNotificationModel model = new DeviceNotificationModel();
-            model.SourceName = "Test";
+            model.SourceName = "sdf234sdgf34";
             List<SignalStrengthDataModel> signals = new List<SignalStrengthDataModel>();
 
             foreach(var router in Configuration.Conf.RoutersInfo)
@@ -65,31 +65,31 @@ namespace SmartHouseApp.Tester
             request.GetResponse();
         }
 
-        List<Thread> DeviceThreads { get; set; }
-        public void InitServers()
-        {
-            List<LightDeviceDomain> lightDevices = new List<LightDeviceDomain>();
+        //List<Thread> DeviceThreads { get; set; }
+        //public void InitServers()
+        //{
+        //    List<LightDeviceDomain> lightDevices = new List<LightDeviceDomain>();
 
-            using (var repo = new Repository<LightDeviceDomain>())
-            {
-                var allFromRepo = repo.All();
-                lightDevices.AddRange(allFromRepo.Where(p => p.Interface.VisibleName.Equals("Logger")).ToList());
-            }
+        //    using (var repo = new Repository<LightDeviceDomain>())
+        //    {
+        //        var allFromRepo = repo.All();
+        //        lightDevices.AddRange(allFromRepo.Where(p => p.Interface.VisibleName.Equals("Logger")).ToList());
+        //    }
 
-            DeviceThreads = new List<Thread>();
-            foreach(var device in lightDevices)
-            {
-                var threadHelper = new LightDeviceThread
-                {
-                    Ip = device.Ip,
-                    Port = device.Port,
-                    MainForm = this
-                };
-                var thread = new Thread(new ThreadStart(threadHelper.Listen));
-                DeviceThreads.Add(thread);
-                thread.Start();
-            }
-        }
+        //    DeviceThreads = new List<Thread>();
+        //    foreach(var device in lightDevices)
+        //    {
+        //        var threadHelper = new LightDeviceThread
+        //        {
+        //            Ip = device.Ip,
+        //            Port = device.Port,
+        //            MainForm = this
+        //        };
+        //        var thread = new Thread(new ThreadStart(threadHelper.Listen));
+        //        DeviceThreads.Add(thread);
+        //        thread.Start();
+        //    }
+        //}
 
         public void AddNewLog(string log)
         {
@@ -97,13 +97,13 @@ namespace SmartHouseApp.Tester
             tbLogText.Refresh();
         }
 
-        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if(DeviceThreads!=null && DeviceThreads.Count > 0)
-            {
-                foreach(var thread in DeviceThreads)
-                    thread.Abort();
-            }
-        }
+        //private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        //{
+        //    if(DeviceThreads!=null && DeviceThreads.Count > 0)
+        //    {
+        //        foreach(var thread in DeviceThreads)
+        //            thread.Abort();
+        //    }
+        //}
     }
 }

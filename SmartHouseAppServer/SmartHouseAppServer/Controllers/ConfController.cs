@@ -131,6 +131,7 @@ namespace SmartHouseAppServer.Controllers
                         Y = p.Y,
                         Z = p.Z,
                         Active = p.Active,
+                        ControllModule = p.EventModuleName,
                         Interface = new LightDeviceInterfaceViewModel
                         {
                             Id = p.Interface.Id,
@@ -198,6 +199,7 @@ namespace SmartHouseAppServer.Controllers
                         obj.Y = model.Y;
                         obj.Z = model.Z;
                         obj.Active = model.Active;
+                        obj.EventModuleName = model.ControllModule;
 
                         if (model.Interface != null)
                         {

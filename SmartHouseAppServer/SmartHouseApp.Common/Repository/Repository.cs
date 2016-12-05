@@ -92,6 +92,11 @@ namespace SmartHouseApp.Common.Repository
             return (List<T>)_session.QueryOver<T>().List();
         }
 
+        public virtual List<T> AllWithFetch(Expression<Func<T, object>> exp)
+        {
+            return (List<T>)_session.QueryOver<T>().Fetch(exp).Eager.List();
+        }
+
         public virtual void Delete(int id)
         {
             var obj = _session.Get<T>(id);

@@ -40,49 +40,63 @@ namespace SmartHouseAppServer.App_Start
                 List<UserPositionHistory> userPossitionToAnalizeNow = new List<UserPositionHistory>();
                 bool deviceWasUpdated = false;
 
-                while (NotAnalizedUserPositionEvents.Count > 0)
-                    userPossitionToAnalizeNow.Add(NotAnalizedUserPositionEvents.Dequeue());
-
-                using (var repo = new Repository<SystemUser>())
+                if (LightDevice.Active)
                 {
-                    SystemUser = repo.All();
-                }
-
-                if (userPossitionToAnalizeNow.Count > 0)
-                {
-                    if (ControllerModule != null)
-                        deviceWasUpdated = ControllerModule.ControlDeviceByEvent(userPossitionToAnalizeNow, PreviousStaticPowerLevel, this);
-                }
-
-                if (LastUpdate.AddHours(1) <= DateTime.Now && !deviceWasUpdated)
-                {
-                    List<UserPositionHistory> totalUserPoss = null;
-
-                    using (var repo = new Repository<UserPositionHistory>())
+                    while (NotAnalizedUserPositionEvents.Count > 0)
+                        userPossitionToAnalizeNow.Add(NotAnalizedUserPositionEvents.Dequeue());
+                    
+                    if (userPossitionToAnalizeNow.Count > 0)
                     {
-                        totalUserPoss = repo.Where(p => p.Date >= DateTime.Now.AddHours(-1)).ToList();
+                        using (var repo = new Repository<SystemUser>())
+                        {
+                            SystemUser = repo.All();
+                        }
+
+                        if (ControllerModule != null)
+                            deviceWasUpdated = ControllerModule.ControlDeviceByEvent(userPossitionToAnalizeNow, PreviousStaticPowerLevel, this);
                     }
 
-                    int numberOfNearUsers = 0;
-                    int totalNumberOfUsers = 0;
-                    foreach (var userPoss in totalUserPoss)
+                    if (LastUpdate.AddHours(1) <= DateTime.Now && !deviceWasUpdated)
                     {
-                        SystemUser user = SystemUser.Where(p => p.Mac.Equals(userPoss.Mac)).SingleOrDefault();
-                        if (user == null)
-                            user = new SystemUser { Mac = userPoss.Mac, UserWeight = 1 };
-                        if (DotNetInterface.iCountDistanceBetweenTwoPoints(LightDevice.X, LightDevice.Y, LightDevice.Z, userPoss.X, userPoss.Y, userPoss.Z) < DISTANCE_TO_LIGHT_DEVICE)
-                            numberOfNearUsers += user.UserWeight;
-                        totalNumberOfUsers += user.UserWeight;
+                        List<UserPositionHistory> totalUserPoss = null;
+
+                        using (var repo = new Repository<UserPositionHistory>())
+                        {
+                            totalUserPoss = repo.Where(p => p.Date >= DateTime.Now.AddHours(-1)).ToList();
+                        }
+
+                        if (totalUserPoss.Count > 0)
+                        {
+                            int numberOfNearUsers = 0;
+                            int totalNumberOfUsers = 0;
+                            foreach (var userPoss in totalUserPoss)
+                            {
+                                SystemUser user = SystemUser.Where(p => p.Mac.Equals(userPoss.Mac)).SingleOrDefault();
+                                if (user == null)
+                                    user = new SystemUser { Mac = userPoss.Mac, UserWeight = 1 };
+                                if (DotNetInterface.iCountDistanceBetweenTwoPoints(LightDevice.X, LightDevice.Y, LightDevice.Z, userPoss.X, userPoss.Y, userPoss.Z) < DISTANCE_TO_LIGHT_DEVICE)
+                                    numberOfNearUsers += user.UserWeight;
+                                totalNumberOfUsers += user.UserWeight;
+                            }
+
+                            int lightPower = (LightDevice.MaxPercentagePower - LightDevice.MinPercentagePower) * (numberOfNearUsers / totalUserPoss.Count) + LightDevice.MinPercentagePower;
+                            
+                            ILightDeviceInterface ldInterface = null;
+                            switch(LightDevice.Interface.InterfaceClassName)
+                            {
+                                case "LoggerLightDeviceInterface":
+                                    ldInterface = new LoggerLightDeviceInterface();
+                                    break;
+                            }
+                            ldInterface.NotifyInformationToDevice(LightDevice.Ip, LightDevice.Port, lightPower);
+                            PreviousStaticPowerLevel = lightPower;
+                            LastUpdate = DateTime.Now;
+                            deviceWasUpdated = true;
+                        }
                     }
-
-                    int lightPower = (LightDevice.MaxPercentagePower - LightDevice.MinPercentagePower) * (numberOfNearUsers / totalUserPoss.Count) + LightDevice.MinPercentagePower;
-
-                    ILightDeviceInterface ldInterface = (ILightDeviceInterface)Activator.CreateInstance(Assembly.GetExecutingAssembly().GetName().Name, LightDevice.Interface.InterfaceClassName);
-                    ldInterface.NotifyInformationToDevice(LightDevice.Ip, LightDevice.Port, lightPower);
-                    PreviousStaticPowerLevel = lightPower;
-                    LastUpdate = DateTime.Now;
+                }
+                else
                     deviceWasUpdated = true;
-                }
 
                 if(deviceWasUpdated)
                     Thread.Sleep(100);

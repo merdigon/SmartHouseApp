@@ -32,6 +32,9 @@ namespace SmartHouseApp.Client.Views.Components
             tbZ.Text = model.Z.ToString();
             cbIsActive.Checked = model.Active;
 
+            cmbEventHandler.DataSource = new string[] { "Brak", "ImportantUserFirstContr" };
+            cmbEventHandler.SelectedItem = model.ControllModule;
+
             var possibleLightDeviceInterfaces = RestClient.Get<List<LightDeviceInterfaceViewModel>>("Conf/LightDeviceInterfaces");
             cbLightDeviceInterface.Items.AddRange(possibleLightDeviceInterfaces.ToArray());
             if (model.Interface != null)
@@ -45,6 +48,7 @@ namespace SmartHouseApp.Client.Views.Components
             double x = double.Parse(tbX.Text);
             double y = double.Parse(tbY.Text);
             double z = double.Parse(tbZ.Text);
+            string choosenModule = cmbEventHandler.SelectedItem as string;
 
             var model = new LightDeviceViewModel
             {
@@ -57,7 +61,8 @@ namespace SmartHouseApp.Client.Views.Components
                 X = x,
                 Y = y,
                 Z = z,
-                Active = cbIsActive.Checked
+                Active = cbIsActive.Checked,
+                ControllModule = (string.IsNullOrEmpty(choosenModule) ? null : (choosenModule.Equals("Brak") ? null : choosenModule)) 
             };
 
             LightDeviceInterfaceViewModel choosenInterface = cbLightDeviceInterface.SelectedItem as LightDeviceInterfaceViewModel;
