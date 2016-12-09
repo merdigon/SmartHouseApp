@@ -20,13 +20,13 @@ namespace SmartHouseAppServer.DeviceControllers.LightDevices
         /// <param name="previousStaticPowerLevel"></param>
         /// <param name="deviceThread"></param>
         /// <returns>Zwraca informację, czy stopień oświetlenia został już ustawiony przez tą metodę</returns>
-        public bool ControlDeviceByEvent(List<UserPositionHistory> userPossitions, int previousStaticPowerLevel, DeviceControllingThread deviceThread)
+        public bool ControlDeviceByEvent(List<UserPositionHistory> userPossitions, int previousStaticPowerLevel, LightDeviceControllingThread deviceThread)
         {
             List<SystemUser> users = deviceThread.SystemUser;
             List<UserPositionHistory> nearPossitions = new List<UserPositionHistory>();
             foreach(var userPoss in userPossitions)
             {
-                if (DotNetInterface.iCountDistanceBetweenTwoPoints(deviceThread.LightDevice.X, deviceThread.LightDevice.Y, deviceThread.LightDevice.Z, userPoss.X, userPoss.Y, userPoss.Z) < DeviceControllingThread.DISTANCE_TO_LIGHT_DEVICE)
+                if (DotNetInterface.iCountDistanceBetweenTwoPoints(deviceThread.LightDevice.X, deviceThread.LightDevice.Y, deviceThread.LightDevice.Z, userPoss.X, userPoss.Y, userPoss.Z) < LightDeviceControllingThread.DISTANCE_TO_LIGHT_DEVICE)
                     nearPossitions.Add(userPoss);
             }
             List<Tuple<UserPositionHistory, int>> positionsWithUserWeight = new List<Tuple<UserPositionHistory, int>>();

@@ -229,7 +229,7 @@ namespace SmartHouseAppServer.Controllers
                     }
                     else
                     {
-                        var controllingThread = new DeviceControllingThread(obj);
+                        var controllingThread = new LightDeviceControllingThread(obj);
                         switch (obj.EventModuleName)
                         {
                             case "ImportantUserFirstContr":

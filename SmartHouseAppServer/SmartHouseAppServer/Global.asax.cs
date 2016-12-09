@@ -15,11 +15,11 @@ namespace SmartHouseAppServer
 {
     public class WebApiApplication : System.Web.HttpApplication
     {
-        public static List<DeviceControllingThread> ControllingThreads { get; set; }
+        public static List<LightDeviceControllingThread> ControllingThreads { get; set; }
 
         static WebApiApplication()
         {
-            ControllingThreads = new List<DeviceControllingThread>();
+            ControllingThreads = new List<LightDeviceControllingThread>();
         }
 
         protected void Application_Start()
@@ -33,7 +33,7 @@ namespace SmartHouseAppServer
 
                 foreach(var lightDevice in lightDevices)
                 {
-                    var controllingThread = new DeviceControllingThread(lightDevice);
+                    var controllingThread = new LightDeviceControllingThread(lightDevice);
                     switch(lightDevice.EventModuleName)
                     {
                         case "ImportantUserFirstContr":

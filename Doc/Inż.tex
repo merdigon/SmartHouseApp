@@ -341,8 +341,17 @@
 		Ostatnim krokiem algorytmu jest przeliczenie obliczonej lokalizacji przy użyciu danych uzyskanych podczas normalizacji, aby obliczona lokalizacja odpowiadała lokalizacji dla danych wejściowych.
 		\paragraph{Zarządzanie lokalizacją użytkownika}
 		Po pozytywnym obliczeniu lokalizacji, zostaje ona zapisana w bazie danych, aby potem mogła być użyta do wyświetlenia skumulowanej mapy przepływu użytkowników albo do sterowania urządzeniami. Następnie, lokalizacja zostaje asynchronicznie wysłana do wszystkich klientów administracyjnych, którzy zarejestrowali swoją chęć pobierania danych w trybie real-time (w czasie rzeczywistym). Następnie, lokalizacja wraz z adresem MAC użytkownika zostaje przekazana do wątków urządzeń zewnętrznych, które wykorzystują te dane do podjęcia decyzji o wywołaniu przypisanego urządzeniowi eventu. W ostatnim kroku, lokalizacja zostaje dodana (lub podmieniona, jeżeli wpis o danym użytkowniku już istnieje) w bazie dynamicznej, aby ta informacja mogła posłużyć przy wyznaczaniu lokalizacji innych użytkowników.
-		
-		
+		\subsubsection{Sterowanie i zarządzanie urządzeniami}
+		Serwer, poza pobieraniem i analizą danych, zajmuje się również sterowaniem przydzielonymi mu urządzeniami. Informacje na temat urządzeń przechowywane są w bazie danych. Danymi, które są potrzebne do sterowania urządzeniem, niezależnie od jego typu są:
+		\begin{itemize}
+			\item Jego lokalizacja (określona przez 3 współrzędne)
+			\item Ip urządzenia oraz port, na którym nasłuchuje
+			\item Nazwę rozpoznawalną przez użytkownika (np żarówka na korytarzu)
+			\item Sterownik określający sposób komunikacji, implementujący interfejs przypisany do konkretnego typu urządzenia
+			\item Moduł określający, czy dla danego urządzenia przypisane jest jakieś sterowanie eventami (np natychmiastowa zmiana siły oświetlenia, spowodowana zbliżeniem się określonego użytkownika)
+			\item Flaga określająca, czy dane urządzenie jest aktywne
+		\end{itemize}
+		Dla każdego aktywnego urządzenia zapisanego w systemie uruchomiony jest na serwerze osobny wątek sterujący. Taki sposób pracy został przyjęty, aby sterowanie i obsługa eventów odbywała się płynnie i w równy sposób dla wszystkich urządzeń, a błąd czy problemy komunikacyjne jednego z urządzeń nie miały wpływu na inne. Do każdego wątku sterującego przypisany jest obiekt klasy zawierającej wszystkie potrzebne informacje oraz metody, aby kontrolować dany typ urządzenia (dla oświetlenia jest to klasa LightDeviceControllingThread)
 \end{document}
 
 

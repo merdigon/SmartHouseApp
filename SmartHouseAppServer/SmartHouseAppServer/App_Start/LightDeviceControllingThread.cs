@@ -13,7 +13,7 @@ using System.Xml.Serialization;
 
 namespace SmartHouseAppServer.App_Start
 {
-    public class DeviceControllingThread
+    public class LightDeviceControllingThread
     {
         public DateTime LastUpdate { get; set; }
         public Thread CurrentThread { get; set; }
@@ -24,7 +24,7 @@ namespace SmartHouseAppServer.App_Start
         public ILightDeviceContr ControllerModule { get; set; }
         public int PreviousStaticPowerLevel { get; set; }
 
-        public DeviceControllingThread(LightDeviceDomain lightDevice)
+        public LightDeviceControllingThread(LightDeviceDomain lightDevice)
         {
             LightDevice = lightDevice;
             NotAnalizedUserPositionEvents = new Queue<UserPositionHistory>();
