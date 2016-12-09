@@ -54,7 +54,11 @@ namespace SmartHouseAppServer.Controllers
                 repo.CommitTransaction();
             }
 
-            WebApiApplication.ControllingThreads.ForEach(p => p.NotAnalizedUserPositionEvents.Enqueue(poss));
+            foreach (var thread in WebApiApplication.ControllingThreads)
+            {
+                if (thread.ControllerModule != null)
+                    thread.NotAnalizedUserPositionEvents.Enqueue(poss);
+            }
 
             return true;
         }
