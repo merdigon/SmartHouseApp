@@ -1,4 +1,4 @@
-﻿using SmartHouseApp.Common.KnowledgeDataStructures;
+﻿using SmartHouseAppServer.Domain;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -6,15 +6,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
-using static System.Net.Mime.MediaTypeNames;
 
-namespace SmartHouseApp.Common.Tools
+namespace SmartHouseAppServer.Tools
 {
     public class Configuration
     {
         private static Configuration _conf;
         
-        public virtual List<StaticRouterInfo> RoutersInfo { get; set; }
         public virtual int MapSizeX { get; set; }
         public virtual int MapSizeY { get; set; }
 

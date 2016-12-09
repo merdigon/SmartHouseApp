@@ -38,7 +38,7 @@ let countDistanceBetweenPointAndSphere x y z (sphere : Sphere) =
 let rec countProbabilityForPointAndSpheres x y z (source : Sphere list) = 
     match source with
     | [] -> 0.0
-    | head :: tail -> (head.Guassian.Probability <| countDistanceBetweenPointAndSphere (double x) (double y) (double z) head) + (countProbabilityForPointAndSpheres x y z tail)
+    | head :: tail -> (head.Guassian.Probability <| countDistanceBetweenPointAndSphere (double x) (double y) (double z) head) * (double)head.Weight + (countProbabilityForPointAndSpheres x y z tail)
                       //match (xw,yw,zw) with
                       //| (x, y, z) when x >= 22.0 &&  x <= 23.0 && y >= 26.0 && y <= 27.0 && z >= 14.0 && z <= 15.0 ->   let res = (head.Guassian.Probability <| countDistanceBetweenPointAndSphere (double x) (double y) (double z) head) + (countProbabilityForPointAndSpheres x y z tail)
                        //                                                                                                 res
@@ -114,7 +114,7 @@ let countUserPosition(source : Sphere[]) =
     let maxBoxSize = [boxSizeX; boxSizeY; boxSizeZ] |> List.fold (fun acc elem -> if elem > acc then elem else acc) 0.0
 
     let sphereNormalizer (x,y,z) (sphere : Sphere) =
-        new Sphere(sphere.X - x, sphere.Y - y, sphere.Z - z, sphere.Distance, new GausianProbabilityDistribution(sphere.Guassian.Um, maxBoxSize / 30.0))
+        new Sphere(sphere.X - x, sphere.Y - y, sphere.Z - z, sphere.Distance, sphere.Weight, new GausianProbabilityDistribution(sphere.Guassian.Um, maxBoxSize / 30.0))
 
     let normalizedSpheres = List.map (fun (x : Sphere) -> sphereNormalizer boxNormalizer x) <| (Array.toList source)
     let normalizer = countNormalizerBoxSize boxSize

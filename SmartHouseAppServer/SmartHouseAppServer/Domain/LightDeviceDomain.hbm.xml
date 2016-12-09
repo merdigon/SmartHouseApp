@@ -15,6 +15,7 @@
     <property name="Y" column="coordinate_y"/>
     <property name="Z" column="coordinate_z"/>
     <property name="Active" column="active"/>
+    <property name="EventModuleName" column="event_module_name"/>
 
     <many-to-one name="Interface" column="interface_id"/>
   </class>

@@ -1,13 +1,12 @@
-﻿
-using SmartHouseApp.Common.KnowledgeDataStructures;
-using SmartHouseApp.Common.Tools;
+﻿using SmartHouseApp.Common.Repository;
+using SmartHouseAppServer.Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SmartHouseApp.Common.KnowledgeDataStructures
+namespace SmartHouseAppServer.KnowledgeDataStructures
 {
     public class SystemDataKnowledge
     {
@@ -15,8 +14,8 @@ namespace SmartHouseApp.Common.KnowledgeDataStructures
         {
             LoggedUsers = new List<LoggedUser>();
             DevicesInfo = new List<DynamicDeviceInfo>();
-            RoutersInfo = Configuration.Conf.RoutersInfo;
-            MapSize = new Tuple<int, int>(Configuration.Conf.MapSizeX, Configuration.Conf.MapSizeY);
+            RoutersInfo = LoadRouterInfo();
+            MapSize = new Tuple<int, int>(SmartHouseAppServer.Tools.Configuration.Conf.MapSizeX, SmartHouseAppServer.Tools.Configuration.Conf.MapSizeY);
         }
 
         public static List<StaticRouterInfo> RoutersInfo { get; set; }
@@ -24,5 +23,13 @@ namespace SmartHouseApp.Common.KnowledgeDataStructures
         public static List<DynamicDeviceInfo> DevicesInfo { get; set; }
         public static Tuple<int, int> MapSize { get; set; }
         public static List<LoggedUser> LoggedUsers { get; set; }
+
+        public static List<StaticRouterInfo> LoadRouterInfo()
+        {
+            using (var repo = new Repository<StaticRouterInfo>())
+            {
+                return repo.All();
+            }
+        }
     }
 }

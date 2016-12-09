@@ -72,14 +72,29 @@ namespace SmartHouseApp.Common.Repository
             _session = null;
         }
         
-        public virtual void Save(T obj)
+        public virtual void SaveOrUpdate(T obj)
         {
             _session.SaveOrUpdate(obj);
+        }
+
+        public virtual T Save(T obj)
+        {
+            return (T)_session.Save(obj);
+        }
+
+        public virtual void Update(T obj)
+        {
+            _session.Update(obj);
         }
 
         public virtual List<T> All()
         {
             return (List<T>)_session.QueryOver<T>().List();
+        }
+
+        public virtual List<T> AllWithFetch(Expression<Func<T, object>> exp)
+        {
+            return (List<T>)_session.QueryOver<T>().Fetch(exp).Eager.List();
         }
 
         public virtual void Delete(int id)

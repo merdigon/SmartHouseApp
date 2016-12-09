@@ -1,5 +1,4 @@
-﻿using SmartHouseApp.Common.KnowledgeDataStructures;
-using SmartHouseApp.Share.Models;
+﻿using SmartHouseApp.Share.Models;
 using SmartHouseApp.Share.ViewModel;
 using SmartHouseAppServer.Domain;
 using SmartHouseApp.Common.Repository;
@@ -9,6 +8,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Http;
 using SmartHouseApp.Share.ViewModel.DeviceViewModels;
+using SmartHouseAppServer.KnowledgeDataStructures;
 
 namespace SmartHouseAppServer.Controllers
 {
@@ -68,7 +68,7 @@ namespace SmartHouseAppServer.Controllers
             return true;
         }
 
-        [HttpGet]
+        [HttpPost]
         public virtual List<UserPositionModel> GetUsersPositions(DateSpawnModel model)
         {
             using (var repo = new Repository<UserPositionHistory>())

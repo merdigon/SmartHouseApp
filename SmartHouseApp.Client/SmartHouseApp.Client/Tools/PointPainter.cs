@@ -37,6 +37,14 @@ namespace SmartHouseApp.Client
 
                         using (var graph = Graphics.FromImage(bitmap))
                         {
+                            for (int j = 0; j < MainForm.DeviceList.Count; j++)
+                            {
+                                var device = MainForm.DeviceList[j];
+                                var positionForDevice = ResizeUserLocalizationDependingOnPictureSize(MainForm, device.X, device.Y);
+                                graph.DrawImage(RenderTools.GetImageForDevice(device.DeviceCategory), new Rectangle(new Point(positionForDevice.Item1 + MainForm.pictureBox1.Location.X, positionForDevice.Item2 + MainForm.pictureBox1.Location.Y), new Size(32, 32)));
+
+                            }
+
                             for (int i = 0; i < MainForm.Points.Count; i++)
                             {
                                 var point = MainForm.Points[i];
@@ -49,14 +57,7 @@ namespace SmartHouseApp.Client
                                 else
                                     MainForm.Points.Remove(point);
                             }
-
-                            for (int j = 0; j < MainForm.DeviceList.Count; j++)
-                            {
-                                var device = MainForm.DeviceList[j];
-                                var positionForDevice = ResizeUserLocalizationDependingOnPictureSize(MainForm, device.X, device.Y);
-                                graph.DrawImage(RenderTools.GetImageForDevice(device.DeviceCategory), new Rectangle(new Point(positionForDevice.Item1 + MainForm.pictureBox1.Location.X, positionForDevice.Item2 + MainForm.pictureBox1.Location.Y), new Size(32, 32)));
-
-                            }
+                            
                             MainForm.pictureBox2.BackgroundImage = bitmap;
                         }
                     };

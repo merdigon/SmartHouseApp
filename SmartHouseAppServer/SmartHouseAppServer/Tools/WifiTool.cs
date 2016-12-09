@@ -1,12 +1,12 @@
 ﻿using SmartHouseApp.Common.DataStractures;
-using SmartHouseApp.Common.KnowledgeDataStructures;
+using SmartHouseAppServer.KnowledgeDataStructures;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SmartHouseApp.Common.Tools
+namespace SmartHouseAppServer.Tools
 {
     public static class WifiTool
     {
@@ -28,9 +28,10 @@ namespace SmartHouseApp.Common.Tools
                 {
                     SphereData data = new SphereData()
                     {
-                        X = (double)wifiStaticData.Location.X,
-                        Y = (double)wifiStaticData.Location.Y,
-                        Z = (double)wifiStaticData.Location.Z,
+                        X = (double)wifiStaticData.LocationX,
+                        Y = (double)wifiStaticData.LocationY,
+                        Z = (double)wifiStaticData.LocationZ,
+                        Weight = wifiStaticData.Weight,
                         Distance = DotNetInterface.iCountDistanceForWifiRouter(wifiStaticData.FadeMargin, wifiStaticData.TrasmitterPower,
                                                                                 wifiStaticData.AntennaGain, ssData.SignalStrength, SMARTPHONE_WIFI_ANTENNA_GAIN, 0),
                         Sigma = wifiStaticData.GetSigmaForSignalStrength(ssData.SignalStrength)

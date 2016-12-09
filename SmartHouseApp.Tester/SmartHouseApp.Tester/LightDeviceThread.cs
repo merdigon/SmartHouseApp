@@ -25,6 +25,10 @@ namespace SmartHouseApp.Tester
         public void Listen()
         {
             Listener.Start();
+            MainForm.Invoke((MethodInvoker)delegate ()
+            {
+                MainForm.AddNewLog(string.Format("Zarejestrowanie urządzenia o adresie: {0}:{1}", Ip, Port));
+            });
             while (true)
             {
                 HttpListenerContext context = Listener.GetContext();

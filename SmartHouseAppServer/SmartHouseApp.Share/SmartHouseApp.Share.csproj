@@ -53,8 +53,10 @@
     <Compile Include="ViewModel\DeviceViewModels\LightDeviceInterfaceViewModel.cs" />
     <Compile Include="ViewModel\DeviceViewModels\LightDeviceViewModel.cs" />
     <Compile Include="ViewModel\LogInViewModel.cs" />
+    <Compile Include="ViewModel\RouterTypeViewModel.cs" />
     <Compile Include="ViewModel\SizeViewModel.cs" />
     <Compile Include="ViewModel\StaticRouterDataViewModel.cs" />
+    <Compile Include="ViewModel\SystemUserViewModel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

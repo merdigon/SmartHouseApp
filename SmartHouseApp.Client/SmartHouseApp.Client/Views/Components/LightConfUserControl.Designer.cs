@@ -47,6 +47,8 @@
             this.cbLightDeviceInterface = new System.Windows.Forms.ComboBox();
             this.cbIsActive = new System.Windows.Forms.CheckBox();
             this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.cmbEventHandler = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // label1
@@ -188,7 +190,7 @@
             // cbIsActive
             // 
             this.cbIsActive.AutoSize = true;
-            this.cbIsActive.Location = new System.Drawing.Point(147, 265);
+            this.cbIsActive.Location = new System.Drawing.Point(147, 292);
             this.cbIsActive.Name = "cbIsActive";
             this.cbIsActive.Size = new System.Drawing.Size(85, 17);
             this.cbIsActive.TabIndex = 17;
@@ -204,10 +206,29 @@
             this.label9.TabIndex = 18;
             this.label9.Text = "Interfejs:";
             // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(42, 268);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(99, 13);
+            this.label10.TabIndex = 20;
+            this.label10.Text = "Obsługa wydarzeń:";
+            // 
+            // cmbEventHandler
+            // 
+            this.cmbEventHandler.FormattingEnabled = true;
+            this.cmbEventHandler.Location = new System.Drawing.Point(147, 265);
+            this.cmbEventHandler.Name = "cmbEventHandler";
+            this.cmbEventHandler.Size = new System.Drawing.Size(210, 21);
+            this.cmbEventHandler.TabIndex = 19;
+            // 
             // LightConfUserControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.cmbEventHandler);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.cbIsActive);
             this.Controls.Add(this.cbLightDeviceInterface);
@@ -228,7 +249,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "LightConfUserControl";
-            this.Size = new System.Drawing.Size(382, 298);
+            this.Size = new System.Drawing.Size(382, 314);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -255,5 +276,7 @@
         private System.Windows.Forms.ComboBox cbLightDeviceInterface;
         private System.Windows.Forms.CheckBox cbIsActive;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.ComboBox cmbEventHandler;
     }
 }

@@ -1,6 +1,4 @@
-﻿using SmartHouseApp.Common.KnowledgeDataStructures;
-using SmartHouseApp.Common.Tools;
-using SmartHouseApp.Share.Models;
+﻿using SmartHouseApp.Share.Models;
 using SmartHouseApp.Share.ViewModel;
 using SmartHouseApp.Share.ViewModel.DeviceViewModels;
 using SmartHouseAppServer.Domain;
@@ -10,6 +8,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Http;
+using SmartHouseAppServer.KnowledgeDataStructures;
+using SmartHouseAppServer.App_Start;
+using SmartHouseAppServer.DeviceControllers.LightDevices;
+using System.Threading;
 
 namespace SmartHouseAppServer.Controllers
 {
@@ -37,11 +39,13 @@ namespace SmartHouseAppServer.Controllers
                     Id = router.Id,
                     AntennaGain = router.AntennaGain,
                     FadeMargin = router.FadeMargin,
-                    LocationX = router.Location.X,
-                    LocationY = router.Location.Y,
-                    LocationZ = router.Location.Z,
+                    LocationX = router.LocationX,
+                    LocationY = router.LocationY,
+                    LocationZ = router.LocationZ,
                     SSID = router.SSID,
-                    TrasmitterPower = router.TrasmitterPower
+                    TrasmitterPower = router.TrasmitterPower,
+                    Weight = router.Weight,
+                    RouterCategoryId = router.RouterType.Id
                 });
             }
 
@@ -51,53 +55,62 @@ namespace SmartHouseAppServer.Controllers
         [HttpPost]
         public virtual bool SaveMapSize([FromBody]SaveMapSizeModel model)
         {
-            SmartHouseApp.Common.Tools.Configuration.Conf.MapSizeX = model.MapSizeX;
-            SmartHouseApp.Common.Tools.Configuration.Conf.MapSizeY = model.MapSizeY;
+            SmartHouseAppServer.Tools.Configuration.Conf.MapSizeX = model.MapSizeX;
+            SmartHouseAppServer.Tools.Configuration.Conf.MapSizeY = model.MapSizeY;
             SystemDataKnowledge.MapSize = new Tuple<int, int>(model.MapSizeX, model.MapSizeY);
-            return SmartHouseApp.Common.Tools.Configuration.Save();
+            return SmartHouseAppServer.Tools.Configuration.Save();
         }
 
         [HttpPost]
         public virtual bool SaveRouterData([FromBody]SaveStaticRouterInfoModel model)
         {
-            if (model.Id == 0)
+            StaticRouterInfo dataModel = null;
+
+            using (var repo = new Repository<StaticRouterInfo>())
             {
-                var data = new StaticRouterInfo
+                repo.BeginTransaction();
+                dataModel = repo.Where(p => p.Id == model.Id).SingleOrDefault();
+
+                if (dataModel == null)
+                    dataModel = new StaticRouterInfo();
+
+                dataModel.AntennaGain = model.AntennaGain;
+                dataModel.FadeMargin = model.FadeMargin;
+                dataModel.LocationX = model.LocationX;
+                dataModel.LocationY = model.LocationY;
+                dataModel.LocationZ = model.LocationZ;
+                dataModel.SSID = model.SSID;
+                dataModel.TrasmitterPower = model.TrasmitterPower;
+                dataModel.Weight = model.Weight;
+
+                using (var repo2 = new Repository<RouterType>())
                 {
-                    Id = SystemDataKnowledge.RoutersInfo.Select(p => p.Id).Max() + 1,
-                    AntennaGain = model.AntennaGain,
-                    FadeMargin = model.FadeMargin,
-                    Location = new SmartHouseApp.Common.DataStractures.Point { X = model.LocationX, Y = model.LocationY, Z = model.LocationZ },
-                    SSID = model.SSID,
-                    TrasmitterPower = model.TrasmitterPower
-                };
-                SmartHouseApp.Common.Tools.Configuration.Conf.RoutersInfo.Add(data);
-            }
-            else
-            {
-                foreach (var data in SystemDataKnowledge.RoutersInfo)
-                {
-                    if (data.Id == model.Id)
-                    {
-                        data.SSID = model.SSID;
-                        data.Location.X = model.LocationX;
-                        data.Location.Y = model.LocationY;
-                        data.Location.Z = model.LocationZ;
-                        data.AntennaGain = model.AntennaGain;
-                        data.FadeMargin = model.FadeMargin;
-                        data.TrasmitterPower = model.TrasmitterPower;
-                    }
+                    dataModel.RouterType = repo2.Where(p => p.Id == model.RouterCategoryId).SingleOrDefault();
                 }
+
+                repo.SaveOrUpdate(dataModel);
+                repo.CommitTransaction();
+
+                SystemDataKnowledge.RoutersInfo = SystemDataKnowledge.LoadRouterInfo();
+                return true;
             }
-            return SmartHouseApp.Common.Tools.Configuration.Save();
         }
 
         [HttpPost]
         public virtual bool DeleteRouterData([FromBody]int routerId)
         {
-            SmartHouseApp.Common.Tools.Configuration.Conf.RoutersInfo = SmartHouseApp.Common.Tools.Configuration.Conf.RoutersInfo.Where(p => p.Id != routerId).ToList();
-            SystemDataKnowledge.RoutersInfo = SmartHouseApp.Common.Tools.Configuration.Conf.RoutersInfo;
-            return SmartHouseApp.Common.Tools.Configuration.Save();
+            using (var repo = new Repository<StaticRouterInfo>())
+            {
+                if (repo.Where(p => p.Id == routerId).SingleOrDefault() != null)
+                {
+                    repo.BeginTransaction();
+                    repo.Delete(routerId);
+                    repo.CommitTransaction();
+
+                    SystemDataKnowledge.RoutersInfo = SystemDataKnowledge.LoadRouterInfo();
+                }
+                return true;
+            }
         }
 
         [HttpPost]
@@ -118,6 +131,7 @@ namespace SmartHouseAppServer.Controllers
                         Y = p.Y,
                         Z = p.Z,
                         Active = p.Active,
+                        ControllModule = p.EventModuleName,
                         Interface = new LightDeviceInterfaceViewModel
                         {
                             Id = p.Interface.Id,
@@ -138,6 +152,14 @@ namespace SmartHouseAppServer.Controllers
                     repo.BeginTransaction();
                     repo.Delete(model.DeviceId);
                     repo.CommitTransaction();
+
+                    if (WebApiApplication.ControllingThreads.Where(p => p.LightDevice.DeviceId == model.DeviceId).Count() > 0)
+                    {
+                        var thread = WebApiApplication.ControllingThreads.Where(p => p.LightDevice.DeviceId == model.DeviceId).Single();
+                        WebApiApplication.ControllingThreads.Remove(thread);
+                        if (thread.CurrentThread.IsAlive)
+                            thread.CurrentThread.Abort();
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -177,6 +199,7 @@ namespace SmartHouseAppServer.Controllers
                         obj.Y = model.Y;
                         obj.Z = model.Z;
                         obj.Active = model.Active;
+                        obj.EventModuleName = model.ControllModule;
 
                         if (model.Interface != null)
                         {
@@ -186,9 +209,36 @@ namespace SmartHouseAppServer.Controllers
                             }
                         }
 
-                        repo.Save(obj);
+                        if (model.DeviceId > 0)
+                            repo.Update(obj);
+                        else
+                            obj = repo.Save(obj);
                     }
                     repo.CommitTransaction();
+
+                    if (model.DeviceId > 0 && WebApiApplication.ControllingThreads.Where(p => p.LightDevice.DeviceId == model.DeviceId).Count() > 0)
+                    {
+                        var threadForDevice = WebApiApplication.ControllingThreads.Where(p => p.LightDevice.DeviceId == model.DeviceId).Single();
+                        threadForDevice.LightDevice = obj;
+                        switch (obj.EventModuleName)
+                        {
+                            case "ImportantUserFirstContr":
+                                threadForDevice.ControllerModule = new ImportantUserFirstContr();
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        var controllingThread = new DeviceControllingThread(obj);
+                        switch (obj.EventModuleName)
+                        {
+                            case "ImportantUserFirstContr":
+                                controllingThread.ControllerModule = new ImportantUserFirstContr();
+                                break;
+                        }
+                        controllingThread.CurrentThread = new Thread(new ThreadStart(controllingThread.StartControll));
+                        WebApiApplication.ControllingThreads.Add(controllingThread);
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -227,6 +277,56 @@ namespace SmartHouseAppServer.Controllers
                     Id = p.Id,
                     VisibleName = p.VisibleName
                 }).ToList();
+            }
+        }
+
+        [HttpGet]
+        public virtual List<RouterTypeViewModel> GetRouterTypes()
+        {
+            using (var repo = new Repository<RouterType>())
+            {
+                return repo.All().Select(p => new RouterTypeViewModel
+                {
+                    Id = p.Id,
+                    VisibleName = p.VisibleName
+                }).ToList();
+            }
+        }
+
+        [HttpGet]
+        public virtual List<SystemUserViewModel> GetAllUsers()
+        {
+            using (var repo = new Repository<SystemUser>())
+            {
+                return repo.All().Select(p => new SystemUserViewModel
+                {
+                    Id = p.Id,
+                    Mac = p.Mac,
+                    VisibleName = p.VisibleName,
+                    Weight = p.UserWeight.ToString()
+                }).ToList();
+            }
+        }
+
+        [HttpPost]
+        public virtual bool SaveUsers(List<SystemUserViewModel> model)
+        {
+            using (var repo = new Repository<SystemUser>())
+            {
+                repo.BeginTransaction();
+                foreach(var user in model)
+                {
+                    var dataModel = new SystemUser
+                    {
+                        Id = user.Id,
+                        Mac = user.Mac,
+                        UserWeight = int.Parse(user.Weight),
+                        VisibleName = user.VisibleName
+                    };
+                    repo.SaveOrUpdate(dataModel);
+                }
+                repo.CommitTransaction();
+                return true;
             }
         }
     }

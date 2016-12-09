@@ -5,14 +5,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SmartHouseApp.Common.Tools
+namespace SmartHouseAppServer.Tools
 {
     public class LocalizationTool
     {
         public static Point GetProbabilisticLocalization(List<SphereData> dataToCalculate)
         {
             var fSharpDataToCalculateStructure = dataToCalculate.Select(p => 
-                new DotNetStruct.Sphere(p.X, p.Y, p.Z, p.Distance,
+                new DotNetStruct.Sphere(p.X, p.Y, p.Z, p.Distance, p.Weight,
                     new DotNetStruct.GausianProbabilityDistribution(p.Distance, p.Sigma))).ToArray();
             var userPos = DotNetInterface.iCountPosition(fSharpDataToCalculateStructure);
             return new Point
@@ -29,6 +29,7 @@ namespace SmartHouseApp.Common.Tools
         public double X { get; set; }
         public double Y { get; set; }
         public double Z { get; set; }
+        public int Weight { get; set; }
         public double Distance { get; set; }
         public double Sigma { get; set; }
     }

@@ -1,6 +1,4 @@
 ﻿using SmartHouseApp.Common.DataStractures;
-using SmartHouseApp.Common.KnowledgeDataStructures;
-using SmartHouseApp.Common.Tools;
 using SmartHouseApp.Share.Models;
 using SmartHouseAppServer.Domain;
 using SmartHouseApp.Common.Repository;
@@ -11,6 +9,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Http;
 using System.Xml.Serialization;
+using SmartHouseAppServer.Tools;
+using SmartHouseAppServer.KnowledgeDataStructures;
 
 namespace SmartHouseAppServer.Controllers
 {
@@ -29,7 +29,7 @@ namespace SmartHouseAppServer.Controllers
 
             foreach (var loggerUser in SystemDataKnowledge.LoggedUsers)
                 loggerUser.Notify(notification.SourceName, (double)loc.X, (double)loc.Y, (double)loc.Z);
-
+            
             var phone = SystemDataKnowledge.DevicesInfo.Where(p => p.BluetoothMac.Equals(notification.SourceName)).FirstOrDefault();
             if (phone == null)
                 phone = new DynamicDeviceInfo() { BluetoothMac = notification.SourceName };
@@ -37,20 +37,24 @@ namespace SmartHouseAppServer.Controllers
             phone.CurrentLocation = loc;
             phone.CurrentLocationUpdateTime = DateTime.Now;
             phone.CurrentSignalStrengthData = notification.SignalData.ToList();
+            UserPositionHistory poss = null;
 
             using (var repo = new Repository<UserPositionHistory>())
             {
                 repo.BeginTransaction();
-                repo.Save(new UserPositionHistory
+                poss = new UserPositionHistory
                 {
                     Mac = notification.SourceName,
                     X = (double)loc.X,
                     Y = (double)loc.Y,
                     Z = (double)loc.Z,
                     Date = DateTime.Now
-                });
+                };
+                repo.SaveOrUpdate(poss);
                 repo.CommitTransaction();
             }
+
+            WebApiApplication.ControllingThreads.ForEach(p => p.NotAnalizedUserPositionEvents.Enqueue(poss));
 
             return true;
         }

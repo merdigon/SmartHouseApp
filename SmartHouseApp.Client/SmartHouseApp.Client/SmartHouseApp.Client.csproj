@@ -139,6 +139,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="logo.ico" />
+    <None Include="Resources\Restart_48px.png" />
     <None Include="Resources\Save as_48px.png" />
     <None Include="Resources\Delete_48px.png" />
     <None Include="Resources\Plus_48px.png" />
