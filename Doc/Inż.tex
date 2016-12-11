@@ -345,7 +345,7 @@
 		Serwer, poza pobieraniem i analizą danych, zajmuje się również sterowaniem przydzielonymi mu urządzeniami. Sterowanie urządzeniami odbywa się na dwa sposoby:
 		\begin{itemize}
 			\item Przy użyciu eventów - urządzenia mogą mieć przypisaną klasę obsługującą zdarzenia specjalne. Mechanizm analizuje w czasie rzeczywistym ostatnie zarejestrowane lokalizacje użytkowników, a następnie na ich podstawie, oraz na podstawie wcześniej przypisanych sobie reguł decyduje, czy mają zostać podjętę jakieś działania. Jeżeli tak, komunikuje się z urządzeniem, aby ustawić mu wyznaczone parametry. Wywołana metoda zwraca zmienną typu Boolean, określającą, czy została podjęta decyzja o komunikacji z urządzeniem.
-			\item Co określony interwał czasowy - mechanizm, który co jakiś określony czas oblicza parametry, jakie należy przekazać do urządzenia. Robi to na podstawie zarejestrowanych przez ten czas pozycji użytkownika. Do swoich obliczeń wykorzystuje wagi użytkowników, przypisane im w panelu administracyjnym. Mechanizm czasowy ma niższy priorytet niż mechanizm eventów, dlatego jeżeli klasa obsługująca zdarzenia przekazała urządzeniu parametry, system czasowy zostaje zawieszony aż do kolejnego przejścia pętli. Takie rozwiązanie zapobiega nadpisywaniu parametrów wysłanych do urządzenia, zanim wcześniejsze zostaną wykorzystane.
+			\item Co określony interwał czasowy - mechanizm, który co jakiś określony czas oblicza parametry, jakie należy przekazać do urządzenia. Robi to na podstawie zarejestrowanych przez ten czas pozycji użytkowników. Do swoich obliczeń wykorzystuje wagi użytkowników, przypisane im w panelu administracyjnym. Mechanizm czasowy ma niższy priorytet niż mechanizm eventów, dlatego jeżeli klasa obsługująca zdarzenia przekazała urządzeniu parametry, system czasowy zostaje zawieszony aż do kolejnego przejścia pętli. Takie rozwiązanie zapobiega nadpisywaniu parametrów wysłanych do urządzenia, zanim wcześniejsze zostaną wykorzystane.
 		\end{itemize}
 		Informacje na temat urządzeń przechowywane są w bazie danych. Danymi, które są potrzebne do sterowania urządzeniem, niezależnie od jego typu są:
 		\begin{itemize}
@@ -359,7 +359,83 @@
 		\paragraph{Dobór parametrów sterujących}
 		Dla każdego aktywnego urządzenia zapisanego w systemie uruchomiony jest na serwerze osobny wątek sterujący. Taki sposób pracy został przyjęty, aby sterowanie i obsługa eventów odbywała się płynnie i w równy sposób dla wszystkich urządzeń, a błąd czy problemy komunikacyjne jednego z urządzeń nie miały wpływu na inne. Do każdego wątku sterującego przypisany jest obiekt klasy zawierającej wszystkie potrzebne informacje oraz metody, aby kontrolować dany typ urządzenia (dla oświetlenia jest to klasa LightDeviceControllingThread).\\
 		Praca wątku polega na wywołaniu metody StartControll(), na której ciało słada się nieskończona pętla while. Niezależnie od typu urządzenia, którym zarządza wątek, każda klasa posiada obiekt kolejki, do której kontroler przyjmujący dane od urządzeń mobilnych wstawia obliczone lokalizacje (pod warunkiem, że dla urządzenia sterowanego przypisano klasę obsługującą zdarzenia).\\
-		Kolejnym krokiem, jaki wykonywany jest w metodzie, jest pobranie z kolejki wszystkich oczekujących lokalizacji, a następnie przekazanie ich do klasy sterującej eventami. W systemie zaimplementowana jest przykładowa klasa sterująca światłem - ImportantUserFirstContr. Wybiera z listy użytkowników, którzy są w bliskiej odległości od źródła światła, a następnie wyszukuje wsród nich użytkowników o najwyższej wadze. Jeżeli taki użytkownik zostanie znaleziony, system wysyła do urządzenia rozkaz ustawienia światła o największej mocy. Taki poziom zostanie utrzymany aż ostatni użytkownik uprzywilejowany nie oddali się od źródła światła. System poczeka wtedy dodatkowe 4 sekundy, a następnie wyśle do urządzania informację o ustawieniu mocy światła na poprzednią wartość. System pozwala na rozszerzanie klas sterujących oraz tworzenie swoich i przypisywanie ich urządzeniom (o ile odpowiedni wpis zostanie dodany do bazy danych).
+		Kolejnym krokiem, jaki wykonywany jest w metodzie, jest pobranie z kolejki wszystkich oczekujących lokalizacji, a następnie przekazanie ich do klasy sterującej eventami. W systemie zaimplementowana jest przykładowa klasa sterująca światłem - ImportantUserFirstContr. Wybiera z listy użytkowników, którzy są w bliskiej odległości od źródła światła, a następnie wyszukuje wsród nich użytkowników o najwyższej wadze. Jeżeli taki użytkownik zostanie znaleziony, system wysyła do urządzenia rozkaz ustawienia światła o największej mocy. Taki poziom zostanie utrzymany aż ostatni użytkownik uprzywilejowany nie oddali się od źródła światła. System poczeka wtedy dodatkowe 4 sekundy, a następnie wyśle do urządzania informację o ustawieniu mocy światła na poprzednią wartość. System pozwala na rozszerzanie klas sterujących oraz tworzenie swoich i przypisywanie ich urządzeniom (o ile odpowiedni wpis zostanie dodany do bazy danych).\\
+		Jeżeli moduł zarządzania eventami zadecyduje o wysłaniu do urządzenia parametrów ustawiających, wykonuje się moduł zarządzania czasowego. Przed wykonaniem obliczeń, algorytm sprawdza, czy od ostatniej czasowej aktualizacji minął odpowiedni okres czasu (domyslnie algorytm ma się wykonywać co godzinę). Data poprzedniej aktualizacji przechowywana jest w polu LastUpdate, które jest aktualizowane obecną datą za każdym razem, jak algorytm pozytywnie wyliczy parametry dla urządzenia. Jeżeli odpowieni czas minął, program pobiera z bazy wszystkie pozycje użytkowników, które zostały zarejestrowane w okresie od ostatniej aktualizacji. Następnie, algorytm wybiera z pobranej listy użytkowników, którzy zostali zarejestrowani w odległości nie większej niż, domyślne, 5 metrów, a nestępnie sumuje ich wagi. Parametr, jaki ma zostać wysłany do urządzenia jest liczony na podstawie wzoru:
+		\begin{equation}
+		P_{ustalona} = (P_{max} - P_{min}) * \frac{N_{blisk}}{N_{ogół}} + P_{min}
+		\end{equation}
+		gdzie zmienne w równaniu oznaczają:
+		\begin{itemize}
+			\item $P_{ustalona}$ - moc światła jaka ma być ustawiona dla urządzenia
+			\item $P_{min}$ - minimalna moc światła ustawiona dla urządzenia
+			\item $P_{max}$ - maksymalna moc światła ustawiona dla urządzenia
+			\item $N_{blisk}$ - suma wag użytkowników, którzy zostali zarejestrowani wystarczająco blisko urządzenia
+			\item $N_{ogół}$ - suma wag wszystkich użytkowników w danym okresie czasowym
+		\end{itemize}
+		Wysyłany parametr jest ustawiany dodatkowo w zmiennej PreviousStaticPowerLevel, aby mógł być potem, w ramach potrzeby, wykorzystany przez moduł sterujący eventami. Na końcu, do zmiennej przechowywującej ostatnią aktualizacje zostaje przypisana obecna data i godzina.\\
+		Jeżeli parametry urządzenia zostały zaktualizone w obecnym przebiegu algorytmu, ponowne wykonywanie algorytmu rozpoczyna się od razu. Jeżeli nie, wątek zostaje uśpiony na 0,1 sekundy, aby nie zurzywać niepotrzebnie zasobów serwera.
+		\paragraph{Komunikacja z urządzeniami}
+		Sposób komunikacji serwera z urządzeniem nie jest zapisany bezpośrednio w kodzie serwera, ale jest przechowywany w bazie danych i przypisywany indywidualnie do konretnego urządzenia. Może zostać zmieniony przy użyciu panelu administracyjnego. Dla każdego typu urządzenia może być zdefiniowana pewna pula modułów komunikacji z urządzeniami. Każdy typ ma określony interfejs, po którym ma dziedziczyć klasa komunikująca się z tego typu urządzeniami. Wewnątrz modułu komunikacyjnego określony jest format wysyłanej wiadomości, kodowanie oraz kolejność parametrów. Ilość metod, które ma udostępniać klasa implementująca interfejs jest zależna od ilości parametrów, jakie mogą być ustawiane w danym typie urządzeń.\\
+		\begin{figure}				
+			\centering
+			\caption{Model komunikacji z urządzeniami oświetleniowymi}
+			\includegraphics[width=1.0\textwidth]{modul_komunikacji}
+		\end{figure}
+		W systemie został stworzony intefejs ILightDeviceInterface. Powinien być implementowany przez moduły do komunikacyjni z urządzeniami odpowiedzialnymi za oświetlenie. Z racji tego, iż światło posiada tylko jeden sterowalny parametr - moc światła, interfejs narzuca na klasie zaimplementowanie metody NotifyInformationToDevice, która jako parametry przyjmuje ip urządzenia, jego port oraz wartość mocy światła, jaka ma być wysłana do urządzenia. Zadaniem implementacji tej metody jest sformatowanie wiadomości, zawierającej ustawianą moc światła, według standardu urządzenia oraz wysłanie jej protokołem obslugiwanym przez urządzenie. Metoda ma zwrócić zmienną typu Boolean, informującą o tym, czy komunikacja i wysłanie wiadomości się powiodło.\\		
+		W ramach przykładu, stworzony został moduł do komunikacji z urządzeniami oświetleniowymi, LoggerLightDeviceInterface. Wysyła on protokołem HTTP na podany adres Ip wiadomość o formacie \textit{"Należy ustawić wartość na: $P_{swiatla}$"}, gdzie $P_{swiatla}$ to moc światła, którą chcemy ustawić.
+		\subsubsection{Konfiguracja systemu}
+		Aplikacja serwerowa pozwala na konfigurację elementów systemu bez potrzeby jego restartowania. Serwer wykorzystuje do tego kontroler ConfController, przyjmujący żądania HTTP. Podstawowymi elementami, które mogą być konfigurowane w taki sposób są:
+		\begin{itemize}
+			\item Wielkość pola operacyjnego - wartość określająca, jak duży jest obszar, na którym zainstalowany jest system. Wewnątrz tego pola muszą znajdować się wszystkie obsługiwane routery i urządzenia Bluetooth, ktore nie zmieniają swojej pozycji (np Becony). Jednostką, w jakiej zapisana jest wielkość mapy, są metry. Wartość ta wykorzystywana jest podczas wyświetlania lokalizacji użytkowników w aplikacji administracyjnej - współrzędna lokalizacji zostaje przeskalowana przy użyciu wielkości pola w taki sposób, aby realistycznie odzorowywała położenie na mapie wyświetlanej w aplikacji administracyjnej.
+			\item Dane o routerach Wifi i nieporuszających się urządzeniach Bluetooth - administrator systemu ma możliwość zmiany kluczowych danych na temat urządzeń, na podstawie których lokalizowani są potem użytkownicy. Poza danymi technicznymi, dotyczącymi specyfikacji urządzenia (siła trasmitera, siła anten, straty wynikające z kształtu obudowy - np antena wewnętrzna), zdefiniowane są również:
+			\begin{itemize}
+				\item typ sygnału wysyłanego przez urządzenie - Wifi albo Bluetooth
+				\item nazwa, po której urządzenie jest rozpoznawalne przez aplikację mobilną - SSID w przypadku routera WiFi, Mac w przypadku urządzenia Bluetooth
+				\item lokalizacja urządzenia - wymagane jest podanie lokalizacji w trzech wymiarach. Współrzędne urządzenia, jak wszystkie współrzędne w systemie, są podawane stosunku punktu określonego jako początek pola działania systemu.
+				\item waga urządzenia, która uwzględniana jest podczas lokalizowania użytkownika. Wartość ta podczas dodawania nowego urządzenia, inicjalizowana jest wartościami domyślnymi, które potem można zmienić. Dopuszczalna wartość wagi jest liczbą całkowitą z zakresu $<1:4>$. Domyślne wartości to:
+				\begin{itemize}
+					\item dla urządzeń Bluetooth, dynamicznie zmieniających swoją pozycję (użytkownicy aplikacji mobilnej) - 1
+					\item dla urządzeń Bluetooth, których lokalizacja jest określona - 2
+					\item dla urządzeń Wifi - 3
+				\end{itemize}
+			\end{itemize}
+			Dane na temat routerów przechowywane są w bazie danych, skąd są pobierane podczas włączania się aplikacji serwerowej. Informacje te są również przechowywane lokalnie, w pamięci serwera. Ma to na celu zmiejszenie czasu wykonywania operacji, ponieważ pobieranie danych z bazy danych jest dużo wolniejsze niż korzystanie ze zmiennych zapisanych w pamięci. Dlatego, każdorazowa zmiana informacji o routerach powoduje zmianę danych przechowywanych lokalnie przez serwer. System zakłada, że dane o routerach dokonywane są tylko przy użyciu aplikacji serwerowej - zmiany dokonane na bazie przez zewnętrzne aplikacje (np GUI bazy danych) nie zostaną uwzględnione przez serwer aż do jego restartu.
+			\item Dane na temat urządzeń sterowanych - podobnie jak w przypadku urządzeń do lokalizacji użytkowników, sterowane urządzenia mogą być dodawane, edytowane oraz usuwane przez administratorów systemu. Informacje różnią się w zależności od kategorii, do której należy dane urządzenie, jednak część z nich jest wspólna:
+			\begin{itemize}
+				\item nazwa - nazwa urządzenia, która ma pozwolić na jego identyfikację przez użytkowników systemu
+				\item ip i port - podstawowe dane wykorzystywane do komunikacji z urządzeniem
+				\item lokalizacja - położenie urządzenia określone przez trzy współrzędne
+				\item moduł eventów - nazwa modułu, który ma obsługiwać wydarzenia związane z danym urządzeniem. Do urządzenia może nie być przypisany żaden moduł eventów
+				\item moduł komunikacyjny - nazwa modułu, który ma pozwolić na komunikację serwera z urządzeniem
+				\item czy moduł jest aktywny - informacja ta jest wykorzystywana podczas sterowania urządzeniem 
+			\end{itemize}
+			Informacje na temat sterowanych urządzeń, poza wpisami w bazie danych, przechowywane są również w pamięci serwera. W przeciwieństwie do routerów (których dane przechowywane są statycznie w klasie SystemDataKnowledge), dane na temat urządzeń znajdują się w przypisanych im obiektach sterujących. Jest to związane z tym, że wątki sterujące są jedynymi elementami aplikacji serwerowej, które często korzystają z tej informacji.\\
+			Z racji tego, iż z każdym sterowanym urządzeniem, zarządzanym przez system, związany jest obiekt sterujący, kontroler konfigurujący odpowiedzialny jest również za edycję wątków sterujących. W przypadku dodawania do systemu nowego sterowanego urządzenia, kontroler inicjalizuje nowy obiekt sterujący oraz startuje związany z nim wątek. W przypadku usuwanie urządzenia, kontroler zatrzymuje wątek sterujący i usuwa jego obiekt z listy obiektów sterujących.
+			\item Dane na temat użytkowników systemu - kontroler konfiguracyjny pozwala na edycję wagi użytkownika oraz jego nazwy. System rozpoznaje użytkowników po adresie MAC - zmiana nazwy użytkownika ma na celu jedynie pomóc osobie korzystającej z systemu łatwiejsze rozpoznawanie użytkowników. Waga używana jest przy sterowaniu urządzeniami - użytkownik o wadze 4 (przykładowo szef) jest ważniejsza z punktu widzenia modułu określający parametry urządzeń, niż osoba o wadze 1 (zwykły pracownik). Dodatkowo, waga może mieć wpływ na moduły obsługi zdarzeń, przypisany do urządzenia - światło urządzenia może być ustawiane wartością maksymalną w przypadku pojawienia się w okolicy użytkownika o wadze 4.\\
+			Dane o użytkownikach przechowywane są w bazie - nie ma potrzeby przechowywania lokalnej kopii.
+		\end{itemize}
+		Poza konfiguracją systemu, kontroler dostarcza aplikacji administracyjnej danych, potrzebnych do dokonywania zmian w systemie oraz poprawnego działania aplikacji klienckiej. Możliwe jest pobranie danych na temat:
+		\begin{itemize}
+			\item routerów
+			\item typach sygnałów routerów
+			\item sterowanych urządzeniach
+			\item kategoriach sterowanych urządzeń
+			\item dostępnych modułach sterujących eventami
+			\item dostępnych modułach komunikacyjnych
+			\item wielkości pola działania systemu
+			\item użytkownikach
+		\end{itemize}
+		Dane, w zależności od rodzaju, pobierane są z bazy danych lub lokalnej pamięci serwera.
+	\subsubsection{Zarządzanie pozostałymi funkcjami aplikacji administracyjnej}
+		Do obsługi pozostałych, poza konfiguracją, żądań aplikacji klienckiej służy kontroler ClientController. Zawiera on metody pozwalające na:
+		\begin{itemize}
+			\item logowanie i wylogowywanie się użytkownika - użytkownika w momencie włączania aplikacji zmuszony jest do zalogowania się. W momencie logowania, na serwer zostaje wysłane żądanie zawierające jego login. Następnie wysłany login zostaje powiązany z adresem ip, z którego przyszło żądanie. Jest to robione w celu umożliwienia późniejszego wysyłania informacji do klienta bez potrzeby wysłania przez niego żądania - wykorzystywane w momencie, w którym użytkownik zadeklaruje chęć monitorowania użytkowników mobilnych.
+			\item pobranie informacji o sterowanych urządzeniach zarejestrowanych w systemie. Ta metoda różni się od metody pobrania urządzeń z kontrolera konfigurującego - lista urządzeń jest pobierana w celu wyświetlenia na mapie. Dodatkowo, pobierane są wszystkie przyrządy, bez względu na ich kategorię. Jedynymi zwracanymi informacjami są lokalizacja urządzenia (w celu wyświetlenia w odpowiednim miejscu) oraz jego kategoria (aby aplikacja kliencka mogła dobrać odpowiednią ikonkę).
+			\item zgłoszenie żądania zapisania użytkownika do subskrypcji lokalizacji użytkowników - system zostaje poinformowany, że dany administrator chce monitorować wszystkich pojawiających się użytkowników aplikacji mobilnej. W momencie określenia lokalizacji użytkownika, do wszystkich użytkowników, na adres ip pobrany podczas logowania, zostaje wysłana notyfikacja zawierająca współrzędne użytkownika oraz jego adres MAC.
+			\item pobranie lokalizacji użytkowników z danego okresu czasowego - administrator zgłasza chęć pobrania wszystkich lokalizacji, które zostały zarejestrowane w podanym przez niego okresie czasu. W odpowiedzi, do osoby żądającej, wysłana zostaje lista zawierająca współrzędne lokalizacji użytkowników oraz ich adresy MAC.
+		\end{itemize}	
+	\subsection{Aplikacja administracyjna}
+		Głównym celem aplikacji klienckiej jest konfiguracja systemu i wyświetlanie oraz monitorowanie lokalizacji użytkowników.
 \end{document}
 
 
