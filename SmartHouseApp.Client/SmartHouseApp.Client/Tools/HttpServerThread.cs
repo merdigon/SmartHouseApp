@@ -1,4 +1,5 @@
-﻿using SmartHouseApp.Client.Views;
+﻿using SmartHouseApp.Client.Tools;
+using SmartHouseApp.Client.Views;
 using SmartHouseApp.Share.Models;
 using System;
 using System.Collections.Generic;
@@ -31,7 +32,7 @@ namespace SmartHouseApp.Client
             //        break;
             //    }
             //}
-            Prefix = "192.168.1.105";
+            Prefix = Configuration.Conf.ClientIp;
 
             listener = new HttpListener();
             listener.Prefixes.Add("http://" + Prefix + ":52078/");

@@ -13,6 +13,7 @@ namespace SmartHouseApp.Client.Tools
         private static Configuration _conf;
 
         public virtual string ServerIp { get; set; }
+        public virtual string ClientIp { get; set; }
         public virtual string Login { get; set; }
         public virtual string Password { get; set; }
         public virtual string PictureLocation { get; set; }

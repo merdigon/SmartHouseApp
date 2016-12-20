@@ -2,6 +2,8 @@
 \usepackage{polski}
 \usepackage{textcomp}
 \usepackage{amssymb}
+\usepackage{float}
+\usepackage{cases}
 \usepackage[utf8]{inputenc}
 \date{2016-10-31}
 \usepackage{graphicx}
@@ -388,8 +390,8 @@
 		Wysyłany parametr jest ustawiany dodatkowo w zmiennej PreviousStaticPowerLevel, aby mógł być potem, w ramach potrzeby, wykorzystany przez moduł sterujący eventami. Na końcu, do zmiennej przechowywującej ostatnią aktualizacje zostaje przypisana obecna data i godzina.\\
 		Jeżeli parametry urządzenia zostały zaktualizone w obecnym przebiegu algorytmu, ponowne wykonywanie algorytmu rozpoczyna się od razu. Jeżeli nie, wątek zostaje uśpiony na 0,1 sekundy, aby nie zurzywać niepotrzebnie zasobów serwera.
 		\paragraph{Komunikacja z urządzeniami}
-		Sposób komunikacji serwera z urządzeniem nie jest zapisany bezpośrednio w kodzie serwera, ale jest przechowywany w bazie danych i przypisywany indywidualnie do konretnego urządzenia. Może zostać zmieniony przy użyciu panelu administracyjnego. Dla każdego typu urządzenia może być zdefiniowana pewna pula modułów komunikacji z urządzeniami. Każdy typ ma określony interfejs, po którym ma dziedziczyć klasa komunikująca się z tego typu urządzeniami. Wewnątrz modułu komunikacyjnego określony jest format wysyłanej wiadomości, kodowanie oraz kolejność parametrów. Ilość metod, które ma udostępniać klasa implementująca interfejs jest zależna od ilości parametrów, jakie mogą być ustawiane w danym typie urządzeń.\\
-		\begin{figure}				
+		Sposób komunikacji serwera z urządzeniem nie jest zapisany bezpośrednio w kodzie serwera, ale jest przechowywany w bazie danych i przypisywany indywidualnie do konretnego urządzenia. Może zostać zmieniony przy użyciu panelu administracyjnego. Dla każdego typu urządzenia może być zdefiniowana pewna pula modułów komunikacji z urządzeniami. Każdy typ ma określony interfejs, po którym ma dziedziczyć klasa komunikująca się z tego typu urządzeniami. Wewnątrz modułu komunikacyjnego określony jest format wysyłanej wiadomości, kodowanie oraz kolejność parametrów. Ilość metod, które ma udostępniać klasa implementująca interfejs jest zależna od ilości parametrów, jakie mogą być ustawiane w danym typie urządzeń.
+		\begin{figure}[H]			
 			\centering
 			\caption{Model komunikacji z urządzeniami oświetleniowymi}
 			\includegraphics[width=1.0\textwidth]{modul_komunikacji}
@@ -448,7 +450,67 @@
 			\item pobranie lokalizacji użytkowników z danego okresu czasowego - administrator zgłasza chęć pobrania wszystkich lokalizacji, które zostały zarejestrowane w podanym przez niego okresie czasu. W odpowiedzi, do osoby żądającej, wysłana zostaje lista zawierająca współrzędne lokalizacji użytkowników oraz ich adresy MAC.
 		\end{itemize}	
 	\subsection{Aplikacja administracyjna}
-		Głównym celem aplikacji klienckiej jest konfiguracja systemu i wyświetlanie oraz monitorowanie lokalizacji użytkowników.
+		Głównym celem aplikacji klienckiej jest konfiguracja systemu i wyświetlanie oraz monitorowanie lokalizacji użytkowników. Dostęp do niej powinien być ograniczony, ze względów bezpieczeństwa, wyłącznie do uprzywilejowanych użytkowników.
+		\subsubsection{Opis okien aplikacji}
+		\paragraph{Okno logowania}
+		Pierwszym oknem, które pojawia się po włączeniu aplikacji, jest okno logowania. Osoba upoważniona wprowadza swój login oraz hasło. Naciśnięcie przycisku "Zaloguj" powoduje wysłanie zapytania do aplikacji serwerowej, która tworzy lokalny wpis o logowaniu się użytkownika oraz przechowuje adres IP, z którego przyszło żądanie. Zapisany adres wykorzystywany jest m.in. do wysyłania powiadomień o pojawieniu się lokalizacji mobilnej w sytuacji, gdy użytkownik zapiszę się na subskrypcję notyfikacji.\\
+		\begin{figure}[H]			
+			\centering
+			\caption{Okno logowania użytkownika administracyjnego}
+			\includegraphics{okno_logowania}
+		\end{figure}
+		Po pozytywnym przejściu procesu logowania, użytkownik zostaje przeniesiony do głównego okna aplikacji. Składa się ono z panelu z mapą, panelu wyboru trybu wyświetlania lokalizacji użytkowników oraz przycisku przejścia do konfiguracji.\\
+		\begin{figure}[H]			
+			\centering
+			\caption{Główne okno aplikacji administracyjnej}
+			\includegraphics[width=1.0\textwidth]{okno_glowne}
+		\end{figure}
+		\paragraph{Główne okno}
+		W głównym panelu wyświetlana jest mapa systemu, do której ścieżka określona jest w pliku konfiguracyjnym "conf.xml". Jedynym wymaganiem co do mapy jest to, aby była ona plikiem graficznym. Mapa jest skalowalna - każda zmiana wielkości okna powoduje dopasowanie się obrazka do nowego panelu. To samo dotyczy wyświetlanych wewnątrz elementów. Na mapę nanoszone są urządzenia sterowane oraz lokalizacje użytkowników mobilnych. Urządzenia oznaczane są symbolem ich kategorii, zaś użytkownicy reprezentowani są przez czerwone kropki.\\
+		Lokalizacje urządzeń pobierane są podczas załadowania aplikacji (jednak po poprawnym przejściu procesu logowania) oraz automatycznie wyświetlane. Z racji tego, iż zmiany w konfiguracji urządzeń przez innych użytkowników administracyjnych nie odświeżają ikon na mapie, w prawym dolnym rogu aplikacji znajduje się przycisk, którego naciśnięcie spowoduje ponowne pobranie z serwera lokalizacji sprzętów sterowanych oraz przerysowanie symboli na mapie.\\
+		Lokalizacje użytkowników mobilnych mogą być wyświetlane w dwóch trybach:
+		\begin{itemize}
+			\item w czasie rzeczywistym - aplikacja administracyjna zgłasza na serwerze chęć zapisania się na subskrypcję lokalizacji. Dzięki temu, za każdym razem, jak tylko serwer ustali lokalizację użytkownika, zostaną o tym powiadomione wszystkie zalogowane aplikacje administracyjne. Punkty oznaczające użytkownika wyświetlane są na okres 4 sekund.
+			\item w formie skumulowanej - administrator wysyła na serwer zakres czasowy, dla którego chce wyświetlić pozycje użytkowników. Aplikacja serwerowa pobiera lokalizacje z bazy, a następnie wysyła je spowrotem do klienta, na którym zostają wyświetlone. Punkty oznaczające użytkownika wyświetlane są bez określonego okresu ważności.
+		\end{itemize}
+		Przejście pomiędzy trybami powoduje usunięcie zachowanych w pamięci lokalizacji.\\
+		Punkty reprezentujące użytkowników oraz ikony sprzętów sterowanych są skalowane, aby realistycznie odwzorowywać swoją rzeczywistą pozycję. Wykorzystuje się do tego podane podczas konfiguracji wielkości rzeczywistego obiektu.\\
+		Jeżeli stosunek wysokości mapy do jej szerokości jest większy niż stosunek wysokości panelu wyświetlającego mapę do jego szerokości, pozycję ikony w panelu oblicza się na podstawie wzoru:
+		\begin{equation}
+			\left\{
+				\begin{array}{l}
+					x = \frac{rzecz\_lok\_urz\_x}{rzecz\_szer\_mapy} * szer\_pan\_mapy \\
+					y = \frac{(rzecz\_lok\_urz\_y}{rzecz\_wys\_mapy} * wys\_przel\_mapy + wys\_marg 
+				\end{array}
+			\right.
+		\end{equation}
+		gdzie:
+		\begin{itemize}
+			\item $x$ i $y$ oznaczają współrzędne w panelu mapy
+			\item $rzecz\_lok\_urze\_x$ i $rzecz\_lok\_urze\_y$ to fizyczne współrzędne użytkownika mobilnego lub urządzenia sterowanego
+			\item $rzecz\_szer\_mapy$ i $rzecz\_wys\_mapy$ to rzeczywiste wymiary prostokąta, wewnątrz którego znajduje się system
+			\item $szer\_pan\_mapy$ jest to szerokość panelu wyświetlającego mapę (w tym wypadku szerokość mapy i szerokość panelu jest taka sama)
+			\item $wys\_przel\_mapy$ to wysokość mapy. W tym wypadku wysykość mapy nie jest równa wysokości panelu - aby zachować realistyczne proporcję, powyżej i poniżej obrazku mapy dodany jest margines. Wysokość mapy obliczana jest ze wzoru:
+			\begin{equation}
+				wys\_przel\_mapy = \frac{szer\_pan\_mapy * wys\_obraz\_mapy}{szer\_obraz\_mapy}
+			\end{equation}
+			w którym $wys\_obraz\_mapy$ i $szer\_obraz\_mapy$ to wymiary obrazka mapy, określone w pikselach.
+			\item $wys\_marg$ to wysokość marginesu, jaki musi zostać dodany, aby zachować proporcję mapy. Obliczny jest ze wzoru:
+			\begin{equation}
+				wys\_marg = \frac{wys\_pan\_mapy - wes\_przel\_mapy}{2}
+			\end{equation}
+		\end{itemize}
+		W przypadku, jeżeli stosunek wysokości mapy do jej szerokości jest niższy niż stosunek wysokości panelu wyświetlającego mapę do jego szerokości, obliczenia wykonuje się analogicznie, ale z tą różnicą, że w tym wypadku to wysokość mapy będzie równa wysokości panelu i dlatego to faktyczna szerokość mapy w oknie oraz szerokość bocznych marginesów muszą zostać wyliczone.
+		\paragraph{Okno konfiguracji}
+		Wciśnięcie przycisku "Konfiguracja" (reprezentowane w oknie jako ikona dwóch trybów), otwiera osobne okno, pozwalające na konfigurację kluczowych elementów systemu.\\
+		Pierwszy panel w oknie konfiguracji pozwala na edycję wielkości fizycznej systemu oraz danych na temat routerów (umożliwia ich również dodawanie oraz usuwanie).
+		W dolnej części okna wyświetlone są wszystkie zarejestrowane routery. Wciśnięcie wybranego z nich powoduje przejście do trybu edycji - pola edycji routerów zostaną wypełnione danymi wybranego urządzenia.
+		\begin{figure}[H]			
+			\centering
+			\caption{Panel edycji danych routerów}
+			\includegraphics[width=1.0\textwidth]{panel_konf_router}
+		\end{figure} 
+		
 \end{document}
 
 
