@@ -12,7 +12,6 @@ namespace SmartHouseApp.Share.ViewModel
         public string SSID { get; set; }
         public double TrasmitterPower { get; set; }
         public double AntennaGain { get; set; }
-        public double FadeMargin { get; set; }
         public double LocationX { get; set; }
         public double LocationY { get; set; }
         public double LocationZ { get; set; }

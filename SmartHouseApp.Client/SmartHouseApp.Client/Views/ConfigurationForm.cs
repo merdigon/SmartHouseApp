@@ -99,7 +99,6 @@ namespace SmartHouseApp.Client.Views
             if (selected != null)
             {
                 tbAntenaGain.Text = selected.AntennaGain.ToString();
-                tbFadeMargin.Text = selected.FadeMargin.ToString();
                 tbSsid.Text = selected.SSID;
                 tbTransPower.Text = selected.TrasmitterPower.ToString();
                 tbXR.Text = selected.LocationX.ToString();
@@ -114,7 +113,6 @@ namespace SmartHouseApp.Client.Views
         private void button1_Click(object sender, EventArgs e)
         {
             tbAntenaGain.Text = "";
-            tbFadeMargin.Text = "";
             tbSsid.Text = "";
             tbTransPower.Text = "";
             tbXR.Text = "";
@@ -128,7 +126,6 @@ namespace SmartHouseApp.Client.Views
             try
             {
                 if (!string.IsNullOrEmpty(tbAntenaGain.Text) &&
-                   !string.IsNullOrEmpty(tbFadeMargin.Text) &&
                    !string.IsNullOrEmpty(tbSsid.Text) &&
                    !string.IsNullOrEmpty(tbTransPower.Text) &&
                    !string.IsNullOrEmpty(tbXR.Text) &&
@@ -136,10 +133,9 @@ namespace SmartHouseApp.Client.Views
                    !string.IsNullOrEmpty(tbZR.Text) &&
                    !string.IsNullOrEmpty(tbWeight.Text))
                 {
-                    double ag, fm, tp, xr, yr, zr;
+                    double ag, tp, xr, yr, zr;
                     int weight;
                     if (double.TryParse(tbAntenaGain.Text, out ag) &&
-                    double.TryParse(tbFadeMargin.Text, out fm) &&
                     double.TryParse(tbTransPower.Text, out tp) &&
                     double.TryParse(tbXR.Text, out xr) &&
                     double.TryParse(tbYR.Text, out yr) &&
@@ -151,7 +147,6 @@ namespace SmartHouseApp.Client.Views
                             var model = new SaveStaticRouterInfoModel
                             {
                                 AntennaGain = ag,
-                                FadeMargin = fm,
                                 Id = selectedItemId,
                                 SSID = tbSsid.Text,
                                 TrasmitterPower = tp,

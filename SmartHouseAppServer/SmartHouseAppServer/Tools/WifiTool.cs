@@ -32,8 +32,8 @@ namespace SmartHouseAppServer.Tools
                         Y = (double)wifiStaticData.LocationY,
                         Z = (double)wifiStaticData.LocationZ,
                         Weight = wifiStaticData.Weight,
-                        Distance = DotNetInterface.iCountDistanceForWifiRouter(wifiStaticData.FadeMargin, wifiStaticData.TrasmitterPower,
-                                                                                wifiStaticData.AntennaGain, ssData.SignalStrength, SMARTPHONE_WIFI_ANTENNA_GAIN, 0),
+                        Distance = DotNetInterface.iCountDistanceForWifiRouter(wifiStaticData.TrasmitterPower,
+                                                                                wifiStaticData.AntennaGain, ssData.SignalStrength, SMARTPHONE_WIFI_ANTENNA_GAIN, 22),
                         Sigma = wifiStaticData.GetSigmaForSignalStrength(ssData.SignalStrength)
                     };
                     dataToCalculate.Add(data);

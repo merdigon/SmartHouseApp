@@ -13,7 +13,6 @@ namespace SmartHouseAppServer.Domain
         public virtual string SSID { get; set; }
         public virtual double TrasmitterPower { get; set; }
         public virtual double AntennaGain { get; set; }
-        public virtual double FadeMargin { get; set; }
         public virtual double LocationX { get; set; }
         public virtual double LocationY { get; set; }
         public virtual double LocationZ { get; set; }

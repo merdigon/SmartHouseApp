@@ -38,7 +38,6 @@ namespace SmartHouseAppServer.Controllers
                 {
                     Id = router.Id,
                     AntennaGain = router.AntennaGain,
-                    FadeMargin = router.FadeMargin,
                     LocationX = router.LocationX,
                     LocationY = router.LocationY,
                     LocationZ = router.LocationZ,
@@ -75,7 +74,6 @@ namespace SmartHouseAppServer.Controllers
                     dataModel = new StaticRouterInfo();
 
                 dataModel.AntennaGain = model.AntennaGain;
-                dataModel.FadeMargin = model.FadeMargin;
                 dataModel.LocationX = model.LocationX;
                 dataModel.LocationY = model.LocationY;
                 dataModel.LocationZ = model.LocationZ;

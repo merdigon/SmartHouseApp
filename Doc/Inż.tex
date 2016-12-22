@@ -26,8 +26,8 @@
 		  	\item $P_{tx}$ - siła trasmitera, wyrażona w dBm
 		  	\item $AG_{tx}$ - zysk energentyczny anteny transmitera, wyrażony w dBi
 		  	\item $AG_{rx}$ - zysk energentyczny anteny odbiorcy, wyrażony w dBi
-		  	\item $P_{rx}$ - siła odbiornika, wyrażona w dBm
-		  	\item $FM$ - margines zaniku sygnału (fade margin)
+		  	\item $P_{rx}$ - czułość odbiornika, wyrażona w dBm
+		  	\item $FM$ - margines zaniku sygnału (fade margin) - określa jak duży jest margines różnicy pomiędzy uzyskaną siłą sygnału, a czułością odbiornika
 		  	\item $L$ - straty wynikające np z oddziaływania innych transmiterów, przeszkód itp.
 		  \end{itemize}
 		  Dodatkowo, FSPL można obliczyć, używając następujący wzór:
@@ -46,8 +46,7 @@
 				  	K = 20log_{10}\left(\frac{4\pi d_{0}}{C}\right)
 			  	\end{equation}
 			  	gdzie $d_{0}$ to dystans referencyjny (taki sam jak we wzorze wyżej), a $C$ to długość fali emitowanej przez transmiter
-		  \end{itemize}
-	  
+		  \end{itemize}	  
 		  Po przekształceniu wzoru, uzytkujemy:
 		  \begin{equation}
 			  d = 10^{\left(\frac{FSPL - K - 20log_{10}(f)}{20}\right)}
@@ -56,12 +55,22 @@
 		  \begin{equation}
 		  d = 10^{\left(\frac{P_{tx} + AG_{tx} + AG_{rx} - P_{rx} - FM - L - K - 20log_{10}(f)}{20}\right)}
 		  \end{equation}
+		  Dodatkowo, margines zaniku można obliczyć ze wzoru:
+		  \begin{equation}
+			  FM = P_{rs} - P_{rx}
+		  \end{equation}
+		  gdzie $P_{rs}$ to siła odebranego sygnału.\\
+		  Po podstawieniu powyższego wzoru do wzoru (5), uzyskujemy
+		  \begin{equation}
+		  d = 10^{\left(\frac{P_{tx} + AG_{tx} + AG_{rx} - P_{rs} - L - K - 20log_{10}(f)}{20}\right)}
+		  \end{equation}
 		\subsection{Zysk energetyczny anteny}
 			Zysk energetyczny anteny jest to stosunek mocy ateny wypromieniowanej w danym kierunku do mocy wypromieniowanej przez antenę wzorcową. Anteną wzorcową może być m.in. antena izotropowa, czyli antena bez fizycznych rozmiarów, która cały sygnał zasilany wysyła we wszystkich kierunkach. W takim wypadku, zysk energetyczny anteny wyrażany jest w $dBi$.\\
 			Na zysk energetyczny mają również wpływ kierunkowość oraz materiał, z którego wykonana jest antena.
 		\subsection{Received signal strength indication}
 			Received signal strength indication (skrótem RSSI) jest to miara określająca moc sygnału odbieranego. Przyjmuje ona wartości niedodatnie (gdzie 0 oznacza sygnał najsilniejszy). Jednostką, w jakiej określa się siłę sygnału jest $dBm$, która jest logarytmiczną jednostką miary mocy odniesiona do mocy $1mW$.\\
 			System Android pozwala na odczytanie siły odbieranego sygnału. Można do tego wykorzystać API $WifiManager$ (w przypadku odczytu sygnału WiFi) oraz $BroadcastReceiver$ (w przypadku odczytu sygnału Bluetooth).
+		\subsection{Margines zaniku}
 	\section{Bluetooth}
 		%http://bluetoothinsight.blogspot.com/2008/01/bluetooth-power-classes.html
 	\section{Eksperymenty}
@@ -509,8 +518,45 @@
 			\centering
 			\caption{Panel edycji danych routerów}
 			\includegraphics[width=1.0\textwidth]{panel_konf_router}
-		\end{figure} 
-		
+		\end{figure}
+		Poza polami wymaganymi do lokalizacji użytkownika, którymi są:
+		\begin{itemize}
+			\item lokalizacja routera - współrzędne X, Y, Z oraz SSID
+			\item zysk anteny
+			\item siła transmitera
+		\end{itemize}
+		aplikacja pozwala dodatkowo na zadeklarowanie typu sygnału wysyłanego przez urządzenie. Ma to wpływ na sposób obliczania odległości do użytkowników, ale także na wartość początkową wagi przydzielonej temu transmiterowi. Wagę można zmienić ręcznie, ale trzeba pamiętać, że musi się znaleźć w zakresie <1:4>.\\
+		Drugi panel pozwala na definiowanie i edycję urządzeń sterowanych.
+		\begin{figure}[H]			
+			\centering
+			\caption{Panel edycji urządzeń sterowanych}
+			\includegraphics[width=1.0\textwidth]{panel_konf_ster}
+		\end{figure}
+		Wszystkie urządzenia zarejestrowane w systemi podzielone są na kategorie. Dostępne kategorie przechowywane są w bazie danych i stamtąd są pobierane, kiedy aplikacja klientowa wyśle żądanie na serwer. Wybranie kategorii z lewego panelu powoduje pobranie z serwera wszystkich urządzeń, które należą do wybranej kategorii. Do każdej kategorii przydzielona jest inna akcja w kontrolerze ConfController na serwerze - przykładowo, dla urządzeń oświetleniowych, jest to akcja GetLightDevices.\\
+		Aby przejść do widoku wyświetlania i edycji danych urządzenia, należy wybrać interesującą nas pozycję ze środkowego panelu. Powoduje to pojawienie się w prawym panelu formularza z danymi danego urządzenia. Formularze są tworzone dynamicznie, a rodzaj i ilość ich pól zależne są od kategorii urządzenia. Dla urządzenia z kategorii "Światło", dostępne są następujące pola:
+		\begin{itemize}
+			\item lokalizacji - współrzędne XYZ urządzenia. pozwalające umiejscowić je w rzeczywistym środowisku
+			\item adres ip i port - pozwalają na komunikację z urządzeniem
+			\item nazwa - pozwala użytkownikom odróżniać urządzenia między sobą
+			\item minimalne i maksymalne oświetlenie - zakres, określony w procentach, z którego może korzystać system podczas sterowania urządzeniem. W przypadku sterowania w interwałach czasowych, minimalne oświetlenie przydzielane jest w sytuacji, gdy, w podanym okresie czasu, obok urządzenia nie przeszedł żaden użytkownik. Analogicznie, maksymalne oświetlenie przydzielane jest, gdy wszystkie obliczone lokalizacje użytkowników znajdowały się w niedalekiej odległości od sterowanego urządzenia
+			\item moduł komunikacyjny - określa sterownik, sposób komunikacji serwera z urządzeniem. Moduły komunikacyjne definiowane są w bazie danych, a związane z nimi klasy obsługujące muszą zostać dodane do kodu serwera
+			\item obsługa zdarzeń - nazwa modułu, który na bieżąco steruje urządzeniem, w zależności od lokalizacji użytkowników zlokalizowanych w bliskiej odległości. Z modułem związana jest klasa, która obsługuje przypisany do urządzenia moduł
+		\end{itemize}
+		Panel udostępnia przyciski, które pozwalają na zapis wprowadzonych zmian, jak również dodanie lub usunięcie urządzenia.\\
+		Ostatni panel to panel użytkowników. Są to osoby, które korzystały z aplikacji mobilnej, a ich pozycja została chociaż raz obliczona.
+		\begin{figure}[H]			
+			\centering
+			\caption{Panel edycji urządzeń sterowanych}
+			\includegraphics[width=1.0\textwidth]{panel_konf_users}
+		\end{figure}
+		Okno składa się z tabeli, w której znajdują się zapisani użytkownicy oraz przycisków:
+		\begin{itemize}
+			\item odświeżania danych
+			\item zapisania wszystkich użytkowników
+			\item usunięcia wybranego w tabeli użytkownika
+		\end{itemize}
+		Widok pozwala na podglądnięcie użytkowników oraz na zmianę ich nazwy oraz wagi. Nazwa pozwala na rózróżnianie użytkowników w sposób łatwiejszy niż po adresie MAC. Waga odgrywa kluczową rolę podczas obliczania parametrów do sterowania urządzeniami - czym wyższa waga użytkownika, tym większe ma on znaczenie dla urządzenia, w którego pobliżu znajduje się obliczona lokalizacja. Dodatkowo, pojawienie się użytkownika o określonej wadze może mieć wpływ na zajście, zdefiniowanego dla urządzenia, zdarzenia. Wagi przyjmują wartość od 0 (użytkownik o najniższym priorytecie, nie brany pod uwagę podczas określania parametrów) do 4 (użytkownik o najwyższym priorytecie).
+		\paragraph{Wyświetlanie lokalizacji użytkowników} W trybie wyświetlania lokalizacji w czasie rzeczywistym, aplikacja musi wyświetlać uzyskane dane bez odświeżania czy ingerencji użytkownika. 
 \end{document}
 
 

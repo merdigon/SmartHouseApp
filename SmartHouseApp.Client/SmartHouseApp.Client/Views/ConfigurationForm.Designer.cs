@@ -42,7 +42,6 @@
             this.tbZR = new System.Windows.Forms.TextBox();
             this.tbYR = new System.Windows.Forms.TextBox();
             this.tbXR = new System.Windows.Forms.TextBox();
-            this.tbFadeMargin = new System.Windows.Forms.TextBox();
             this.tbAntenaGain = new System.Windows.Forms.TextBox();
             this.tbTransPower = new System.Windows.Forms.TextBox();
             this.tbSsid = new System.Windows.Forms.TextBox();
@@ -50,7 +49,6 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -113,8 +111,8 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.dgvRouters);
-            this.splitContainer1.Size = new System.Drawing.Size(777, 369);
-            this.splitContainer1.SplitterDistance = 196;
+            this.splitContainer1.Size = new System.Drawing.Size(777, 417);
+            this.splitContainer1.SplitterDistance = 221;
             this.splitContainer1.TabIndex = 0;
             // 
             // groupBox2
@@ -129,7 +127,6 @@
             this.groupBox2.Controls.Add(this.tbZR);
             this.groupBox2.Controls.Add(this.tbYR);
             this.groupBox2.Controls.Add(this.tbXR);
-            this.groupBox2.Controls.Add(this.tbFadeMargin);
             this.groupBox2.Controls.Add(this.tbAntenaGain);
             this.groupBox2.Controls.Add(this.tbTransPower);
             this.groupBox2.Controls.Add(this.tbSsid);
@@ -137,23 +134,22 @@
             this.groupBox2.Controls.Add(this.label9);
             this.groupBox2.Controls.Add(this.label8);
             this.groupBox2.Controls.Add(this.label7);
-            this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Right;
             this.groupBox2.Location = new System.Drawing.Point(190, 0);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(587, 196);
+            this.groupBox2.Size = new System.Drawing.Size(587, 221);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Routery";
             // 
             // tbWeight
             // 
-            this.tbWeight.Location = new System.Drawing.Point(385, 130);
+            this.tbWeight.Location = new System.Drawing.Point(99, 104);
             this.tbWeight.Name = "tbWeight";
-            this.tbWeight.Size = new System.Drawing.Size(189, 20);
+            this.tbWeight.Size = new System.Drawing.Size(235, 20);
             this.tbWeight.TabIndex = 23;
             // 
             // cbRouterCategory
@@ -168,7 +164,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(340, 133);
+            this.label11.Location = new System.Drawing.Point(6, 107);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(39, 13);
             this.label11.TabIndex = 19;
@@ -234,13 +230,6 @@
             this.tbXR.Size = new System.Drawing.Size(211, 20);
             this.tbXR.TabIndex = 12;
             // 
-            // tbFadeMargin
-            // 
-            this.tbFadeMargin.Location = new System.Drawing.Point(99, 104);
-            this.tbFadeMargin.Name = "tbFadeMargin";
-            this.tbFadeMargin.Size = new System.Drawing.Size(235, 20);
-            this.tbFadeMargin.TabIndex = 11;
-            // 
             // tbAntenaGain
             // 
             this.tbAntenaGain.Location = new System.Drawing.Point(99, 78);
@@ -298,15 +287,6 @@
             this.label7.TabIndex = 4;
             this.label7.Text = "Lokalizacja:";
             // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(6, 107);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(68, 13);
-            this.label6.TabIndex = 3;
-            this.label6.Text = "Fade margin:";
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -344,7 +324,7 @@
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Left;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(198, 196);
+            this.groupBox1.Size = new System.Drawing.Size(198, 221);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Wielkość mapy";
@@ -375,7 +355,7 @@
             // btnSaveMapSize
             // 
             this.btnSaveMapSize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSaveMapSize.Location = new System.Drawing.Point(123, 170);
+            this.btnSaveMapSize.Location = new System.Drawing.Point(123, 195);
             this.btnSaveMapSize.Name = "btnSaveMapSize";
             this.btnSaveMapSize.Size = new System.Drawing.Size(75, 23);
             this.btnSaveMapSize.TabIndex = 1;
@@ -402,7 +382,7 @@
             this.dgvRouters.MultiSelect = false;
             this.dgvRouters.Name = "dgvRouters";
             this.dgvRouters.ReadOnly = true;
-            this.dgvRouters.Size = new System.Drawing.Size(777, 169);
+            this.dgvRouters.Size = new System.Drawing.Size(777, 192);
             this.dgvRouters.TabIndex = 0;
             this.dgvRouters.SelectionChanged += new System.EventHandler(this.dgvRouters_SelectionChanged);
             // 
@@ -424,7 +404,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(783, 375);
+            this.tabPage1.Size = new System.Drawing.Size(783, 423);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Lokalizacja";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -531,7 +511,7 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(783, 375);
+            this.tabPage3.Size = new System.Drawing.Size(783, 423);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Użytkownicy";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -553,7 +533,7 @@
             this.dgvUsers.MultiSelect = false;
             this.dgvUsers.Name = "dgvUsers";
             this.dgvUsers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvUsers.Size = new System.Drawing.Size(777, 344);
+            this.dgvUsers.Size = new System.Drawing.Size(777, 392);
             this.dgvUsers.TabIndex = 1;
             // 
             // Id
@@ -688,7 +668,6 @@
         private System.Windows.Forms.TextBox tbZR;
         private System.Windows.Forms.TextBox tbYR;
         private System.Windows.Forms.TextBox tbXR;
-        private System.Windows.Forms.TextBox tbFadeMargin;
         private System.Windows.Forms.TextBox tbAntenaGain;
         private System.Windows.Forms.TextBox tbTransPower;
         private System.Windows.Forms.TextBox tbSsid;
@@ -696,7 +675,6 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;

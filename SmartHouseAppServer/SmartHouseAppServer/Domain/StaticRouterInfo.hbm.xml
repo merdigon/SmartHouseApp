@@ -9,7 +9,6 @@
     <property name="SSID" column="ssid"/>
     <property name="TrasmitterPower" column="transmitter_power"/>
     <property name="AntennaGain" column="antenna_gain"/>
-    <property name="FadeMargin" column="fade_margin"/>
     <property name="LocationX" column="coordinate_x"/>
     <property name="LocationY" column="coordinate_y"/>
     <property name="LocationZ" column="coordinate_z"/>

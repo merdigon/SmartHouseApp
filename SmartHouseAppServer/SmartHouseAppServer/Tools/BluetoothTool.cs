@@ -12,7 +12,7 @@ namespace SmartHouseAppServer.Tools
     {
         static double K = 27.55;
         static double SMARTPHONE_WIFI_ANTENNA_GAIN = 2;
-        static double FADE_MARGIN = 22;
+        //static double FADE_MARGIN = 22;
         static double ANTENNA_GAIN = 0;
         static double TRANSMITTER_POWER = 6;
 
@@ -34,8 +34,8 @@ namespace SmartHouseAppServer.Tools
                             X = (double)device.CurrentLocation.X,
                             Y = (double)device.CurrentLocation.Y,
                             Weight = 1,
-                            Distance = DotNetInterface.iCountDistanceForWifiRouter(FADE_MARGIN, TRANSMITTER_POWER,
-                                                                                ANTENNA_GAIN, nearBDevice.SignalStrength, SMARTPHONE_WIFI_ANTENNA_GAIN, 0)
+                            Distance = DotNetInterface.iCountDistanceForWifiRouter(TRANSMITTER_POWER,
+                                                                                ANTENNA_GAIN, nearBDevice.SignalStrength, SMARTPHONE_WIFI_ANTENNA_GAIN, 22)
                         });
                 }
                 else
@@ -50,8 +50,8 @@ namespace SmartHouseAppServer.Tools
                             Y = (double)staticDevice.LocationY,
                             Z = (double)staticDevice.LocationZ,
                             Weight = staticDevice.Weight,
-                            Distance = DotNetInterface.iCountDistanceForWifiRouter(staticDevice.FadeMargin, staticDevice.TrasmitterPower,
-                                                                                staticDevice.AntennaGain, nearBDevice.SignalStrength, SMARTPHONE_WIFI_ANTENNA_GAIN, 0),
+                            Distance = DotNetInterface.iCountDistanceForWifiRouter(staticDevice.TrasmitterPower,
+                                                                                staticDevice.AntennaGain, nearBDevice.SignalStrength, SMARTPHONE_WIFI_ANTENNA_GAIN, 22),
                             Sigma = staticDevice.GetSigmaForSignalStrength(nearBDevice.SignalStrength)
                         });
                     }

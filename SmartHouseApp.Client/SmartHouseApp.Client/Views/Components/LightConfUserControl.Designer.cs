@@ -200,20 +200,20 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(94, 241);
+            this.label9.Location = new System.Drawing.Point(27, 241);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(47, 13);
+            this.label9.Size = new System.Drawing.Size(114, 13);
             this.label9.TabIndex = 18;
-            this.label9.Text = "Interfejs:";
+            this.label9.Text = "Moduł komunikacyjny:";
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(42, 268);
+            this.label10.Location = new System.Drawing.Point(50, 268);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(99, 13);
+            this.label10.Size = new System.Drawing.Size(91, 13);
             this.label10.TabIndex = 20;
-            this.label10.Text = "Obsługa wydarzeń:";
+            this.label10.Text = "Obsługa zdarzeń:";
             // 
             // cmbEventHandler
             // 

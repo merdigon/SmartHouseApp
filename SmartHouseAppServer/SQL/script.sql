@@ -130,7 +130,6 @@ CREATE TABLE public.static_router_info
   ssid character varying(100),
   transmitter_power numeric(15,2),
   antenna_gain numeric(15,2),
-  fade_margin numeric(15,2),
   coordinate_x numeric(15,2),
   coordinate_y numeric(15,2),
   coordinate_z numeric(15,2),
