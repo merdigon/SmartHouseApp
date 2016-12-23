@@ -556,16 +556,11 @@
 			\item usunięcia wybranego w tabeli użytkownika
 		\end{itemize}
 		Widok pozwala na podglądnięcie użytkowników oraz na zmianę ich nazwy oraz wagi. Nazwa pozwala na rózróżnianie użytkowników w sposób łatwiejszy niż po adresie MAC. Waga odgrywa kluczową rolę podczas obliczania parametrów do sterowania urządzeniami - czym wyższa waga użytkownika, tym większe ma on znaczenie dla urządzenia, w którego pobliżu znajduje się obliczona lokalizacja. Dodatkowo, pojawienie się użytkownika o określonej wadze może mieć wpływ na zajście, zdefiniowanego dla urządzenia, zdarzenia. Wagi przyjmują wartość od 0 (użytkownik o najniższym priorytecie, nie brany pod uwagę podczas określania parametrów) do 4 (użytkownik o najwyższym priorytecie).
-		\paragraph{Wyświetlanie lokalizacji użytkowników} W trybie wyświetlania lokalizacji w czasie rzeczywistym, aplikacja musi wyświetlać uzyskane dane bez odświeżania czy ingerencji użytkownika. 
+		\paragraph{Wyświetlanie lokalizacji użytkowników} W trybie wyświetlania lokalizacji w czasie rzeczywistym, aplikacja musi wyświetlać uzyskane dane bez odświeżania panelu czy ingerencji użytkownika. W związku z tym potrzebne było wprowadzenie mechanizmu opartego na osobnym wątku. Klasą zarządzającą rysowanie punktów jest PointPainter. W wątku wykonuje się metoda tej klasy, DrawPoint(), zawierająca nieskończoną pętlę, usypianą na 0,5 sekundy przy każdym przejściu. Wątek ma dostęp do listy punktów, które powinien wyświetlić. Lista uzupełniania jest przez obiekt klasy HttpServerThread, na podstawie notyfikacji przychodzących z serwera. Każdy wpis na liście ma informacje o lokalizacji (współrzędne XY) oraz dacie ważności danego punktu. Punkty stworzone na podstawie notyfikacji z serwera mają okres ważności równy 4 sec, za to punkty wyświetlane w sposób skumulowany mają datę ważności ustawioną na wartość null (co oznacza, że są wyświetlane dopóki nie zostanie wywołana komenda wyczyszczenia mapy).
+		\begin{figure}[H]			
+			\centering
+			\caption{Schemat rysowania elementów systemu na mapie}
+			\includegraphics[width=1.0\textwidth]{obrazek_pointPainter}
+		\end{figure}
+		Metoda wyświetlająca punkty nie rysuje ich bezpośrednio na wyświetlonej mapie, ponieważ odświeżanie wymagałoby ponownego przerysowania nie tylko punktów, ale i całej mapy. Mogłoby to powodować opóźnienia w płynności wyświetlania, a wiązałoby się z tym nieprzyjemne dla oka "mruganie" mapy. Dlatego, punkty nanoszone są na przeźroczysty obrazek, który później wyświetlany jest na warstwie wyświetlającej punkty. Zanim jednak na obrazku zostaną naniesione lokalizację użytkowników, klasa PointPainter zaznacza na przeźroczystej warstwie urządzenia sterowane, rysując odpowiednią ikonę kategorii danego sprzętu. Dodatkowo, ponieważ metoda rysująca punkty działa na innym wątku niż panel zawierający mapę, wyświetlenie punktów nie może być wywołane bezpośrednio z poziomu klasy PointPainter. Z tego powodu, funkcja rysująca obraz z punktami i ikonami urządzeń na mapie zostaje opakowana w delegatę (typ danych przechowujący funkcję), a następnie referencja do niej zostaje wstawiona jako parametr funkcji Control.Invoke(delegate), dzięki czemu panel sam wywoła przekazaną mu jako parametr funkcję podczas kolejnego wykonywania się jego wątku.
 \end{document}
-
-
-
-
-
-
-
-
-
-
-
