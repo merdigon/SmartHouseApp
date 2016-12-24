@@ -1,0 +1,64 @@
+\chapter{Teoria}
+\label{cha:teoria}
+
+\section{Free-space path loss}		  		  
+Utrata w sile sygnału spowodowana przejściem fali elektromagnetycznej przez ośrodek (najczęściej powietrze).
+Wzór na obliczanie FSPL:
+\begin{equation}
+FSPL = P_{tx} + AG_{tx} + AG_{rx} - P_{rx} - FM - L
+\end{equation}
+%http://electronicdesign.com/communications/understanding-wireless-range-calculations
+%Microwave and Millimetre-Wave Design for Wireless Communications  Autorzy Ian Robertson,Nutapong Somjit,Mitchai str 449
+%https://en.wikipedia.org/wiki/Free-space_path_loss
+%http://www.tplink.com/ie/support/calculator/#1
+%http://stackoverflow.com/questions/11217674/how-to-calculate-distance-from-wifi-router-using-signal-strength
+Gdzie symbole oznaczają:
+\begin{itemize}
+	\item $P_{tx}$ - siła trasmitera, wyrażona w dBm
+	\item $AG_{tx}$ - zysk energentyczny anteny transmitera, wyrażony w dBi
+	\item $AG_{rx}$ - zysk energentyczny anteny odbiorcy, wyrażony w dBi
+	\item $P_{rx}$ - czułość odbiornika, wyrażona w dBm
+	\item $FM$ - margines zaniku sygnału (fade margin) - określa jak duży jest margines różnicy pomiędzy uzyskaną siłą sygnału, a czułością odbiornika
+	\item $L$ - straty wynikające np z oddziaływania innych transmiterów, przeszkód itp.
+\end{itemize}
+Dodatkowo, FSPL można obliczyć, używając następujący wzór:
+\begin{equation}
+FSPL = 20log_{10}\left(\frac{d}{d_{0}}\right) + 20log_{10}(f) + K
+\end{equation}
+%Indoor Localization Method Based on Wi-Fi Trilateration Technique Maxim Shchekotov
+% Wi-Fi Indoor Positioning System Based on RSSI Measurements from Wi-Fi  Access Points  –  A Tri-lateration Approach Onkar Pathak, Pratik Palaskar, Rajesh Palkar, Mayur Tawari
+Gdzie symbole oznaczają:
+\begin{itemize}
+	\item $d$ - dystans dzielący trasmiter od odbiorcy, wyrażony w metrach
+	\item $d_{0}$ - dystans referencyjny -  w tym wypadku 1 metr
+	\item $f$ - częstotliwość transmitera - wyrażona w MHz
+	\item $K$ - stała, którą można określić wzorem:
+	\begin{equation}
+	K = 20log_{10}\left(\frac{4\pi d_{0}}{C}\right)
+	\end{equation}
+	gdzie $d_{0}$ to dystans referencyjny (taki sam jak we wzorze wyżej), a $C$ to długość fali emitowanej przez transmiter
+\end{itemize}	  
+Po przekształceniu wzoru, uzytkujemy:
+\begin{equation}
+d = 10^{\left(\frac{FSPL - K - 20log_{10}(f)}{20}\right)}
+\end{equation}
+A po połączeniu obu wzorów dostajemy:
+\begin{equation}
+d = 10^{\left(\frac{P_{tx} + AG_{tx} + AG_{rx} - P_{rx} - FM - L - K - 20log_{10}(f)}{20}\right)}
+\end{equation}
+Dodatkowo, margines zaniku można obliczyć ze wzoru:
+\begin{equation}
+FM = P_{rs} - P_{rx}
+\end{equation}
+gdzie $P_{rs}$ to siła odebranego sygnału.\\
+Po podstawieniu powyższego wzoru do wzoru (5), uzyskujemy
+\begin{equation}
+d = 10^{\left(\frac{P_{tx} + AG_{tx} + AG_{rx} - P_{rs} - L - K - 20log_{10}(f)}{20}\right)}
+\end{equation}
+\section{Zysk energetyczny anteny}
+Zysk energetyczny anteny jest to stosunek mocy ateny wypromieniowanej w danym kierunku do mocy wypromieniowanej przez antenę wzorcową. Anteną wzorcową może być m.in. antena izotropowa, czyli antena bez fizycznych rozmiarów, która cały sygnał zasilany wysyła we wszystkich kierunkach. W takim wypadku, zysk energetyczny anteny wyrażany jest w $dBi$.\\
+Na zysk energetyczny mają również wpływ kierunkowość oraz materiał, z którego wykonana jest antena.
+\subsection{Received signal strength indication}
+Received signal strength indication (skrótem RSSI) jest to miara określająca moc sygnału odbieranego. Przyjmuje ona wartości niedodatnie (gdzie 0 oznacza sygnał najsilniejszy). Jednostką, w jakiej określa się siłę sygnału jest $dBm$, która jest logarytmiczną jednostką miary mocy odniesiona do mocy $1mW$.\\
+System Android pozwala na odczytanie siły odbieranego sygnału. Można do tego wykorzystać API $WifiManager$ (w przypadku odczytu sygnału WiFi) oraz $BroadcastReceiver$ (w przypadku odczytu sygnału Bluetooth).
+\section{Margines zaniku}
