@@ -24,24 +24,30 @@ namespace SmartHouseApp.Client.Views
         public Form1()
         {
             InitializeComponent();
+            try
+            {
+                HttpServer = new HttpServerThread(this);
+                ServerThread = new Thread(new ThreadStart(HttpServer.Threading));
+                ServerThread.Start();
+                groupBox2.Enabled = rbRealTime.Enabled = rbTimeStamp.Enabled = true;
+                pictureBox1.ImageLocation = Configuration.Conf.PictureLocation;
+                PictureSize = Image.FromFile(Configuration.Conf.PictureLocation).Size;
+                pictureBox1.Location = new Point(0, 0);
+                pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+                pictureBox1.Controls.Add(pictureBox2);
+                pictureBox2.BackColor = Color.Transparent;
 
-            HttpServer = new HttpServerThread(this);
-            ServerThread = new Thread(new ThreadStart(HttpServer.Threading));
-            ServerThread.Start();
-            groupBox2.Enabled = rbRealTime.Enabled = rbTimeStamp.Enabled = true;
-            pictureBox1.ImageLocation = Configuration.Conf.PictureLocation;
-            PictureSize = Image.FromFile(Configuration.Conf.PictureLocation).Size;
-            pictureBox1.Location = new Point(0, 0);
-            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox1.Controls.Add(pictureBox2);
-            pictureBox2.BackColor = Color.Transparent;
+                Points = new List<PointOnMap>();
+                RefreshRenderDevices();
 
-            Points = new List<PointOnMap>();
-            RefreshRenderDevices();
-
-            PointPainter = new PointPainter(this);
-            PointPainterThread = new Thread(new ThreadStart(PointPainter.DrawPoints));
-            PointPainterThread.Start();
+                PointPainter = new PointPainter(this);
+                PointPainterThread = new Thread(new ThreadStart(PointPainter.DrawPoints));
+                PointPainterThread.Start();
+            }
+            catch(Exception ex)
+            {
+                InfoForm.ShowError(ex.Message);
+            }
         } 
 
         private void rbRealTime_CheckedChanged(object sender, EventArgs e)

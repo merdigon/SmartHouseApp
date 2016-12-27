@@ -17,17 +17,23 @@ namespace SmartHouseAppServer.Controllers
         [HttpPost]
         public virtual LogInViewModel LogIn(LogInModel model)
         {
-            if (SystemDataKnowledge.LoggedUsers.Where(p => p.Login.Equals(model.Login)).Count() == 0)
-                SystemDataKnowledge.LoggedUsers.Add(new LoggedUser(model.Login, HttpContext.Current.Request.UserHostAddress + ":52078"));
-            else
+            if (model.Login.Equals(Tools.Configuration.Conf.AdminLogin) && model.Password.Equals(Tools.Configuration.Conf.AdminPassword))
             {
-                foreach (var loggerUser in SystemDataKnowledge.LoggedUsers)
+
+                if (SystemDataKnowledge.LoggedUsers.Where(p => p.Login.Equals(model.Login)).Count() == 0)
+                    SystemDataKnowledge.LoggedUsers.Add(new LoggedUser(model.Login, HttpContext.Current.Request.UserHostAddress + ":52078"));
+                else
                 {
-                    if (loggerUser.Login.Equals(model.Login))
-                        loggerUser.IsOnline = true;
+                    foreach (var loggerUser in SystemDataKnowledge.LoggedUsers)
+                    {
+                        if (loggerUser.Login.Equals(model.Login))
+                            loggerUser.IsOnline = true;
+                    }
                 }
+                return new LogInViewModel { Result = true, MapSizeX = SystemDataKnowledge.MapSize.Item1, MapSizeY = SystemDataKnowledge.MapSize.Item2 };
             }
-            return new LogInViewModel { Result = true, MapSizeX = SystemDataKnowledge.MapSize.Item1, MapSizeY = SystemDataKnowledge.MapSize.Item2 };
+            else
+                throw new HttpResponseException(System.Net.HttpStatusCode.Unauthorized);
         }
 
         [HttpPost]

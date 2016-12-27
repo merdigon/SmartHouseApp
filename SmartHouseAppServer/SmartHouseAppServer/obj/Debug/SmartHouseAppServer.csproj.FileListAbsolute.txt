@@ -320,7 +320,6 @@ C:\Users\Szymon\Documents\GitHub\SmartApp\SmartHouseApp\SmartHouseAppServer\Smar
 C:\Users\Szymon\Documents\GitHub\SmartApp\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\Npgsql.dll
 C:\Users\Szymon\Documents\GitHub\SmartApp\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\Owin.dll
 C:\Users\Szymon\Documents\GitHub\SmartApp\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\SmartHouseApp.Common.dll
-C:\Users\Szymon\Documents\GitHub\SmartApp\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\SmartHouseApp.IBuilding.dll
 C:\Users\Szymon\Documents\GitHub\SmartApp\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\SmartHouseApp.Share.dll
 C:\Users\Szymon\Documents\GitHub\SmartApp\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\System.Net.Http.Formatting.dll
 C:\Users\Szymon\Documents\GitHub\SmartApp\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\System.Web.Helpers.dll
@@ -335,7 +334,6 @@ C:\Users\Szymon\Documents\GitHub\SmartApp\SmartHouseApp\SmartHouseAppServer\Smar
 C:\Users\Szymon\Documents\GitHub\SmartApp\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\System.Web.WebPages.Razor.dll
 C:\Users\Szymon\Documents\GitHub\SmartApp\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\WebGrease.dll
 C:\Users\Szymon\Documents\GitHub\SmartApp\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\FSharp.Core.dll
-C:\Users\Szymon\Documents\GitHub\SmartApp\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\SmartHouseApp.IBuilding.pdb
 C:\Users\Szymon\Documents\GitHub\SmartApp\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\SmartHouseApp.Common.pdb
 C:\Users\Szymon\Documents\GitHub\SmartApp\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\SmartHouseApp.Share.pdb
 C:\Users\Szymon\Documents\GitHub\SmartApp\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\Iesi.Collections.xml
@@ -381,3 +379,10 @@ D:\Repo\Source\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\Domain\
 D:\Repo\Source\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\Domain\RouterType.hbm.xml
 D:\Repo\Source\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\Domain\StaticRouterInfo.hbm.xml
 D:\Repo\Source\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\Domain\SystemUser.hbm.xml
+C:\Users\Szymon\Documents\GitHub\SmartApp\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\Domain\DeviceCategoryDomain.hbm.xml
+C:\Users\Szymon\Documents\GitHub\SmartApp\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\Domain\LightDeviceDomain.hbm.xml
+C:\Users\Szymon\Documents\GitHub\SmartApp\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\Domain\UserPositionHistory.hbm.xml
+C:\Users\Szymon\Documents\GitHub\SmartApp\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\Domain\LightDeviceInterface.hbm.xml
+C:\Users\Szymon\Documents\GitHub\SmartApp\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\Domain\RouterType.hbm.xml
+C:\Users\Szymon\Documents\GitHub\SmartApp\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\Domain\StaticRouterInfo.hbm.xml
+C:\Users\Szymon\Documents\GitHub\SmartApp\SmartHouseApp\SmartHouseAppServer\SmartHouseAppServer\bin\Domain\SystemUser.hbm.xml

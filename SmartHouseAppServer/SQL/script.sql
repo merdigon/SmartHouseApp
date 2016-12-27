@@ -6,6 +6,33 @@ CREATE SEQUENCE public.light_device_interface_id_seq
   CACHE 1;
 ALTER TABLE public.light_device_interface_id_seq
   OWNER TO postgres;
+  
+    CREATE SEQUENCE public.router_type_id_seq
+  INCREMENT 1
+  MINVALUE 1
+  MAXVALUE 9223372036854775807
+  START 1
+  CACHE 1;
+ALTER TABLE public.router_type_id_seq
+  OWNER TO postgres;
+
+     CREATE SEQUENCE public.system_user_id_seq
+  INCREMENT 1
+  MINVALUE 1
+  MAXVALUE 9223372036854775807
+  START 1
+  CACHE 1;
+ALTER TABLE public.system_user_id_seq
+  OWNER TO postgres;
+  
+      CREATE SEQUENCE public.static_router_info_id_seq
+  INCREMENT 1
+  MINVALUE 1
+  MAXVALUE 9223372036854775807
+  START 1
+  CACHE 1;
+ALTER TABLE public.static_router_info_id_seq
+  OWNER TO postgres;
 
     CREATE SEQUENCE public.light_device_domain_device_id_seq
   INCREMENT 1
@@ -39,8 +66,8 @@ ALTER TABLE public.user_possition_id_seq
 CREATE TABLE public.light_device_interface
 (
     id integer NOT NULL DEFAULT nextval('light_device_interface_id_seq'::regclass),
-    visible_name character varying(100) COLLATE pg_catalog."default" NOT NULL,
-    interface_class_name character varying(100) COLLATE pg_catalog."default" NOT NULL,
+    visible_name character varying(100) NOT NULL,
+    interface_class_name character varying(100) NOT NULL,
     CONSTRAINT light_device_interface_pkey PRIMARY KEY (id)
 )
 WITH (
@@ -68,9 +95,9 @@ ALTER TABLE device_category_domain
 CREATE TABLE public.light_device_domain
 (
     device_id integer NOT NULL DEFAULT nextval('light_device_domain_device_id_seq'::regclass),
-    visible_name character varying COLLATE pg_catalog."default" NOT NULL,
-    ip character varying(100) COLLATE pg_catalog."default" NOT NULL,
-    port character varying(8) COLLATE pg_catalog."default" NOT NULL,
+    visible_name character varying NOT NULL,
+    ip character varying(100) NOT NULL,
+    port character varying(8) NOT NULL,
     min_percentage_power integer,
     max_percentage_power integer,
     coordinate_x numeric(15, 2) NOT NULL,
@@ -160,3 +187,19 @@ WITH (
 );
 ALTER TABLE public.system_user
   OWNER TO postgres;
+  
+INSERT INTO router_type(
+            id, visible_name)
+    VALUES (1, 'WiFi');
+	
+INSERT INTO router_type(
+            id, visible_name)
+    VALUES (2, 'Bluetooth');
+	
+INSERT INTO light_device_interface(
+            id, visible_name, interface_class_name)
+    VALUES (1, 'Logger', 'LoggerLightDeviceInterface');
+
+INSERT INTO device_category_domain(
+            id, "name")
+    VALUES (1, 'Light');

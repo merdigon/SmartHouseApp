@@ -15,6 +15,8 @@ namespace SmartHouseAppServer.Tools
         
         public virtual int MapSizeX { get; set; }
         public virtual int MapSizeY { get; set; }
+        public virtual string AdminLogin { get; set; }
+        public virtual string AdminPassword { get; set; }
 
         public static Configuration Conf
         {
@@ -35,7 +37,7 @@ namespace SmartHouseAppServer.Tools
         public static bool Save()
         {
             XmlSerializer serializer = new XmlSerializer(typeof(Configuration));
-            using (StreamWriter writer = new StreamWriter("conf.xml"))
+            using (StreamWriter writer = new StreamWriter(AppDomain.CurrentDomain.RelativeSearchPath + "conf.xml"))
             {
                 serializer.Serialize(writer, _conf);
                 writer.Flush();

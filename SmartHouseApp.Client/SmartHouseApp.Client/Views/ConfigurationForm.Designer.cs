@@ -333,7 +333,7 @@
             // 
             this.tbY.Location = new System.Drawing.Point(9, 86);
             this.tbY.Name = "tbY";
-            this.tbY.Size = new System.Drawing.Size(183, 20);
+            this.tbY.Size = new System.Drawing.Size(175, 20);
             this.tbY.TabIndex = 4;
             // 
             // label2
@@ -349,13 +349,13 @@
             // 
             this.tbX.Location = new System.Drawing.Point(9, 42);
             this.tbX.Name = "tbX";
-            this.tbX.Size = new System.Drawing.Size(183, 20);
+            this.tbX.Size = new System.Drawing.Size(175, 20);
             this.tbX.TabIndex = 2;
             // 
             // btnSaveMapSize
             // 
             this.btnSaveMapSize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSaveMapSize.Location = new System.Drawing.Point(123, 195);
+            this.btnSaveMapSize.Location = new System.Drawing.Point(109, 195);
             this.btnSaveMapSize.Name = "btnSaveMapSize";
             this.btnSaveMapSize.Size = new System.Drawing.Size(75, 23);
             this.btnSaveMapSize.TabIndex = 1;
