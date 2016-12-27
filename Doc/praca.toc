@@ -3,37 +3,42 @@
 \contentsline {chapter}{\numberline {1}Wprowadzenie}{7}
 \contentsline {section}{\numberline {1.1}Cele pracy}{7}
 \contentsline {section}{\numberline {1.2}Zawarto\IeC {\'s}\IeC {\'c} pracy}{7}
-\contentsline {chapter}{\numberline {2}Propagacja sygna\IeC {\l }u radiowego}{9}
-\contentsline {section}{\numberline {2.1}Zanik sygna\IeC {\l } radiowego}{9}
-\contentsline {section}{\numberline {2.2}Zysk energetyczny anteny}{9}
-\contentsline {section}{\numberline {2.3}Margines zaniku}{10}
-\contentsline {section}{\numberline {2.4}Received signal strength indication}{10}
-\contentsline {section}{\numberline {2.5}Free-space path loss}{10}
-\contentsline {chapter}{\numberline {3}Testy sposob\IeC {\'o}w komunikacji radiowej}{13}
-\contentsline {section}{\numberline {3.1}Bluetooth}{13}
-\contentsline {section}{\numberline {3.2}Eksperymenty}{13}
-\contentsline {subsection}{\numberline {3.2.1}Wykorzystane urz\IeC {\k a}dzenia}{13}
-\contentsline {subsection}{\numberline {3.2.2}Warunki}{14}
-\contentsline {subsection}{\numberline {3.2.3}Cele}{14}
-\contentsline {subsection}{\numberline {3.2.4}Pomiar odleg\IeC {\l }o\IeC {\'s}ci}{14}
-\contentsline {subsection}{\numberline {3.2.5}Pomiary zak\IeC {\l }\IeC {\'o}ce\IeC {\'n}}{16}
-\contentsline {chapter}{\numberline {4}Implementacja}{19}
-\contentsline {section}{\numberline {4.1}Architektura}{19}
-\contentsline {section}{\numberline {4.2}Wykorzystana technologia}{20}
-\contentsline {section}{\numberline {4.3}Konfiguracja}{21}
-\contentsline {section}{\numberline {4.4}Serwer}{21}
-\contentsline {subsection}{\numberline {4.4.1}Lokalizacja u\IeC {\.z}ytkownik\IeC {\'o}w mobilnych}{22}
-\contentsline {subsubsection}{\numberline {4.4.1.1}Pobranie i analiza danych}{22}
-\contentsline {subsubsection}{\numberline {4.4.1.2}Algorytmiczne wyznaczenie lokalizacji}{22}
-\contentsline {subsubsection}{\numberline {4.4.1.3}Zarz\IeC {\k a}dzanie lokalizacj\IeC {\k a} u\IeC {\.z}ytkownika}{24}
-\contentsline {subsection}{\numberline {4.4.2}Sterowanie i zarz\IeC {\k a}dzanie urz\IeC {\k a}dzeniami}{24}
-\contentsline {subsubsection}{\numberline {4.4.2.1}Dob\IeC {\'o}r parametr\IeC {\'o}w steruj\IeC {\k a}cych}{25}
-\contentsline {subsubsection}{\numberline {4.4.2.2}Komunikacja z urz\IeC {\k a}dzeniami}{26}
-\contentsline {subsection}{\numberline {4.4.3}Konfiguracja systemu}{27}
-\contentsline {subsection}{\numberline {4.4.4}Zarz\IeC {\k a}dzanie pozosta\IeC {\l }ymi funkcjami aplikacji administracyjnej}{29}
-\contentsline {section}{\numberline {4.5}Aplikacja administracyjna}{29}
-\contentsline {subsection}{\numberline {4.5.1}Opis okien aplikacji}{30}
-\contentsline {subsubsection}{\numberline {4.5.1.1}Okno logowania}{30}
-\contentsline {subsubsection}{\numberline {4.5.1.2}G\IeC {\l }\IeC {\'o}wne okno}{31}
-\contentsline {subsubsection}{\numberline {4.5.1.3}Okno konfiguracji}{33}
-\contentsline {subsubsection}{\numberline {4.5.1.4}Wy\IeC {\'s}wietlanie lokalizacji u\IeC {\.z}ytkownik\IeC {\'o}w}{36}
+\contentsline {chapter}{\numberline {2}Okre\IeC {\'s}lanie lokalizacji}{9}
+\contentsline {section}{\numberline {2.1}Lokalizacja u\IeC {\.z}ytkownika}{9}
+\contentsline {section}{\numberline {2.2}Trilateracja}{9}
+\contentsline {section}{\numberline {2.3}Lokalizacja jako funkcja probabilistyczna Gaussa}{10}
+\contentsline {subsection}{\numberline {2.3.1}Funkcja Gaussa}{10}
+\contentsline {chapter}{\numberline {3}Propagacja sygna\IeC {\l }u radiowego}{11}
+\contentsline {section}{\numberline {3.1}Zanik sygna\IeC {\l } radiowego}{11}
+\contentsline {section}{\numberline {3.2}Zysk energetyczny anteny}{11}
+\contentsline {section}{\numberline {3.3}Margines zaniku}{12}
+\contentsline {section}{\numberline {3.4}Received signal strength indication}{12}
+\contentsline {section}{\numberline {3.5}Free-space path loss}{12}
+\contentsline {chapter}{\numberline {4}Testy sposob\IeC {\'o}w komunikacji radiowej}{15}
+\contentsline {section}{\numberline {4.1}Bluetooth}{15}
+\contentsline {section}{\numberline {4.2}Eksperymenty}{15}
+\contentsline {subsection}{\numberline {4.2.1}Wykorzystane urz\IeC {\k a}dzenia}{15}
+\contentsline {subsection}{\numberline {4.2.2}Warunki}{16}
+\contentsline {subsection}{\numberline {4.2.3}Cele}{16}
+\contentsline {subsection}{\numberline {4.2.4}Pomiar odleg\IeC {\l }o\IeC {\'s}ci}{16}
+\contentsline {subsection}{\numberline {4.2.5}Pomiary zak\IeC {\l }\IeC {\'o}ce\IeC {\'n}}{18}
+\contentsline {chapter}{\numberline {5}Implementacja}{21}
+\contentsline {section}{\numberline {5.1}Architektura}{21}
+\contentsline {section}{\numberline {5.2}Wykorzystana technologia}{22}
+\contentsline {section}{\numberline {5.3}Konfiguracja}{23}
+\contentsline {section}{\numberline {5.4}Serwer}{23}
+\contentsline {subsection}{\numberline {5.4.1}Lokalizacja u\IeC {\.z}ytkownik\IeC {\'o}w mobilnych}{24}
+\contentsline {subsubsection}{\numberline {5.4.1.1}Pobranie i analiza danych}{24}
+\contentsline {subsubsection}{\numberline {5.4.1.2}Algorytmiczne wyznaczenie lokalizacji}{24}
+\contentsline {subsubsection}{\numberline {5.4.1.3}Zarz\IeC {\k a}dzanie lokalizacj\IeC {\k a} u\IeC {\.z}ytkownika}{26}
+\contentsline {subsection}{\numberline {5.4.2}Sterowanie i zarz\IeC {\k a}dzanie urz\IeC {\k a}dzeniami}{26}
+\contentsline {subsubsection}{\numberline {5.4.2.1}Dob\IeC {\'o}r parametr\IeC {\'o}w steruj\IeC {\k a}cych}{27}
+\contentsline {subsubsection}{\numberline {5.4.2.2}Komunikacja z urz\IeC {\k a}dzeniami}{28}
+\contentsline {subsection}{\numberline {5.4.3}Konfiguracja systemu}{29}
+\contentsline {subsection}{\numberline {5.4.4}Zarz\IeC {\k a}dzanie pozosta\IeC {\l }ymi funkcjami aplikacji administracyjnej}{31}
+\contentsline {section}{\numberline {5.5}Aplikacja administracyjna}{31}
+\contentsline {subsection}{\numberline {5.5.1}Opis okien aplikacji}{32}
+\contentsline {subsubsection}{\numberline {5.5.1.1}Okno logowania}{32}
+\contentsline {subsubsection}{\numberline {5.5.1.2}G\IeC {\l }\IeC {\'o}wne okno}{33}
+\contentsline {subsubsection}{\numberline {5.5.1.3}Okno konfiguracji}{35}
+\contentsline {subsection}{\numberline {5.5.2}Wy\IeC {\'s}wietlanie lokalizacji u\IeC {\.z}ytkownik\IeC {\'o}w}{38}

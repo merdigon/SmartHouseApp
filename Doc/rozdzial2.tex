@@ -1,77 +1,30 @@
-\chapter{Propagacja sygnału radiowego}
-\label{cha:teoria}
-\section{Zanik sygnał radiowego}
-Sygnał radiowy, wysłany przez urządzenie, w wyniku przechodzenia przez ośrodek (najczęściej jest nim powietrze) ulega zanikowi. Różnica w mocy sygnału odczytanego przez odbiornik, a siłą sygnału wysłanego przez nadawcę, pozwala na obliczenie odległości pomiędzy dwoma urządzeniami. Dodatkowymi współczynnikami, które mają wpływ na obliczenia, są:
-\begin{itemize}
-	\item zysk energetyczny anteny nadawcy oraz odbiorcy
-	\item margines zaniku, który zależy od czułości odbiornika
-	\item straty w sile sygnalu wynikające ze środowiska - przeszkody, odbicia, inne urządzenia nadające
-\end{itemize}
+\chapter{Określanie lokalizacji}
+\label{cha:lokalizacja}
+\section{Lokalizacja użytkownika}
+Lokalizacja użytkownika w systemie określa się na podstawie odległości od punktów, których współrzędne w przestrzeni trójwymiarowej są znane. Są to głównie routery i Beacony, jednak może się zdarzyć, że takim punktem staje się również inny użytkownik. Współrzędne użytkownika można obliczyć, podając siły sygnałów odebranych przez otaczające go urządzenia i obliczając na ich podstawie dystans.
+\section{Trilateracja}
+Najbardziej znanym sposobem obliczenia lokalizacji użytkownika na podstawie dystansu do znanych punktów jest trilateracja. Metoda ta polega na przedstawienie dystansu dzielącego punkt od nadajników jako okręgi (lub jako sfery w przypadku, gdy określamy lokalizację w trzech wymiarach). Następnie, należy wyznaczyć współrzędne punktu przecięcia okręgów. Wyznaczone współrzędne są lokalizacją punktu, dla którego dokonywaliśmy obliczenia.
 \begin{figure}[H]			
 	\centering
-	\caption{Schemat zaniku sygnału}
-	\includegraphics[width=0.75\textwidth]{zanik_sygnalu}
+	\caption{Wizualizacja modelu trilateracji}
+	\includegraphics{trilateracja}
 \end{figure}
-\section{Zysk energetyczny anteny}
-Zysk energetyczny anteny jest to stosunek mocy ateny wypromieniowanej w danym kierunku do mocy wypromieniowanej przez antenę wzorcową. Anteną wzorcową może być m.in. antena izotropowa, czyli antena bez fizycznych rozmiarów, która cały sygnał zasilany wysyła we wszystkich kierunkach. W takim wypadku, zysk energetyczny anteny wyrażany jest w $dBi$.\\
-Na zysk energetyczny mają również wpływ kierunkowość oraz materiał, z którego wykonana jest antena.
-\section{Margines zaniku}
-Margines zaniku (fade margin) jest to wartość określająca wielkość "marginesu" pomiędzy wartością odebraną, a czułością odbiornika. Określa się ją wzorem:
+Współrzędną punktu można obliczyć na podstawie wzoru:
 \begin{equation}
-FM = P_{rs} - P_{rx}
+\left\{
+\begin{array}{l}
+(x_p-x_1)^2 + (y_p - y_1)^2 = r_1^2\\
+(x_p-x_2)^2 + (y_p - y_2)^2 = r_2^2\\
+(x_p-x_3)^2 + (y_p - y_3)^2 = r_3^2
+\end{array}
+\right.
 \end{equation}
-gdzie $P_{rs}$ to siła odebranego sygnału.\\
-Margines zaniku jest wyznacznikiem, jak "dobre" jest połączenie między transmiterem i odbiorcą. Czym wyższa wartość marginesu zaniku, tym bardziej niezawodne jest połączenie.
-Wartość marginesu zaniku określa się w jednostce $dB$.
-\section{Received signal strength indication}
-Received signal strength indication (skrótem RSSI) jest to miara określająca moc sygnału odbieranego. Przyjmuje ona wartości niedodatnie (gdzie 0 oznacza sygnał najsilniejszy). Jednostką, w jakiej określa się siłę sygnału jest $dBm$, która jest logarytmiczną jednostką miary mocy odniesiona do mocy $1mW$.\\
-System Android pozwala na odczytanie siły odbieranego sygnału. Można do tego wykorzystać API $WifiManager$ (w przypadku odczytu sygnału WiFi) oraz $BroadcastReceiver$ (w przypadku odczytu sygnału Bluetooth).
-\section{Free-space path loss}		  		  
-Utrata w sile sygnału spowodowana przejściem fali elektromagnetycznej przez ośrodek (najczęściej powietrze).
-Wzór na obliczanie FSPL:
-\begin{equation}
-FSPL = P_{tx} + AG_{tx} + AG_{rx} - P_{rx} - FM - L
-\end{equation}
-%http://electronicdesign.com/communications/understanding-wireless-range-calculations
-%Microwave and Millimetre-Wave Design for Wireless Communications  Autorzy Ian Robertson,Nutapong Somjit,Mitchai str 449
-%https://en.wikipedia.org/wiki/Free-space_path_loss
-%http://www.tplink.com/ie/support/calculator/#1
-%http://stackoverflow.com/questions/11217674/how-to-calculate-distance-from-wifi-router-using-signal-strength
-Gdzie symbole oznaczają:
+gdzie:
 \begin{itemize}
-	\item $P_{tx}$ - siła trasmitera, wyrażona w dBm
-	\item $AG_{tx}$ - zysk energentyczny anteny transmitera, wyrażony w dBi
-	\item $AG_{rx}$ - zysk energentyczny anteny odbiorcy, wyrażony w dBi
-	\item $P_{rx}$ - czułość odbiornika, wyrażona w dBm
-	\item $FM$ - margines zaniku sygnału (fade margin) - określa jak duży jest margines różnicy pomiędzy uzyskaną siłą sygnału, a czułością odbiornika
-	\item $L$ - straty wynikające np z oddziaływania innych transmiterów, przeszkód itp.
+	\item $x_p$, $y_p$ to współrzędne obliczanego punktu
+	\item $x_1$, $y_1$, $x_2$, $y_2$, $x_3$, $y_3$ to współrzędne znanych punktów
+	\item $r_1$, $r_2$, $r_3$ to odległości między punktem obliczanym, a punktami o znanych współrzędnych
 \end{itemize}
-Dodatkowo, FSPL można obliczyć, używając następujący wzór:
-\begin{equation}
-FSPL = 20log_{10}\left(\frac{d}{d_{0}}\right) + 20log_{10}(f) + K
-\end{equation}
-%Indoor Localization Method Based on Wi-Fi Trilateration Technique Maxim Shchekotov
-% Wi-Fi Indoor Positioning System Based on RSSI Measurements from Wi-Fi  Access Points  –  A Tri-lateration Approach Onkar Pathak, Pratik Palaskar, Rajesh Palkar, Mayur Tawari
-Gdzie symbole oznaczają:
-\begin{itemize}
-	\item $d$ - dystans dzielący trasmiter od odbiorcy, wyrażony w metrach
-	\item $d_{0}$ - dystans referencyjny -  w tym wypadku 1 metr
-	\item $f$ - częstotliwość transmitera - wyrażona w MHz
-	\item $K$ - stała, którą można określić wzorem:
-	\begin{equation}
-	K = 20log_{10}\left(\frac{4\pi d_{0}}{C}\right)
-	\end{equation}
-	gdzie $d_{0}$ to dystans referencyjny (taki sam jak we wzorze wyżej), a $C$ to długość fali emitowanej przez transmiter
-\end{itemize}	  
-Po przekształceniu wzoru, uzytkujemy:
-\begin{equation}
-d = 10^{\left(\frac{FSPL - K - 20log_{10}(f)}{20}\right)}
-\end{equation}
-A po połączeniu obu wzorów dostajemy:
-\begin{equation}
-d = 10^{\left(\frac{P_{tx} + AG_{tx} + AG_{rx} - P_{rx} - FM - L - K - 20log_{10}(f)}{20}\right)}
-\end{equation}
-Po podstawieniu wzoru na margines zaniku do wzoru (5), uzyskujemy
-\begin{equation}
-d = 10^{\left(\frac{P_{tx} + AG_{tx} + AG_{rx} - P_{rs} - L - K - 20log_{10}(f)}{20}\right)}
-\end{equation}
+Ta metoda lokalizowania użytkownika w przestrzeni ma jedną, bardzo ważną wadę, która wyklucza jej wykorzystanie w stworzonym systemie - nie potrafi się dostosować do błędów pomiarów, których w przypadku określania lokalizacji przy użyciu sygnałów radiowych, jest dużo. Aby obliczane lokalizację użytkowników w sposób zbliżony odwzorowywały rzeczywiste położenie, algorytm obliczający musiał być bardziej odporny na błędy pomiarowe.
+\section{Lokalizacja jako funkcja probabilistyczna Gaussa}
+\subsection{Funkcja Gaussa}
