@@ -1,6 +1,31 @@
-\chapter{Teoria}
+\chapter{Propagacja sygnału radiowego}
 \label{cha:teoria}
-
+\section{Zanik sygnał radiowego}
+Sygnał radiowy, wysłany przez urządzenie, w wyniku przechodzenia przez ośrodek (najczęściej jest nim powietrze) ulega zanikowi. Różnica w mocy sygnału odczytanego przez odbiornik, a siłą sygnału wysłanego przez nadawcę, pozwala na obliczenie odległości pomiędzy dwoma urządzeniami. Dodatkowymi współczynnikami, które mają wpływ na obliczenia, są:
+\begin{itemize}
+	\item zysk energetyczny anteny nadawcy oraz odbiorcy
+	\item margines zaniku, który zależy od czułości odbiornika
+	\item straty w sile sygnalu wynikające ze środowiska - przeszkody, odbicia, inne urządzenia nadające
+\end{itemize}
+\begin{figure}[H]			
+	\centering
+	\caption{Schemat zaniku sygnału}
+	\includegraphics[width=0.75\textwidth]{zanik_sygnalu}
+\end{figure}
+\section{Zysk energetyczny anteny}
+Zysk energetyczny anteny jest to stosunek mocy ateny wypromieniowanej w danym kierunku do mocy wypromieniowanej przez antenę wzorcową. Anteną wzorcową może być m.in. antena izotropowa, czyli antena bez fizycznych rozmiarów, która cały sygnał zasilany wysyła we wszystkich kierunkach. W takim wypadku, zysk energetyczny anteny wyrażany jest w $dBi$.\\
+Na zysk energetyczny mają również wpływ kierunkowość oraz materiał, z którego wykonana jest antena.
+\section{Margines zaniku}
+Margines zaniku (fade margin) jest to wartość określająca wielkość "marginesu" pomiędzy wartością odebraną, a czułością odbiornika. Określa się ją wzorem:
+\begin{equation}
+FM = P_{rs} - P_{rx}
+\end{equation}
+gdzie $P_{rs}$ to siła odebranego sygnału.\\
+Margines zaniku jest wyznacznikiem, jak "dobre" jest połączenie między transmiterem i odbiorcą. Czym wyższa wartość marginesu zaniku, tym bardziej niezawodne jest połączenie.
+Wartość marginesu zaniku określa się w jednostce $dB$.
+\section{Received signal strength indication}
+Received signal strength indication (skrótem RSSI) jest to miara określająca moc sygnału odbieranego. Przyjmuje ona wartości niedodatnie (gdzie 0 oznacza sygnał najsilniejszy). Jednostką, w jakiej określa się siłę sygnału jest $dBm$, która jest logarytmiczną jednostką miary mocy odniesiona do mocy $1mW$.\\
+System Android pozwala na odczytanie siły odbieranego sygnału. Można do tego wykorzystać API $WifiManager$ (w przypadku odczytu sygnału WiFi) oraz $BroadcastReceiver$ (w przypadku odczytu sygnału Bluetooth).
 \section{Free-space path loss}		  		  
 Utrata w sile sygnału spowodowana przejściem fali elektromagnetycznej przez ośrodek (najczęściej powietrze).
 Wzór na obliczanie FSPL:
@@ -46,19 +71,7 @@ A po połączeniu obu wzorów dostajemy:
 \begin{equation}
 d = 10^{\left(\frac{P_{tx} + AG_{tx} + AG_{rx} - P_{rx} - FM - L - K - 20log_{10}(f)}{20}\right)}
 \end{equation}
-Dodatkowo, margines zaniku można obliczyć ze wzoru:
-\begin{equation}
-FM = P_{rs} - P_{rx}
-\end{equation}
-gdzie $P_{rs}$ to siła odebranego sygnału.\\
-Po podstawieniu powyższego wzoru do wzoru (5), uzyskujemy
+Po podstawieniu wzoru na margines zaniku do wzoru (5), uzyskujemy
 \begin{equation}
 d = 10^{\left(\frac{P_{tx} + AG_{tx} + AG_{rx} - P_{rs} - L - K - 20log_{10}(f)}{20}\right)}
 \end{equation}
-\section{Zysk energetyczny anteny}
-Zysk energetyczny anteny jest to stosunek mocy ateny wypromieniowanej w danym kierunku do mocy wypromieniowanej przez antenę wzorcową. Anteną wzorcową może być m.in. antena izotropowa, czyli antena bez fizycznych rozmiarów, która cały sygnał zasilany wysyła we wszystkich kierunkach. W takim wypadku, zysk energetyczny anteny wyrażany jest w $dBi$.\\
-Na zysk energetyczny mają również wpływ kierunkowość oraz materiał, z którego wykonana jest antena.
-\subsection{Received signal strength indication}
-Received signal strength indication (skrótem RSSI) jest to miara określająca moc sygnału odbieranego. Przyjmuje ona wartości niedodatnie (gdzie 0 oznacza sygnał najsilniejszy). Jednostką, w jakiej określa się siłę sygnału jest $dBm$, która jest logarytmiczną jednostką miary mocy odniesiona do mocy $1mW$.\\
-System Android pozwala na odczytanie siły odbieranego sygnału. Można do tego wykorzystać API $WifiManager$ (w przypadku odczytu sygnału WiFi) oraz $BroadcastReceiver$ (w przypadku odczytu sygnału Bluetooth).
-\section{Margines zaniku}
