@@ -14,6 +14,12 @@ using SmartHouseApp.Tools;
 using Java.Lang;
 using SmartHouseApp.Adapters;
 using System.Threading;
+using SmartHouseApp.DataStractures;
+using SmartHouseApp.Activities.A01SearchRouters;
+using System.Threading.Tasks;
+using System.Net;
+using Newtonsoft.Json;
+using System.IO;
 
 namespace SmartHouseApp.Activities.A02BluetoothLocalization
 {
@@ -48,14 +54,15 @@ namespace SmartHouseApp.Activities.A02BluetoothLocalization
                 else if(BluetoothAdapter.ActionDiscoveryFinished.Equals(action))
                 {
                     UpdateBluetoothsList(BluetoothDevicesList);
+                    SendReceivedInfo(BluetoothDevicesList);
                 }
                 else if (BluetoothDevice.ActionFound.Equals(action))
                 {
                     BluetoothDevice device = (BluetoothDevice)intent.GetParcelableExtra(BluetoothDevice.ExtraDevice);
-                    double distance = BluetoothTool.GetDbmRecalculation(intent.GetShortExtra(BluetoothDevice.ExtraRssi, Short.MinValue));
+                    int strength = (int)intent.GetShortExtra(BluetoothDevice.ExtraRssi, Short.MinValue);
                     var name = device.Name;
 
-                    BluetoothDevicesList.Add(new BluetoothInfo { Name = name, Distance = distance });
+                    BluetoothDevicesList.Add(new BluetoothInfo { Name = name, Stregth = strength });
                 }
             });
 
@@ -94,14 +101,57 @@ namespace SmartHouseApp.Activities.A02BluetoothLocalization
         public void UpdateBluetoothsList(IList<BluetoothInfo> bluetoothsInfo)
         {
             Adapter.ClearItems();
-            Adapter.AddRange(bluetoothsInfo.OrderByDescending(p => p.Distance).ToList());
-            Adapter.NotifyDataSetChanged();
+            if (bluetoothsInfo != null)
+            {
+                Adapter.AddRange(bluetoothsInfo.OrderByDescending(p => p.Stregth).ToList());
+                Adapter.NotifyDataSetChanged();
+            }
+        }
+
+        public void SendReceivedInfo(IList<BluetoothInfo> routersInfo)
+        {
+            var data = new DeviceNotificationModel();
+            data.SourceName = "Telefon";
+            data.SignalData = new SignalStrengthDataModel[routersInfo.Count];
+            for (int i = 0; i < routersInfo.Count; i++)
+            {
+                data.SignalData[i] = new SignalStrengthDataModel()
+                {
+                    DeviceName = routersInfo[i].Name,
+                    SignalStrength = routersInfo[i].Stregth,
+                    Type = SignalType.BLUETOOTH
+                };
+            }
+            FetchWeatherAsync("http://192.168.1.105:52079/api/DataCollector/ReportDevices/", data);
+        }
+
+        private async Task<bool> FetchWeatherAsync(string url, DeviceNotificationModel model)
+        {
+            HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(new Uri(url));
+            request.ContentType = "application/json";
+            request.Method = "POST";
+            var json = JsonConvert.SerializeObject(model);
+            var data = System.Text.Encoding.ASCII.GetBytes(json);
+            request.ContentLength = data.Length;
+
+            using (Stream sw = request.GetRequestStream())
+            {
+                sw.Write(data, 0, data.Length);
+            }
+
+            using (WebResponse response = await request.GetResponseAsync())
+            {
+                using (Stream stream = response.GetResponseStream())
+                {
+                    return true;
+                }
+            }
         }
     }
 
     public class BluetoothInfo
     {
         public string Name { get; set; }
-        public double Distance { get; set; }
+        public int Stregth { get; set; }
     }
 }

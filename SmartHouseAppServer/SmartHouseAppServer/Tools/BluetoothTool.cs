@@ -35,7 +35,7 @@ namespace SmartHouseAppServer.Tools
                             Y = (double)device.CurrentLocation.Y,
                             Weight = 1,
                             Distance = DotNetInterface.iCountDistanceForWifiRouter(TRANSMITTER_POWER,
-                                                                                ANTENNA_GAIN, nearBDevice.SignalStrength, SMARTPHONE_WIFI_ANTENNA_GAIN, 22)
+                                                                                ANTENNA_GAIN, nearBDevice.SignalStrength, SMARTPHONE_WIFI_ANTENNA_GAIN, 31)
                         });
                 }
                 else

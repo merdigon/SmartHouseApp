@@ -41,7 +41,7 @@ namespace SmartHouseApp.Activities.A01SearchRouters
             TbUpdateRoutersList = (ToggleButton)FindViewById<ToggleButton>(Resource.Id.tbUpdateRouters);
             RouterListView = (ListView)FindViewById<ListView>(Resource.Id.routersList);
             Adapter = new SimpleRoutersInfoAdapter(this, RoutersInfo);
-            RouterListView.Adapter = this.Adapter;
+            RouterListView.Adapter = Adapter;
 
             LocalWifiManager = (WifiManager)GetSystemService(Context.WifiService);
             Receiver = new MyBroadcastReceiver((Context c, Intent intent) =>
@@ -106,7 +106,7 @@ namespace SmartHouseApp.Activities.A01SearchRouters
                     Type = SignalType.WIFI
                 };
             }
-            FetchWeatherAsync("http://192.168.1.102:52079/api/DataCollector/ReportDevices/", data);
+            FetchWeatherAsync("http://192.168.1.105:52079/api/DataCollector/ReportDevices/", data);
         }
 
         private async Task<bool> FetchWeatherAsync(string url, DeviceNotificationModel model)
