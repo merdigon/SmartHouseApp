@@ -37,7 +37,7 @@ namespace SmartHouseAppServer.Tools
         public static bool Save()
         {
             XmlSerializer serializer = new XmlSerializer(typeof(Configuration));
-            using (StreamWriter writer = new StreamWriter(AppDomain.CurrentDomain.RelativeSearchPath + "conf.xml"))
+            using (StreamWriter writer = new StreamWriter(AppDomain.CurrentDomain.RelativeSearchPath + "/conf.xml"))
             {
                 serializer.Serialize(writer, _conf);
                 writer.Flush();

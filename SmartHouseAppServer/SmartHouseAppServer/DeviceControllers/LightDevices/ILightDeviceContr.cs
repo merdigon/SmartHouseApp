@@ -11,5 +11,6 @@ namespace SmartHouseAppServer.DeviceControllers.LightDevices
     public interface ILightDeviceContr
     {
         bool ControlDeviceByEvent(List<UserPositionHistory> userPossitions, int previousStaticPowerLevel, LightDeviceControllingThread deviceThread);
+        void NormalProcedure(int previousStaticPowerLevel, LightDeviceControllingThread deviceThread);
     }
 }

@@ -130,56 +130,56 @@
             this.tbVisibleName.Location = new System.Drawing.Point(147, 30);
             this.tbVisibleName.Name = "tbVisibleName";
             this.tbVisibleName.Size = new System.Drawing.Size(210, 20);
-            this.tbVisibleName.TabIndex = 8;
+            this.tbVisibleName.TabIndex = 1;
             // 
             // tbY
             // 
             this.tbY.Location = new System.Drawing.Point(147, 186);
             this.tbY.Name = "tbY";
             this.tbY.Size = new System.Drawing.Size(210, 20);
-            this.tbY.TabIndex = 9;
+            this.tbY.TabIndex = 7;
             // 
             // tbX
             // 
             this.tbX.Location = new System.Drawing.Point(147, 160);
             this.tbX.Name = "tbX";
             this.tbX.Size = new System.Drawing.Size(210, 20);
-            this.tbX.TabIndex = 10;
+            this.tbX.TabIndex = 6;
             // 
             // tbMaxPerc
             // 
             this.tbMaxPerc.Location = new System.Drawing.Point(147, 134);
             this.tbMaxPerc.Name = "tbMaxPerc";
             this.tbMaxPerc.Size = new System.Drawing.Size(210, 20);
-            this.tbMaxPerc.TabIndex = 11;
+            this.tbMaxPerc.TabIndex = 5;
             // 
             // tbMinPerc
             // 
             this.tbMinPerc.Location = new System.Drawing.Point(147, 108);
             this.tbMinPerc.Name = "tbMinPerc";
             this.tbMinPerc.Size = new System.Drawing.Size(210, 20);
-            this.tbMinPerc.TabIndex = 12;
+            this.tbMinPerc.TabIndex = 4;
             // 
             // tbPort
             // 
             this.tbPort.Location = new System.Drawing.Point(147, 82);
             this.tbPort.Name = "tbPort";
             this.tbPort.Size = new System.Drawing.Size(210, 20);
-            this.tbPort.TabIndex = 13;
+            this.tbPort.TabIndex = 3;
             // 
             // tbIp
             // 
             this.tbIp.Location = new System.Drawing.Point(147, 56);
             this.tbIp.Name = "tbIp";
             this.tbIp.Size = new System.Drawing.Size(210, 20);
-            this.tbIp.TabIndex = 14;
+            this.tbIp.TabIndex = 2;
             // 
             // tbZ
             // 
             this.tbZ.Location = new System.Drawing.Point(147, 212);
             this.tbZ.Name = "tbZ";
             this.tbZ.Size = new System.Drawing.Size(210, 20);
-            this.tbZ.TabIndex = 15;
+            this.tbZ.TabIndex = 8;
             // 
             // cbLightDeviceInterface
             // 
@@ -187,7 +187,7 @@
             this.cbLightDeviceInterface.Location = new System.Drawing.Point(147, 238);
             this.cbLightDeviceInterface.Name = "cbLightDeviceInterface";
             this.cbLightDeviceInterface.Size = new System.Drawing.Size(210, 21);
-            this.cbLightDeviceInterface.TabIndex = 16;
+            this.cbLightDeviceInterface.TabIndex = 9;
             // 
             // cbIsActive
             // 
@@ -195,7 +195,7 @@
             this.cbIsActive.Location = new System.Drawing.Point(147, 318);
             this.cbIsActive.Name = "cbIsActive";
             this.cbIsActive.Size = new System.Drawing.Size(85, 17);
-            this.cbIsActive.TabIndex = 17;
+            this.cbIsActive.TabIndex = 12;
             this.cbIsActive.Text = "Czy aktywny";
             this.cbIsActive.UseVisualStyleBackColor = true;
             // 
@@ -223,23 +223,23 @@
             this.cmbEventHandler.Location = new System.Drawing.Point(147, 265);
             this.cmbEventHandler.Name = "cmbEventHandler";
             this.cmbEventHandler.Size = new System.Drawing.Size(210, 21);
-            this.cmbEventHandler.TabIndex = 19;
+            this.cmbEventHandler.TabIndex = 10;
             // 
             // tbScope
             // 
             this.tbScope.Location = new System.Drawing.Point(147, 292);
             this.tbScope.Name = "tbScope";
             this.tbScope.Size = new System.Drawing.Size(210, 20);
-            this.tbScope.TabIndex = 21;
+            this.tbScope.TabIndex = 11;
             // 
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(50, 295);
+            this.label11.Location = new System.Drawing.Point(99, 295);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(91, 13);
+            this.label11.Size = new System.Drawing.Size(42, 13);
             this.label11.TabIndex = 22;
-            this.label11.Text = "Obsługa zdarzeń:";
+            this.label11.Text = "Zasięg:";
             // 
             // LightConfUserControl
             // 

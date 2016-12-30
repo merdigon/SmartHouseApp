@@ -1,4 +1,4 @@
-﻿namespace SmartHouseApp.Tester
+﻿namespace SmartHouseAppTester
 {
     partial class Form1
     {
@@ -40,7 +40,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(545, 462);
+            this.pictureBox1.Size = new System.Drawing.Size(390, 462);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDown);
@@ -49,11 +49,12 @@
             // 
             this.tbLogText.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.tbLogText.Dock = System.Windows.Forms.DockStyle.Right;
-            this.tbLogText.Location = new System.Drawing.Point(551, 0);
+            this.tbLogText.Enabled = false;
+            this.tbLogText.Location = new System.Drawing.Point(396, 0);
             this.tbLogText.Multiline = true;
             this.tbLogText.Name = "tbLogText";
             this.tbLogText.ReadOnly = true;
-            this.tbLogText.Size = new System.Drawing.Size(199, 462);
+            this.tbLogText.Size = new System.Drawing.Size(354, 462);
             this.tbLogText.TabIndex = 1;
             // 
             // Form1
@@ -63,9 +64,9 @@
             this.ClientSize = new System.Drawing.Size(750, 462);
             this.Controls.Add(this.tbLogText);
             this.Controls.Add(this.pictureBox1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Form1";
-            this.Text = "Form1";
-            //this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
+            this.Text = "Tester";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

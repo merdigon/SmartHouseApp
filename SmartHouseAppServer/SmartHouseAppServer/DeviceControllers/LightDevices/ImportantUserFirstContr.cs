@@ -46,7 +46,13 @@ namespace SmartHouseAppServer.DeviceControllers.LightDevices
 
             if(iuPossitions.Count() > 0)
             {
-                ILightDeviceInterface ldInterface = (ILightDeviceInterface)Activator.CreateInstance(Assembly.GetExecutingAssembly().GetName().Name, deviceThread.LightDevice.Interface.InterfaceClassName);
+                ILightDeviceInterface ldInterface = null;
+                switch (deviceThread.LightDevice.Interface.InterfaceClassName)
+                {
+                    case "LoggerLightDeviceInterface":
+                        ldInterface = new LoggerLightDeviceInterface();
+                        break;
+                }
                 ldInterface.NotifyInformationToDevice(deviceThread.LightDevice.Ip, deviceThread.LightDevice.Port, deviceThread.LightDevice.MaxPercentagePower);
                 LastVisiteOfImportant = DateTime.Now;
                 return true;
@@ -59,11 +65,33 @@ namespace SmartHouseAppServer.DeviceControllers.LightDevices
                     return true;
                 else
                 {
-                    ILightDeviceInterface ldInterface = (ILightDeviceInterface)Activator.CreateInstance(Assembly.GetExecutingAssembly().GetName().Name, deviceThread.LightDevice.Interface.InterfaceClassName);
+                    ILightDeviceInterface ldInterface = null;
+                    switch (deviceThread.LightDevice.Interface.InterfaceClassName)
+                    {
+                        case "LoggerLightDeviceInterface":
+                            ldInterface = new LoggerLightDeviceInterface();
+                            break;
+                    }
                     ldInterface.NotifyInformationToDevice(deviceThread.LightDevice.Ip, deviceThread.LightDevice.Port, previousStaticPowerLevel);
                     LastVisiteOfImportant = null;
                     return false;
                 }
+            }
+        }
+
+        public void NormalProcedure(int previousStaticPowerLevel, LightDeviceControllingThread deviceThread)
+        {
+            if(LastVisiteOfImportant.HasValue && LastVisiteOfImportant.Value.AddSeconds(5) < DateTime.Now)
+            {
+                ILightDeviceInterface ldInterface = null;
+                switch (deviceThread.LightDevice.Interface.InterfaceClassName)
+                {
+                    case "LoggerLightDeviceInterface":
+                        ldInterface = new LoggerLightDeviceInterface();
+                        break;
+                }
+                ldInterface.NotifyInformationToDevice(deviceThread.LightDevice.Ip, deviceThread.LightDevice.Port, previousStaticPowerLevel);
+                LastVisiteOfImportant = null;
             }
         }
     }

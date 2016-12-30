@@ -19,7 +19,7 @@ namespace SmartHouseAppServer.DeviceInterfaces.LightDevice
 
                 using (StreamWriter stw = new StreamWriter(request.GetRequestStream()))
                 {
-                    stw.Write("Należy ustawić wartość na: " + percentage.ToString());
+                    stw.Write(string.Format("Należy ustawić dla urządzenia \"{0}:{1}\" wartość na: {2}%", ip, port, percentage.ToString()));
                 }
                 //request.ContentLength = request.GetRequestStream().Length;
 

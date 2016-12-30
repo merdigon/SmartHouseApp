@@ -34,7 +34,7 @@ namespace SmartHouseApp.Client.Views.Components
             cbIsActive.Checked = model.Active;
 
             cmbEventHandler.DataSource = new string[] { "Brak", "ImportantUserFirstContr" };
-            cmbEventHandler.SelectedItem = model.ControllModule;
+            cmbEventHandler.SelectedItem = (cmbEventHandler.DataSource as string[]).Where(p => p.Equals(model.ControllModule)).FirstOrDefault();
 
             var possibleLightDeviceInterfaces = RestClient.Get<List<LightDeviceInterfaceViewModel>>("Conf/LightDeviceInterfaces");
             cbLightDeviceInterface.Items.AddRange(possibleLightDeviceInterfaces.ToArray());
@@ -54,35 +54,64 @@ namespace SmartHouseApp.Client.Views.Components
                 double.TryParse(tbZ.Text, out z) &&
                 double.TryParse(tbScope.Text, out scope))
             {
-                string choosenModule = cmbEventHandler.SelectedItem as string;
-
-                var model = new LightDeviceViewModel
+                if (ValidateIpAddress(tbIp.Text))
                 {
-                    DeviceId = this.model.DeviceId,
-                    Ip = tbIp.Text,
-                    MaxPercentagePower = max,
-                    MinPercentagePower = min,
-                    Port = tbPort.Text,
-                    VisibleName = tbVisibleName.Text,
-                    X = x,
-                    Y = y,
-                    Z = z,
-                    Scope = scope,
-                    Active = cbIsActive.Checked,
-                    ControllModule = (string.IsNullOrEmpty(choosenModule) ? null : (choosenModule.Equals("Brak") ? null : choosenModule))
-                };
+                    string choosenModule = cmbEventHandler.SelectedItem as string;
 
-                LightDeviceInterfaceViewModel choosenInterface = cbLightDeviceInterface.SelectedItem as LightDeviceInterfaceViewModel;
-                if (choosenInterface != null)
-                    model.Interface = new LightDeviceInterfaceViewModel { Id = choosenInterface.Id };
+                    var model = new LightDeviceViewModel
+                    {
+                        DeviceId = this.model.DeviceId,
+                        Ip = tbIp.Text,
+                        MaxPercentagePower = max,
+                        MinPercentagePower = min,
+                        Port = tbPort.Text,
+                        VisibleName = tbVisibleName.Text,
+                        X = x,
+                        Y = y,
+                        Z = z,
+                        Scope = scope,
+                        Active = cbIsActive.Checked,
+                        ControllModule = (string.IsNullOrEmpty(choosenModule) ? null : (choosenModule.Equals("Brak") ? null : choosenModule))
+                    };
 
-                return RestClient.Post<bool>("Conf/SaveLightDevice", model);
+                    LightDeviceInterfaceViewModel choosenInterface = cbLightDeviceInterface.SelectedItem as LightDeviceInterfaceViewModel;
+                    if (choosenInterface != null)
+                        model.Interface = new LightDeviceInterfaceViewModel { Id = choosenInterface.Id };
+
+                    return RestClient.Post<bool>("Conf/SaveLightDevice", model);
+                }
+                else
+                {
+                    InfoForm.ShowError("Niepoprawny format adresu ip!");
+                    return false;
+                }
             }
             else
             {
                 InfoForm.ShowError("Błąd danych!");
                 return false;
             }
+        }
+
+        private bool ValidateIpAddress(string ip)
+        {
+            string[] partsOfIp = ip.Split(new char[] { '.' });
+
+            if (partsOfIp.Count() != 4)
+                return false;
+
+            foreach(var part in partsOfIp)
+            {
+                int partInInt;
+                if (int.TryParse(part, out partInInt))
+                {
+                    if (partInInt < 0 || partInInt > 257)
+                        return false;
+                }
+                else
+                    return false;
+            }
+            return true;
         }
     }
 }

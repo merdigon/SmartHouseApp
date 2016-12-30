@@ -54,6 +54,8 @@ namespace SmartHouseAppServer.App_Start
                         if (ControllerModule != null)
                             deviceWasUpdated = ControllerModule.ControlDeviceByEvent(userPossitionToAnalizeNow, PreviousStaticPowerLevel, this);
                     }
+                    if (ControllerModule != null)
+                        ControllerModule.NormalProcedure(PreviousStaticPowerLevel, this);
 
                     if (LastUpdate.AddHours(1) <= DateTime.Now && !deviceWasUpdated)
                     {
@@ -68,6 +70,10 @@ namespace SmartHouseAppServer.App_Start
                         {
                             int numberOfNearUsers = 0;
                             int totalNumberOfUsers = 0;
+                            using (var repo = new Repository<SystemUser>())
+                            {
+                                SystemUser = repo.All();
+                            }
                             foreach (var userPoss in totalUserPoss)
                             {
                                 SystemUser user = SystemUser.Where(p => p.Mac.Equals(userPoss.Mac)).SingleOrDefault();
@@ -78,7 +84,7 @@ namespace SmartHouseAppServer.App_Start
                                 totalNumberOfUsers += user.UserWeight;
                             }
 
-                            int lightPower = (LightDevice.MaxPercentagePower - LightDevice.MinPercentagePower) * (numberOfNearUsers / totalUserPoss.Count) + LightDevice.MinPercentagePower;
+                            int lightPower = (int)((LightDevice.MaxPercentagePower - LightDevice.MinPercentagePower) * ((double)numberOfNearUsers / totalNumberOfUsers) + LightDevice.MinPercentagePower);
                             
                             ILightDeviceInterface ldInterface = null;
                             switch(LightDevice.Interface.InterfaceClassName)

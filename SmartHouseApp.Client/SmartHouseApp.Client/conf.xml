@@ -1,7 +1,7 @@
 ﻿<Configuration>
   <Login>admin</Login>
   <Password>admin</Password>
-  <ServerIp>192.168.1.105:52079</ServerIp>
-  <ClientIp>192.168.1.105</ClientIp>
-  <PictureLocation>plan.png</PictureLocation>  
+  <ServerIp>192.168.9.119:52079</ServerIp>
+  <ClientIp>192.168.9.119</ClientIp>
+  <PictureLocation>plan.jpg</PictureLocation>  
 </Configuration>

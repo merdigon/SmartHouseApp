@@ -71,15 +71,15 @@
             this.lvDeviceItemCategories = new System.Windows.Forms.ListView();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.dgvUsers = new System.Windows.Forms.DataGridView();
-            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.VisibleName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Mac = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Weight = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tsbRefreshUsers = new System.Windows.Forms.ToolStripButton();
             this.tsbSaveUsers = new System.Windows.Forms.ToolStripButton();
             this.tsbDeleteUser = new System.Windows.Forms.ToolStripButton();
             this.ilDeviceImages = new System.Windows.Forms.ImageList(this.components);
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.VisibleName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Mac = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Weight = new System.Windows.Forms.DataGridViewComboBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -150,7 +150,7 @@
             this.tbWeight.Location = new System.Drawing.Point(99, 104);
             this.tbWeight.Name = "tbWeight";
             this.tbWeight.Size = new System.Drawing.Size(235, 20);
-            this.tbWeight.TabIndex = 23;
+            this.tbWeight.TabIndex = 6;
             // 
             // cbRouterCategory
             // 
@@ -158,7 +158,7 @@
             this.cbRouterCategory.Location = new System.Drawing.Point(99, 130);
             this.cbRouterCategory.Name = "cbRouterCategory";
             this.cbRouterCategory.Size = new System.Drawing.Size(235, 21);
-            this.cbRouterCategory.TabIndex = 22;
+            this.cbRouterCategory.TabIndex = 7;
             this.cbRouterCategory.SelectedIndexChanged += new System.EventHandler(this.cbRouterCategory_SelectedIndexChanged);
             // 
             // label11
@@ -184,7 +184,7 @@
             this.button3.Location = new System.Drawing.Point(499, 167);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 17;
+            this.button3.TabIndex = 13;
             this.button3.Text = "Zapisz";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
@@ -194,7 +194,7 @@
             this.button2.Location = new System.Drawing.Point(418, 167);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 16;
+            this.button2.TabIndex = 12;
             this.button2.Text = "Usuń";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
@@ -204,7 +204,7 @@
             this.button1.Location = new System.Drawing.Point(337, 167);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 15;
+            this.button1.TabIndex = 11;
             this.button1.Text = "Nowe";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -214,42 +214,42 @@
             this.tbZR.Location = new System.Drawing.Point(363, 104);
             this.tbZR.Name = "tbZR";
             this.tbZR.Size = new System.Drawing.Size(211, 20);
-            this.tbZR.TabIndex = 14;
+            this.tbZR.TabIndex = 10;
             // 
             // tbYR
             // 
             this.tbYR.Location = new System.Drawing.Point(363, 78);
             this.tbYR.Name = "tbYR";
             this.tbYR.Size = new System.Drawing.Size(211, 20);
-            this.tbYR.TabIndex = 13;
+            this.tbYR.TabIndex = 9;
             // 
             // tbXR
             // 
             this.tbXR.Location = new System.Drawing.Point(363, 52);
             this.tbXR.Name = "tbXR";
             this.tbXR.Size = new System.Drawing.Size(211, 20);
-            this.tbXR.TabIndex = 12;
+            this.tbXR.TabIndex = 8;
             // 
             // tbAntenaGain
             // 
             this.tbAntenaGain.Location = new System.Drawing.Point(99, 78);
             this.tbAntenaGain.Name = "tbAntenaGain";
             this.tbAntenaGain.Size = new System.Drawing.Size(235, 20);
-            this.tbAntenaGain.TabIndex = 10;
+            this.tbAntenaGain.TabIndex = 5;
             // 
             // tbTransPower
             // 
             this.tbTransPower.Location = new System.Drawing.Point(99, 52);
             this.tbTransPower.Name = "tbTransPower";
             this.tbTransPower.Size = new System.Drawing.Size(235, 20);
-            this.tbTransPower.TabIndex = 9;
+            this.tbTransPower.TabIndex = 4;
             // 
             // tbSsid
             // 
             this.tbSsid.Location = new System.Drawing.Point(99, 26);
             this.tbSsid.Name = "tbSsid";
             this.tbSsid.Size = new System.Drawing.Size(235, 20);
-            this.tbSsid.TabIndex = 8;
+            this.tbSsid.TabIndex = 3;
             // 
             // label10
             // 
@@ -334,7 +334,7 @@
             this.tbY.Location = new System.Drawing.Point(9, 86);
             this.tbY.Name = "tbY";
             this.tbY.Size = new System.Drawing.Size(175, 20);
-            this.tbY.TabIndex = 4;
+            this.tbY.TabIndex = 2;
             // 
             // label2
             // 
@@ -350,7 +350,7 @@
             this.tbX.Location = new System.Drawing.Point(9, 42);
             this.tbX.Name = "tbX";
             this.tbX.Size = new System.Drawing.Size(175, 20);
-            this.tbX.TabIndex = 2;
+            this.tbX.TabIndex = 1;
             // 
             // btnSaveMapSize
             // 
@@ -358,7 +358,7 @@
             this.btnSaveMapSize.Location = new System.Drawing.Point(109, 195);
             this.btnSaveMapSize.Name = "btnSaveMapSize";
             this.btnSaveMapSize.Size = new System.Drawing.Size(75, 23);
-            this.btnSaveMapSize.TabIndex = 1;
+            this.btnSaveMapSize.TabIndex = 14;
             this.btnSaveMapSize.Text = "Zapisz";
             this.btnSaveMapSize.UseVisualStyleBackColor = true;
             this.btnSaveMapSize.Click += new System.EventHandler(this.btnSaveMapSize_Click);
@@ -536,6 +536,54 @@
             this.dgvUsers.Size = new System.Drawing.Size(777, 392);
             this.dgvUsers.TabIndex = 1;
             // 
+            // toolStrip1
+            // 
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsbRefreshUsers,
+            this.tsbSaveUsers,
+            this.tsbDeleteUser});
+            this.toolStrip1.Location = new System.Drawing.Point(3, 3);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(777, 25);
+            this.toolStrip1.TabIndex = 0;
+            this.toolStrip1.Text = "toolStrip1";
+            // 
+            // tsbRefreshUsers
+            // 
+            this.tsbRefreshUsers.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbRefreshUsers.Image = global::SmartHouseApp.Client.Properties.Resources.Restart_48px;
+            this.tsbRefreshUsers.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbRefreshUsers.Name = "tsbRefreshUsers";
+            this.tsbRefreshUsers.Size = new System.Drawing.Size(23, 22);
+            this.tsbRefreshUsers.Text = "Pobierz";
+            this.tsbRefreshUsers.Click += new System.EventHandler(this.tsbRefreshUsers_Click);
+            // 
+            // tsbSaveUsers
+            // 
+            this.tsbSaveUsers.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbSaveUsers.Image = global::SmartHouseApp.Client.Properties.Resources.Save_as_48px;
+            this.tsbSaveUsers.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbSaveUsers.Name = "tsbSaveUsers";
+            this.tsbSaveUsers.Size = new System.Drawing.Size(23, 22);
+            this.tsbSaveUsers.Text = "Zapisz";
+            this.tsbSaveUsers.Click += new System.EventHandler(this.tsbSaveUsers_Click);
+            // 
+            // tsbDeleteUser
+            // 
+            this.tsbDeleteUser.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbDeleteUser.Image = global::SmartHouseApp.Client.Properties.Resources.Delete_48px;
+            this.tsbDeleteUser.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbDeleteUser.Name = "tsbDeleteUser";
+            this.tsbDeleteUser.Size = new System.Drawing.Size(23, 22);
+            this.tsbDeleteUser.Text = "Usuń";
+            this.tsbDeleteUser.Click += new System.EventHandler(this.tsbDeleteUser_Click);
+            // 
+            // ilDeviceImages
+            // 
+            this.ilDeviceImages.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
+            this.ilDeviceImages.ImageSize = new System.Drawing.Size(16, 16);
+            this.ilDeviceImages.TransparentColor = System.Drawing.Color.Transparent;
+            // 
             // Id
             // 
             this.Id.DataPropertyName = "Id";
@@ -561,58 +609,12 @@
             this.Weight.DataPropertyName = "Weight";
             this.Weight.HeaderText = "Waga użytkownika";
             this.Weight.Items.AddRange(new object[] {
+            "0",
             "1",
             "2",
             "3",
             "4"});
             this.Weight.Name = "Weight";
-            // 
-            // toolStrip1
-            // 
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsbRefreshUsers,
-            this.tsbSaveUsers,
-            this.tsbDeleteUser});
-            this.toolStrip1.Location = new System.Drawing.Point(3, 3);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(777, 25);
-            this.toolStrip1.TabIndex = 0;
-            this.toolStrip1.Text = "toolStrip1";
-            // 
-            // tsbRefreshUsers
-            // 
-            this.tsbRefreshUsers.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbRefreshUsers.Image = global::SmartHouseApp.Client.Properties.Resources.Restart_48px;
-            this.tsbRefreshUsers.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbRefreshUsers.Name = "tsbRefreshUsers";
-            this.tsbRefreshUsers.Size = new System.Drawing.Size(23, 22);
-            this.tsbRefreshUsers.Text = "toolStripButton3";
-            this.tsbRefreshUsers.Click += new System.EventHandler(this.tsbRefreshUsers_Click);
-            // 
-            // tsbSaveUsers
-            // 
-            this.tsbSaveUsers.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbSaveUsers.Image = global::SmartHouseApp.Client.Properties.Resources.Save_as_48px;
-            this.tsbSaveUsers.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbSaveUsers.Name = "tsbSaveUsers";
-            this.tsbSaveUsers.Size = new System.Drawing.Size(23, 22);
-            this.tsbSaveUsers.Text = "toolStripButton1";
-            this.tsbSaveUsers.Click += new System.EventHandler(this.tsbSaveUsers_Click);
-            // 
-            // tsbDeleteUser
-            // 
-            this.tsbDeleteUser.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbDeleteUser.Image = global::SmartHouseApp.Client.Properties.Resources.Delete_48px;
-            this.tsbDeleteUser.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbDeleteUser.Name = "tsbDeleteUser";
-            this.tsbDeleteUser.Size = new System.Drawing.Size(23, 22);
-            this.tsbDeleteUser.Text = "toolStripButton2";
-            // 
-            // ilDeviceImages
-            // 
-            this.ilDeviceImages.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
-            this.ilDeviceImages.ImageSize = new System.Drawing.Size(16, 16);
-            this.ilDeviceImages.TransparentColor = System.Drawing.Color.Transparent;
             // 
             // ConfigurationForm
             // 

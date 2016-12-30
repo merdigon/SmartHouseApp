@@ -32,33 +32,36 @@ namespace SmartHouseApp.Client
                     {
                         //MainForm.pictureBox1.Invalidate();
                         //graph.Clear(Color.Transparent);
-                        Bitmap bitmap = new Bitmap(MainForm.PictureSize.Width, MainForm.PictureSize.Height, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
-                        bitmap.MakeTransparent();
-
-                        using (var graph = Graphics.FromImage(bitmap))
+                        if (MainForm.pictureBox2.Height > 0 && MainForm.pictureBox2.Width > 0)
                         {
-                            for (int j = 0; j < MainForm.DeviceList.Count; j++)
-                            {
-                                var device = MainForm.DeviceList[j];
-                                var positionForDevice = ResizeUserLocalizationDependingOnPictureSize(MainForm, device.X, device.Y);
-                                graph.DrawImage(RenderTools.GetImageForDevice(device.DeviceCategory), new Rectangle(new Point(positionForDevice.Item1 + MainForm.pictureBox1.Location.X, positionForDevice.Item2 + MainForm.pictureBox1.Location.Y), new Size(32, 32)));
+                            Bitmap bitmap = new Bitmap(MainForm.pictureBox2.Width, MainForm.pictureBox2.Height, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+                            bitmap.MakeTransparent();
 
-                            }
-
-                            for (int i = 0; i < MainForm.Points.Count; i++)
+                            using (var graph = Graphics.FromImage(bitmap))
                             {
-                                var point = MainForm.Points[i];
-                                if (!point.ExpirationDate.HasValue || point.ExpirationDate.Value > DateTime.Now)
+                                for (int j = 0; j < MainForm.DeviceList.Count; j++)
                                 {
-                                    var positionForPoint = ResizeUserLocalizationDependingOnPictureSize(MainForm, point.X, point.Y);
-                                    graph.FillEllipse(myBrush, (float)positionForPoint.Item1 - radius + MainForm.pictureBox1.Location.X, (float)positionForPoint.Item2 - radius + MainForm.pictureBox1.Location.Y, radius + radius, radius + radius);
+                                    var device = MainForm.DeviceList[j];
+                                    var positionForDevice = ResizeUserLocalizationDependingOnPictureSize(MainForm, device.X, device.Y);
+                                    graph.DrawImage(RenderTools.GetImageForDevice(device.DeviceCategory), new Rectangle(new Point(positionForDevice.Item1 + MainForm.pictureBox1.Location.X, positionForDevice.Item2 + MainForm.pictureBox1.Location.Y), new Size(32, 32)));
 
                                 }
-                                else
-                                    MainForm.Points.Remove(point);
+
+                                for (int i = 0; i < MainForm.Points.Count; i++)
+                                {
+                                    var point = MainForm.Points[i];
+                                    if (!point.ExpirationDate.HasValue || point.ExpirationDate.Value > DateTime.Now)
+                                    {
+                                        var positionForPoint = ResizeUserLocalizationDependingOnPictureSize(MainForm, point.X, point.Y);
+                                        graph.FillEllipse(myBrush, (float)positionForPoint.Item1 - radius + MainForm.pictureBox1.Location.X, (float)positionForPoint.Item2 - radius + MainForm.pictureBox1.Location.Y, radius + radius, radius + radius);
+
+                                    }
+                                    else
+                                        MainForm.Points.Remove(point);
+                                }
+
+                                MainForm.pictureBox2.Image = bitmap;
                             }
-                            
-                            MainForm.pictureBox2.Image = bitmap;
                         }
                     };
                 MainForm.pictureBox2.Invoke(mi);
@@ -68,8 +71,8 @@ namespace SmartHouseApp.Client
 
         public static Tuple<int, int> ResizeUserLocalizationDependingOnPictureSize(Form1 mainForm, double x, double y)
         {
-            int xIS = mainForm.PictureSize.Width;
-            int yIS = mainForm.PictureSize.Height;
+            int xIS = mainForm.pictureBox2.Width;
+            int yIS = mainForm.pictureBox2.Height;
 
             int xREAL = (int)((x / mainForm.MapSize.Item1) * xIS);
             int yREAL = (int)((y / mainForm.MapSize.Item2) * yIS);

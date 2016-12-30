@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace SmartHouseApp.Tester
+namespace SmartHouseAppTester
 {
     public class LightDeviceThread
     {
@@ -15,15 +15,11 @@ namespace SmartHouseApp.Tester
         public string Port { get; set; }
         public Form1 MainForm { get; set; }
         public HttpListener Listener { get; set; }
-
-        public LightDeviceThread()
+        
+        public void Listen()
         {
             Listener = new HttpListener();
             Listener.Prefixes.Add(string.Format("http://{0}:{1}/", Ip, Port));
-        }
-
-        public void Listen()
-        {
             Listener.Start();
             MainForm.Invoke((MethodInvoker)delegate ()
             {

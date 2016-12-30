@@ -116,7 +116,8 @@ namespace SmartHouseAppServer.Controllers
         {
             using (var repo = new Repository<LightDeviceDomain>())
             {
-                return repo.All().Select(p =>
+                var list = repo.All().ToList();
+                return list.Select(p =>
                     new LightDeviceViewModel
                     {
                         DeviceId = p.DeviceId,
@@ -331,6 +332,29 @@ namespace SmartHouseAppServer.Controllers
                 repo.CommitTransaction();
                 return true;
             }
+        }
+
+        [HttpPost]
+        public bool DeleteSystemUser(SystemUserViewModel model)
+        {
+            using (var repo = new Repository<SystemUser>())
+            {
+                try
+                {
+                    repo.BeginTransaction();
+                    repo.Delete(model.Id);
+                    repo.CommitTransaction();
+                }
+                catch (Exception ex)
+                {
+                    if (repo != null)
+                    {
+                        repo.RollbackTransaction();
+                        return false;
+                    }
+                }
+            }
+            return true;
         }
     }
 }

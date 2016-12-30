@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Configuration>
+  <MapSizeX>10.0</MapSizeX>
+  <MapSizeY>4</MapSizeY>
+  <ServerIp>192.168.9.119:52079</ServerIp>
+  <NotRelativeMapPath>C:\Users\Szymon\Documents\GitHub\SmartApp\SmartHouseApp\SmartHouseApp.Client\SmartHouseApp.Client\bin\Debug\plan.jpg</NotRelativeMapPath>
+</Configuration>

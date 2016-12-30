@@ -7,8 +7,8 @@
     <ProjectGuid>{3EDDD84B-1469-4069-8132-02EF9660D72B}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SmartHouseApp.Tester</RootNamespace>
-    <AssemblyName>SmartHouseApp.Tester</AssemblyName>
+    <RootNamespace>SmartHouseAppTester</RootNamespace>
+    <AssemblyName>SmartHouseAppTester</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -70,11 +70,9 @@
     <Compile Include="Point.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repository.cs" />
-    <Compile Include="RouterType.cs" />
+    <Compile Include="RestClient.cs" />
     <Compile Include="SignalStrengthDataModel.cs" />
     <Compile Include="SignalType.cs" />
-    <Compile Include="StaticRouterInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -86,6 +84,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -99,15 +98,20 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="..\..\SmartHouseAppServer\SmartHouseApp.Common\conf.xml">
-      <Link>conf.xml</Link>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <ProjectReference Include="..\..\SmartHouseAppServer\SmartHouseApp.Share\SmartHouseApp.Share.csproj">
+      <Project>{AF695CE0-156F-4222-B721-EB9AC88FB0BA}</Project>
+      <Name>SmartHouseApp.Share</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="confTest.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="RouterType.hbm.xml" />
-    <Content Include="StaticRouterInfo.hbm.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

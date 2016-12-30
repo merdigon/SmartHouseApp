@@ -44,6 +44,7 @@ namespace SmartHouseApp.Client.Views
 
             dgvRouters.DataSource = Routers;
             cbRouterCategory.DataSource = RestClient.Get<List<RouterTypeViewModel>>("Conf/GetRouterTypes");
+            cbRouterCategory.SelectedIndex = -1;
 
             ilDeviceImages.Images.AddRange(new[] { Resources.Light_On_48px, Resources.Temperature_48px });
             lvDeviceItemCategories.SmallImageList = ilDeviceImages;
@@ -112,71 +113,88 @@ namespace SmartHouseApp.Client.Views
 
         private void button1_Click(object sender, EventArgs e)
         {
-            tbAntenaGain.Text = "";
-            tbSsid.Text = "";
-            tbTransPower.Text = "";
-            tbXR.Text = "";
-            tbYR.Text = "";
-            tbZR.Text = "";
+            tbAntenaGain.Text = 0.ToString();
+            tbSsid.Text = "NowySSID";
+            tbTransPower.Text = 0.ToString();
+            tbXR.Text = 0.ToString();
+            tbYR.Text = 0.ToString();
+            tbZR.Text = 0.ToString();
+            cbRouterCategory.SelectedIndex = 0;
             selectedItemId = 0;
+            tbSsid.Focus();
+        }
+
+        private void ClearRouterControl()
+        {
+            tbAntenaGain.Text = string.Empty;
+            tbSsid.Text = string.Empty;
+            tbTransPower.Text = string.Empty;
+            tbXR.Text = string.Empty;
+            tbYR.Text = string.Empty;
+            tbZR.Text = string.Empty;
+            cbRouterCategory.SelectedIndex = -1;
+            selectedItemId = -1;
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             try
             {
-                if (!string.IsNullOrEmpty(tbAntenaGain.Text) &&
-                   !string.IsNullOrEmpty(tbSsid.Text) &&
-                   !string.IsNullOrEmpty(tbTransPower.Text) &&
-                   !string.IsNullOrEmpty(tbXR.Text) &&
-                   !string.IsNullOrEmpty(tbYR.Text) &&
-                   !string.IsNullOrEmpty(tbZR.Text) &&
-                   !string.IsNullOrEmpty(tbWeight.Text))
+                if (selectedItemId >= 0)
                 {
-                    double ag, tp, xr, yr, zr;
-                    int weight;
-                    if (double.TryParse(tbAntenaGain.Text, out ag) &&
-                    double.TryParse(tbTransPower.Text, out tp) &&
-                    double.TryParse(tbXR.Text, out xr) &&
-                    double.TryParse(tbYR.Text, out yr) &&
-                    double.TryParse(tbZR.Text, out zr) &&
-                    int.TryParse(tbWeight.Text, out weight))
+                    if (!string.IsNullOrEmpty(tbAntenaGain.Text) &&
+                       !string.IsNullOrEmpty(tbSsid.Text) &&
+                       !string.IsNullOrEmpty(tbTransPower.Text) &&
+                       !string.IsNullOrEmpty(tbXR.Text) &&
+                       !string.IsNullOrEmpty(tbYR.Text) &&
+                       !string.IsNullOrEmpty(tbZR.Text) &&
+                       !string.IsNullOrEmpty(tbWeight.Text))
                     {
-                        if (weight > 0 && weight <= 4)
+                        double ag, tp, xr, yr, zr;
+                        int weight;
+                        if (double.TryParse(tbAntenaGain.Text, out ag) &&
+                        double.TryParse(tbTransPower.Text, out tp) &&
+                        double.TryParse(tbXR.Text, out xr) &&
+                        double.TryParse(tbYR.Text, out yr) &&
+                        double.TryParse(tbZR.Text, out zr) &&
+                        int.TryParse(tbWeight.Text, out weight))
                         {
-                            var model = new SaveStaticRouterInfoModel
+                            if (weight > 0 && weight <= 4)
                             {
-                                AntennaGain = ag,
-                                Id = selectedItemId,
-                                SSID = tbSsid.Text,
-                                TrasmitterPower = tp,
-                                LocationX = xr,
-                                LocationY = yr,
-                                LocationZ = zr,
-                                Weight = weight,
-                                RouterCategoryId = cbRouterCategory.SelectedIndex + 1
-                            };
+                                var model = new SaveStaticRouterInfoModel
+                                {
+                                    AntennaGain = ag,
+                                    Id = selectedItemId,
+                                    SSID = tbSsid.Text,
+                                    TrasmitterPower = tp,
+                                    LocationX = xr,
+                                    LocationY = yr,
+                                    LocationZ = zr,
+                                    Weight = weight,
+                                    RouterCategoryId = cbRouterCategory.SelectedIndex + 1
+                                };
 
-                            if (RestClient.Post<bool>("Conf/SaveRouterData", model))
+                                if (RestClient.Post<bool>("Conf/SaveRouterData", model))
+                                {
+                                    Routers = RestClient.Get<List<StaticRouterDataViewModel>>("Conf/GetRoutersInfo");
+                                    dgvRouters.DataSource = Routers;
+                                    dgvRouters.Refresh();
+                                    ClearRouterControl();
+                                }
+                            }
+                            else
                             {
-                                Routers = RestClient.Get<List<StaticRouterDataViewModel>>("Conf/GetRoutersInfo");
-                                dgvRouters.DataSource = Routers;
-                                dgvRouters.Refresh();
-                                button1_Click(null, null);
+                                InfoForm.ShowWarning("Waga urządzenia musi być z przedziału 1-4!");
                             }
                         }
                         else
                         {
-                            InfoForm.ShowWarning("Waga urządzenia musi być z przedziału 1-4!");
+                            InfoForm.ShowWarning("Błędny format danych!");
                         }
                     }
                     else
-                    {
-                        InfoForm.ShowWarning("Błędny format danych!");
-                    }
+                        InfoForm.ShowWarning("Pola nie mogą być puste!");
                 }
-                else
-                    InfoForm.ShowWarning("Pola nie mogą być puste!");
             }
             catch (Exception ex)
             {
@@ -210,12 +228,12 @@ namespace SmartHouseApp.Client.Views
             if (lvDeviceItemCategories.SelectedItems.Count > 0)
             {
                 string category = lvDeviceItemCategories.SelectedItems[0].Text;
-                if(Categories != null)
+                if (Categories != null)
                 {
                     SelectedCategory = Categories.Where(p => p.VisibleName.Equals(category)).SingleOrDefault();
-                    if(SelectedCategory != null)
+                    if (SelectedCategory != null)
                     {
-                        switch(SelectedCategory.CategoryId)
+                        switch (SelectedCategory.CategoryId)
                         {
                             case (int)DeviceCategories.LIGHT:
                                 Devices = RestClient.Post<List<LightDeviceViewModel>>("Conf/GetLightDevices", null).Select(p => (IDeviceRender)new LightDeviceRender
@@ -230,6 +248,8 @@ namespace SmartHouseApp.Client.Views
                                     Y = p.Y,
                                     Z = p.Z,
                                     Active = p.Active,
+                                    Scope = p.Scope,
+                                    ControllModule = p.ControllModule,
                                     Interface = p.Interface
                                 }).ToList();
                                 break;
@@ -254,6 +274,8 @@ namespace SmartHouseApp.Client.Views
                     }
                 }
             }
+            else
+                SelectedCategory = null;
         }
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
@@ -276,12 +298,17 @@ namespace SmartHouseApp.Client.Views
         private void button5_Click(object sender, EventArgs e)
         {
             UserControl confUserControl = null;
-            if(SelectedCategory.CategoryId == (int)DeviceCategories.LIGHT)
+            if (SelectedCategory != null)
             {
-                confUserControl = new LightDeviceRender() { Scope = 5 }.GetConfUserControl();
+                if (SelectedCategory.CategoryId == (int)DeviceCategories.LIGHT)
+                {
+                    confUserControl = new LightDeviceRender() { Scope = 5, Active = true }.GetConfUserControl();
+                }
+                gBCategory.Controls.Clear();
+                gBCategory.Controls.Add(confUserControl);
             }
-            gBCategory.Controls.Clear();
-            gBCategory.Controls.Add(confUserControl);
+            else
+                gBCategory.Controls.Clear();
         }
 
         private void button6_Click(object sender, EventArgs e)
@@ -332,10 +359,21 @@ namespace SmartHouseApp.Client.Views
 
         private void cbRouterCategory_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cbRouterCategory.SelectedIndex == 0)
-                tbWeight.Text = 3.ToString();
+            if (cbRouterCategory.SelectedIndex >= 0)
+            {
+                var selectedItem = cbRouterCategory.SelectedItem as RouterTypeViewModel;
+                if (selectedItem != null)
+                {
+                    if (selectedItem.Id == 0)
+                        tbWeight.Text = 2.ToString();
+                    else
+                        tbWeight.Text = 3.ToString();
+                }
+                else
+                    tbWeight.Text = string.Empty;
+            }
             else
-                tbWeight.Text = 2.ToString();
+                tbWeight.Text = string.Empty;
         }
 
         private void tsbRefreshUsers_Click(object sender, EventArgs e)
@@ -367,8 +405,8 @@ namespace SmartHouseApp.Client.Views
                 SystemUserViewModel newUser = new SystemUserViewModel
                 {
                     Id = (int)dgvUsers.Rows[i].Cells[0].Value,
-                    VisibleName = (string)dgvUsers.Rows[i].Cells[1].Value,
-                    Mac = (string)dgvUsers.Rows[i].Cells[2].Value,
+                    VisibleName = (string)dgvUsers.Rows[i].Cells[2].Value,
+                    Mac = (string)dgvUsers.Rows[i].Cells[1].Value,
                     Weight = (string)dgvUsers.Rows[i].Cells[3].EditedFormattedValue
                 };
                 tempUserList.Add(newUser);
@@ -386,6 +424,24 @@ namespace SmartHouseApp.Client.Views
 
             if (RestClient.Post<bool>("Conf/SaveUsers", SystemUsers))
                 InfoForm.ShowWarning("Pomyślnie zapisano użytkowników!");
+        }
+
+        private void tsbDeleteUser_Click(object sender, EventArgs e)
+        {
+            if (dgvUsers.SelectedRows.Count > 0)
+            {
+                var selectedUser = (SystemUserViewModel)dgvUsers.SelectedRows[0].DataBoundItem;
+                if (selectedUser != null)
+                {
+                    if (RestClient.Post<bool>("Conf/DeleteSystemUser", selectedUser))
+                    {
+                        InfoForm.ShowWarning("Pomyślnie usunięto użytkownika!");
+                        SystemUsers = RefreshUsers();
+                        dgvUsers.DataSource = SystemUsers;
+                        dgvUsers.Refresh();
+                    }
+                }
+            }
         }
     }
 }

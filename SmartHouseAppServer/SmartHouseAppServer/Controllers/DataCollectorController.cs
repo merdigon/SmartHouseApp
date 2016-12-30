@@ -54,11 +54,21 @@ namespace SmartHouseAppServer.Controllers
                 repo.CommitTransaction();
             }
 
-            foreach (var thread in WebApiApplication.ControllingThreads)
+            using (var repo = new Repository<SystemUser>())
             {
-                if (thread.ControllerModule != null)
-                    thread.NotAnalizedUserPositionEvents.Enqueue(poss);
+                if(repo.Where(p => p.Mac == notification.SourceName).FirstOrDefault() == null)
+                {
+                    repo.BeginTransaction();
+                    repo.Save(new Domain.SystemUser { Mac = notification.SourceName, VisibleName = "Guest", UserWeight = 1 });
+                    repo.CommitTransaction();
+                }
             }
+
+                foreach (var thread in WebApiApplication.ControllingThreads)
+                {
+                    if (thread.ControllerModule != null)
+                        thread.NotAnalizedUserPositionEvents.Enqueue(poss);
+                }
 
             return true;
         }
