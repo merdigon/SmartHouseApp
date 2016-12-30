@@ -58,9 +58,6 @@ D:\Repo\Source\SmartHouseApp\SmartHouseApp\SmartHouseApp\obj\Debug\SmartHouseApp
 D:\Repo\Source\SmartHouseApp\SmartHouseApp\SmartHouseApp\obj\Debug\SmartHouseApp.dll
 D:\Repo\Source\SmartHouseApp\SmartHouseApp\SmartHouseApp\obj\Debug\SmartHouseApp.pdb
 D:\Repo\Source\SmartHouseApp\SmartHouseApp\SmartHouseApp\obj\Debug\android\bin\SmartHouseApp.SmartHouseApp.apk
-D:\Repo\Source\SmartHouseApp\SmartHouseApp\SmartHouseApp\obj\Debug\res\layout\customlistview_routers.xml
-D:\Repo\Source\SmartHouseApp\SmartHouseApp\SmartHouseApp\obj\Debug\res\layout\a01searchrouter.xml
-D:\Repo\Source\SmartHouseApp\SmartHouseApp\SmartHouseApp\obj\Debug\res\layout\a02blouetoothlocalization.xml
 D:\Repo\Source\SmartHouseApp\SmartHouseApp\SmartHouseApp\obj\Debug\res\layout\main.xml
 D:\Repo\Source\SmartHouseApp\SmartHouseApp\SmartHouseApp\obj\Debug\res\values\strings.xml
 D:\Repo\Source\SmartHouseApp\SmartHouseApp\SmartHouseApp\obj\Debug\res\drawable\icon.png
