@@ -49,6 +49,8 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.cmbEventHandler = new System.Windows.Forms.ComboBox();
+            this.tbScope = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -190,7 +192,7 @@
             // cbIsActive
             // 
             this.cbIsActive.AutoSize = true;
-            this.cbIsActive.Location = new System.Drawing.Point(147, 292);
+            this.cbIsActive.Location = new System.Drawing.Point(147, 318);
             this.cbIsActive.Name = "cbIsActive";
             this.cbIsActive.Size = new System.Drawing.Size(85, 17);
             this.cbIsActive.TabIndex = 17;
@@ -223,10 +225,28 @@
             this.cmbEventHandler.Size = new System.Drawing.Size(210, 21);
             this.cmbEventHandler.TabIndex = 19;
             // 
+            // tbScope
+            // 
+            this.tbScope.Location = new System.Drawing.Point(147, 292);
+            this.tbScope.Name = "tbScope";
+            this.tbScope.Size = new System.Drawing.Size(210, 20);
+            this.tbScope.TabIndex = 21;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(50, 295);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(91, 13);
+            this.label11.TabIndex = 22;
+            this.label11.Text = "Obsługa zdarzeń:";
+            // 
             // LightConfUserControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.tbScope);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.cmbEventHandler);
             this.Controls.Add(this.label9);
@@ -249,7 +269,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "LightConfUserControl";
-            this.Size = new System.Drawing.Size(382, 314);
+            this.Size = new System.Drawing.Size(382, 343);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -278,5 +298,7 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.ComboBox cmbEventHandler;
+        private System.Windows.Forms.TextBox tbScope;
+        private System.Windows.Forms.Label label11;
     }
 }

@@ -1,11 +1,11 @@
 \chapter{Propagacja sygnału radiowego}
 \label{cha:teoria}
 \section{Zanik sygnał radiowego}
-Sygnał radiowy, wysłany przez urządzenie, w wyniku przechodzenia przez ośrodek (najczęściej jest nim powietrze) ulega zanikowi. Różnica w mocy sygnału odczytanego przez odbiornik, a siłą sygnału wysłanego przez nadawcę, pozwala na obliczenie odległości pomiędzy dwoma urządzeniami. Dodatkowymi współczynnikami, które mają wpływ na obliczenia, są:
+Sygnał radiowy, wysłany przez urządzenie, w wyniku przechodzenia przez ośrodek (najczęściej jest nim powietrze) ulega zanikowi. \cite{ST} Różnica w mocy sygnału odczytanego przez odbiornik, a siłą sygnału wysłanego przez nadawcę, pozwala na obliczenie odległości pomiędzy dwoma urządzeniami. Dodatkowymi współczynnikami, które mają wpływ na obliczenia, są:
 \begin{itemize}
 	\item zysk energetyczny anteny nadawcy oraz odbiorcy
 	\item margines zaniku, który zależy od czułości odbiornika
-	\item straty w sile sygnalu wynikające ze środowiska - przeszkody, odbicia, inne urządzenia nadające
+	\item straty w sile sygnału wynikające ze środowiska - przeszkody, odbicia, inne urządzenia nadające
 \end{itemize}
 \begin{figure}[H]			
 	\centering
@@ -13,22 +13,22 @@ Sygnał radiowy, wysłany przez urządzenie, w wyniku przechodzenia przez ośrod
 	\includegraphics[width=0.75\textwidth]{zanik_sygnalu}
 \end{figure}
 \section{Zysk energetyczny anteny}
-Zysk energetyczny anteny jest to stosunek mocy ateny wypromieniowanej w danym kierunku do mocy wypromieniowanej przez antenę wzorcową. Anteną wzorcową może być m.in. antena izotropowa, czyli antena bez fizycznych rozmiarów, która cały sygnał zasilany wysyła we wszystkich kierunkach. W takim wypadku, zysk energetyczny anteny wyrażany jest w $dBi$.\\
+Zysk energetyczny anteny jest to stosunek mocy anteny wypromieniowanej w danym kierunku do mocy wypromieniowanej przez antenę wzorcową \cite{ML}. Anteną wzorcową może być m.in. antena izotropowa, czyli antena bez fizycznych rozmiarów, która cały sygnał zasilany wysyła we wszystkich kierunkach. W takim wypadku, zysk energetyczny anteny wyrażany jest w $dBi$ \cite{AG}.\\
 Na zysk energetyczny mają również wpływ kierunkowość oraz materiał, z którego wykonana jest antena.
 \section{Margines zaniku}
-Margines zaniku (fade margin) jest to wartość określająca wielkość "marginesu" pomiędzy wartością odebraną, a czułością odbiornika. Określa się ją wzorem:
+Margines zaniku (fade margin) jest to wartość określająca wielkość "marginesu" pomiędzy wartością siły odebranego sygnału, a czułością odbiornika \cite{RFM}. Określa się ją wzorem:
 \begin{equation}
 FM = P_{rs} - P_{rx}
 \end{equation}
 gdzie $P_{rs}$ to siła odebranego sygnału.\\
-Margines zaniku jest wyznacznikiem, jak "dobre" jest połączenie między transmiterem i odbiorcą. Czym wyższa wartość marginesu zaniku, tym bardziej niezawodne jest połączenie.
+Margines zaniku jest wyznacznikiem, jak "dobre" jest połączenie między transmiterem i odbiorcą \cite{FMC}. Czym wyższa wartość marginesu zaniku, tym bardziej niezawodne jest połączenie.
 Wartość marginesu zaniku określa się w jednostce $dB$.
 \section{Received signal strength indication}
-Received signal strength indication (skrótem RSSI) jest to miara określająca moc sygnału odbieranego. Przyjmuje ona wartości niedodatnie (gdzie 0 oznacza sygnał najsilniejszy). Jednostką, w jakiej określa się siłę sygnału jest $dBm$, która jest logarytmiczną jednostką miary mocy odniesiona do mocy $1mW$.\\
-System Android pozwala na odczytanie siły odbieranego sygnału. Można do tego wykorzystać API $WifiManager$ (w przypadku odczytu sygnału WiFi) oraz $BroadcastReceiver$ (w przypadku odczytu sygnału Bluetooth).
+Received signal strength indication (skrótem RSSI) jest to miara określająca moc sygnału odbieranego. Przyjmuje ona wartości niedodatnie (gdzie 0 oznacza sygnał najsilniejszy). Jednostką, w jakiej określa się siłę sygnału jest $dBm$, która jest logarytmiczną jednostką miary mocy odniesioną do mocy $1mW$ \cite{AMMC}.\\
+System Android pozwala na odczytanie siły odbieranego sygnału. Można do tego wykorzystać API $WifiManager$ (w przypadku odczytu sygnału WiFi) oraz $BroadcastReceiver$ (w przypadku odczytu sygnału Bluetooth) \cite{ADBR}.
 \section{Free-space path loss}		  		  
-Utrata w sile sygnału spowodowana przejściem fali elektromagnetycznej przez ośrodek (najczęściej powietrze).
-Wzór na obliczanie FSPL:
+Free-space path loss jest to utrata siły sygnału, spowodowana przejściem fali elektromagnetycznej przez ośrodek (najczęściej powietrze) \cite{SPPLM}.\\
+Wzór na obliczanie FSPL \cite{TPL}:
 \begin{equation}
 FSPL = P_{tx} + AG_{tx} + AG_{rx} - P_{rx} - FM - L
 \end{equation}
@@ -39,14 +39,14 @@ FSPL = P_{tx} + AG_{tx} + AG_{rx} - P_{rx} - FM - L
 %http://stackoverflow.com/questions/11217674/how-to-calculate-distance-from-wifi-router-using-signal-strength
 Gdzie symbole oznaczają:
 \begin{itemize}
-	\item $P_{tx}$ - siła trasmitera, wyrażona w dBm
-	\item $AG_{tx}$ - zysk energentyczny anteny transmitera, wyrażony w dBi
-	\item $AG_{rx}$ - zysk energentyczny anteny odbiorcy, wyrażony w dBi
+	\item $P_{tx}$ - siła transmitera, wyrażona w dBm
+	\item $AG_{tx}$ - zysk energetyczny anteny transmitera, wyrażony w dBi
+	\item $AG_{rx}$ - zysk energetyczny anteny odbiorcy, wyrażony w dBi
 	\item $P_{rx}$ - czułość odbiornika, wyrażona w dBm
 	\item $FM$ - margines zaniku sygnału (fade margin) - określa jak duży jest margines różnicy pomiędzy uzyskaną siłą sygnału, a czułością odbiornika
 	\item $L$ - straty wynikające np z oddziaływania innych transmiterów, przeszkód itp.
 \end{itemize}
-Dodatkowo, FSPL można obliczyć, używając następujący wzór:
+Dodatkowo, FSPL można obliczyć, używając następujący wzór \cite{EN}:
 \begin{equation}
 FSPL = 20log_{10}\left(\frac{d}{d_{0}}\right) + 20log_{10}(f) + K
 \end{equation}
@@ -54,7 +54,7 @@ FSPL = 20log_{10}\left(\frac{d}{d_{0}}\right) + 20log_{10}(f) + K
 % Wi-Fi Indoor Positioning System Based on RSSI Measurements from Wi-Fi  Access Points  –  A Tri-lateration Approach Onkar Pathak, Pratik Palaskar, Rajesh Palkar, Mayur Tawari
 Gdzie symbole oznaczają:
 \begin{itemize}
-	\item $d$ - dystans dzielący trasmiter od odbiorcy, wyrażony w metrach
+	\item $d$ - dystans dzielący transmiter od odbiorcy, wyrażony w metrach
 	\item $d_{0}$ - dystans referencyjny -  w tym wypadku 1 metr
 	\item $f$ - częstotliwość transmitera - wyrażona w MHz
 	\item $K$ - stała, którą można określić wzorem:
@@ -63,7 +63,7 @@ Gdzie symbole oznaczają:
 	\end{equation}
 	gdzie $d_{0}$ to dystans referencyjny (taki sam jak we wzorze wyżej), a $C$ to długość fali emitowanej przez transmiter
 \end{itemize}	  
-Po przekształceniu wzoru, uzytkujemy:
+Po przekształceniu wzoru, uzyskujemy:
 \begin{equation}
 d = 10^{\left(\frac{FSPL - K - 20log_{10}(f)}{20}\right)}
 \end{equation}

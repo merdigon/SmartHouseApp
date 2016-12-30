@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Web;
-using NHibernate;
 using NHibernate.Cfg;
+using System;
+using NHibernate;
+using System.Collections.Generic;
 using System.Linq.Expressions;
 
-namespace SmartHouseApp.Common.Repository
+namespace SmartHouseApp.Tester
 {
     public class Repository<T> : IDisposable where T : class
     {

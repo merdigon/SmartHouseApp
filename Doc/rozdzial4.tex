@@ -4,8 +4,8 @@
 Testy mają na celu zbadać skuteczność wyznaczania odległości między transmiterem, a odbiornikiem dla sygnałów Wifi i Bluetooth.\\
 Testy odbywać się będą w dwóch etapach:
 \begin{itemize}
-	\item w pierwszym, odbiornik i transmiter będą oddalone od siebie o około 1m. Mierzona będzie siła odbieranego sygnału. Celem tego etapu jest określenie, jak duże straty siły sygnału wziązane są z komunikacją Wifi i Bluetooth. Straty mogą wynikać z izolacji obudowy, odbić, interferencji kilku fal lub z braku kierunkowości anteny (antena wbudowana).
-	\item w drugim etapie, obliczone wcześniej wartości strat zostaną wykorzystane aby zmierzyć, jak zmienia się siła sygnału, kiedy na drodze pojawi się przeszkoda. Do testów wykorzystana została książka o formacie A4, której grubość nie przekracza kilka centymetrów
+	\item w pierwszym, odbiornik i transmiter będą oddalone od siebie o około 1m. Mierzona będzie siła odbieranego sygnału. Celem tego etapu jest określenie, jak duże straty siły sygnału związane są z komunikacją Wifi i Bluetooth. Straty mogą wynikać z izolacji obudowy, odbić, interferencji kilku fal lub z braku kierunkowości anteny (antena wbudowana).
+	\item w drugim etapie, obliczone wcześniej wartości strat zostaną wykorzystane aby zmierzyć, jak zmienia się siła sygnału, kiedy na drodze pojawi się przeszkoda. Do testów wykorzystana została książka o formacie A4, której grubość nie przekracza kilkunastu centymetrów
 \end{itemize}
 Uzyskane informacje pozwolą obliczyć współczynnik strat, jaki należy uwzględnić podczas późniejszego obliczania lokalizacji użytkowników oraz pozwoli przydzielić każdemu ze sposobów komunikacji radiowej odpowiednią wagę, w zależności od jego odporności na zakłócenia.
 \section{Wykorzystane urządzenia}
@@ -36,15 +36,13 @@ Uzyskane informacje pozwolą obliczyć współczynnik strat, jaki należy uwzgl�
 	\item Smartphone Samsung Grand 2 (G7102) - nadajnik\\
 	Dane techniczne:
 	\begin{itemize}
-		\item Częstotliwość - 2,4GHz
 		\item Jedna antena wbudowana
 		\item Przyrost siły sygnału z anteny - 0dBi
-		\item Siła transmitera Wifi - 10dBm
 		\item Siła transmitera Bluetooth - 2dBm				
 	\end{itemize}
 \end{enumerate}
 \section{Warunki}
-Wszystkie pomiary wykonywane były w pomieszczeniu zamknięty, bez przeszkód na drodze sygnału. Wszystkie urządzenia znajdowały się na tej samem wysokości, skierowane do siebie górną częścią (w przypadku routeru, skierowany był on do odbiornika swoimi antenami kierunkowymi).
+Wszystkie pomiary wykonywane były w pomieszczeniu zamknięty, bez przeszkód na drodze sygnału. Wszystkie urządzenia znajdowały się na tej samem wysokości, skierowane do siebie górną częścią (w przypadku routera, skierowany był on do odbiornika swoimi antenami kierunkowymi).
 \section{Wyznaczenie wartości strat}
 Eksperyment polegał na ustawieniu transmitera 1m od odbiornika na jednym poziomie, antenami do siebie. Na podstawie siły sygnałów obliczana była wartość strat, jakie musiałyby być uwzględnione, aby odległość obliczona równała się odległości fizycznej.\\			
 \begin{figure}[H]
@@ -97,4 +95,66 @@ Wartości obliczone dla eksperymentu nr 1, w którym smartphone Samsung Grand 2 
 \end{center}
 Średnia arytmetyczna wartości strat dla komunikacji przy użyciu Bluetooth wynosi 30,6 dB.
 \subsection{Wnioski}
-Opierając się na wynikach uzyskanych podczas eksperymentów wynika, że straty wynikające z zakłóceń sygnału Bluetooth są wyższe niż wynikające z zakłóceń sygnału WiFi. Może się to wziązać z tym, że transmiter Wifi ma większą moc, zaś kierunkowe anteny zmniejszają ilość zakłóceń wynikających z oblicia się sygnału. Wartości strat obliczone dla obu sposobów komunikacji zostaną wykorzystane podczas eksperymentu nr 2.
+Opierając się na wynikach uzyskanych podczas eksperymentów stwierdzam, że straty wynikające z zakłóceń sygnału Bluetooth są wyższe niż wynikające z zakłóceń sygnału WiFi. Może się to wiązać z tym, że transmiter Wifi ma większą moc, zaś kierunkowe anteny zmniejszają ilość zakłóceń wynikających z odbicia się sygnału. Wartości strat obliczone dla obu sposobów komunikacji zostaną wykorzystane podczas eksperymentu nr 2 oraz będą miały wpływ na wybór wagi dla siły sygnałów podczas określania lokalizacji użytkowników.
+\section{Przeszkody na drodze sygnału}
+Drugi eksperyment ma na celu zbadanie odporności każdego z rodzajów sygnałów na zakłócenia związane ze stojącą na drodze przeszkodą. Wnioski z tego eksperymentu będą miałby duży wpływ na działanie systemu, ponieważ w rzeczywistym środowisku, w którym ma działać tworzony system, transmiter od użytkownika będzie dzielić czasami nawet kilkoma ścianami i ważne jest, aby odpowiednio dobrać wagi dla sygnałów.\\
+Transmiter od odbiornika został oddalony o 1 metr. Na drodze sygnału została postawiona gruba książka wielkości A4. W eksperymencie nie posłużyłem się normalną ścianą, ponieważ nie chciałem, aby kształt pomieszczenia, w których znajduje się i odbiornik i transmiter miał większy wpływ na zmiany sygnału niż miało to miejsce w przypadku eksperymentu nr 1 - chciałem, aby oba testy były przeprowadzone w podobnym środowisku.\\
+Do dokonania pomiarów zostały wykorzystane te same urządzenia jak w przypadku eksperymentu nr 1.\\
+Wartość błędu bezwzględnego obliczana była na podstawie wzoru:
+\begin{equation}
+\delta = |D_r - D_o|
+\end{equation}
+gdzie $D_r$ to rzeczywista odległość między transmiterem, a odbiornikiem, zaś $D_o$ to odległość obliczona na podstawie siły sygnału.
+\begin{figure}[H]
+	\centering			
+	\caption{Szkic eksperymentu nr 2}
+	\includegraphics{exper2}
+\end{figure}
+\subsection{Wifi}
+Wartość siły sygnałów, obliczony dystans oraz wielkość błędu dla pomiaru sygnału Wifi:
+\begin{center}
+	\begin{minipage}{\linewidth}
+		\begin{tabular}{|c|c|c|c|}
+			\hline 
+			Pomiar & Siła sygnału (w dBm) & Obliczona odległość (m) & Błąd bezwzględny (m)\\ 
+			\hline 
+			1 & -38 & 0,82 & 0,18 \\ 
+			\hline 
+			2 & -39 & 0,92 & 0,08 \\ 
+			\hline 
+			3 & -42 & 1,30 & 0,30 \\ 
+			\hline 
+			4 & -46 & 2,07 & 1,07 \\ 
+			\hline 
+			5 & -43 & 1,46 & 0,46 \\ 
+			\hline
+		\end{tabular} 
+	\end{minipage} 
+\end{center}
+Średni błąd bezwzględny dla sygnału Wifi wynosi 0,41 metra.\\
+\subsection{Bluetooth}
+Wartość siły sygnałów, obliczony dystans oraz wielkość błędu dla pomiaru sygnału Bluetooth:
+ \begin{center}
+ 	\begin{minipage}{\linewidth}
+ 		\begin{tabular}{|c|c|c|c|}
+ 			\hline 
+ 			Pomiar & Siła sygnału (w dBm) & Obliczona odległość (m) & Błąd bezwzględny (m)\\ 
+ 			\hline 
+ 			1 & -63 & 1,73 & 0,73 \\ 
+ 			\hline 
+ 			2 & -66 & 2,45 & 1,45 \\ 
+ 			\hline 
+ 			3 & -70 & 3,89 & 2,89 \\ 
+ 			\hline 
+ 			4 & -66 & 2,45 & 1,45 \\ 
+ 			\hline 
+ 			5 & -63 & 1,73 & 0,73 \\
+ 			\hline
+ 			6 & -64 & 1,94 & 0,94 \\
+ 			\hline 
+ 		\end{tabular} 
+ 	\end{minipage} 
+ \end{center}
+Średni błąd bezwzględny dla sygnału Bluetooth wynosi 1,37 metra.
+\subsection{Wnioski}
+Wyniki eksperymentu nr 2 jasno wskazują, że sygnał Wifi jest bardziej odporny na zmiany spowodowane pojawiającą się na drodze przeszkodą. Ma to duży wpływ na obliczanie lokalizacji użytkownika na podstawie sygnału i dlatego technologia Wifi będzie miała wyższą wagę w tworzonym systemie. 

@@ -19,7 +19,6 @@ namespace SmartHouseAppServer.App_Start
         public Thread CurrentThread { get; set; }
         public LightDeviceDomain LightDevice { get; set; }
         public List<SystemUser> SystemUser { get; set; }
-        public static double DISTANCE_TO_LIGHT_DEVICE = 5.0;
         public Queue<UserPositionHistory> NotAnalizedUserPositionEvents { get; set; }
         public ILightDeviceContr ControllerModule { get; set; }
         public int PreviousStaticPowerLevel { get; set; }
@@ -74,7 +73,7 @@ namespace SmartHouseAppServer.App_Start
                                 SystemUser user = SystemUser.Where(p => p.Mac.Equals(userPoss.Mac)).SingleOrDefault();
                                 if (user == null)
                                     user = new SystemUser { Mac = userPoss.Mac, UserWeight = 1 };
-                                if (DotNetInterface.iCountDistanceBetweenTwoPoints(LightDevice.X, LightDevice.Y, LightDevice.Z, userPoss.X, userPoss.Y, userPoss.Z) < DISTANCE_TO_LIGHT_DEVICE)
+                                if (DotNetInterface.iCountDistanceBetweenTwoPoints(LightDevice.X, LightDevice.Y, LightDevice.Z, userPoss.X, userPoss.Y, userPoss.Z) < LightDevice.Scope)
                                     numberOfNearUsers += user.UserWeight;
                                 totalNumberOfUsers += user.UserWeight;
                             }

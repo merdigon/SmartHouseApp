@@ -77,9 +77,9 @@ namespace SmartHouseApp.Common.Repository
             _session.SaveOrUpdate(obj);
         }
 
-        public virtual T Save(T obj)
+        public virtual int Save(T obj)
         {
-            return (T)_session.Save(obj);
+            return (int)_session.Save(obj);
         }
 
         public virtual void Update(T obj)

@@ -70,9 +70,8 @@
     <Compile Include="Point.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ServerClasses\LightDeviceDomain.cs" />
-    <Compile Include="ServerClasses\LightDeviceInterface.cs" />
-    <Compile Include="ServerClasses\Repository.cs" />
+    <Compile Include="Repository.cs" />
+    <Compile Include="RouterType.cs" />
     <Compile Include="SignalStrengthDataModel.cs" />
     <Compile Include="SignalType.cs" />
     <Compile Include="StaticRouterInfo.cs" />
@@ -107,8 +106,8 @@
       <Link>conf.xml</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="ServerClasses\LightDeviceDomain.hbm.xml" />
-    <Content Include="ServerClasses\LightDeviceInterface.hbm.xml" />
+    <Content Include="RouterType.hbm.xml" />
+    <Content Include="StaticRouterInfo.hbm.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

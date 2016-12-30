@@ -13,8 +13,8 @@ namespace SmartHouseAppServer.Tools
     {
         private static Configuration _conf;
         
-        public virtual int MapSizeX { get; set; }
-        public virtual int MapSizeY { get; set; }
+        public virtual double MapSizeX { get; set; }
+        public virtual double MapSizeY { get; set; }
         public virtual string AdminLogin { get; set; }
         public virtual string AdminPassword { get; set; }
 

@@ -7,7 +7,7 @@
 \contentsline {section}{\numberline {2.2}Trilateracja}{9}
 \contentsline {section}{\numberline {2.3}Lokalizacja jako funkcja probabilistyczna Gaussa}{10}
 \contentsline {subsection}{\numberline {2.3.1}Funkcja probabilistyczna Gaussa}{10}
-\contentsline {subsection}{\numberline {2.3.2}Model router\IeC {\'o}w jako funckcja Gaussa}{11}
+\contentsline {subsection}{\numberline {2.3.2}Model router\IeC {\'o}w jako funkcja Gaussa}{11}
 \contentsline {subsection}{\numberline {2.3.3}Lokalizacja u\IeC {\.z}ytkownika opisana funkcj\IeC {\k a} Gaussa}{12}
 \contentsline {chapter}{\numberline {3}Propagacja sygna\IeC {\l }u radiowego}{15}
 \contentsline {section}{\numberline {3.1}Zanik sygna\IeC {\l } radiowego}{15}
@@ -22,27 +22,32 @@
 \contentsline {subsection}{\numberline {4.3.1}Wifi}{20}
 \contentsline {subsection}{\numberline {4.3.2}Bluetooth}{21}
 \contentsline {subsection}{\numberline {4.3.3}Wnioski}{21}
-\contentsline {chapter}{\numberline {5}Implementacja}{23}
-\contentsline {section}{\numberline {5.1}Architektura}{23}
-\contentsline {section}{\numberline {5.2}Wykorzystana technologia}{24}
-\contentsline {section}{\numberline {5.3}Konfiguracja}{25}
-\contentsline {section}{\numberline {5.4}Serwer}{25}
-\contentsline {subsection}{\numberline {5.4.1}Lokalizacja u\IeC {\.z}ytkownik\IeC {\'o}w mobilnych}{26}
-\contentsline {subsubsection}{\numberline {5.4.1.1}Pobranie i analiza danych}{26}
-\contentsline {subsubsection}{\numberline {5.4.1.2}Algorytmiczne wyznaczenie lokalizacji}{26}
-\contentsline {subsubsection}{\numberline {5.4.1.3}Zarz\IeC {\k a}dzanie lokalizacj\IeC {\k a} u\IeC {\.z}ytkownika}{28}
-\contentsline {subsection}{\numberline {5.4.2}Sterowanie i zarz\IeC {\k a}dzanie urz\IeC {\k a}dzeniami}{28}
-\contentsline {subsubsection}{\numberline {5.4.2.1}Dob\IeC {\'o}r parametr\IeC {\'o}w steruj\IeC {\k a}cych}{29}
-\contentsline {subsubsection}{\numberline {5.4.2.2}Komunikacja z urz\IeC {\k a}dzeniami}{30}
-\contentsline {subsection}{\numberline {5.4.3}Konfiguracja systemu}{31}
-\contentsline {subsection}{\numberline {5.4.4}Zarz\IeC {\k a}dzanie pozosta\IeC {\l }ymi funkcjami aplikacji administracyjnej}{33}
-\contentsline {section}{\numberline {5.5}Aplikacja administracyjna}{33}
-\contentsline {subsection}{\numberline {5.5.1}Opis okien aplikacji}{34}
-\contentsline {subsubsection}{\numberline {5.5.1.1}Okno logowania}{34}
-\contentsline {subsubsection}{\numberline {5.5.1.2}G\IeC {\l }\IeC {\'o}wne okno}{35}
-\contentsline {subsubsection}{\numberline {5.5.1.3}Okno konfiguracji}{37}
-\contentsline {subsection}{\numberline {5.5.2}Wy\IeC {\'s}wietlanie lokalizacji u\IeC {\.z}ytkownik\IeC {\'o}w}{40}
-\contentsline {chapter}{\numberline {6}Testy systemu}{41}
-\contentsline {section}{\numberline {6.1}Lokalizowanie u\IeC {\.z}ytkownika}{41}
-\contentsline {section}{\numberline {6.2}Monitorowanie i konfiguracja systemu}{41}
-\contentsline {section}{\numberline {6.3}Podsumowanie}{41}
+\contentsline {section}{\numberline {4.4}Przeszkody na drodze sygna\IeC {\l }u}{21}
+\contentsline {subsection}{\numberline {4.4.1}Wifi}{22}
+\contentsline {subsection}{\numberline {4.4.2}Bluetooth}{22}
+\contentsline {subsection}{\numberline {4.4.3}Wnioski}{23}
+\contentsline {chapter}{\numberline {5}Implementacja}{25}
+\contentsline {section}{\numberline {5.1}Architektura}{25}
+\contentsline {section}{\numberline {5.2}Wykorzystana technologia}{26}
+\contentsline {section}{\numberline {5.3}Konfiguracja}{27}
+\contentsline {section}{\numberline {5.4}Serwer}{27}
+\contentsline {subsection}{\numberline {5.4.1}Lokalizacja u\IeC {\.z}ytkownik\IeC {\'o}w mobilnych}{28}
+\contentsline {subsubsection}{\numberline {5.4.1.1}Pobranie i analiza danych}{28}
+\contentsline {subsubsection}{\numberline {5.4.1.2}Algorytmiczne wyznaczenie lokalizacji}{28}
+\contentsline {subsubsection}{\numberline {5.4.1.3}Zarz\IeC {\k a}dzanie lokalizacj\IeC {\k a} u\IeC {\.z}ytkownika}{30}
+\contentsline {subsection}{\numberline {5.4.2}Sterowanie i zarz\IeC {\k a}dzanie urz\IeC {\k a}dzeniami}{30}
+\contentsline {subsubsection}{\numberline {5.4.2.1}Dob\IeC {\'o}r parametr\IeC {\'o}w steruj\IeC {\k a}cych}{31}
+\contentsline {subsubsection}{\numberline {5.4.2.2}Komunikacja z urz\IeC {\k a}dzeniami}{32}
+\contentsline {subsection}{\numberline {5.4.3}Konfiguracja systemu}{33}
+\contentsline {subsection}{\numberline {5.4.4}Zarz\IeC {\k a}dzanie pozosta\IeC {\l }ymi funkcjami aplikacji administracyjnej}{35}
+\contentsline {section}{\numberline {5.5}Aplikacja administracyjna}{36}
+\contentsline {subsection}{\numberline {5.5.1}Opis okien aplikacji}{36}
+\contentsline {subsubsection}{\numberline {5.5.1.1}Okno logowania}{36}
+\contentsline {subsubsection}{\numberline {5.5.1.2}G\IeC {\l }\IeC {\'o}wne okno}{37}
+\contentsline {subsubsection}{\numberline {5.5.1.3}Okno konfiguracji}{39}
+\contentsline {subsection}{\numberline {5.5.2}Wy\IeC {\'s}wietlanie lokalizacji u\IeC {\.z}ytkownik\IeC {\'o}w}{42}
+\contentsline {section}{\numberline {5.6}Aplikacja mobilna}{43}
+\contentsline {chapter}{\numberline {6}Testy systemu}{45}
+\contentsline {section}{\numberline {6.1}Lokalizowanie u\IeC {\.z}ytkownika}{45}
+\contentsline {section}{\numberline {6.2}Monitorowanie i konfiguracja systemu}{47}
+\contentsline {section}{\numberline {6.3}Podsumowanie}{47}

@@ -20,7 +20,7 @@ namespace SmartHouseApp.Client.Views
         public List<PointOnMap> Points { get; set; }
         public List<DeviceRenderViewModel> DeviceList { get; set; }
         public Size PictureSize { get; set; }
-        public Size MapSize { get; set; }
+        public Tuple<double, double> MapSize { get; set; }
         public Form1()
         {
             InitializeComponent();
@@ -36,6 +36,7 @@ namespace SmartHouseApp.Client.Views
                 pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
                 pictureBox1.Controls.Add(pictureBox2);
                 pictureBox2.BackColor = Color.Transparent;
+                pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
 
                 Points = new List<PointOnMap>();
                 RefreshRenderDevices();
@@ -141,8 +142,11 @@ namespace SmartHouseApp.Client.Views
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            PointPainterThread.Abort();
-            ServerThread.Abort();
+            if(PointPainterThread != null)
+                PointPainterThread.Abort();
+
+            if(ServerThread != null)
+                ServerThread.Abort();
         }
 
         private void btnRefreshDevices_Click(object sender, EventArgs e)

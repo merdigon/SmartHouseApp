@@ -26,7 +26,7 @@ namespace SmartHouseAppServer.DeviceControllers.LightDevices
             List<UserPositionHistory> nearPossitions = new List<UserPositionHistory>();
             foreach(var userPoss in userPossitions)
             {
-                if (DotNetInterface.iCountDistanceBetweenTwoPoints(deviceThread.LightDevice.X, deviceThread.LightDevice.Y, deviceThread.LightDevice.Z, userPoss.X, userPoss.Y, userPoss.Z) < LightDeviceControllingThread.DISTANCE_TO_LIGHT_DEVICE)
+                if (DotNetInterface.iCountDistanceBetweenTwoPoints(deviceThread.LightDevice.X, deviceThread.LightDevice.Y, deviceThread.LightDevice.Z, userPoss.X, userPoss.Y, userPoss.Z) < deviceThread.LightDevice.Scope)
                     nearPossitions.Add(userPoss);
             }
             List<Tuple<UserPositionHistory, int>> positionsWithUserWeight = new List<Tuple<UserPositionHistory, int>>();

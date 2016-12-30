@@ -30,6 +30,7 @@ namespace SmartHouseApp.Client.Views.Components
             tbX.Text = model.X.ToString();
             tbY.Text = model.Y.ToString();
             tbZ.Text = model.Z.ToString();
+            tbScope.Text = model.Scope.ToString();
             cbIsActive.Checked = model.Active;
 
             cmbEventHandler.DataSource = new string[] { "Brak", "ImportantUserFirstContr" };
@@ -43,33 +44,45 @@ namespace SmartHouseApp.Client.Views.Components
 
         public bool Save()
         {
-            int max = int.Parse(tbMaxPerc.Text);
-            int min = int.Parse(tbMinPerc.Text);
-            double x = double.Parse(tbX.Text);
-            double y = double.Parse(tbY.Text);
-            double z = double.Parse(tbZ.Text);
-            string choosenModule = cmbEventHandler.SelectedItem as string;
+            int max, min;
+            double x, y, z, scope;
 
-            var model = new LightDeviceViewModel
+            if (int.TryParse(tbMaxPerc.Text, out max) &&
+                int.TryParse(tbMinPerc.Text, out min) &&
+                double.TryParse(tbX.Text, out x) &&
+                double.TryParse(tbY.Text, out y) &&
+                double.TryParse(tbZ.Text, out z) &&
+                double.TryParse(tbScope.Text, out scope))
             {
-                DeviceId = this.model.DeviceId,
-                Ip = tbIp.Text,
-                MaxPercentagePower = max,
-                MinPercentagePower = min,
-                Port = tbPort.Text,
-                VisibleName = tbVisibleName.Text,
-                X = x,
-                Y = y,
-                Z = z,
-                Active = cbIsActive.Checked,
-                ControllModule = (string.IsNullOrEmpty(choosenModule) ? null : (choosenModule.Equals("Brak") ? null : choosenModule)) 
-            };
+                string choosenModule = cmbEventHandler.SelectedItem as string;
 
-            LightDeviceInterfaceViewModel choosenInterface = cbLightDeviceInterface.SelectedItem as LightDeviceInterfaceViewModel;
-            if (choosenInterface != null)
-                model.Interface = new LightDeviceInterfaceViewModel { Id = choosenInterface.Id };
+                var model = new LightDeviceViewModel
+                {
+                    DeviceId = this.model.DeviceId,
+                    Ip = tbIp.Text,
+                    MaxPercentagePower = max,
+                    MinPercentagePower = min,
+                    Port = tbPort.Text,
+                    VisibleName = tbVisibleName.Text,
+                    X = x,
+                    Y = y,
+                    Z = z,
+                    Scope = scope,
+                    Active = cbIsActive.Checked,
+                    ControllModule = (string.IsNullOrEmpty(choosenModule) ? null : (choosenModule.Equals("Brak") ? null : choosenModule))
+                };
 
-            return RestClient.Post<bool>("Conf/SaveLightDevice", model);
+                LightDeviceInterfaceViewModel choosenInterface = cbLightDeviceInterface.SelectedItem as LightDeviceInterfaceViewModel;
+                if (choosenInterface != null)
+                    model.Interface = new LightDeviceInterfaceViewModel { Id = choosenInterface.Id };
+
+                return RestClient.Post<bool>("Conf/SaveLightDevice", model);
+            }
+            else
+            {
+                InfoForm.ShowError("Błąd danych!");
+                return false;
+            }
         }
     }
 }

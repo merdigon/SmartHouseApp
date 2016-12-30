@@ -2,6 +2,6 @@
 <Configuration>
   <AdminLogin>admin</AdminLogin>
   <AdminPassword>admin</AdminPassword>
-  <MapSizeX>100</MapSizeX>
-  <MapSizeY>100</MapSizeY>
+  <MapSizeX>10.0</MapSizeX>
+  <MapSizeY>7.2</MapSizeY>
 </Configuration>

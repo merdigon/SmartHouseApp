@@ -56,7 +56,7 @@ namespace SmartHouseAppServer.Controllers
         {
             SmartHouseAppServer.Tools.Configuration.Conf.MapSizeX = model.MapSizeX;
             SmartHouseAppServer.Tools.Configuration.Conf.MapSizeY = model.MapSizeY;
-            SystemDataKnowledge.MapSize = new Tuple<int, int>(model.MapSizeX, model.MapSizeY);
+            SystemDataKnowledge.MapSize = new Tuple<double, double>(model.MapSizeX, model.MapSizeY);
             return SmartHouseAppServer.Tools.Configuration.Save();
         }
 
@@ -129,6 +129,7 @@ namespace SmartHouseAppServer.Controllers
                         Y = p.Y,
                         Z = p.Z,
                         Active = p.Active,
+                        Scope = p.Scope,
                         ControllModule = p.EventModuleName,
                         Interface = new LightDeviceInterfaceViewModel
                         {
@@ -196,6 +197,7 @@ namespace SmartHouseAppServer.Controllers
                         obj.X = model.X;
                         obj.Y = model.Y;
                         obj.Z = model.Z;
+                        obj.Scope = model.Scope;
                         obj.Active = model.Active;
                         obj.EventModuleName = model.ControllModule;
 
@@ -210,7 +212,10 @@ namespace SmartHouseAppServer.Controllers
                         if (model.DeviceId > 0)
                             repo.Update(obj);
                         else
-                            obj = repo.Save(obj);
+                        {
+                            int id = repo.Save(obj);
+                            obj = repo.GetById(id);
+                        }
                     }
                     repo.CommitTransaction();
 

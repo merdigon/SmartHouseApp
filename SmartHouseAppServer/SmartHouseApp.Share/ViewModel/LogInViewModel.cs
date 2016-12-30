@@ -9,7 +9,7 @@ namespace SmartHouseApp.Share.ViewModel
     public class LogInViewModel
     {
         public bool Result { get; set; }
-        public int MapSizeX { get; set; }
-        public int MapSizeY { get; set; }
+        public double MapSizeX { get; set; }
+        public double MapSizeY { get; set; }
     }
 }

@@ -15,13 +15,13 @@ namespace SmartHouseAppServer.KnowledgeDataStructures
             LoggedUsers = new List<LoggedUser>();
             DevicesInfo = new List<DynamicDeviceInfo>();
             RoutersInfo = LoadRouterInfo();
-            MapSize = new Tuple<int, int>(SmartHouseAppServer.Tools.Configuration.Conf.MapSizeX, SmartHouseAppServer.Tools.Configuration.Conf.MapSizeY);
+            MapSize = new Tuple<double, double>(SmartHouseAppServer.Tools.Configuration.Conf.MapSizeX, SmartHouseAppServer.Tools.Configuration.Conf.MapSizeY);
         }
 
         public static List<StaticRouterInfo> RoutersInfo { get; set; }
 
         public static List<DynamicDeviceInfo> DevicesInfo { get; set; }
-        public static Tuple<int, int> MapSize { get; set; }
+        public static Tuple<double, double> MapSize { get; set; }
         public static List<LoggedUser> LoggedUsers { get; set; }
 
         public static List<StaticRouterInfo> LoadRouterInfo()

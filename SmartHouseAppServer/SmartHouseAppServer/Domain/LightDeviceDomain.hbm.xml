@@ -14,6 +14,7 @@
     <property name="X" column="coordinate_x"/>
     <property name="Y" column="coordinate_y"/>
     <property name="Z" column="coordinate_z"/>
+    <property name="Scope" column="distance_scope"/>
     <property name="Active" column="active"/>
     <property name="EventModuleName" column="event_module_name"/>
 

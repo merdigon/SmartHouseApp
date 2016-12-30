@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="SmartHouseApp.Tester" assembly="SmartHouseApp.Tester">
+  <class name="StaticRouterInfo" table="static_router_info">
+    <id name="Id" column="id">
+      <generator class="sequence">
+        <param name="sequence">static_router_info_id_seq</param>
+      </generator>
+    </id>
+    <property name="SSID" column="ssid"/>
+    <property name="TrasmitterPower" column="transmitter_power"/>
+    <property name="AntennaGain" column="antenna_gain"/>
+    <property name="LocationX" column="coordinate_x"/>
+    <property name="LocationY" column="coordinate_y"/>
+    <property name="LocationZ" column="coordinate_z"/>
+    <property name="Weight" column="weight"/>
+
+    <many-to-one name="RouterType" column="router_type_id"/>
+  </class>
+</hibernate-mapping>

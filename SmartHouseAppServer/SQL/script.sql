@@ -103,6 +103,7 @@ CREATE TABLE public.light_device_domain
     coordinate_x numeric(15, 2) NOT NULL,
     coordinate_y numeric(15, 2) NOT NULL,
     coordinate_z numeric(15, 2) NOT NULL,
+	distance_scope numeric(15,2) NOT NULL DEFAULT 5,
     interface_id integer,	
 	event_module_name character varying(100),
     active boolean NOT NULL DEFAULT true,

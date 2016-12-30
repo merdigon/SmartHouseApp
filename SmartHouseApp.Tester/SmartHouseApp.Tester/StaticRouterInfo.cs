@@ -8,14 +8,17 @@ namespace SmartHouseApp.Tester
 {
     public class StaticRouterInfo
     {
-        public int Id { get; set; }
-        public string SSID { get; set; }
-        public double TrasmitterPower { get; set; }
-        public double AntennaGain { get; set; }
-        public double FadeMargin { get; set; }
-        public Point Location { get; set; }
+        public virtual int Id { get; set; }
+        public virtual string SSID { get; set; }
+        public virtual double TrasmitterPower { get; set; }
+        public virtual double AntennaGain { get; set; }
+        public virtual double LocationX { get; set; }
+        public virtual double LocationY { get; set; }
+        public virtual double LocationZ { get; set; }
+        public virtual int Weight { get; set; }
+        public virtual RouterType RouterType { get; set; }
 
-        public double GetSigmaForSignalStrength(double signalStrength)
+        public virtual double GetSigmaForSignalStrength(double signalStrength)
         {
             return 0.5;
         }

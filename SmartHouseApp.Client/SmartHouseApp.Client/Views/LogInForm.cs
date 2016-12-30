@@ -41,7 +41,7 @@ namespace SmartHouseApp.Client.Views
 
                     LogInViewModel responseModel = RestClient.Post<LogInViewModel>("Client/LogIn", model);
 
-                    var mapSize = new Size(responseModel.MapSizeX, responseModel.MapSizeY);
+                    var mapSize = new Tuple<double, double>(responseModel.MapSizeX, responseModel.MapSizeY);
 
                     if (responseModel.Result)
                     {

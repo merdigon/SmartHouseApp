@@ -3,5 +3,5 @@
   <Password>admin</Password>
   <ServerIp>192.168.1.105:52079</ServerIp>
   <ClientIp>192.168.1.105</ClientIp>
-  <PictureLocation>plan.jpg</PictureLocation>  
+  <PictureLocation>plan.png</PictureLocation>  
 </Configuration>

@@ -7,15 +7,15 @@ using System.Threading.Tasks;
 using System.Xml.Serialization;
 using static System.Net.Mime.MediaTypeNames;
 
-namespace SmartHouseApp.Tester
+namespace SmartHouseApp.Tester.Conf
 {
     public class Configuration
     {
         private static Configuration _conf;
         
-        public virtual List<StaticRouterInfo> RoutersInfo { get; set; }
-        public virtual int MapSizeX { get; set; }
-        public virtual int MapSizeY { get; set; }
+        //public virtual List<StaticRouterInfo> RoutersInfo { get; set; }
+        public virtual double MapSizeX { get; set; }
+        public virtual double MapSizeY { get; set; }
 
         public static Configuration Conf
         {

@@ -19,7 +19,7 @@ namespace SmartHouseApp.Client.Views
 {
     public partial class ConfigurationForm : Form
     {
-        public Tuple<int, int> MapSize { get; set; }
+        public Tuple<double, double> MapSize { get; set; }
         private Form1 MainForm { get; set; }
         public int selectedItemId = 0;
         private List<DeviceCategoryViewModel> Categories { get; set; }
@@ -35,7 +35,7 @@ namespace SmartHouseApp.Client.Views
 
             MainForm = mainForm;
             var mapSize = RestClient.Get<SizeViewModel>("Conf/GetMapSize");
-            MapSize = new Tuple<int, int>(mapSize.X, mapSize.Y);
+            MapSize = new Tuple<double, double>(mapSize.X, mapSize.Y);
 
             tbX.Text = MapSize.Item1.ToString();
             tbY.Text = MapSize.Item2.ToString();
@@ -73,7 +73,7 @@ namespace SmartHouseApp.Client.Views
 
                 if (RestClient.Post<bool>("Conf/SaveMapSize", model))
                 {
-                    MainForm.MapSize = new Size((int)x, (int)y);
+                    MainForm.MapSize = new Tuple<double, double>(x, y);
                 }
             }
             catch (Exception ex)
@@ -278,7 +278,7 @@ namespace SmartHouseApp.Client.Views
             UserControl confUserControl = null;
             if(SelectedCategory.CategoryId == (int)DeviceCategories.LIGHT)
             {
-                confUserControl = new LightDeviceRender().GetConfUserControl();
+                confUserControl = new LightDeviceRender() { Scope = 5 }.GetConfUserControl();
             }
             gBCategory.Controls.Clear();
             gBCategory.Controls.Add(confUserControl);
@@ -306,7 +306,8 @@ namespace SmartHouseApp.Client.Views
                     var deviceObject = Devices.Where(p => p.DeviceId == deviceId).SingleOrDefault();
                     if (deviceObject != null)
                     {
-                        if (RestClient.Post<bool>("Conf/DeleteLightDevice", deviceObject))
+                        LightDeviceViewModel obj = new LightDeviceViewModel { DeviceId = deviceObject.DeviceId, VisibleName = deviceObject.VisibleName };
+                        if (RestClient.Post<bool>("Conf/DeleteLightDevice", obj))
                             InfoForm.ShowWarning("Pomyślnie usunięto urządzenie");
                         lvDeviceItemCategories_SelectedIndexChanged(null, null);
                     }

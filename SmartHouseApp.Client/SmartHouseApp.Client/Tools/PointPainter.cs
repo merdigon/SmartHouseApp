@@ -58,7 +58,7 @@ namespace SmartHouseApp.Client
                                     MainForm.Points.Remove(point);
                             }
                             
-                            MainForm.pictureBox2.BackgroundImage = bitmap;
+                            MainForm.pictureBox2.Image = bitmap;
                         }
                     };
                 MainForm.pictureBox2.Invoke(mi);
@@ -70,28 +70,10 @@ namespace SmartHouseApp.Client
         {
             int xIS = mainForm.PictureSize.Width;
             int yIS = mainForm.PictureSize.Height;
-            int xPB = mainForm.pictureBox1.Size.Width;
-            int yPB = mainForm.pictureBox1.Size.Height;
-            int marginSize;
 
-            if (xIS / yIS > xPB / yPB)
-            {
-                int xPOPR = xPB;
-                int yPOPR = (xPOPR * yIS) / xIS;
-                marginSize = (yPB - yPOPR) / 2;
-                int xREAL = (int)((x / mainForm.MapSize.Width) * xPOPR);
-                int yREAL = (int)((y / mainForm.MapSize.Height) * yPOPR);
-                return new Tuple<int, int>(xREAL, yREAL + marginSize);
-            }
-            else
-            {
-                int yPOPR = yPB;
-                int xPOPR = (yPOPR * xIS) / yIS;
-                marginSize = (xPB - xPOPR) / 2;
-                int xREAL = (int)((x / mainForm.MapSize.Width) * xPOPR);
-                int yREAL = (int)((y / mainForm.MapSize.Height) * yPOPR);
-                return new Tuple<int, int>(xREAL + marginSize, yREAL);
-            }
+            int xREAL = (int)((x / mainForm.MapSize.Item1) * xIS);
+            int yREAL = (int)((y / mainForm.MapSize.Item2) * yIS);
+            return new Tuple<int, int>(xREAL, yREAL);
         }
     }
 }
