@@ -216,6 +216,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Domain\LightDeviceDomain.hbm.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Domain\UserPositionHistory.hbm.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -245,7 +246,9 @@
     <None Include="Properties\PublishProfiles\SmartAppServer.pubxml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="packages.config" />
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SmartHouseApp.Common\SmartHouseApp.Common.csproj">

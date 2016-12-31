@@ -54,6 +54,12 @@
     <Compile Include="Model\RenderTools.cs" />
     <Compile Include="Tools\Configuration.cs" />
     <Compile Include="Tools\RestClient.cs" />
+    <Compile Include="Views\AddEditDeviceGroup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\AddEditDeviceGroup.Designer.cs">
+      <DependentUpon>AddEditDeviceGroup.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\Components\IDeviceConfControl.cs" />
     <Compile Include="Views\Components\LightConfUserControl.cs">
       <SubType>UserControl</SubType>
@@ -90,6 +96,9 @@
     <Compile Include="Tools\PointPainter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Views\AddEditDeviceGroup.resx">
+      <DependentUpon>AddEditDeviceGroup.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\Components\LightConfUserControl.resx">
       <DependentUpon>LightConfUserControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -136,7 +145,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="conf.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="logo.ico" />
     <None Include="Resources\Restart_48px.png" />

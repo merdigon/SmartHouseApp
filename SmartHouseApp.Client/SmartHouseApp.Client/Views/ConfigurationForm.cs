@@ -181,6 +181,10 @@ namespace SmartHouseApp.Client.Views
                                     dgvRouters.Refresh();
                                     ClearRouterControl();
                                 }
+                                else
+                                {
+                                    InfoForm.ShowWarning("Błąd podczas zapisu!");
+                                }
                             }
                             else
                             {
@@ -443,5 +447,10 @@ namespace SmartHouseApp.Client.Views
                 }
             }
         }
+
+       //private void btnDownloadGroups_Click(object sender, EventArgs e)
+       // {
+       //     dgvGroups.DataSource = RestClient.Get<DeviceGroupViewModel>("Conf/GetDeviceGroups");            
+       // } 
     }
 }

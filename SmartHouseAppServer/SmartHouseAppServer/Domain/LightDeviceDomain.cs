@@ -20,5 +20,6 @@ namespace SmartHouseAppServer.Domain
         public virtual string EventModuleName { get; set; }
         public virtual bool Active { get; set; }
         public virtual LightDeviceInterface Interface { get; set; }
+        //public virtual DeviceGroupDomain Group { get; set; }
     }
 }

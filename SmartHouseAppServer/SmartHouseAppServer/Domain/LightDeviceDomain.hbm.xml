@@ -19,5 +19,6 @@
     <property name="EventModuleName" column="event_module_name"/>
 
     <many-to-one name="Interface" column="interface_id"/>
+    <!--<many-to-one name="Group" column="group_id"/>-->
   </class>
 </hibernate-mapping>

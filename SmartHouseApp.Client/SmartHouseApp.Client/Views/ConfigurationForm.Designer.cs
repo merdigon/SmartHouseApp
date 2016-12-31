@@ -62,24 +62,24 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.button6 = new System.Windows.Forms.Button();
             this.gBCategory = new System.Windows.Forms.GroupBox();
-            this.button4 = new System.Windows.Forms.Button();
             this.listView1 = new System.Windows.Forms.ListView();
-            this.button5 = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lvDeviceItemCategories = new System.Windows.Forms.ListView();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.dgvUsers = new System.Windows.Forms.DataGridView();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.tsbRefreshUsers = new System.Windows.Forms.ToolStripButton();
-            this.tsbSaveUsers = new System.Windows.Forms.ToolStripButton();
-            this.tsbDeleteUser = new System.Windows.Forms.ToolStripButton();
-            this.ilDeviceImages = new System.Windows.Forms.ImageList(this.components);
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.VisibleName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Mac = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Weight = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.ilDeviceImages = new System.Windows.Forms.ImageList(this.components);
+            this.button6 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.tsbRefreshUsers = new System.Windows.Forms.ToolStripButton();
+            this.tsbSaveUsers = new System.Windows.Forms.ToolStripButton();
+            this.tsbDeleteUser = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -90,10 +90,10 @@
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsers)).BeginInit();
             this.toolStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -427,18 +427,6 @@
             this.tabPage2.UseVisualStyleBackColor = true;
             this.tabPage2.Enter += new System.EventHandler(this.tabPage2_Enter);
             // 
-            // button6
-            // 
-            this.button6.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.button6.AutoSize = true;
-            this.button6.Image = global::SmartHouseApp.Client.Properties.Resources.Save_as_48px;
-            this.button6.Location = new System.Drawing.Point(735, 385);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(30, 30);
-            this.button6.TabIndex = 8;
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
-            // 
             // gBCategory
             // 
             this.gBCategory.Location = new System.Drawing.Point(384, 34);
@@ -446,18 +434,6 @@
             this.gBCategory.Size = new System.Drawing.Size(381, 345);
             this.gBCategory.TabIndex = 7;
             this.gBCategory.TabStop = false;
-            // 
-            // button4
-            // 
-            this.button4.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.button4.AutoSize = true;
-            this.button4.Image = global::SmartHouseApp.Client.Properties.Resources.Delete_48px;
-            this.button4.Location = new System.Drawing.Point(333, 385);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(30, 30);
-            this.button4.TabIndex = 6;
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // listView1
             // 
@@ -469,29 +445,6 @@
             this.listView1.TabIndex = 5;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
-            // 
-            // button5
-            // 
-            this.button5.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.button5.AutoSize = true;
-            this.button5.Image = global::SmartHouseApp.Client.Properties.Resources.Plus_48px;
-            this.button5.Location = new System.Drawing.Point(297, 385);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(30, 30);
-            this.button5.TabIndex = 4;
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox1.Image = global::SmartHouseApp.Client.Properties.Resources.Forward_48px;
-            this.pictureBox1.Location = new System.Drawing.Point(158, 197);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(28, 33);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
             // 
             // lvDeviceItemCategories
             // 
@@ -536,54 +489,6 @@
             this.dgvUsers.Size = new System.Drawing.Size(777, 392);
             this.dgvUsers.TabIndex = 1;
             // 
-            // toolStrip1
-            // 
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsbRefreshUsers,
-            this.tsbSaveUsers,
-            this.tsbDeleteUser});
-            this.toolStrip1.Location = new System.Drawing.Point(3, 3);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(777, 25);
-            this.toolStrip1.TabIndex = 0;
-            this.toolStrip1.Text = "toolStrip1";
-            // 
-            // tsbRefreshUsers
-            // 
-            this.tsbRefreshUsers.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbRefreshUsers.Image = global::SmartHouseApp.Client.Properties.Resources.Restart_48px;
-            this.tsbRefreshUsers.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbRefreshUsers.Name = "tsbRefreshUsers";
-            this.tsbRefreshUsers.Size = new System.Drawing.Size(23, 22);
-            this.tsbRefreshUsers.Text = "Pobierz";
-            this.tsbRefreshUsers.Click += new System.EventHandler(this.tsbRefreshUsers_Click);
-            // 
-            // tsbSaveUsers
-            // 
-            this.tsbSaveUsers.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbSaveUsers.Image = global::SmartHouseApp.Client.Properties.Resources.Save_as_48px;
-            this.tsbSaveUsers.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbSaveUsers.Name = "tsbSaveUsers";
-            this.tsbSaveUsers.Size = new System.Drawing.Size(23, 22);
-            this.tsbSaveUsers.Text = "Zapisz";
-            this.tsbSaveUsers.Click += new System.EventHandler(this.tsbSaveUsers_Click);
-            // 
-            // tsbDeleteUser
-            // 
-            this.tsbDeleteUser.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbDeleteUser.Image = global::SmartHouseApp.Client.Properties.Resources.Delete_48px;
-            this.tsbDeleteUser.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbDeleteUser.Name = "tsbDeleteUser";
-            this.tsbDeleteUser.Size = new System.Drawing.Size(23, 22);
-            this.tsbDeleteUser.Text = "Usuń";
-            this.tsbDeleteUser.Click += new System.EventHandler(this.tsbDeleteUser_Click);
-            // 
-            // ilDeviceImages
-            // 
-            this.ilDeviceImages.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
-            this.ilDeviceImages.ImageSize = new System.Drawing.Size(16, 16);
-            this.ilDeviceImages.TransparentColor = System.Drawing.Color.Transparent;
-            // 
             // Id
             // 
             this.Id.DataPropertyName = "Id";
@@ -616,6 +521,101 @@
             "4"});
             this.Weight.Name = "Weight";
             // 
+            // toolStrip1
+            // 
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsbRefreshUsers,
+            this.tsbSaveUsers,
+            this.tsbDeleteUser});
+            this.toolStrip1.Location = new System.Drawing.Point(3, 3);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(777, 25);
+            this.toolStrip1.TabIndex = 0;
+            this.toolStrip1.Text = "toolStrip1";
+            // 
+            // ilDeviceImages
+            // 
+            this.ilDeviceImages.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
+            this.ilDeviceImages.ImageSize = new System.Drawing.Size(16, 16);
+            this.ilDeviceImages.TransparentColor = System.Drawing.Color.Transparent;
+            // 
+            // button6
+            // 
+            this.button6.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.button6.AutoSize = true;
+            this.button6.Image = global::SmartHouseApp.Client.Properties.Resources.Save_as_48px;
+            this.button6.Location = new System.Drawing.Point(735, 385);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(30, 30);
+            this.button6.TabIndex = 8;
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
+            // button4
+            // 
+            this.button4.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.button4.AutoSize = true;
+            this.button4.Image = global::SmartHouseApp.Client.Properties.Resources.Delete_48px;
+            this.button4.Location = new System.Drawing.Point(333, 385);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(30, 30);
+            this.button4.TabIndex = 6;
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // button5
+            // 
+            this.button5.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.button5.AutoSize = true;
+            this.button5.Image = global::SmartHouseApp.Client.Properties.Resources.Plus_48px;
+            this.button5.Location = new System.Drawing.Point(297, 385);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(30, 30);
+            this.button5.TabIndex = 4;
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBox1.Image = global::SmartHouseApp.Client.Properties.Resources.Forward_48px;
+            this.pictureBox1.Location = new System.Drawing.Point(158, 197);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(28, 33);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 1;
+            this.pictureBox1.TabStop = false;
+            // 
+            // tsbRefreshUsers
+            // 
+            this.tsbRefreshUsers.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbRefreshUsers.Image = global::SmartHouseApp.Client.Properties.Resources.Restart_48px;
+            this.tsbRefreshUsers.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbRefreshUsers.Name = "tsbRefreshUsers";
+            this.tsbRefreshUsers.Size = new System.Drawing.Size(23, 22);
+            this.tsbRefreshUsers.Text = "Pobierz";
+            this.tsbRefreshUsers.Click += new System.EventHandler(this.tsbRefreshUsers_Click);
+            // 
+            // tsbSaveUsers
+            // 
+            this.tsbSaveUsers.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbSaveUsers.Image = global::SmartHouseApp.Client.Properties.Resources.Save_as_48px;
+            this.tsbSaveUsers.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbSaveUsers.Name = "tsbSaveUsers";
+            this.tsbSaveUsers.Size = new System.Drawing.Size(23, 22);
+            this.tsbSaveUsers.Text = "Zapisz";
+            this.tsbSaveUsers.Click += new System.EventHandler(this.tsbSaveUsers_Click);
+            // 
+            // tsbDeleteUser
+            // 
+            this.tsbDeleteUser.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbDeleteUser.Image = global::SmartHouseApp.Client.Properties.Resources.Delete_48px;
+            this.tsbDeleteUser.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbDeleteUser.Name = "tsbDeleteUser";
+            this.tsbDeleteUser.Size = new System.Drawing.Size(23, 22);
+            this.tsbDeleteUser.Text = "Usuń";
+            this.tsbDeleteUser.Click += new System.EventHandler(this.tsbDeleteUser_Click);
+            // 
             // ConfigurationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -643,12 +643,12 @@
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsers)).EndInit();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
