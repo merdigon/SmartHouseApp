@@ -25,50 +25,53 @@ namespace SmartHouseAppServer.Controllers
             dataToCalculate.AddRange(BluetoothTool.GetBluetoothSphereData(notification.SignalData.Where(p => p.Type == SignalType.BLUETOOTH).ToList()));
 
             //var loc = LocationTool.GetLocationWithThreeCircles(new SphereData[] { dataToCalculate[0], dataToCalculate[1], dataToCalculate[2] });
-            Point loc = LocalizationTool.GetProbabilisticLocalization(dataToCalculate);
-
-            foreach (var loggerUser in SystemDataKnowledge.LoggedUsers)
-                loggerUser.Notify(notification.SourceName, (double)loc.X, (double)loc.Y, (double)loc.Z);
-            
-            var phone = SystemDataKnowledge.DevicesInfo.Where(p => p.BluetoothMac.Equals(notification.SourceName)).FirstOrDefault();
-            if (phone == null)
-                phone = new DynamicDeviceInfo() { BluetoothMac = notification.SourceName };
-
-            phone.CurrentLocation = loc;
-            phone.CurrentLocationUpdateTime = DateTime.Now;
-            phone.CurrentSignalStrengthData = notification.SignalData.ToList();
-            UserPositionHistory poss = null;
-
-            using (var repo = new Repository<UserPositionHistory>())
+            if (dataToCalculate.Count() >= 3)
             {
-                repo.BeginTransaction();
-                poss = new UserPositionHistory
-                {
-                    Mac = notification.SourceName,
-                    X = (double)loc.X,
-                    Y = (double)loc.Y,
-                    Z = (double)loc.Z,
-                    Date = DateTime.Now
-                };
-                repo.SaveOrUpdate(poss);
-                repo.CommitTransaction();
-            }
+                Point loc = LocalizationTool.GetProbabilisticLocalization(dataToCalculate);
 
-            using (var repo = new Repository<SystemUser>())
-            {
-                if(repo.Where(p => p.Mac == notification.SourceName).FirstOrDefault() == null)
+                foreach (var loggerUser in SystemDataKnowledge.LoggedUsers)
+                    loggerUser.Notify(notification.SourceName, (double)loc.X, (double)loc.Y, (double)loc.Z);
+
+                var phone = SystemDataKnowledge.DevicesInfo.Where(p => p.BluetoothMac.Equals(notification.SourceName)).FirstOrDefault();
+                if (phone == null)
+                    phone = new DynamicDeviceInfo() { BluetoothMac = notification.SourceName };
+
+                phone.CurrentLocation = loc;
+                phone.CurrentLocationUpdateTime = DateTime.Now;
+                phone.CurrentSignalStrengthData = notification.SignalData.ToList();
+                UserPositionHistory poss = null;
+
+                using (var repo = new Repository<UserPositionHistory>())
                 {
                     repo.BeginTransaction();
-                    repo.Save(new Domain.SystemUser { Mac = notification.SourceName, VisibleName = "Guest", UserWeight = 1 });
+                    poss = new UserPositionHistory
+                    {
+                        Mac = notification.SourceName,
+                        X = (double)loc.X,
+                        Y = (double)loc.Y,
+                        Z = (double)loc.Z,
+                        Date = DateTime.Now
+                    };
+                    repo.SaveOrUpdate(poss);
                     repo.CommitTransaction();
                 }
-            }
+
+                using (var repo = new Repository<SystemUser>())
+                {
+                    if (repo.Where(p => p.Mac == notification.SourceName).FirstOrDefault() == null)
+                    {
+                        repo.BeginTransaction();
+                        repo.Save(new Domain.SystemUser { Mac = notification.SourceName, VisibleName = "Guest", UserWeight = 1 });
+                        repo.CommitTransaction();
+                    }
+                }
 
                 foreach (var thread in WebApiApplication.ControllingThreads)
                 {
                     if (thread.ControllerModule != null)
                         thread.NotAnalizedUserPositionEvents.Enqueue(poss);
                 }
+            }
 
             return true;
         }
