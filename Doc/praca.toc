@@ -13,19 +13,19 @@
 \contentsline {section}{\numberline {3.1}Zanik sygna\IeC {\l } radiowego}{15}
 \contentsline {section}{\numberline {3.2}Zysk energetyczny anteny}{15}
 \contentsline {section}{\numberline {3.3}Margines zaniku}{16}
-\contentsline {section}{\numberline {3.4}Received signal strength indication}{16}
+\contentsline {section}{\numberline {3.4}Received Signal Strength Indication}{16}
 \contentsline {section}{\numberline {3.5}Free-space path loss}{16}
+\contentsline {section}{\numberline {3.6}Podsumowanie}{17}
 \contentsline {chapter}{\numberline {4}Testy sposob\IeC {\'o}w komunikacji radiowej}{19}
 \contentsline {section}{\numberline {4.1}Wykorzystane urz\IeC {\k a}dzenia}{19}
 \contentsline {section}{\numberline {4.2}Warunki}{20}
-\contentsline {section}{\numberline {4.3}Wyznaczenie warto\IeC {\'s}ci strat}{20}
-\contentsline {subsection}{\numberline {4.3.1}Wifi}{20}
-\contentsline {subsection}{\numberline {4.3.2}Bluetooth}{21}
-\contentsline {subsection}{\numberline {4.3.3}Wnioski}{21}
-\contentsline {section}{\numberline {4.4}Przeszkody na drodze sygna\IeC {\l }u}{21}
-\contentsline {subsection}{\numberline {4.4.1}Wifi}{22}
-\contentsline {subsection}{\numberline {4.4.2}Bluetooth}{22}
-\contentsline {subsection}{\numberline {4.4.3}Wnioski}{23}
+\contentsline {section}{\numberline {4.3}Pobranie danych i analiza wynik\IeC {\'o}w}{20}
+\contentsline {section}{\numberline {4.4}Wyznaczenie warto\IeC {\'s}ci strat}{21}
+\contentsline {subsection}{\numberline {4.4.1}Pomiary}{21}
+\contentsline {subsection}{\numberline {4.4.2}Wnioski}{21}
+\contentsline {section}{\numberline {4.5}Przeszkody na drodze sygna\IeC {\l }u}{21}
+\contentsline {subsection}{\numberline {4.5.1}Pomiary}{22}
+\contentsline {subsection}{\numberline {4.5.2}Wnioski}{23}
 \contentsline {chapter}{\numberline {5}Implementacja}{25}
 \contentsline {section}{\numberline {5.1}Architektura}{25}
 \contentsline {section}{\numberline {5.2}Wykorzystana technologia}{26}

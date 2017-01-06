@@ -30,6 +30,30 @@
     \warn{\item Invalid format of field 'urldate'}
   \endentry
 
+  \entry{BECM}{article}{}
+    \name{author}{2}{}{%
+      {{hash=NTA}{%
+         family={Nguyen},
+         familyi={N\bibinitperiod},
+         given={Tuan\bibnamedelima Anh},
+         giveni={T\bibinitperiod\bibinitdelim A\bibinitperiod},
+      }}%
+      {{hash=AM}{%
+         family={Aiello},
+         familyi={A\bibinitperiod},
+         given={Marco},
+         giveni={M\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{NTAAM1}
+    \strng{fullhash}{NTAAM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{title}{Energy intelligent buildings based on user activity}
+    \field{journaltitle}{Energy and Buildings 56}
+    \field{year}{2013}
+  \endentry
+
   \entry{RSC}{book}{}
     \name{author}{3}{}{%
       {{hash=RI}{%
@@ -95,29 +119,6 @@
     \field{year}{2008}
   \endentry
 
-  \entry{MIR}{thesis}{}
-    \name{author}{1}{}{%
-      {{hash=RMI}{%
-         family={Ribeiro},
-         familyi={R\bibinitperiod},
-         given={Maria\bibnamedelima Isabel},
-         giveni={M\bibinitperiod\bibinitdelim I\bibinitperiod},
-      }}%
-    }
-    \strng{namehash}{RMI1}
-    \strng{fullhash}{RMI1}
-    \field{labelnamesource}{author}
-    \field{labeltitlesource}{title}
-    \field{title}{Gaussian Probability Density Functions: Properties and Error
-  Characterization}
-    \list{institution}{2}{%
-      {Institute for Systems}%
-      {Robotics Instituto Superior Tcnico}%
-    }
-    \warn{\item Invalid format of field 'date' \item Invalid format of field
-  'date'}
-  \endentry
-
   \entry{GMBF}{book}{}
     \name{author}{2}{}{%
       {{hash=MG}{%
@@ -140,6 +141,29 @@
     \field{title}{Localization Algorithms and Strategies for Wireless Sensor
   Networks}
     \field{year}{2009}
+  \endentry
+
+  \entry{MIR}{thesis}{}
+    \name{author}{1}{}{%
+      {{hash=RMI}{%
+         family={Ribeiro},
+         familyi={R\bibinitperiod},
+         given={Maria\bibnamedelima Isabel},
+         giveni={M\bibinitperiod\bibinitdelim I\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{RMI1}
+    \strng{fullhash}{RMI1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{title}{Gaussian Probability Density Functions: Properties and Error
+  Characterization}
+    \list{institution}{2}{%
+      {Institute for Systems}%
+      {Robotics Instituto Superior Tcnico}%
+    }
+    \warn{\item Invalid format of field 'date' \item Invalid format of field
+  'date'}
   \endentry
 
   \entry{JK}{book}{}
@@ -209,6 +233,32 @@
     \field{year}{2013}
   \endentry
 
+  \entry{BLUE}{article}{}
+    \name{author}{2}{}{%
+      {{hash=FR}{%
+         family={Faragher},
+         familyi={F\bibinitperiod},
+         given={Ramsey},
+         giveni={R\bibinitperiod},
+      }}%
+      {{hash=HR}{%
+         family={Harle},
+         familyi={H\bibinitperiod},
+         given={Robert},
+         giveni={R\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{FRHR1}
+    \strng{fullhash}{FRHR1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{title}{An Analysis of the Accuracy of Bluetooth Low Energy for
+  Indoor Positioning Applications}
+    \field{journaltitle}{Proceedings of the 27th International Technical
+  Meeting of The Satellite Division of the Institute of Navigation}
+    \field{year}{2014}
+  \endentry
+
   \entry{ST}{thesis}{}
     \name{author}{1}{}{%
       {{hash=TS}{%
@@ -222,7 +272,7 @@
     \strng{fullhash}{TS1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
-    \field{title}{Indoor location tracking using Signal Strength Pinp oints}
+    \field{title}{Indoor location tracking using Signal Strength Pinpoints}
     \list{institution}{1}{%
       {University of Groningen}%
     }
@@ -339,6 +389,15 @@
     \verb gation-overview/free-space-path-loss.php
     \endverb
     \field{year}{2016}
+  \endentry
+
+  \entry{FSPL}{online}{}
+    \field{labeltitlesource}{title}
+    \field{title}{Free Space Loss}
+    \verb{url}
+    \verb http://www.idc-online.com/technical_references/pdfs/electronic_engine
+    \verb ering/Free_Space_Loss.pdf
+    \endverb
   \endentry
 
   \entry{NET}{online}{}

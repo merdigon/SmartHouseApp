@@ -5,7 +5,7 @@ Sygnał radiowy, wysłany przez urządzenie, w wyniku przechodzenia przez ośrod
 \begin{itemize}
 	\item zysk energetyczny anteny nadawcy oraz odbiorcy
 	\item margines zaniku, który zależy od czułości odbiornika
-	\item straty w sile sygnału wynikające ze środowiska - przeszkody, odbicia, inne urządzenia nadające
+	\item straty w sile sygnału wynikające ze środowiska: przeszkody, odbicia, inne urządzenia nadające
 \end{itemize}
 \begin{figure}[H]			
 	\centering
@@ -16,18 +16,18 @@ Sygnał radiowy, wysłany przez urządzenie, w wyniku przechodzenia przez ośrod
 Zysk energetyczny anteny jest to stosunek mocy anteny wypromieniowanej w danym kierunku do mocy wypromieniowanej przez antenę wzorcową \cite{ML}. Anteną wzorcową może być m.in. antena izotropowa, czyli antena bez fizycznych rozmiarów, która cały sygnał zasilany wysyła we wszystkich kierunkach. W takim wypadku, zysk energetyczny anteny wyrażany jest w $dBi$ \cite{AG}.\\
 Na zysk energetyczny mają również wpływ kierunkowość oraz materiał, z którego wykonana jest antena.
 \section{Margines zaniku}
-Margines zaniku (fade margin) jest to wartość określająca wielkość "marginesu" pomiędzy wartością siły odebranego sygnału, a czułością odbiornika \cite{RFM}. Określa się ją wzorem:
+Margines zaniku (ang. \textit{fade margin}) jest to wartość określająca różnicę pomiędzy wartością siły odebranego sygnału, a czułością odbiornika \cite{RFM}. Określa się ją wzorem:
 \begin{equation}
 FM = P_{rs} - P_{rx}
 \end{equation}
 gdzie $P_{rs}$ to siła odebranego sygnału.\\
 Margines zaniku jest wyznacznikiem, jak "dobre" jest połączenie między transmiterem i odbiorcą \cite{FMC}. Czym wyższa wartość marginesu zaniku, tym bardziej niezawodne jest połączenie.
 Wartość marginesu zaniku określa się w jednostce $dB$.
-\section{Received signal strength indication}
-Received signal strength indication (skrótem RSSI) jest to miara określająca moc sygnału odbieranego. Przyjmuje ona wartości niedodatnie (gdzie 0 oznacza sygnał najsilniejszy). Jednostką, w jakiej określa się siłę sygnału jest $dBm$, która jest logarytmiczną jednostką miary mocy odniesioną do mocy $1mW$ \cite{AMMC}.\\
+\section{Received Signal Strength Indication}
+\textit{Received Signal Strength Indication} (skrótem RSSI) jest to miara określająca moc sygnału odbieranego. Przyjmuje ona wartości niedodatnie (gdzie 0 oznacza sygnał najsilniejszy). Jednostką, w jakiej określa się siłę sygnału, jest $dBm$, która jest logarytmiczną jednostką miary mocy odniesioną do mocy $1mW$ \cite{AMMC}.\\
 System Android pozwala na odczytanie siły odbieranego sygnału. Można do tego wykorzystać API $WifiManager$ (w przypadku odczytu sygnału WiFi) oraz $BroadcastReceiver$ (w przypadku odczytu sygnału Bluetooth) \cite{ADBR}.
 \section{Free-space path loss}		  		  
-Free-space path loss jest to utrata siły sygnału, spowodowana przejściem fali elektromagnetycznej przez ośrodek (najczęściej powietrze) \cite{SPPLM}.\\
+\textit{Free-space path loss} (FSPL) jest to utrata siły sygnału, spowodowana przejściem fali elektromagnetycznej przez ośrodek (najczęściej powietrze) \cite{SPPLM}.\\
 Wzór na obliczanie FSPL \cite{TPL}:
 \begin{equation}
 FSPL = P_{tx} + AG_{tx} + AG_{rx} - P_{rx} - FM - L
@@ -50,8 +50,6 @@ Dodatkowo, FSPL można obliczyć, używając następujący wzór \cite{EN}:
 \begin{equation}
 FSPL = 20log_{10}\left(\frac{d}{d_{0}}\right) + 20log_{10}(f) + K
 \end{equation}
-%Indoor Localization Method Based on Wi-Fi Trilateration Technique Maxim Shchekotov
-% Wi-Fi Indoor Positioning System Based on RSSI Measurements from Wi-Fi  Access Points  –  A Tri-lateration Approach Onkar Pathak, Pratik Palaskar, Rajesh Palkar, Mayur Tawari
 Gdzie symbole oznaczają:
 \begin{itemize}
 	\item $d$ - dystans dzielący transmiter od odbiorcy, wyrażony w metrach
@@ -71,7 +69,11 @@ A po połączeniu obu wzorów dostajemy:
 \begin{equation}
 d = 10^{\left(\frac{P_{tx} + AG_{tx} + AG_{rx} - P_{rx} - FM - L - K - 20log_{10}(f)}{20}\right)}
 \end{equation}
-Po podstawieniu wzoru na margines zaniku do wzoru (5), uzyskujemy
+Po podstawieniu wzoru na margines zaniku do wzoru (3.6), uzyskujemy
 \begin{equation}
 d = 10^{\left(\frac{P_{tx} + AG_{tx} + AG_{rx} - P_{rs} - L - K - 20log_{10}(f)}{20}\right)}
 \end{equation}
+\section{Podsumowanie}
+Przedstawione powyżej współczynniki mają duży wpływ na dokładność i jakość obliczonej pozycji użytkownika. Najważniejszym współczynnikiem są straty, które należy uwzględnić podczas wyznaczania odległości. Czym więcej przeszkód i zakłóceń spotka na swojej drodze sygnał, tym jego siła będzie mniejsza. Wiąże się z tym duży błąd podczas wyznaczania lokalizacji odbiornika \cite{RSC}.\\
+Dodatkowy wpływ na obliczenia ma siła obu anten - transmitera i odbiornika. Im większy jest ich zysk energetyczny, tym sygnał jest bardziej odporny na straty, a co za tym idzie, dystans pomiędzy dwoma urządzeniami, obliczony na podstawie \textit{FSPL}, jest dokładniejszy i lepiej odzwierciedla rzeczywiste położenie \cite{FSPL}.\\
+Również margines zaniku ma duży wpływ na jakość odbieranego sygnału - im jest wyższy, tym rzadziej występuje minimum poziomu wydajności, które negatywnie wpływa na stabilność siły sygnału \cite{MT}.
