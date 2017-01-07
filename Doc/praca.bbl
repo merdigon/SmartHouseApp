@@ -550,16 +550,26 @@
     \endverb
   \endentry
 
-  \entry{NET}{online}{}
+  \entry{NET}{book}{}
+    \name{author}{1}{}{%
+      {{hash=GI}{%
+         family={Griffiths},
+         familyi={G\bibinitperiod},
+         given={Ian},
+         giveni={I\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {O'Reilly Media}%
+    }
+    \strng{namehash}{GI1}
+    \strng{fullhash}{GI1}
+    \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
-    \field{title}{.NET Platform Guide}
-    \verb{url}
-    \verb https://docs.microsoft.com/en-us/dotnet/articles/standard/index
-    \endverb
-    \field{year}{2016}
-    \field{urlday}{30}
-    \field{urlmonth}{12}
-    \field{urlyear}{2016}
+    \field{edition}{1}
+    \field{isbn}{978-1-4493-2041-6}
+    \field{title}{Programming C\# 5.0}
+    \field{year}{2013}
   \endentry
 
   \entry{ASP}{book}{}
