@@ -18,16 +18,16 @@
 
 \sortlist[entry]{none/global/}
   \entry{BMS}{online}{}
-    \list{organization}{1}{%
-      {Automatyka budynkowa}%
-    }
     \field{labeltitlesource}{title}
+    \field{note}{Automatyka budynkowa}
     \field{title}{Zarządzanie budynkiem BMS, SMS}
     \verb{url}
     \verb http://www.automatyka-budynkowa.com/produkty/kat/12/
     \endverb
     \field{year}{2016}
-    \warn{\item Invalid format of field 'urldate'}
+    \field{urlday}{30}
+    \field{urlmonth}{12}
+    \field{urlyear}{2016}
   \endentry
 
   \entry{BECM}{article}{}
@@ -45,12 +45,26 @@
          giveni={M\bibinitperiod},
       }}%
     }
+    \name{editor}{1}{}{%
+      {{hash=MA}{%
+         family={Meier},
+         familyi={M\bibinitperiod},
+         given={Alan},
+         giveni={A\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Elsevier}%
+    }
     \strng{namehash}{NTAAM1}
     \strng{fullhash}{NTAAM1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{issn}{0378-7788}
     \field{title}{Energy intelligent buildings based on user activity}
-    \field{journaltitle}{Energy and Buildings 56}
+    \field{volume}{56}
+    \field{journaltitle}{Energy and Buildings}
+    \field{month}{01}
     \field{year}{2013}
   \endentry
 
@@ -75,10 +89,16 @@
          giveni={M\bibinitperiod},
       }}%
     }
+    \list{publisher}{1}{%
+      {Wiley (Verlag)}%
+    }
     \strng{namehash}{RISNCM1}
     \strng{fullhash}{RISNCM1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{edition}{1}
+    \field{isbn}{978-1-118-91721-3}
+    \field{pages}{27}
     \field{title}{Microwave and Millimetre-Wave Design for Wireless
   Communications}
     \field{year}{2016}
@@ -97,9 +117,12 @@
     \strng{fullhash}{SM1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{eventtitle}{16th FRUCT Conference in Oulu, Finland}
+    \field{note}{ITMO University}
     \field{title}{Indoor Localization Method Based on Wi-Fi Trilateration
   Technique}
     \field{year}{2014}
+    \warn{\item Invalid format of field 'eventdate'}
   \endentry
 
   \entry{MT}{proceedings}{}
@@ -111,12 +134,23 @@
          giveni={M\bibinitperiod},
       }}%
     }
+    \list{publisher}{1}{%
+      {The University of Texas at Dallas}%
+    }
     \strng{namehash}{TM1}
     \strng{fullhash}{TM1}
     \field{labelnamesource}{editor}
     \field{labeltitlesource}{title}
+    \field{eventtitle}{EE4367 Telecom. Switching \& Transmission}
     \field{title}{Path Loss}
+    \verb{url}
+    \verb https://www.utdallas.edu/~torlak/courses/ee4367/lectures/lectureradio
+    \verb .pdf
+    \endverb
     \field{year}{2008}
+    \field{urlday}{30}
+    \field{urlmonth}{12}
+    \field{urlyear}{2016}
   \endentry
 
   \entry{GMBF}{book}{}
@@ -134,10 +168,16 @@
          giveni={B\bibinitperiod},
       }}%
     }
+    \list{publisher}{1}{%
+      {Information Science Reference}%
+    }
     \strng{namehash}{MGFB1}
     \strng{fullhash}{MGFB1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{edition}{1}
+    \field{isbn}{1605663964}
+    \field{pages}{137\bibrangedash 138}
     \field{title}{Localization Algorithms and Strategies for Wireless Sensor
   Networks}
     \field{year}{2009}
@@ -162,8 +202,7 @@
       {Institute for Systems}%
       {Robotics Instituto Superior Tcnico}%
     }
-    \warn{\item Invalid format of field 'date' \item Invalid format of field
-  'date'}
+    \field{year}{2004}
   \endentry
 
   \entry{JK}{book}{}
@@ -175,10 +214,15 @@
          giveni={J\bibinitperiod},
       }}%
     }
+    \list{publisher}{1}{%
+      {Cuviller Verlag G\"{o}ttinger}%
+    }
     \strng{namehash}{KJ1}
     \strng{fullhash}{KJ1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{isbn}{3867276900}
+    \field{pages}{35\bibrangedash 40}
     \field{title}{Modeling User Mobility for the Simulation of Wireless Ad Hoc
   Access Networks}
     \field{year}{2008}
@@ -193,10 +237,15 @@
          giveni={Y\bibinitperiod},
       }}%
     }
+    \list{publisher}{1}{%
+      {University Press Kassel GmbH}%
+    }
     \strng{namehash}{XY1}
     \strng{fullhash}{XY1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{isbn}{3737600708}
+    \field{pages}{30\bibrangedash 32}
     \field{title}{Autonomous Indoor Localization Using Unsupervised Wi-Fi}
     \field{year}{2016}
   \endentry
@@ -222,12 +271,16 @@
          giveni={H\bibinitperiod-L\bibinitperiod},
       }}%
     }
+    \list{publisher}{1}{%
+      {ACM New York}%
+    }
     \strng{namehash}{DTKCENHL1}
     \strng{fullhash}{DTKCENHL1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
-    \field{booktitle}{Proceedings of International Conference on Human Machine
-  Interaction 2013}
+    \field{booktitle}{MobileHCI '13 15th International Conference on
+  Human-Computer Interaction with Mobile Devices and Services}
+    \field{isbn}{978-1-4503-2273-7}
     \field{title}{Home Appliance Control System Based on Robust Indoor User
   Localization using Wifi Signals}
     \field{year}{2013}
@@ -252,10 +305,19 @@
     \strng{fullhash}{FRHR1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{issn}{0028-1522}
+    \field{note}{University of Cambridge}
+    \field{pages}{201\bibrangedash 210}
     \field{title}{An Analysis of the Accuracy of Bluetooth Low Energy for
   Indoor Positioning Applications}
+    \verb{url}
+    \verb http://smedia.ust.hk/james/projects/people_aware_smart_city_applicati
+    \verb ons/paper/1.pdf
+    \endverb
     \field{journaltitle}{Proceedings of the 27th International Technical
-  Meeting of The Satellite Division of the Institute of Navigation}
+  Meeting of The Satellite Division of the Institute of Navigation (ION GNSS+
+  2014)}
+    \field{month}{09}
     \field{year}{2014}
   \endentry
 
@@ -273,32 +335,74 @@
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
     \field{title}{Indoor location tracking using Signal Strength Pinpoints}
-    \list{institution}{1}{%
-      {University of Groningen}%
+    \list{institution}{2}{%
+      {Faculty of Mathematics}%
+      {Natural Science Department of Computer Science, University of
+  Groningen}%
     }
     \field{type}{Master of Science Thesis}
     \field{year}{2010}
   \endentry
 
   \entry{ML}{online}{}
+    \name{author}{1}{}{%
+      {{hash=LM}{%
+         family={Langer},
+         familyi={L\bibinitperiod},
+         given={Małgorzata},
+         giveni={M\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{LM1}
+    \strng{fullhash}{LM1}
+    \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{note}{Instytut Elektroniki, Politechnika Łódzka}
     \field{title}{WPROWADZENIE DO TELEKOMUNIKACJI Część II}
     \verb{url}
     \verb http://eletel.p.lodz.pl/mlanger/telek/file-No.2.pdf
     \endverb
     \field{year}{2016}
+    \field{urlday}{30}
+    \field{urlmonth}{12}
+    \field{urlyear}{2016}
   \endentry
 
   \entry{AG}{online}{}
+    \name{author}{1}{}{%
+      {{hash=BPJ}{%
+         family={Bevelacqua},
+         familyi={B\bibinitperiod},
+         given={Peter\bibnamedelima Joseph},
+         giveni={P\bibinitperiod\bibinitdelim J\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{BPJ1}
+    \strng{fullhash}{BPJ1}
+    \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
     \field{title}{Antenna Gain}
     \verb{url}
     \verb http://www.antenna-theory.com/basics/gain.php
     \endverb
     \field{year}{2009}
+    \field{urlday}{30}
+    \field{urlmonth}{12}
+    \field{urlyear}{2016}
   \endentry
 
   \entry{RFM}{online}{}
+    \name{author}{1}{}{%
+      {{hash=ON}{%
+         family={Oy},
+         familyi={O\bibinitperiod},
+         given={Netcontrol},
+         giveni={N\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{ON1}
+    \strng{fullhash}{ON1}
+    \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
     \field{title}{Radio Fade Margin}
     \verb{url}
@@ -306,9 +410,23 @@
     \verb margin/
     \endverb
     \field{year}{2016}
+    \field{urlday}{30}
+    \field{urlmonth}{12}
+    \field{urlyear}{2016}
   \endentry
 
   \entry{FMC}{online}{}
+    \name{author}{1}{}{%
+      {{hash=NI}{%
+         family={Networks},
+         familyi={N\bibinitperiod},
+         given={Invictus},
+         giveni={I\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{NI1}
+    \strng{fullhash}{NI1}
+    \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
     \field{title}{Fade Margin / System Operating Margin Calculator}
     \verb{url}
@@ -316,6 +434,9 @@
     \verb %20Regs/Fade%20Margin%20Calculator%20-%20Basic.htm
     \endverb
     \field{year}{2016}
+    \field{urlday}{30}
+    \field{urlmonth}{12}
+    \field{urlyear}{2016}
   \endentry
 
   \entry{AMMC}{article}{}
@@ -337,10 +458,13 @@
     \strng{fullhash}{MACM1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{issn}{2319-7242}
+    \field{issue}{2}
     \field{title}{Wi-Fi Localization using RSSI in Indoor Environment via a
   smartphone}
+    \field{volume}{1}
     \field{journaltitle}{International Journal Of Engineering And Computer
-  Science ISSN:2319-7242 Volume1 Issue 2}
+  Science}
     \field{year}{2012}
   \endentry
 
@@ -352,9 +476,12 @@
     \verb iver.html
     \endverb
     \field{year}{2016}
+    \field{urlday}{30}
+    \field{urlmonth}{12}
+    \field{urlyear}{2016}
   \endentry
 
-  \entry{SPPLM}{inproceedings}{}
+  \entry{SPPLM}{online}{}
     \name{author}{1}{}{%
       {{hash=GA}{%
          family={Goldsmith},
@@ -367,9 +494,15 @@
     \strng{fullhash}{GA1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
-    \field{booktitle}{EE359, Wireless Communications}
+    \field{note}{EE 359: Wireless Communications}
     \field{title}{Signal Propagation and Path Loss Models}
+    \verb{url}
+    \verb http://web.stanford.edu/class/ee359/pdfs/lecture2.pdf
+    \endverb
     \field{year}{2016}
+    \field{urlday}{30}
+    \field{urlmonth}{12}
+    \field{urlyear}{2016}
   \endentry
 
   \entry{TPL}{online}{}
@@ -379,6 +512,9 @@
     \verb http://www.tplink.com/ie/support/calculator/
     \endverb
     \field{year}{2016}
+    \field{urlday}{30}
+    \field{urlmonth}{12}
+    \field{urlyear}{2016}
   \endentry
 
   \entry{EN}{online}{}
@@ -389,9 +525,23 @@
     \verb gation-overview/free-space-path-loss.php
     \endverb
     \field{year}{2016}
+    \field{urlday}{30}
+    \field{urlmonth}{12}
+    \field{urlyear}{2016}
   \endentry
 
   \entry{FSPL}{online}{}
+    \name{author}{1}{}{%
+      {{hash=TI}{%
+         family={Technologies},
+         familyi={T\bibinitperiod},
+         given={IDC},
+         giveni={I\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{TI1}
+    \strng{fullhash}{TI1}
+    \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
     \field{title}{Free Space Loss}
     \verb{url}
@@ -407,6 +557,9 @@
     \verb https://docs.microsoft.com/en-us/dotnet/articles/standard/index
     \endverb
     \field{year}{2016}
+    \field{urlday}{30}
+    \field{urlmonth}{12}
+    \field{urlyear}{2016}
   \endentry
 
   \entry{ASP}{book}{}
@@ -430,10 +583,14 @@
          giveni={H\bibinitperiod},
       }}%
     }
+    \list{publisher}{1}{%
+      {O’Reilly Media}%
+    }
     \strng{namehash}{CJSTPH1}
     \strng{fullhash}{CJSTPH1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{isbn}{978-83-246-6644-7}
     \field{title}{Programming ASP.NET MVC 4: Developing Real-World Web
   Application with ASP.NET MVC}
     \field{year}{2012}
@@ -448,10 +605,23 @@
          giveni={C\bibinitperiod},
       }}%
     }
+    \name{editor}{1}{}{%
+      {{hash=RL}{%
+         family={Ruma},
+         familyi={R\bibinitperiod},
+         given={Laurel},
+         giveni={L\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {O’Reilly Media}%
+    }
     \strng{namehash}{SC1}
     \strng{fullhash}{SC1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
+    \field{edition}{2}
+    \field{isbn}{978-0-596-15364-9}
     \field{title}{Programming F\#}
     \field{year}{2010}
   \endentry
@@ -463,6 +633,9 @@
     \verb https://www.xamarin.com/platform
     \endverb
     \field{year}{2016}
+    \field{urlday}{30}
+    \field{urlmonth}{12}
+    \field{urlyear}{2016}
   \endentry
 \endsortlist
 \endinput

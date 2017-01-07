@@ -50,21 +50,26 @@ to wartość funkcji określa, jakie jest prawdopodobieństwo, że odbiornik zna
 Jeżeli transmiter opisze się jako funkcję prawdopodobieństwa Gaussa \cite{YX}, wyznaczoną na podstawie odebranej siły sygnału, zwizualizowany model transmitera w przestrzeni dwuwymiarowej przypomina pierścień, którego gęstość maleje wraz z oddalaniem się od obliczonej z mocy sygnału odległości.
 \begin{figure}[H]			
 	\centering
-	\caption{Wizaulizacja modelu routera opisanego funkcją Gaussa}
-	\includegraphics{router_Gaussa_wizualizacja}
+	\caption{Wizualizacja modelu routera opisanego funkcją Gaussa. Jasność punktów oznacza wielkość prawdopodobieństwa $F(x)$. Na czerwono zaznaczono odległość obliczoną na podstawie siły sygnału transmitera $d$, a zielony prostokąt oznacza lokalizację transmitera.}
+	\includegraphics[width=0.75\textwidth]{router_Gaussa_wizualizacja}
 \end{figure}
 \subsection{Lokalizacja użytkownika opisana funkcją Gaussa}
 Wyżej opisane podejście, poza realniejszym oddaniem natury rozchodzenia się sygnału w środowisku \cite{TDECHN}, ma również dodatkową zaletę - w łatwy sposób można wyliczyć prawdopodobieństwo położenia odbiornika wtedy, gdy w modelu znajduje się więcej transmiterów.\\
 Jednym ze sposobów określenia położenia użytkownika jest zsumowanie prawdopodobieństw obliczonych w każdym punkcie w przestrzeni z funkcji Gaussa przypisanych do transmiterów. Prawdopodobieństwo dla puntu $(X,Y)$ może być określone na podstawie wzoru:
 \begin{equation}
-F(X,Y) = \sum_{r=1}^{R} \frac{1}{\sigma\sqrt{2\pi}}e^{\left(\frac{-(D(X,Y,r)-d_r)^2}{2\sigma^2}\right)}
+F(X,Y) = \sum_{r=1}^{R} \frac{1}{\sigma_r\sqrt{2\pi}}e^{\left(\frac{-(D(X,Y,r)-d_r)^2}{2\sigma_r^2}\right)}
 \end{equation}
 w którym kolejne symbol oznaczają:
 \begin{itemize}
 	\item $R$ - zbiór transmiterów. Z racji tego, iż funkcja Gaussa przyjmuje wartości większe od zera dla całego zakresu $(-\infty,\infty)$, wartość prawdopodobieństwa jest liczona dla każdego transmitera, niezależnie od tego, jak daleko znajduje się on od punktu $(X,Y)$
 	\item $D(X,Y,r)$ - euklidesowa odległość punktu $(X,Y)$ od transmitera $r$
 	\item $d_r$ - odległość obliczona na podstawie siły sygnału transmitera $r$
-	\item $\sigma$ - odchylenie standardowe - wartość wyznaczana na podstawie odległości transmiterów od odbiornika. Dodatkowo, z racji tego, iż sygnał Wi-Fi jest bardziej odporny na nagłe zaniki wynikające ze wzrostu odległości, niż sygnał Bluetooth \cite{BLUE}, wartość odchylenia skalowana jest w zależności od tego, jaki typ sygnału wysyła konkretny transmiter.
+	\item $\sigma_r$ - odchylenie standardowe - wartość wyznaczana na podstawie odległości transmiterów od odbiornika. Dodatkowo, z racji tego, iż sygnał Wi-Fi jest bardziej odporny na nagłe zaniki wynikające ze wzrostu odległości, niż sygnał Bluetooth \cite{BLUE}, wartość odchylenia skalowana jest w zależności od tego, jaki typ sygnału wysyła konkretny transmiter.\\
+	Wartość $sigma_r$ można obliczyć za pomocą wzoru:
+	\begin{equation}
+		sigma_r = \frac{D_m * w_r}{30}
+	\end{equation}
+	gdzie $D_m$ to długość najdłuższego boku modelu, tworzonego przez sygnały ze wszystkich transmiterów, a $w_r$ to waga sygnału, który wysyła transmiter $r$
 \end{itemize}
 Po ustaleniu wartości dla wszystkich punktów w przestrzeni, jako lokalizacja odbiornika przyjęty zostaje taki punkt $(X_o,Y_o)$, którego suma prawdopodobieństw jest najwyższa.
 \begin{figure}[H]			
