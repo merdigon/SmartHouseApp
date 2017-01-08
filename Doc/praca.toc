@@ -51,3 +51,9 @@
 \contentsline {section}{\numberline {6.1}Lokalizowanie u\IeC {\.z}ytkownika}{45}
 \contentsline {section}{\numberline {6.2}Monitorowanie i konfiguracja systemu}{47}
 \contentsline {section}{\numberline {6.3}Podsumowanie}{47}
+\contentsline {chapter}{\numberline {7}Appendix 1 - Wyniki testu sposob\IeC {\'o}w komunikacji radiowej}{49}
+\contentsline {chapter}{\numberline {8}Appendix 2 - Instrukcja instalacji systemu}{59}
+\contentsline {section}{\numberline {8.1}Aplikacja serwerowa}{59}
+\contentsline {section}{\numberline {8.2}Konfiguracja bazy danych}{60}
+\contentsline {section}{\numberline {8.3}Aplikacja kliencka}{60}
+\contentsline {section}{\numberline {8.4}Aplikacja mobilna}{62}
