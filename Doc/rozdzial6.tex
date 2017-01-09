@@ -14,26 +14,26 @@ Dla tak przyjętych założeń, kolejne urządzenia mają współrzędne:
 	\item transmiter nr 3 - współrzędne (8.25, 4.5, 0.0)
 	\item odbiornik - współrzędne (6.0, 4.25, 0.0)
 \end{itemize}
-Wykonana została seria 7 powtórzeń, podczas których aplikacja wysłała informacje o odbieranych przez nią siłach sygnałów, a serwer, po ich odebraniu, wyznaczył lokalizację. Błąd względny był obliczany w odniesieniu do założonego, akceptowalnego błędu podczas lokalizacji - 0.5 metra.
+Wykonana została seria 7 powtórzeń, podczas których aplikacja wysłała informacje o odbieranych przez nią siłach sygnałów, a serwer, po ich odebraniu, wyznaczył lokalizację.
  \begin{center}
 	\begin{minipage}{\linewidth}
-		\begin{tabular}{|c|c|c|c|>{\centering} p{6cm}|c|}
+		\begin{tabular}{|>\centering p{1,5cm}|>\centering p{1cm}|>\centering p{1cm}|>\centering p{1cm}|c|}
 			\hline 
-			Pomiar & X & Y & Z & Dystans między rzeczywistą pozycją, a obliczoną (m) & Błąd względny (\%)\\ 
+			Pomiar & X & Y & Z & Dystans między rzeczywistą pozycją, a obliczoną (m) \\ 
 			\hline 
-			1 & 6.11 & 3.78 & -0.12 & 0.5 & 100\\ 
+			1 & 6.11 & 3.78 & -0.12 & 0.5 \\ 
 			\hline 
-			2 & 5.65 & 3.24 & 0.06 & 1.07 & 214 \\ 
+			2 & 5.65 & 3.24 & 0.06 & 1.07 \\ 
 			\hline 
-			3 & 6.53 & 3.90 & 0.51 & 0.81 & 162 \\ 
+			3 & 6.53 & 3.90 & 0.51 & 0.81 \\ 
 			\hline 
-			4 & 4.87 & 2.53 & -0.1 & 2.06 & 412 \\ 
+			4 & 4.87 & 2.53 & -0.1 & 2.06 \\ 
 			\hline 
-			5 & 6.98 & 2.23 & -0.04 & 2.25 & 450 \\
+			5 & 6.98 & 2.23 & -0.04 & 2.25 \\
 			\hline
-			6 & 5.09 & 3.90 & 0.01 & 0.98 & 196 \\
+			6 & 5.09 & 3.90 & 0.01 & 0.98 \\
 			\hline
-			7 & 7.44 & 3.50 & -0.22 & 1.64 & 328 \\
+			7 & 7.44 & 3.50 & -0.22 & 1.64 \\
 			\hline 
 		\end{tabular} 
 	\end{minipage} 
@@ -57,8 +57,8 @@ P_{ustalona} = (P_{max} - P_{min}) * \frac{N_{blisk}}{N_{ogół}} + P_{min} = (8
 	\caption{Wizualne przedstawienie zasięgu urządzenia}
 	\includegraphics{dzialanie_urzadze}
 \end{figure}
-\section{Podsumowanie}
-Celem pracy było stworzenie systemu, który określa położenie użytkownika w trzech wymiarach na podstawie siły sygnału znanych routerów, stałych urządzeń Bluetooth (np \textit{Beaconów}) oraz dynamicznie zmieniających się sił sygnałów Bluetooth innych użytkowników systemu. Obliczone lokalizacje miały być przechowywane oraz przedstawiane na mapie budynku w sposób łatwy do analizy. Dodatkowo, celem było opracowanie algorytmu, który na podstawie określonych warunków oraz mapy przepływu zarządza wybranymi urządzeniami podłączonymi do systemu.\\
+\chapter{Podsumowanie}
+Celem pracy było stworzenie systemu, który określa położenie użytkownika w trzech wymiarach na podstawie siły sygnału znanych punktów dostępu WiFi, stałych urządzeń Bluetooth (np \textit{Beaconów BLE}) oraz dynamicznie zmieniających się sił sygnałów Bluetooth innych użytkowników systemu. Obliczone lokalizacje miały być przechowywane oraz przedstawiane na mapie budynku w sposób łatwy do analizy. Dodatkowo, celem było opracowanie algorytmu, który na podstawie określonych warunków oraz mapy przepływu zarządza wybranymi urządzeniami podłączonymi do systemu.\\
 W ramach projektu został zaimplementowany pełny moduł do lokalizacji użytkowników. Dane zbierane z aplikacji mobilnych są przedstawiane jako trójwymiarowy model, w której odległość między transmiterem, a odbiornikiem została opisana jako probabilistyczna funkcja Gaussa. Mierzenie dystansu pomiędzy urządzeniami opiera się na obliczaniu mocy zaniku siły sygnałów Bluetooth oraz Wifi, odbieranego przez urządzenia mobilne.\\
 Aby system mógł lepiej określać lokalizację aplikacji mobilnych, przeprowadzone zostały testy technologii Bluetooth oraz Wi-Fi. Ich celem było określenie, który z wyżej wymienionych sposobów komunikacji jest bardziej niezawodny oraz odporny na zakłócenia i odbicia. Niestety, ogólne testy całej aplikacji wykazały, że określanie odległości na podstawie \textit{RSSI} nie jest wystarczająco dokładne, jednakże dobór lepszej metody może być uwzględniony podczas dalszego rozwoju aplikacji.\\
 Dodatkowo, stworzona została aplikacja administracyjna, mająca możliwość zarządzania całym systemem oraz monitorowania lokalizacji użytkowników. Prezentowane przez nią dane pozwalają na analizę przepływu ludzi, a dzięki odpowiedniemu skonfigurowaniu, aplikacja serwerowa ma możliwość efektywnego sterowania zarejestrowanymi urządzeniami na podstawie odnotowanych lokalizacji użytkowników.\\

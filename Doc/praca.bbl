@@ -125,6 +125,39 @@
     \warn{\item Invalid format of field 'eventdate'}
   \endentry
 
+  \entry{FHSA}{book}{}
+    \name{author}{2}{}{%
+      {{hash=FH}{%
+         family={Fujita},
+         familyi={F\bibinitperiod},
+         given={H.},
+         giveni={H\bibinitperiod},
+      }}%
+      {{hash=SA}{%
+         family={Selamat},
+         familyi={S\bibinitperiod},
+         given={A.},
+         giveni={A\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Springer International Publishing}%
+    }
+    \strng{namehash}{FHSA1}
+    \strng{fullhash}{FHSA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{isbn}{9783319175300}
+    \field{series}{Communications in Computer and Information Science}
+    \field{title}{Intelligent Software Methodologies, Tools and Techniques:
+  13th International Conference, SoMeT 2014, Langkawi, Malaysia, September
+  22-24, 2014. Revised Selected Papers}
+    \verb{url}
+    \verb https://books.google.pl/books?id=CrUlCQAAQBAJ
+    \endverb
+    \field{year}{2015}
+  \endentry
+
   \entry{MT}{proceedings}{}
     \name{editor}{1}{}{%
       {{hash=TM}{%
@@ -153,34 +186,52 @@
     \field{urlyear}{2016}
   \endentry
 
-  \entry{GMBF}{book}{}
-    \name{author}{2}{}{%
-      {{hash=MG}{%
-         family={Mao},
-         familyi={M\bibinitperiod},
-         given={Guoqiang},
-         giveni={G\bibinitperiod},
-      }}%
-      {{hash=FB}{%
-         family={Fidan},
-         familyi={F\bibinitperiod},
-         given={Barış},
-         giveni={B\bibinitperiod},
+  \entry{YX}{book}{}
+    \name{author}{1}{}{%
+      {{hash=XY}{%
+         family={Xu},
+         familyi={X\bibinitperiod},
+         given={Yaqian},
+         giveni={Y\bibinitperiod},
       }}%
     }
     \list{publisher}{1}{%
-      {Information Science Reference}%
+      {University Press Kassel GmbH}%
     }
-    \strng{namehash}{MGFB1}
-    \strng{fullhash}{MGFB1}
+    \strng{namehash}{XY1}
+    \strng{fullhash}{XY1}
     \field{labelnamesource}{author}
     \field{labeltitlesource}{title}
-    \field{edition}{1}
-    \field{isbn}{1605663964}
-    \field{pages}{137\bibrangedash 138}
-    \field{title}{Localization Algorithms and Strategies for Wireless Sensor
-  Networks}
-    \field{year}{2009}
+    \field{isbn}{3737600708}
+    \field{pages}{30\bibrangedash 32}
+    \field{title}{Autonomous Indoor Localization Using Unsupervised Wi-Fi}
+    \field{year}{2016}
+  \endentry
+
+  \entry{KKPK}{proceedings}{}
+    \name{editor}{2}{}{%
+      {{hash=KK}{%
+         family={Kaemarungsi},
+         familyi={K\bibinitperiod},
+         given={Kamol},
+         giveni={K\bibinitperiod},
+      }}%
+      {{hash=KP}{%
+         family={Krishnamurthy},
+         familyi={K\bibinitperiod},
+         given={Prashant},
+         giveni={P\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{KKKP1}
+    \strng{fullhash}{KKKP1}
+    \field{labelnamesource}{editor}
+    \field{labeltitlesource}{title}
+    \field{eventtitle}{Proceedings of the First Annual International Conference
+  on Mobile and Ubiquitous Systems: Networking and Services}
+    \field{title}{Properties of Indoor Received Signal Strength for WLAN
+  Location Fingerprinting}
+    \field{year}{2004}
   \endentry
 
   \entry{MIR}{thesis}{}
@@ -205,6 +256,33 @@
     \field{year}{2004}
   \endentry
 
+  \entry{HMA}{book}{}
+    \name{author}{1}{}{%
+      {{hash=AHM}{%
+         family={Ammari},
+         familyi={A\bibinitperiod},
+         given={Habib\bibnamedelima M.},
+         giveni={H\bibinitperiod\bibinitdelim M\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Springer Berlin Heidelberg}%
+    }
+    \strng{namehash}{AHM1}
+    \strng{fullhash}{AHM1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{isbn}{9783642400667}
+    \field{pages}{124\bibrangedash 125}
+    \field{series}{Signals and Communication Technology}
+    \field{title}{The Art of Wireless Sensor Networks: Volume 2: Advanced
+  Topics and Applications}
+    \verb{url}
+    \verb https://books.google.pl/books?id=Ady4BAAAQBAJ
+    \endverb
+    \field{year}{2013}
+  \endentry
+
   \entry{JK}{book}{}
     \name{author}{1}{}{%
       {{hash=KJ}{%
@@ -226,28 +304,6 @@
     \field{title}{Modeling User Mobility for the Simulation of Wireless Ad Hoc
   Access Networks}
     \field{year}{2008}
-  \endentry
-
-  \entry{YX}{book}{}
-    \name{author}{1}{}{%
-      {{hash=XY}{%
-         family={Xu},
-         familyi={X\bibinitperiod},
-         given={Yaqian},
-         giveni={Y\bibinitperiod},
-      }}%
-    }
-    \list{publisher}{1}{%
-      {University Press Kassel GmbH}%
-    }
-    \strng{namehash}{XY1}
-    \strng{fullhash}{XY1}
-    \field{labelnamesource}{author}
-    \field{labeltitlesource}{title}
-    \field{isbn}{3737600708}
-    \field{pages}{30\bibrangedash 32}
-    \field{title}{Autonomous Indoor Localization Using Unsupervised Wi-Fi}
-    \field{year}{2016}
   \endentry
 
   \entry{TDECHN}{incollection}{}

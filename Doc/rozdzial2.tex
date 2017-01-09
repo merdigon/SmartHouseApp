@@ -1,9 +1,9 @@
 \chapter{Określanie lokalizacji}
 \label{cha:lokalizacja}
 \section{Lokalizacja użytkownika}
-Lokalizację użytkownika w systemie określa się na podstawie odległości od punktów, których współrzędne w przestrzeni trójwymiarowej są znane. Są to głównie routery i Beacony, jednak może się zdarzyć, że takim punktem staje się również inny użytkownik. Współrzędne użytkownika można obliczyć, dokonując pomiarów wskaźnika mocy \textit{RSSI}, podając siłę sygnałów odebranych przez otaczające go urządzenia i obliczając na ich podstawie dystans \cite{RSC}.
+Lokalizację użytkownika w systemie określa się na podstawie odległości od punktów, których współrzędne w przestrzeni trójwymiarowej są znane. Są to głównie punkty dostępu WiFi i Beacony \textit{Bluetooth Low Energy} (BLE), jednak może się zdarzyć, że takim punktem staje się również urządzenie mobilne innego użytkownika. Współrzędne użytkownika można obliczyć, dokonując pomiarów wskaźnika mocy \textit{RSSI}, podając siłę sygnałów odebranych przez otaczające go urządzenia i obliczając na ich podstawie dystans \cite{RSC}.
 \section{Trilateracja}
-Powszechnie wykorzystywanym sposobem obliczenia lokalizacji użytkownika na podstawie dystansu do znanych punktów, jest trilateracja \cite{MS}. Metoda ta polega na przedstawieniu dystansu dzielącego punkt od nadajników w postaci okręgi (lub sfery w przypadku, gdy określamy lokalizację w trzech wymiarach). Następnie, należy wyznaczyć współrzędne punktu przecięcia okręgów \cite{MS}. Wyznaczony punkt jest lokalizacją odbiornika, dla którego dokonywaliśmy obliczenia.
+Powszechnie wykorzystywanym sposobem obliczenia lokalizacji użytkownika na podstawie dystansu do znanych punktów, jest trilateracja \cite{MS}. Metoda ta polega na przedstawieniu dystansu dzielącego punkt od nadajników w postaci okręgi (lub sfery w przypadku, gdy określamy lokalizację w trzech wymiarach). Aby poprawnie przedstawić ten model w przestrzeni 3D, do obliczeń należy wziąć co najmniej trzy nadajniki. Następnie, trzeba wyznaczyć współrzędne punktu przecięcia okręgów \cite{MS}. Wyznaczony punkt jest lokalizacją odbiornika, dla którego dokonywaliśmy obliczenia.
 \begin{figure}[H]			
 	\centering
 	\caption{Wizualizacja modelu trilateracji}
@@ -25,9 +25,10 @@ gdzie:
 	\item $x_1$, $y_1$, $x_2$, $y_2$, $x_3$, $y_3$ to współrzędne znanych punktów
 	\item $r_1$, $r_2$, $r_3$ to odległości między punktem obliczanym, a punktami o znanych współrzędnych
 \end{itemize}
-Ta metoda lokalizowania użytkownika w przestrzeni ma jedną, bardzo ważną wadę, która wyklucza jej wykorzystanie w tworzonym systemie - nie potrafi się dostosować do błędów pomiarowych, których w przypadku określania lokalizacji przy użyciu sygnałów radiowych, jest dużo. Aby wyznaczone lokalizacje użytkowników w sposób zbliżony odwzorowywały rzeczywiste położenie, algorytm obliczający musiał być bardziej odporny na błędy pomiarowe \cite{MT}.
+Każde równanie w powyższym wzorze opisuje dystans obliczony na podstawię sygnału pochodzącego z jednego nadajnika. Jeżeli w obliczeniach uwzględni się więcej transmiterów, ilość równań zwiększy się proporcjonalnie.\\
+Ta metoda lokalizowania użytkownika w przestrzeni ma jedną, bardzo ważną wadę, która wyklucza jej wykorzystanie w tworzonym systemie - nie potrafi się dostosować do błędów pomiarowych, których w przypadku określania lokalizacji przy użyciu sygnałów radiowych, jest dużo \cite{FHSA}. Aby wyznaczone lokalizacje użytkowników w sposób zbliżony odwzorowywały rzeczywiste położenie, algorytm obliczający musiał być bardziej odporny na błędy pomiarowe \cite{MT}.
 \section{Lokalizacja jako funkcja probabilistyczna Gaussa}
-Z racji tego, iż mierzony sygnał, odbierany przez odbiornik, ulega zniekształceniom i odbiciom, określenie dystansu między transmiterem, a odbiorcą w sposób liniowy jest niezgodne z fizycznymi zachowaniami sygnału. Siła sygnału oraz straty wywołane przez zniekształcenia i odbicia, określone są w jednostce dB. Wynika z tego, że najlepszym przybliżeniem zmian siły sygnału może być funkcja Gaussa \cite{GMBF}. Zamiast określać konkretne położenie użytkownika, w pracy zastosowane będzie podejście, które pozwoli na przedstawienie jego lokalizacji jako prawdopodobieństwo położenia.\\
+Z racji tego, iż mierzony sygnał, odbierany przez odbiornik, ulega zniekształceniom i odbiciom, określenie dystansu między transmiterem, a odbiorcą w sposób liniowy jest niezgodne z fizycznymi zachowaniami sygnału. Informacje zawarte w \cite{YX} i \cite{KKPK} wskazują, że RSSI może zostać przybliżone przez rozkład normalny Gaussa. Zamiast określać konkretne położenie użytkownika, w pracy zastosowane będzie podejście, które pozwoli na przedstawienie jego lokalizacji jako prawdopodobieństwo położenia.\\
 \subsection{Funkcja probabilistyczna Gaussa}
 Funkcja probabilistyczna Gaussa jest to krzywa w kształcie dzwonu, symetryczna względem średniej $\mu$ oraz uzyskująca wartość maksymalną w punkcie $\frac{1}{\sqrt{2\pi}\sigma}$.
 Określa się ją za pomocą wzoru:
@@ -37,20 +38,20 @@ F(x) = \frac{1}{\sigma\sqrt{2\pi}}e^{\left(\frac{-(x-\mu)^2}{2\sigma^2}\right)}
 Zmienne $\mu$ będąca średnią, oraz $\sigma$ będąca odchyleniem standardowym, w pełni opisują tą funkcję \cite{MIR}.
 \begin{figure}[H]			
 	\centering
-	\caption{Wykres funkcji Gaussa dla różnych wartości parametrów}
+	\caption{Wykres funkcji Gaussa dla różnych wartości parametrów - źródło: \mbox{wikipedia.org}}
 	\includegraphics{funkcja_Gaussa}
 \end{figure}
-Funkcja Gaussa jest szeroko wykorzystywana w statystyce. W elektronice, korzysta się z niej podczas charakteryzowania pomiarów sensorów czy siły sygnałów radiowych.
-\subsection{Model routerów jako funkcja Gaussa}
+Funkcja Gaussa jest szeroko wykorzystywana w statystyce. W elektronice, korzysta się z niej podczas charakteryzowania pomiarów sensorów czy siły sygnałów radiowych \cite{HMA}.
+\subsection{Model transmiterów jako funkcja Gaussa}
 Jeżeli określimy lokalizację odbiornika względem transmitera jako funkcję prawdopodobieństwa Gaussa:
 \begin{equation}
 F(x) = \frac{1}{\sigma\sqrt{2\pi}}e^{\left(\frac{-(d_o-d)^2}{2\sigma^2}\right)}
 \end{equation}
-to wartość funkcji określa, jakie jest prawdopodobieństwo, że odbiornik znajduje się w odległości $d_o$ od transmitera. Największe prawdopodobieństwo przypisywane jest dystansowi, który obliczyliśmy z siły sygnału, dlatego to właśnie ta wartość podstawiana jest pod zmienną $d$ \cite{JK}.\\
-Jeżeli transmiter opisze się jako funkcję prawdopodobieństwa Gaussa \cite{YX}, wyznaczoną na podstawie odebranej siły sygnału, zwizualizowany model transmitera w przestrzeni dwuwymiarowej przypomina pierścień, którego gęstość maleje wraz z oddalaniem się od obliczonej z mocy sygnału odległości.
+to wartość tej funkcji określa, jakie jest prawdopodobieństwo, że odbiornik znajduje się w odległości $d_o$ od transmitera. Największe prawdopodobieństwo przypisywane jest dystansowi, który obliczyliśmy z siły sygnału, dlatego to właśnie ta wartość podstawiana jest pod zmienną $d$ \cite{JK}.\\
+Jeżeli lokalizację odbiornika opisze się jako funkcję prawdopodobieństwa Gaussa \cite{YX}, wyznaczoną na podstawie odebranej siły sygnału, zwizualizowany model transmitera w przestrzeni dwuwymiarowej przypomina pierścień, którego gęstość maleje wraz z oddalaniem się od obliczonej z mocy sygnału odległości.
 \begin{figure}[H]			
 	\centering
-	\caption{Wizualizacja modelu routera opisanego funkcją Gaussa. Jasność punktów oznacza wielkość prawdopodobieństwa $F(x)$. Na czerwono zaznaczono odległość obliczoną na podstawie siły sygnału transmitera $d$, a zielony prostokąt oznacza lokalizację transmitera. Wartość d wyznaczana jest za pomocą wzoru $d = \sqrt{d_x^2 + d_y^2}$.}
+	\caption{Wizualizacja modelu transmitera opisanego funkcją Gaussa. Jasność punktów oznacza wielkość prawdopodobieństwa $F(x)$. Na czerwono zaznaczono odległość obliczoną na podstawie siły sygnału transmitera $d$, a zielony prostokąt oznacza lokalizację transmitera. Wartość d wyznaczana jest za pomocą wzoru $d = \sqrt{d_x^2 + d_y^2}$.}
 	\includegraphics[width=0.75\textwidth]{router_Gaussa_wizualizacja}
 \end{figure}
 \subsection{Lokalizacja użytkownika opisana funkcją Gaussa}

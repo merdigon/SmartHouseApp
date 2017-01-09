@@ -1,6 +1,21 @@
-\chapter{Appendix 2 - Instrukcja instalacji systemu}
+\documentclass{article}
+\usepackage{polski}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{cite}
+\usepackage{url}
+\usepackage{float}
+\usepackage{listings}
+\lstset
+{
+	numbers=left,
+	stepnumber=1,
+}
+\usepackage[all]{nowidow}
+\begin{document}
+\section{Instrukcja instalacji systemu}
 
-	\section{Aplikacja serwerowa}
+	\subsection{Aplikacja serwerowa}
 	
 	Pierwszym krokiem do uruchomienia systemu jest skonfigurowanie systemu. Aplikacja serwerowa jest dostarczona jako \textit{Web Deployment Package}, który należy wdrożyć (klikając prawym przyciskiem myszy i wybierając "Wdróż") do stworzonej wcześniej witryny w menedżerze internetowych usług informacyjnych (\textit{IIS}). 
 	\begin{figure}[H]			
@@ -10,12 +25,12 @@
 	\end{figure}
 	Kiedy aplikacja zostanie poprawnie wdrożona, należy skonfigurować dane dostępowe do bazy danych poprzez edycję \textit{'connection-string'} w pliku Web.config w folderze serwera. Po tej operacji należy zrestartować serwer.\\	
 	
-	\section{Konfiguracja bazy danych}
+	\subsection{Konfiguracja bazy danych}
 	
 	Aplikacja współpracuje z bazą danych PostgreSQL. Aby utworzyć wymagane przez serwer struktury bazodanowe, należy wywołać w utworzonej dla systemu bazie danych skrypt SQL. Znajduje się on w pliku \textit{'script.sql'} i dostarczony jest on wraz plikiem wdrożeniowym serwera.
 		
 	
-	\section{Aplikacja kliencka}
+	\subsection{Aplikacja kliencka}
 	
 	Aplikacje kliencką należy włączyć z uprawnieniami administratora. Przed uruchomieniem aplikacji administracyjnej, należy skonfigurować dane znajdujące się w pliku \textit{'config.xml'}. W danej \textit{'PictureLocation'} należy podać względną ścieżkę do mapy, odnosząc się do folderu, w którym znajduje się wykonywalna aplikacja. Do danej \textit{'ServerIp'} należy przypisać adres ip serwera wraz z portem, zaś w \textit{ClientIp} należy wstawić adres ip klienta, bez portu. Dane \textit{'Login'} i \textit{'Password'} są opcjonalne i zawierają zapamiętane dane logowania, którymi wypełniane jest pierwsze okno aplikacji. Po włączeniu aplikacji i zalogowaniu się (domyślne dane logowania to \textit{'admin'} i \textit{'admin'}), okno konfiguracji pozwala na bardziej rozbudowaną konfigurację systemu.\\
 	Wciśnięcie przycisku 'Konfiguracja' (reprezentowane w oknie jako ikona dwóch trybów), otwiera osobne okno, pozwalające na konfigurację kluczowych elementów systemu.\\
@@ -41,7 +56,7 @@
 	\end{figure}
 	Widok pozwala na podglądnięcie użytkowników oraz na zmianę ich nazwy oraz wagi. Nazwa pozwala na rozróżnianie użytkowników w sposób łatwiejszy niż adres MAC. Waga odgrywa kluczową rolę podczas obliczania parametrów do sterowania urządzeniami - czym wyższa waga użytkownika, tym większe ma on znaczenie dla urządzenia, w którego zasięgu znajduje się obliczona lokalizacja. Dodatkowo, pojawienie się użytkownika o określonej wadze może mieć wpływ na zajście zdarzenia, zdefiniowanego dla urządzenia.\\
 		
-	\section{Aplikacja mobilna}
+	\subsection{Aplikacja mobilna}
 	
 	Aplikację instaluje się przy użyciu pliku \textit{.apk}. Aplikacja mobilna, po zainstalowaniu w telefonie, wymaga wpisania adresu ip i portu serwera. Serwis lokalizujący włącza się przy użyciu przycisku w MainActivity.
 	\begin{figure}[H]			
@@ -49,3 +64,5 @@
 		\caption{Ekran konfiguracyjny aplikacji mobilnej}
 		\includegraphics[width=0.3\textwidth]{apk_mobilna}
 	\end{figure}
+
+\end{document}

@@ -7,7 +7,7 @@
 \contentsline {section}{\numberline {2.2}Trilateracja}{9}
 \contentsline {section}{\numberline {2.3}Lokalizacja jako funkcja probabilistyczna Gaussa}{10}
 \contentsline {subsection}{\numberline {2.3.1}Funkcja probabilistyczna Gaussa}{10}
-\contentsline {subsection}{\numberline {2.3.2}Model router\IeC {\'o}w jako funkcja Gaussa}{11}
+\contentsline {subsection}{\numberline {2.3.2}Model transmiter\IeC {\'o}w jako funkcja Gaussa}{11}
 \contentsline {subsection}{\numberline {2.3.3}Lokalizacja u\IeC {\.z}ytkownika opisana funkcj\IeC {\k a} Gaussa}{12}
 \contentsline {chapter}{\numberline {3}Propagacja sygna\IeC {\l }u radiowego}{15}
 \contentsline {section}{\numberline {3.1}Zanik sygna\IeC {\l } radiowego}{15}
@@ -15,7 +15,7 @@
 \contentsline {section}{\numberline {3.3}Margines zaniku}{16}
 \contentsline {section}{\numberline {3.4}Received Signal Strength Indication}{16}
 \contentsline {section}{\numberline {3.5}Free-space path loss}{16}
-\contentsline {section}{\numberline {3.6}Podsumowanie}{17}
+\contentsline {section}{\numberline {3.6}Wp\IeC {\l }yw wsp\IeC {\'o}\IeC {\l }czynnik\IeC {\'o}w sygna\IeC {\l }u na okre\IeC {\'s}lanie lokalizacji}{17}
 \contentsline {chapter}{\numberline {4}Testy sposob\IeC {\'o}w komunikacji radiowej}{19}
 \contentsline {section}{\numberline {4.1}Wykorzystane urz\IeC {\k a}dzenia}{19}
 \contentsline {section}{\numberline {4.2}Warunki}{20}
@@ -23,7 +23,7 @@
 \contentsline {section}{\numberline {4.4}Wyznaczenie warto\IeC {\'s}ci strat}{21}
 \contentsline {subsection}{\numberline {4.4.1}Pomiary}{21}
 \contentsline {subsection}{\numberline {4.4.2}Wnioski}{21}
-\contentsline {section}{\numberline {4.5}Przeszkody na drodze sygna\IeC {\l }u}{21}
+\contentsline {section}{\numberline {4.5}Przeszkody na drodze sygna\IeC {\l }u}{22}
 \contentsline {subsection}{\numberline {4.5.1}Pomiary}{22}
 \contentsline {subsection}{\numberline {4.5.2}Wnioski}{23}
 \contentsline {chapter}{\numberline {5}Implementacja}{25}
@@ -50,10 +50,5 @@
 \contentsline {chapter}{\numberline {6}Testy systemu}{45}
 \contentsline {section}{\numberline {6.1}Lokalizowanie u\IeC {\.z}ytkownika}{45}
 \contentsline {section}{\numberline {6.2}Monitorowanie i konfiguracja systemu}{47}
-\contentsline {section}{\numberline {6.3}Podsumowanie}{47}
-\contentsline {chapter}{\numberline {7}Appendix 1 - Wyniki testu sposob\IeC {\'o}w komunikacji radiowej}{49}
-\contentsline {chapter}{\numberline {8}Appendix 2 - Instrukcja instalacji systemu}{59}
-\contentsline {section}{\numberline {8.1}Aplikacja serwerowa}{59}
-\contentsline {section}{\numberline {8.2}Konfiguracja bazy danych}{60}
-\contentsline {section}{\numberline {8.3}Aplikacja kliencka}{60}
-\contentsline {section}{\numberline {8.4}Aplikacja mobilna}{62}
+\contentsline {chapter}{\numberline {7}Podsumowanie}{49}
+\contentsline {chapter}{\numberline {8}Appendix 1 - Wyniki testu sposob\IeC {\'o}w komunikacji radiowej}{51}
